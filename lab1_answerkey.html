@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>&lt;no title&gt; &#8212; Stata Programming</title>
+    <title>Lab 1 &#8212; Stata Programming</title>
   
   
   
@@ -343,7 +343,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>Lab 1</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -352,9 +352,10 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1">Part 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2">Part 2</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -365,55 +366,62 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <p>Stata Programming</p>
-<p>Lab 1 Part 1</p>
-<p>6/19/2023</p>
-<p>Overview: Write Stata commands to solve the following questions. Keep them in a text file. In the second half of today’s class you will learn how to put them in a “.do file” or script to run all of the commands at the same time. For now, put them in a text file and copy/paste one line at a time into Stata to get the answers.</p>
-<p>Evaluation: You will turn this work in together with Lab 1 Part 2.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="lab-1">
+<h1>Lab 1<a class="headerlink" href="#lab-1" title="Permalink to this heading">#</a></h1>
+<section id="part-1">
+<h2>Part 1<a class="headerlink" href="#part-1" title="Permalink to this heading">#</a></h2>
+<p>Write Stata commands to solve the following questions. Keep them in a <code class="docutils literal notranslate"><span class="pre">.txt</span> <span class="pre">or</span> <span class="pre">.docx</span> <span class="pre">file</span></code>. In the second half of today’s class you will learn how to put them in a <code class="docutils literal notranslate"><span class="pre">.do</span> <span class="pre">file</span></code> or script to run all of the commands at the same time. For now, put them in a text file and copy &amp; paste one line at a time into Stata to get the answers.</p>
+<p>You will turn this work in together with Lab 1 Part 2.</p>
 <p>Write Stata commands to answer the following questions:</p>
 <ol class="arabic simple">
-<li><p>How many total patients are in the dataset? <strong>2000</strong></p></li>
-<li><p>The variable “dx” represents diagnosis and “age” represents patient age. How many patients were between the ages of 50 and 60 and had diabetes as their primary diagnosis at the time of transplant? <strong>29</strong></p></li>
-<li><p>The variable “wait_yrs” represents the amount of time a patient spent on the transplant waitlist prior to transplant. How many patients waited longer than 5 years for a transplant? <strong>214</strong></p></li>
-<li><p>What is the age, race (variable: “race”), and Hepatitis C status (variable: “rec_hcv_antibody”) of patient with ID=493?  <strong>75/1 (white) / negative</strong></p></li>
-<li><p>What are the mean ages at transplant for male and female recipients? (Hint: consider tab, sum) (Variable: “gender” 0=Male, 1 = Female). <strong>50.96; 49.52</strong></p></li>
+<li><p>How many total patients are in the dataset? <code class="docutils literal notranslate"><span class="pre">2000</span></code></p></li>
+<li><p>The variable “dx” represents diagnosis and “age” represents patient age. How many patients were between the ages of 50 and 60 and had diabetes as their primary diagnosis at the time of transplant? <code class="docutils literal notranslate"><span class="pre">29</span></code></p></li>
+<li><p>The variable <code class="docutils literal notranslate"><span class="pre">wait_yrs</span></code> represents the amount of time a patient spent on the transplant waitlist prior to transplant. How many patients waited longer than 5 years for a transplant? <code class="docutils literal notranslate"><span class="pre">214</span></code></p></li>
+<li><p>What is the age, race (variable: <code class="docutils literal notranslate"><span class="pre">race</span></code>), and Hepatitis C status (variable: <code class="docutils literal notranslate"><span class="pre">rec_hcv_antibody</span></code>) of patient with ID=493?  <code class="docutils literal notranslate"><span class="pre">75/1</span> <span class="pre">(white)</span> <span class="pre">/</span> <span class="pre">negative</span></code></p></li>
+<li><p>What are the mean ages at transplant for male and female recipients? (<u>Hint<u>: consider <code class="docutils literal notranslate"><span class="pre">tab</span></code>, <code class="docutils literal notranslate"><span class="pre">sum</span></code>) (Variable: <code class="docutils literal notranslate"><span class="pre">gender</span></code> 0=Male, 1 = Female). <code class="docutils literal notranslate"><span class="pre">50.96;</span> <span class="pre">49.52</span></code></p></li>
 </ol>
-<p>Lab 1 Part 2
-6. Generate a variable called “age_categories” that is 0 for children (ages&lt;18), 1 for adults (18-60), and 2 for senior citizens (&gt;60). What is the mean number of years patients spent on the waitlist in each age group? (Hint: consider tab, sum)  <strong>0.71y; 2.48y; 2.27y</strong>
-7. Type describe to see a list of all variables. Which ones don’t have a variable label? Write code to give a variable label to all variables that don’t yet have one. Then run describe again to show the labeled variables.  <strong>Any description is fine</strong>
-8. Variable “abo” represents blood type and is coded as 1=A, 2=B, 3=AB, 4=O. Variable “prev” represents whether the patient has had a previous transplant and is coded 0=No, 1=Yes. Create a value label for “prev” that labels . Put the command tab abo prev in your script, to produce the following output (with xxxx filled in):</p>
-<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </code>|    Prev Kidney Tx</p>
-<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160;&#160; </code>abo |         0          1 |     Total</p>
-<p>———–+———————-+———-</p>
-<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160;&#160; </code>1=A |       <strong>613        107</strong> |       <strong>720</strong></p>
-<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160;&#160; </code>2=B |       <strong>226         23</strong> |       <strong>249</strong></p>
-<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160; </code>3=AB |       <strong>104         12</strong> |       <strong>116</strong></p>
-<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160;&#160; </code>4=O |       <strong>800        115</strong> |       <strong>915</strong></p>
-<p>———–+———————-+———-</p>
-<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160; </code>Total |     <strong>1,743        257</strong> |     <strong>2,000</strong></p>
+</section>
+<section id="part-2">
+<h2>Part 2<a class="headerlink" href="#part-2" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple" start="6">
+<li><p>Generate a variable called <code class="docutils literal notranslate"><span class="pre">age_categories</span></code> that is 0 for children (ages&lt;18), 1 for adults (18-60), and 2 for senior citizens (&gt;60). What is the mean number of years patients spent on the waitlist in each age group? (<u>Hint</u>: consider <code class="docutils literal notranslate"><span class="pre">tab</span></code>, <code class="docutils literal notranslate"><span class="pre">sum</span></code>)  <code class="docutils literal notranslate"><span class="pre">0.71y;</span> <span class="pre">2.48y;</span> <span class="pre">2.27y</span></code></p></li>
+<li><p>Type the command <code class="docutils literal notranslate"><span class="pre">describe</span></code> to see a list of all variables. Which ones don’t have a variable label? Write code to give a variable label to all variables that don’t yet have one. Then run describe again to show the labeled variables.  <code class="docutils literal notranslate"><span class="pre">Any</span> <span class="pre">description</span> <span class="pre">is</span> <span class="pre">fine</span></code></p></li>
+<li><p>Variable “abo” represents blood type and is coded as 1=A, 2=B, 3=AB, 4=O. Variable “prev” represents whether the patient has had a previous transplant and is coded 0=No, 1=Yes. Create a value label for “prev” that labels . Put the command tab abo prev in your script, to produce the following output (with xxxx filled in):</p></li>
+</ol>
+<p>|    Prev Kidney Tx
+abo |         0          1 |     Total
+———–+———————-+———-
+1=A |       613        107 |       720
+2=B |       226         23 |       249
+3=AB |       104         12 |       116
+4=O |       800        115 |       915
+———–+———————-+———-
+Total |     1,743        257 |     2,000</p>
 <ol class="arabic simple" start="9">
 <li><p>Generate a new variable called bmi_whocat, representing WHO categories of BMI. BMI category should have the following values: missing if BMI is missing; 1 (labeled “underweight”) if BMI&lt;18.5; 2 (labeled “normal”) if BMI is 18.5-25; 3 (labeled “overweight”) if BMI is 25.1-30; 4 (labeled “obese”) if BMI is 30.1=40.</p></li>
 </ol>
-<p><code class="docutils literal notranslate"> </code><strong>bmi_whocat |      Freq.     Percent        Cum.</strong></p>
-<p><strong>————+———————————–</strong></p>
-<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </code><strong>1 |         51        2.77        2.77</strong></p>
-<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </code><strong>2 |        629       34.13       36.90</strong></p>
-<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </code><strong>3 |        632       34.29       71.19</strong></p>
-<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </code><strong>4 |        531       28.81      100.00</strong></p>
-<p><strong>————+———————————–</strong></p>
-<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160; </code><strong>Total |      1,843      100.00</strong></p>
+<p>bmi_whocat |      Freq.     Percent        Cum.
+————+———————————–
+1 |         51        2.77        2.77**
+2 |        629       34.13       36.90**
+3 |        632       34.29       71.19**
+4 |        531       28.81      100.00**
+————+———————————–
+Total |      1,843      100.00</p>
 <ol class="arabic simple" start="10">
 <li><p>List the ID and age of every patient who is older than 80. List them in order with the oldest patient first.</p></li>
 </ol>
-<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160;&#160; </code><strong>1535    85</strong></p>
-<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160;&#160; </code><strong>1636    84</strong></p>
-<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160;&#160; </code><strong>1592    84</strong></p>
-<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160;&#160;&#160; </code><strong>736    82</strong></p>
-<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160;&#160; </code><strong>1527    82</strong></p>
-<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160;&#160;&#160; </code><strong>911    82</strong></p>
-<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160;&#160;&#160; </code><strong>647    81</strong></p>
-<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160;&#160; </code><strong>1061    81</strong></p>
-<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160;&#160; </code><strong>1435    81</strong></p>
+<p>1535    85
+1636    84<br />
+1592    84<br />
+736    82<br />
+1527    82<br />
+911    82
+647    81
+061    81<br />
+1435    81</p>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -463,9 +471,10 @@ document.write(`
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1">Part 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2">Part 2</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>

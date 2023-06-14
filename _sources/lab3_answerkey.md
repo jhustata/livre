@@ -1,4 +1,6 @@
-﻿Lab 3 Part 1
+﻿# Lab 3
+
+Lab 3 Part 1
 
 6/21/2023
 
