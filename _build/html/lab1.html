@@ -61,7 +61,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lab1_answerkey';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lab1';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -232,7 +232,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab1_answerkey.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab1.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -262,7 +262,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/lab1_answerkey.md" target="_blank"
+      <li><a href="_sources/lab1.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -375,18 +375,18 @@ document.write(`
 <p>You will turn this work in together with Lab 1 Part 2.</p>
 <p>Write Stata commands to answer the following questions:</p>
 <ol class="arabic simple">
-<li><p>How many total patients are in the dataset? <code class="docutils literal notranslate"><span class="pre">2000</span></code></p></li>
-<li><p>The variable “dx” represents diagnosis and “age” represents patient age. How many patients were between the ages of 50 and 60 and had diabetes as their primary diagnosis at the time of transplant? <code class="docutils literal notranslate"><span class="pre">29</span></code></p></li>
-<li><p>The variable <em>wait_yrs</em> represents the amount of time a patient spent on the transplant waitlist prior to transplant. How many patients waited longer than 5 years for a transplant? <code class="docutils literal notranslate"><span class="pre">214</span></code></p></li>
-<li><p>What is the age, race (variable: <em>race</em>), and Hepatitis C status (variable: <em>rec_hcv_antibody</em>) of patient with ID=493?  <code class="docutils literal notranslate"><span class="pre">75/1</span> <span class="pre">(white)</span> <span class="pre">/</span> <span class="pre">negative</span></code></p></li>
-<li><p>What are the mean ages at transplant for male and female recipients? (<u>Hint</u>: consider <em>tab</em>, <em>sum</em>) (Variable: <em>gender</em> 0=Male, 1 = Female). <code class="docutils literal notranslate"><span class="pre">50.96;</span> <span class="pre">49.52</span></code></p></li>
+<li><p>How many total patients are in the dataset?</p></li>
+<li><p>The variable “dx” represents diagnosis and “age” represents patient age. How many patients were between the ages of 50 and 60 and had diabetes as their primary diagnosis at the time of transplant?</p></li>
+<li><p>The variable <em>wait_yrs</em> represents the amount of time a patient spent on the transplant waitlist prior to transplant. How many patients waited longer than 5 years for a transplant?</p></li>
+<li><p>What is the age, race (variable: <em>race</em>), and Hepatitis C status (variable: <em>rec_hcv_antibody</em>) of patient with ID=493?</p></li>
+<li><p>What are the mean ages at transplant for male and female recipients? (<u>Hint</u>: consider <em>tab</em>, <em>sum</em>) (Variable: <em>gender</em> 0=Male, 1 = Female).</p></li>
 </ol>
 </section>
 <section id="part-2">
 <h2>Part 2<a class="headerlink" href="#part-2" title="Permalink to this heading">#</a></h2>
 <ol class="arabic" start="6">
-<li><p>Generate a variable called <em>age_categories</em> that is 0 for children (ages&lt;18), 1 for adults (18-60), and 2 for senior citizens (&gt;60). What is the mean number of years patients spent on the waitlist in each age group? (<u>Hint</u>: consider <em>tab</em>, <em>sum</em>)  <code class="docutils literal notranslate"><span class="pre">0.71y;</span> <span class="pre">2.48y;</span> <span class="pre">2.27y</span></code></p></li>
-<li><p>Type the command <em>describe</em> to see a list of all variables. Which ones don’t have a variable label? Write code to give a variable label to all variables that don’t yet have one. Then run describe again to show the labeled variables.  <code class="docutils literal notranslate"><span class="pre">Any</span> <span class="pre">description</span> <span class="pre">is</span> <span class="pre">fine</span></code></p></li>
+<li><p>Generate a variable called <em>age_categories</em> that is 0 for children (ages&lt;18), 1 for adults (18-60), and 2 for senior citizens (&gt;60). What is the mean number of years patients spent on the waitlist in each age group? (<u>Hint</u>: consider <em>tab</em>, <em>sum</em>)</p></li>
+<li><p>Type the command <em>describe</em> to see a list of all variables. Which ones don’t have a variable label? Write code to give a variable label to all variables that don’t yet have one. Then run describe again to show the labeled variables.</p></li>
 <li><p>Variable “abo” represents blood type and is coded as 1=A, 2=B, 3=AB, 4=O. Variable “prev” represents whether the patient has had a previous transplant and is coded 0=No, 1=Yes. Create a value label for “prev” that labels . Put the command tab abo prev in your script, to produce the following output (with xxxx filled in):</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    |    Prev Kidney Tx
 abo |         0          1 |     Total

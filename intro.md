@@ -12,9 +12,9 @@ Our class will be structured as follows:
    + 9:30[-](labs.md)10:00 lab
    + 10:00-10:15 break
    + 10:15-11:15 lecture
-   + 11:15-12:00 lab     
+   + 11:15-11:50 lab     
      
-Evaluation of your progress will be done on a daily daily basis:
+Evaluation of your progress will be done on a daily basis:
 
    + One graded lab per day (in-class)
    + An optional assignment given at the end of the class
