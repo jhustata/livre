@@ -158,6 +158,7 @@ const thebe_selector_output = ".output, .cell_output"
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">1. Overview, syntax, commands</a></li>
+
 <li class="toctree-l1"><a class="reference internal" href="chapter2.html">2. Return values, macros, programs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter3.html">3. Loops and program syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter4.html">4. Functions and advanced commands</a></li>
@@ -332,7 +333,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -348,6 +351,31 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. Overview, syntax, commands</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#personnel">1.1 Personnel</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#your-instructor">1.1.1 Your instructor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teaching-assistants">1.1.2 Teaching assistants</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-structure">1.2 Class structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rough-schedule">1.3 Rough schedule</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monday">1.3.1 Monday</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuesday">1.3.2 Tuesday</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wednesday">1.3.3 Wednesday</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thursday">1.3.4 Thursday</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#friday">1.3.5 Friday</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">1.4 Evaluation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#online-learning">1.5 Online learning</a></li>
+</ul>
+</li>
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -360,86 +388,109 @@ document.write(`
   <section class="tex2jax_ignore mathjax_ignore" id="overview-syntax-commands">
 <h1>1. Overview, syntax, commands<a class="headerlink" href="#overview-syntax-commands" title="Permalink to this heading">#</a></h1>
 <p>This will be your reference slide throughout this Stata Programming course ph.340.600.41</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span># 1.1 Personnel
-
-### 1.1.1 Your instructor
-Abimereki Muzaale muzaale@jhmi.edu
-
-## 1.1.2 Teaching assistants
-Ning Meng nmeng2@jh.edu
-Monica Jia hjia11@jhu.edu
-Xujun Gu xgu23@jhmi.edu
-
-## 1.2 Class structure
-
-+ 8:30-9:30 lecture
-+ 9:30[-](labs.md)10:00 lab
-+ 10:00-10:15 break
-+ 10:15-11:15 lecture
-+ 11:15-12:00 lab
-
-## 1.3 Rough schedule
-
-### 1.3.1 Monday
-+ Overview
-+ Syntax
-+ Commands
-
-### 1.3.2 Tuesday
-+ Return values
-+ Macros
-+ Programs
-
-### 1.3.3 Wednesday
-+ Loops
-+ Program syntax
-
-### 1.3.4 Thursday
-+ Functions
-+ Advanced commands
-
-### 1.3.5 Friday
-+ Graphs
-
-## 1.4 Evaluation
-
-+ One graded lab per day (in-class)
-+ An optional assignment given at the end of the class
-+ We encourage you to do the in-class labs even if you&#39;re not taking the class for credit
-+ Everyone who turns in every lab + the final assignment (on time) will get an A or a B
-
-## 1.5 Online learning
-
-+ CoursePlus Discussion Forum 
-     + General questions about Stata
-     + Course Administration
-     + Etc.
-+ Email instructor
-     + For confidential questions (e.g. grades)
-+ Zoom protocol
-     + Everyone but the lecturer will be muted
-     + Type questions into the Zoom &quot;chat&quot; window, which we will check every few minutes
-     + During labs: Post questions/comments to CoursePlus message board. Zoom will remain on
-     + We intend to record and post lectures; no guarantees. Please watch live if feasible
-+ Academic Integrity
-     + Copying small code snippets from books, the Internet, etc. is permissible with citation in the comments
-     + May annotate like this: `// Adapted from code at http://whatev.er/page.txt`
-     + Looking at other students&#39; code (i.e. over their shoulder, with their permission) is encouraged
-
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">46</span>
-    <span class="o">+</span> <span class="n">We</span> <span class="n">encourage</span> <span class="n">you</span> <span class="n">to</span> <span class="n">do</span> <span class="n">the</span> <span class="ow">in</span><span class="o">-</span><span class="k">class</span> <span class="nc">labs</span> <span class="n">even</span> <span class="k">if</span> <span class="n">you</span><span class="s1">&#39;re not taking the class for credit</span>
-                                                          <span class="o">^</span>
-<span class="ne">SyntaxError</span>: unterminated string literal (detected at line 46)
-</pre></div>
-</div>
-</div>
-</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="personnel">
+<h1>1.1 Personnel<a class="headerlink" href="#personnel" title="Permalink to this heading">#</a></h1>
+<section id="your-instructor">
+<h2>1.1.1 Your instructor<a class="headerlink" href="#your-instructor" title="Permalink to this heading">#</a></h2>
+<p>Abimereki Muzaale <a class="reference external" href="mailto:muzaale&#37;&#52;&#48;jhmi&#46;edu">muzaale<span>&#64;</span>jhmi<span>&#46;</span>edu</a></p>
+</section>
+<section id="teaching-assistants">
+<h2>1.1.2 Teaching assistants<a class="headerlink" href="#teaching-assistants" title="Permalink to this heading">#</a></h2>
+<p>Ning Meng <a class="reference external" href="mailto:nmeng2&#37;&#52;&#48;jh&#46;edu">nmeng2<span>&#64;</span>jh<span>&#46;</span>edu</a>
+Monica Jia <a class="reference external" href="mailto:hjia11&#37;&#52;&#48;jhu&#46;edu">hjia11<span>&#64;</span>jhu<span>&#46;</span>edu</a>
+Xujun Gu <a class="reference external" href="mailto:xgu23&#37;&#52;&#48;jhmi&#46;edu">xgu23<span>&#64;</span>jhmi<span>&#46;</span>edu</a></p>
+</section>
+<section id="class-structure">
+<h2>1.2 Class structure<a class="headerlink" href="#class-structure" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>8:30-9:30 lecture</p></li>
+<li><p>9:30<a class="reference internal" href="labs.html"><span class="doc std std-doc">-</span></a>10:00 lab</p></li>
+<li><p>10:00-10:15 break</p></li>
+<li><p>10:15-11:15 lecture</p></li>
+<li><p>11:15-12:00 lab</p></li>
+</ul>
+</section>
+<section id="rough-schedule">
+<h2>1.3 Rough schedule<a class="headerlink" href="#rough-schedule" title="Permalink to this heading">#</a></h2>
+<section id="monday">
+<h3>1.3.1 Monday<a class="headerlink" href="#monday" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Overview</p></li>
+<li><p>Syntax</p></li>
+<li><p>Commands</p></li>
+</ul>
+</section>
+<section id="tuesday">
+<h3>1.3.2 Tuesday<a class="headerlink" href="#tuesday" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Return values</p></li>
+<li><p>Macros</p></li>
+<li><p>Programs</p></li>
+</ul>
+</section>
+<section id="wednesday">
+<h3>1.3.3 Wednesday<a class="headerlink" href="#wednesday" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Loops</p></li>
+<li><p>Program syntax</p></li>
+</ul>
+</section>
+<section id="thursday">
+<h3>1.3.4 Thursday<a class="headerlink" href="#thursday" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Functions</p></li>
+<li><p>Advanced commands</p></li>
+</ul>
+</section>
+<section id="friday">
+<h3>1.3.5 Friday<a class="headerlink" href="#friday" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Graphs</p></li>
+</ul>
+</section>
+</section>
+<section id="evaluation">
+<h2>1.4 Evaluation<a class="headerlink" href="#evaluation" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>One graded lab per day (in-class)</p></li>
+<li><p>An optional assignment given at the end of the class</p></li>
+<li><p>We encourage you to do the in-class labs even if you’re not taking the class for credit</p></li>
+<li><p>Everyone who turns in every lab + the final assignment (on time) will get an A or a B</p></li>
+</ul>
+</section>
+<section id="online-learning">
+<h2>1.5 Online learning<a class="headerlink" href="#online-learning" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>CoursePlus Discussion Forum</p>
+<ul>
+<li><p>General questions about Stata</p></li>
+<li><p>Course Administration</p></li>
+<li><p>Etc.</p></li>
+</ul>
+</li>
+<li><p>Email instructor</p>
+<ul>
+<li><p>For confidential questions (e.g. grades)</p></li>
+</ul>
+</li>
+<li><p>Zoom protocol</p>
+<ul>
+<li><p>Everyone but the lecturer will be muted</p></li>
+<li><p>Type questions into the Zoom “chat” window, which we will check every few minutes</p></li>
+<li><p>During labs: Post questions/comments to CoursePlus message board. Zoom will remain on</p></li>
+<li><p>We intend to record and post lectures; no guarantees. Please watch live if feasible</p></li>
+</ul>
+</li>
+<li><p>Academic Integrity</p>
+<ul>
+<li><p>Copying small code snippets from books, the Internet, etc. is permissible with citation in the comments</p></li>
+<li><p>May annotate like this: <code class="docutils literal notranslate"><span class="pre">//</span> <span class="pre">Adapted</span> <span class="pre">from</span> <span class="pre">code</span> <span class="pre">at</span> <span class="pre">http://whatev.er/page.txt</span></code></p></li>
+<li><p>Looking at other students’ code (i.e. over their shoulder, with their permission) is encouraged</p></li>
+</ul>
+</li>
+</ul>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -500,6 +551,37 @@ Xujun Gu xgu23@jhmi.edu
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">1. Overview, syntax, commands</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#personnel">1.1 Personnel</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#your-instructor">1.1.1 Your instructor</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#teaching-assistants">1.1.2 Teaching assistants</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#class-structure">1.2 Class structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rough-schedule">1.3 Rough schedule</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#monday">1.3.1 Monday</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tuesday">1.3.2 Tuesday</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wednesday">1.3.3 Wednesday</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#thursday">1.3.4 Thursday</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#friday">1.3.5 Friday</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation">1.4 Evaluation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#online-learning">1.5 Online learning</a></li>
+</ul>
+</li>
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>
