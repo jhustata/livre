@@ -7,8 +7,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; Stata Programming</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>&lt;no title&gt; &#8212; Stata Programming</title>
   
   
   
@@ -60,8 +61,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
-    <link rel="index" title="Index" href="#" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lab5_answerkey';</script>
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -230,7 +231,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fgenindex.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab5_answerkey.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -242,6 +243,54 @@ const thebe_selector_output = ".output, .cell_output"
   </span>
 <span class="btn__text-container">Open issue</span>
 </a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lab5_answerkey.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
 </li>
       
   </ul>
@@ -281,7 +330,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -292,11 +343,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1></h1>
+    <h1><no title></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -306,13 +365,47 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
+  <p>Lab 5 Part 1</p>
+<p>6/23/2023</p>
+<p>Overview: write a .do file which imports the requested data sets and creates the graphs described below using the slides we have discussed in class. Your .do file must be called lab5_<em>yourname</em>.do and must create a log file called lab5_<em>yourname</em>.log. This file will contain your answers for both part 1 and part 2 of today’s lab. Your .do file should follow conventions for .do file structure described in class. Do not submit your log files as part of the assignment.</p>
+<p>Evaluation: Evaluation will be based on the graphs produced by your script.</p>
+<p>At the start of your code for each question, leave a blank line and then a comment indicating the question number, like this:</p>
+<p><strong>Look at [name]_q1.png through q5.png</strong></p>
+<p>//QUESTION 1</p>
+<p>Tasks:</p>
+<ol class="arabic simple">
+<li><p>Import transplants.dta. Create a variable label for the variable wait_yrs, such as “Time on the waitlist in years.” Then, create a scatter plot with wait_yrs on the y-axis and age at transplant (age) on the x-axis.</p></li>
+<li><p>Import tx_yr.dta (created by lecture5_2019.do).  In this task you will create one graph that is two plots overlaid on one another. The graph should illustrate (1) the number of recipients who were unemployed (variable: not_working) per year (yr) as a bar graph and (2) the total number of transplants (variable: total) per year (yr) as a line graph.</p></li>
+<li><p>Fix your graph from question 2 so that the y-axis begins at 0 and labels go from 0 to to 250 by increments of 50.</p></li>
+</ol>
+<p>ab 5 Part 2</p>
+<p><code class="docutils literal notranslate"> </code>Edit your code for questions 1-3 so that you export the three graphs as [yourname]_q1.png, [yourname]_q2.png, and [yourname]_q3.png.</p>
+<ol class="arabic simple" start="4">
+<li><p>Import transplants.dta. Create a graph that is two scatter plots overlaid. Graph recipient weight in kilograms (rec_wgt_kg) on the y-axis and age at transplant (age) on the x-axis, with separate colors and/or makers for males and females. (HINT: if might be helpful). The legend should denote the two categories as “male recipients” and “female recipients”. Export the graph as [yourname]_q4.png.</p></li>
+<li><p>Import tx_yr.dta (created by lecture5_2019.do). Graph unknown, hypertensive, and diabetes by yr. Include a title, y-axis title, a red-vertical line at year 2008, change the colors and patterns of each line, change the labels in the legend, make the legend span 3 columns, and fix the y-axis. The graph should look like this:</p></li>
+</ol>
+<p>Export the graph as [yourname]_q5.png.</p>
+<p>For an extra point: Add the text “Policy Change” to the figure near the red line.</p>
 
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
-</div>
-
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -334,6 +427,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>

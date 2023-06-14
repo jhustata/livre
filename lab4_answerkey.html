@@ -7,8 +7,9 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; Stata Programming</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>&lt;no title&gt; &#8212; Stata Programming</title>
   
   
   
@@ -60,8 +61,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
-    <link rel="index" title="Index" href="#" />
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lab4_answerkey';</script>
+    <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -230,7 +231,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fgenindex.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flab4_answerkey.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -242,6 +243,54 @@ const thebe_selector_output = ".output, .cell_output"
   </span>
 <span class="btn__text-container">Open issue</span>
 </a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/lab4_answerkey.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
 </li>
       
   </ul>
@@ -281,7 +330,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -292,11 +343,19 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1></h1>
+    <h1><no title></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+            </nav>
         </div>
     </div>
 </div>
@@ -306,13 +365,85 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
+  <p>Lab 4 Part 1</p>
+<p>6/22/2023</p>
+<p>Overview: write a .do file which imports transplants.dta and performs the data management/ exploratory data analysis tasks described below using the slides we have discussed in class. Your .do file must be called lab4_<em>yourname</em>.do and must create a log file called lab4_<em>yourname</em>.log. This file will contain your answers for both part 1 and part 2 of today’s lab. Your .do file should follow conventions for .do file structure described in class. Do not submit your log files as part of the assignment.</p>
+<p>Evaluation: Evaluation will be based on the log file produced by your script.</p>
+<p>At the start of your answer to each question, leave a blank line and then a comment indicating the question number, like this:</p>
+<p>//QUESTION 1</p>
+<p>Tasks:</p>
+<ol class="arabic simple">
+<li><p>Create a new variable called ctr_volume that contains the transplant center volume (total number of transplants performed in each transplant center). The transplant center can be identified by ctr_id.</p></li>
+</ol>
+<p><a name="_hlk12616170"></a><strong>Just make sure that they did it</strong></p>
+<ol class="arabic simple" start="2">
+<li><p>Use summarize, detail to show the distribution of ctr_volume. For question 2, you should analyze one observation per center, not one observation per transplant recipient. (Hint: Tagging can help with this)</p></li>
+</ol>
+<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160; </code><strong>Percentiles      Smallest</strong></p>
+<p><code class="docutils literal notranslate"> </code><strong>1%            8              8</strong></p>
+<p><code class="docutils literal notranslate"> </code><strong>5%            8              8</strong></p>
+<p><strong>10%           26             26       Obs                  25</strong></p>
+<p><strong>25%           61             54       Sum of Wgt.          25</strong></p>
+<p><strong>50%           79                      Mean                 80</strong></p>
+<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; </code><strong>Largest       Std. Dev.      34.17358</strong></p>
+<p><strong>75%          105            116</strong></p>
+<p><strong>90%          127            127       Variance       1167.833</strong></p>
+<p><strong>95%          128            128       Skewness      -.5265107</strong></p>
+<p><strong>99%          128            128       Kurtosis       2.662681</strong></p>
+<ol class="arabic simple" start="3">
+<li><p>Generate a variable called unknown which is a 1 for all patients whose cause of end-stage renal disease (ESRD) is unknown/uncertain/blank (extended_dgn = “ESRD UNKNOWN ETIOLOGY”, “ESRD OF UNCERTAIN ETIOLOGY”, etc.) and a zero for all other patients. Display the following sentence:</p></li>
+</ol>
+<p>xxx of 2000 patients (yy.y%) have an unknown cause of ESRD.</p>
+<p><strong>My count was 893 but this will be all over the map. Just give credit if they made a reasonable effort</strong></p>
+<p>Except fill in the correct numbers.</p>
+<ol class="arabic simple" start="4">
+<li><p>How many patients died within six months of their transplant (died==1 and transplant date falls ≤ 180 days before end date)? Display the following sentence:</p></li>
+</ol>
+<p><strong>46/2.3%</strong></p>
+<p>xxx of 2000 patients (yy.y%) died within 6 months of their transplant date.</p>
+<p>Except fill in the correct numbers.</p>
+<ol class="arabic simple" start="5">
+<li><p>For each blood type, what is the mean waiting time for a transplant? (variable: wait_yrs) What is the median waiting time for a transplant? Use egen, tagging, and list to display the blood type, mean wait time, and median wait time of each blood type so that only one record is displayed per blood type.</p></li>
+</ol>
+<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160; </code><strong>abo      meanw    medianw</strong></p>
+<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160; </code><strong>1=A   1.989718    1.57974</strong></p>
+<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160; </code><strong>2=B   2.609568   2.253251</strong></p>
+<p><code class="docutils literal notranslate">&#160;&#160;&#160; </code><strong>3=AB   1.414879   1.045859</strong></p>
+<p><code class="docutils literal notranslate">&#160;&#160;&#160;&#160; </code><strong>4=O   2.649108   2.313484</strong></p>
+<p>Lab 4 Part 2</p>
+<ol class="arabic simple" start="6">
+<li><p>Create a variable called over50 which is a 1 for any recipient age &gt;50 and 0 for everyone else. Draw a survival curve stratified by over50.</p></li>
+<li><p>Is the difference in post-transplant survival by over50 statistically significant (p&gt;0.05)? Write one of the following sentences:</p></li>
+</ol>
+<p><strong>There is a statistically significant difference in survival by age category (p&lt;0.05)</strong></p>
+<p>or</p>
+<p>There is no statistically significant difference in survival by age category (p=0.x)</p>
+<ol class="arabic simple" start="8">
+<li><p>Run a Cox regression on over50 (command stcox over50). Print this sentence:</p></li>
+</ol>
+<p>Hazard ratio: x.xx (95% CI y.yy-z.zz)</p>
+<p><strong>3.44 (2.50-4.76)</strong></p>
+<p>Except fill in the correct values.</p>
 
-<h1 id="index">Index</h1>
-
-<div class="genindex-jumpbox">
- 
-</div>
-
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
 
                 </article>
               
@@ -334,6 +465,20 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="simple visible nav section-nav flex-column">
+</ul>
+
+  </nav></div>
+
+</div></div>
               
             
           </div>
