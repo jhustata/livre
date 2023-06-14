@@ -8,16 +8,16 @@ You will turn this work in together with Lab 1 Part 2.
      
 Write Stata commands to answer the following questions:     
      
-1. How many total patients are in the dataset? `2000`     
-2. The variable "dx" represents diagnosis and "age" represents patient age. How many patients were between the ages of 50 and 60 and had diabetes as their primary diagnosis at the time of transplant? `29`     
-3. The variable *wait_yrs* represents the amount of time a patient spent on the transplant waitlist prior to transplant. How many patients waited longer than 5 years for a transplant? `214`     
-4. What is the age, race (variable: *race*), and Hepatitis C status (variable: *rec_hcv_antibody*) of patient with ID=493?  `75/1 (white) / negative`      
-5. What are the mean ages at transplant for male and female recipients? (<u>Hint</u>: consider *tab*, *sum*) (Variable: *gender* 0=Male, 1 = Female). `50.96; 49.52`       
+1. How many total patients are in the dataset?      
+2. The variable "dx" represents diagnosis and "age" represents patient age. How many patients were between the ages of 50 and 60 and had diabetes as their primary diagnosis at the time of transplant?      
+3. The variable *wait_yrs* represents the amount of time a patient spent on the transplant waitlist prior to transplant. How many patients waited longer than 5 years for a transplant?       
+4. What is the age, race (variable: *race*), and Hepatitis C status (variable: *rec_hcv_antibody*) of patient with ID=493?  
+5. What are the mean ages at transplant for male and female recipients? (<u>Hint</u>: consider *tab*, *sum*) (Variable: *gender* 0=Male, 1 = Female).      
      
 ## Part 2
      
-6. Generate a variable called *age_categories* that is 0 for children (ages<18), 1 for adults (18-60), and 2 for senior citizens (>60). What is the mean number of years patients spent on the waitlist in each age group? (<u>Hint</u>: consider *tab*, *sum*)  `0.71y; 2.48y; 2.27y`      
-7. Type the command *describe* to see a list of all variables. Which ones don't have a variable label? Write code to give a variable label to all variables that don't yet have one. Then run describe again to show the labeled variables.  `Any description is fine`       
+6. Generate a variable called *age_categories* that is 0 for children (ages<18), 1 for adults (18-60), and 2 for senior citizens (>60). What is the mean number of years patients spent on the waitlist in each age group? (<u>Hint</u>: consider *tab*, *sum*)  
+7. Type the command *describe* to see a list of all variables. Which ones don't have a variable label? Write code to give a variable label to all variables that don't yet have one. Then run describe again to show the labeled variables.  
 8. Variable "abo" represents blood type and is coded as 1=A, 2=B, 3=AB, 4=O. Variable "prev" represents whether the patient has had a previous transplant and is coded 0=No, 1=Yes. Create a value label for "prev" that labels . Put the command tab abo prev in your script, to produce the following output (with xxxx filled in):      
 
            |    Prev Kidney Tx
