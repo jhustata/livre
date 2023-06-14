@@ -2,9 +2,7 @@
 
 Welcome to the [340.600](https://www.jhsph.edu/courses/course/36824/2023/340.600.11/stata-programming) Summer Institute Course in Stata Programming!
 
-Your instructor from 6/19-6/23 will be Abimereki Muzaale muzaale@jhmi.edu. And your oustanding Teaching Assistants include Ning Meng nmeng2@jh.edu, Monica Jia hjia11@jhu.edu, and Xujun Gu xgu23@jhmi.edu.
-
-This class is being offered in a hybrid-format to cater to both those who will be in-person at the Bloomberg School (Room W4019) and those who will be joining us virtually (Zoom [link](https://jhjhm.zoom.us/j/98481767907)). In-person attendees are encouraged to also log into zoom because because zoom allows students to share code, and we may collectively `debug`. Students last summer unanimiously described this as one of the best aspects of their learning experience. By contrast, exclusively in-person formats without the zoom option make it difficult for students to articulate "in Stata talk" what issues they might be confronting. It makes collective troubleshooting a nightmare. The class will be structured as follows:
+This class will be offered in a hybrid-format to cater to both those who will be in-person at the Bloomberg School (**Room W4019**) and those who will be joining us virtually (Zoom [link](https://jhjhm.zoom.us/j/98481767907)). In-person attendees are encouraged to also log into zoom because because zoom allows students to share code, and we may collectively `debug`. Students last summer unanimiously described this as one of the best aspects of their learning experience. By contrast, exclusively in-person formats without the zoom option make it difficult for students to articulate "in Stata talk" what issues they might be confronting. It makes collective troubleshooting a nightmare. The class will be structured as follows:
    
    + 8:30-9:30 lecture
    + 9:30[-](labs.md)10:00 lab
