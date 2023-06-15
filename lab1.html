@@ -371,60 +371,66 @@ document.write(`
 <h1>Lab 1<a class="headerlink" href="#lab-1" title="Permalink to this heading">#</a></h1>
 <section id="part-1">
 <h2>Part 1<a class="headerlink" href="#part-1" title="Permalink to this heading">#</a></h2>
-<p>Write Stata commands to solve the following questions. Keep them in a <strong>.txt</strong> or <strong>.docx</strong> file. In the second half of today’s class you will learn how to put them in a <strong>.do file</strong> or script to run all of the commands at the same time. For now, put them in a text file and copy &amp; paste one line at a time into Stata to get the answers.</p>
+<p>Write Stata commands to solve the following questions. Keep them in a .txt or .docx file. In the second half of today’s class you will learn how to put them in a .do file or script to run all of the commands at the same time. For now, put them in a text file and copy &amp; paste one line at a time into Stata to get the answers.</p>
 <p>You will turn this work in together with Lab 1 Part 2.</p>
-<p>Write Stata commands to answer the following questions:</p>
+<p>Write Stata commands to answer the following questions about the dataset <a class="reference external" href="https://raw.githubusercontent.com/jhustata/livre/main/transplants.txt">transplants.txt</a>:</p>
 <ol class="arabic simple">
 <li><p>How many total patients are in the dataset?</p></li>
-<li><p>The variable “dx” represents diagnosis and “age” represents patient age. How many patients were between the ages of 50 and 60 and had diabetes as their primary diagnosis at the time of transplant?</p></li>
-<li><p>The variable <em>wait_yrs</em> represents the amount of time a patient spent on the transplant waitlist prior to transplant. How many patients waited longer than 5 years for a transplant?</p></li>
-<li><p>What is the age, race (variable: <em>race</em>), and Hepatitis C status (variable: <em>rec_hcv_antibody</em>) of patient with ID=493?</p></li>
-<li><p>What are the mean ages at transplant for male and female recipients? (<u>Hint</u>: consider <em>tab</em>, <em>sum</em>) (Variable: <em>gender</em> 0=Male, 1 = Female).</p></li>
+<li><p>The variable <code class="docutils literal notranslate"><span class="pre">dx</span></code> represents diagnosis and <code class="docutils literal notranslate"><span class="pre">age</span></code> represents patient age. How many patients were between the ages of 50 and 60 and had diabetes as their primary diagnosis at the time of transplant?</p></li>
+<li><p>The variable <code class="docutils literal notranslate"><span class="pre">wait_yrs</span></code> represents the amount of time a patient spent on the transplant waitlist prior to transplant. How many patients waited longer than 5 years for a transplant?</p></li>
+<li><p>What is the age, race (variable: <code class="docutils literal notranslate"><span class="pre">race</span></code>), and Hepatitis C status (variable: <code class="docutils literal notranslate"><span class="pre">rec_hcv_antibody</span></code>) of patient with ID=493?</p></li>
+<li><p>What are the mean ages at transplant for male and female recipients? (<u>Hint</u>: consider <code class="docutils literal notranslate"><span class="pre">tab</span></code>, <code class="docutils literal notranslate"><span class="pre">sum</span></code>) (Variable: <code class="docutils literal notranslate"><span class="pre">gender</span></code> 0=Male, 1 = Female).</p></li>
 </ol>
 </section>
 <section id="part-2">
 <h2>Part 2<a class="headerlink" href="#part-2" title="Permalink to this heading">#</a></h2>
-<ol class="arabic" start="6">
-<li><p>Generate a variable called <em>age_categories</em> that is 0 for children (ages&lt;18), 1 for adults (18-60), and 2 for senior citizens (&gt;60). What is the mean number of years patients spent on the waitlist in each age group? (<u>Hint</u>: consider <em>tab</em>, <em>sum</em>)</p></li>
-<li><p>Type the command <em>describe</em> to see a list of all variables. Which ones don’t have a variable label? Write code to give a variable label to all variables that don’t yet have one. Then run describe again to show the labeled variables.</p></li>
-<li><p>Variable “abo” represents blood type and is coded as 1=A, 2=B, 3=AB, 4=O. Variable “prev” represents whether the patient has had a previous transplant and is coded 0=No, 1=Yes. Create a value label for “prev” that labels . Put the command tab abo prev in your script, to produce the following output (with xxxx filled in):</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    |    Prev Kidney Tx
-abo |         0          1 |     Total
+<ol class="arabic simple" start="6">
+<li><p>Generate a variable called <code class="docutils literal notranslate"><span class="pre">age_categories</span></code> that is 0 for children (ages&lt;18), 1 for adults (18-60), and 2 for senior citizens (&gt;60). What is the mean number of years patients spent on the waitlist in each age group? (<u>Hint</u>: consider <code class="docutils literal notranslate"><span class="pre">tab</span></code>, <code class="docutils literal notranslate"><span class="pre">sum</span></code>)</p></li>
+<li><p>Type the command <code class="docutils literal notranslate"><span class="pre">describe</span></code> to see a list of all variables. Which ones don’t have a variable label? Write code to give a variable label to all variables that don’t yet have one. Then run describe again to show the labeled variables.</p></li>
+<li><p>Variable <code class="docutils literal notranslate"><span class="pre">abo</span></code> represents blood type and is coded as 1=A, 2=B, 3=AB, 4=O. Variable <code class="docutils literal notranslate"><span class="pre">prev</span></code> represents whether the patient has had a previous transplant and is coded 0=No, 1=Yes. Create a value label for <code class="docutils literal notranslate"><span class="pre">prev</span></code>. Put the command <code class="docutils literal notranslate"><span class="pre">tab</span> <span class="pre">abo</span> <span class="pre">prev</span></code> in your script, to produce the following output (with XXX filled in):</p></li>
+</ol>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> tab</span> abo prev 
+
+           |    Prev Kidney Tx
+       abo |         No       Yes |     Total
+<span class="o">-----------+----------------------+----------</span>
+       <span class="m">1</span>=A |       XXX        XXX |       XXX 
+       <span class="m">2</span>=B |       XXX        XXX |       XXX 
+      <span class="m">3</span>=AB |       XXX        XXX |       XXX 
+       <span class="m">4</span>=O |       XXX        XXX |       XXX 
+<span class="o">-----------+----------------------+----------</span>
+     Total |       XXX        XXX |       XXX
+
+.
 </pre></div>
 </div>
-</li>
-</ol>
-<p>———–+———————-+———-
-1=A |       613        107 |       720
-2=B |       226         23 |       249
-3=AB |       104         12 |       116
-4=O |       800        115 |       915
-———–+———————-+———-
-Total |     1,743        257 |     2,000</p>
 <ol class="arabic simple" start="9">
-<li><p>Generate a new variable called bmi_whocat, representing WHO categories of BMI. BMI category should have the following values: missing if BMI is missing; 1 (labeled “underweight”) if BMI&lt;18.5; 2 (labeled “normal”) if BMI is 18.5-25; 3 (labeled “overweight”) if BMI is 25.1-30; 4 (labeled “obese”) if BMI is 30.1=40.</p></li>
+<li><p>Generate a new variable called bmi_whocat, representing WHO categories of BMI. BMI category should have the following values: missing if BMI is missing; 1 (labeled “underweight”) if BMI&lt;18.5; 2 (labeled “normal”) if BMI is 18.5-25; 3 (labeled “overweight”) if BMI is 25.1-30; 4 (labeled “obese”) if BMI is 30.1=40. Put the command <code class="docutils literal notranslate"><span class="pre">tab</span> <span class="pre">bmi_whocat</span></code> in your script, to produce the following output (with XXX filled in):</p></li>
 </ol>
-<p>bmi_whocat |      Freq.     Percent        Cum.
-————+———————————–
-1 |         51        2.77        2.77
-2 |        629       34.13       36.90
-3 |        632       34.29       71.19
-4 |        531       28.81      100.00
-————+———————————–
-Total |      1,843      100.00</p>
-<ol class="arabic" start="10">
-<li><p>List the ID and age of every patient who is older than 80. List them in order with the oldest patient first.</p>
-<p>1535    85<br />
-1636    84<br />
-1592    84<br />
-736    82<br />
-1527    82<br />
-911    82<br />
-647    81<br />
-1061    81<br />
-1435    81</p>
-</li>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> tab</span> bmi_whocat
+
+ bmi_whocat |      Freq.     Percent        Cum.
+<span class="o">------------+-----------------------------------</span>
+underweight |        XXX       XX<span class="m">.</span>XX      XX<span class="m">.</span>XX
+     normal |        XXX       XX<span class="m">.</span>XX      XX<span class="m">.</span>XX
+ overweight |        XXX       XX<span class="m">.</span>XX      XX<span class="m">.</span>XX
+      obese |        XXX       XX<span class="m">.</span>XX      XX<span class="m">.</span>XX
+<span class="o">------------+-----------------------------------</span>
+      Total |      XXX      XX<span class="m">.</span>XX
+
+.
+</pre></div>
+</div>
+<ol class="arabic simple" start="10">
+<li><p>List the ID and age of every patient who is older than 80. List them in order with the oldest patient first.</p></li>
 </ol>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>       XXXX    XX 
+       XXXX    XX  
+       XXXX    XX  
+       XXXX    XX  
+       XXXX    XX 
+</pre></div>
+</div>
 </section>
 </section>
 

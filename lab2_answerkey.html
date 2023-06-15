@@ -61,6 +61,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'lab2_answerkey';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -160,6 +162,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="chapter3.html">3. Loops and program syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter4.html">4. Functions and advanced commands</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter5.html">5. Graphs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickrefs.html">Quick References</a></li>
 </ul>
 
     </div>
@@ -330,7 +333,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -346,6 +351,15 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1">Part 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2">Part 2</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -357,55 +371,73 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="lab-2">
 <h1>Lab 2<a class="headerlink" href="#lab-2" title="Permalink to this heading">#</a></h1>
-<p>Lab 2 Part 1</p>
-<p>6/20/2023</p>
-<p>Overview: write a .do file which imports transplants.dta and performs the data management/ exploratory data analysis tasks described below using the slides we have discussed in class. Your .do file must be called lab2_<em>yourname</em>.do and must create a log file called lab2_<em>yourname</em>.log. This file will contain your answers for both part 1 and part 2 of today’s lab. Your .do file should follow conventions for .do file structure described in class. Do not submit your log files as part of the assignment.</p>
-<p>Evaluation: Evaluation will be based on the log file produced by your script.</p>
-<p>At the start of your answer to each question, leave a blank line and then a comment indicating the question number, like this:</p>
-<p>//QUESTION 1</p>
-<p>Tasks:</p>
+<section id="part-1">
+<h2>Part 1<a class="headerlink" href="#part-1" title="Permalink to this heading">#</a></h2>
+<p>Write a .do file which imports <a class="reference external" href="https://raw.githubusercontent.com/jhustata/livre/main/transplants.txt">transplants.txt</a> and performs the data management/exploratory data analysis tasks described below using the slides we have discussed in class. Your .do file (lab1_lastname.do) must create a log file (lab1_lastname.log). This file will contain your answers for both part 1 and part 2 of today’s lab. Your .do file should follow conventions for .do file structure described in class. Do not submit your log files as part of the assignment.</p>
 <ol class="arabic simple">
-<li><p>Do a chi2 test to test the association between recipient HCV status (rec_hcv) and gender (gender). Make Stata print the p value, like this:</p></li>
+<li><p>Do a <span class="math notranslate nohighlight">\(\chi^2\)</span> test to test the association between recipient HCV status (<code class="docutils literal notranslate"><span class="pre">rec_hcv</span></code>) and gender (<code class="docutils literal notranslate"><span class="pre">gender</span></code>). Make Stata print the p value, like this:</p></li>
 </ol>
-<p>Chi-squared p value (question 1): xxxxxx <strong>0.006 (any formatting OK)</strong></p>
-<p>Except print the correct p value.</p>
-<p>Note: here and in other questions, if the p value is (for example) 0.4, don’t have a command like</p>
-<p>disp 0.4</p>
-<p>Instead, write code to calculate and then display the number we are asking for.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>Chi<span class="o">-</span>squared p value (question <span class="m">1</span>): xxxxxx 
+</pre></div>
+</div>
+<p>Except print the correct p value.  <code class="docutils literal notranslate"><span class="pre">0.006</span> <span class="pre">(any</span> <span class="pre">formatting</span> <span class="pre">OK)</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">Note:</span> <span class="pre">here</span> <span class="pre">and</span> <span class="pre">in</span> <span class="pre">other</span> <span class="pre">questions,</span> <span class="pre">if</span> <span class="pre">the</span> <span class="pre">p</span> <span class="pre">value</span> <span class="pre">is</span> <span class="pre">(for</span> <span class="pre">example)</span> <span class="pre">0.4,</span> <span class="pre">don't</span> <span class="pre">have</span> <span class="pre">a</span> <span class="pre">command</span> <span class="pre">like</span></code></p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">disp</span> <span class="m">0.4</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Instead,</span> <span class="pre">write</span> <span class="pre">code</span> <span class="pre">to</span> <span class="pre">calculate</span> <span class="pre">and</span> <span class="pre">then</span> <span class="pre">display</span> <span class="pre">the</span> <span class="pre">number</span> <span class="pre">we</span> <span class="pre">are</span> <span class="pre">asking</span> <span class="pre">for.</span></code></p>
 <ol class="arabic simple" start="2">
-<li><p>Do a one-sided Fisher exact test to test the association between recipient HCV status (rec_hcv) and gender (gender). Make Stata print the one-sided p value, like this:</p></li>
+<li><p>Do a one-sided Fisher exact test to test the association between recipient HCV status (<code class="docutils literal notranslate"><span class="pre">rec_hcv</span></code>) and gender (<code class="docutils literal notranslate"><span class="pre">gender</span></code>). Make Stata print the one-sided p value, like this:</p></li>
 </ol>
-<p>One-sided Fisher exact p value (question 2): xxxxxx</p>
-<p>Except print the correct p value. <strong>0.003 (any formatting OK)</strong></p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>One<span class="o">-</span>sided Fisher exact p value (question <span class="m">2</span>): xxxxxx
+</pre></div>
+</div>
+<p>Except print the correct p value. <code class="docutils literal notranslate"><span class="pre">0.003</span> <span class="pre">(any</span> <span class="pre">formatting</span> <span class="pre">OK)</span></code></p>
 <ol class="arabic simple" start="3">
 <li><p>Run a logistic regression to test the association between age and recipient HCV status (logistic rec_hcv age). Make Stata print the odds ratio from that regression, like this:</p></li>
 </ol>
-<p>Odds ratio (question 3): xx.xx (95% CI yy.yy-zz.zz) <strong>1.02 (95% CI 1.01-1.04)</strong></p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>Odds<span class="k"> ratio</span> (question <span class="m">3</span>): xx<span class="m">.</span>xx (<span class="m">95</span>% CI yy<span class="m">.</span>yy<span class="o">-</span>zz<span class="m">.</span>zz)
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">1.02</span> <span class="pre">(95%</span> <span class="pre">CI</span> <span class="pre">1.01-1.04)</span></code></p>
 <ol class="arabic simple" start="4">
 <li><p>Make Stata print the p value for the coefficient from that regression, like this:</p></li>
 </ol>
-<p>P value (question 4): 0.yyyy <strong>0.0009</strong></p>
-<p>Lab 2 part 2</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>P value (question <span class="m">4</span>): <span class="m">0.</span>yyyy 
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">0.0009</span></code></p>
+</section>
+<section id="part-2">
+<h2>Part 2<a class="headerlink" href="#part-2" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple" start="5">
 <li><p>Write code to produce the following output:</p></li>
 </ol>
-<p>Question 5: mean peak PRA is 18.4 in males and 14.5 in females</p>
-<p>But fill in the correct numbers.  <strong>10.4, 26.4</strong></p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>Question <span class="m">5</span>:<span class="k"> mean</span> peak PRA is <span class="m">18.4</span><span class="k"> in</span> males and <span class="m">14.5</span><span class="k"> in</span> females
+</pre></div>
+</div>
+<p>But fill in the correct numbers.  <code class="docutils literal notranslate"><span class="pre">10.4</span></code>, <code class="docutils literal notranslate"><span class="pre">26.4</span></code></p>
 <ol class="arabic simple" start="6">
 <li><p>Create a variable called hypertensive which is 1 for transplant recipients who have ESRD secondary to hypertension (dx==4) and 0 for everyone else. Create another variable called college which is 1 for recipients with an associate’s/bachelor’s degree or a graduate degree and 0 for recipients who have no education, grade school education, or high school/GED.  Create a variable called male which is 1 for male recipients and 0 for female recipients.</p></li>
 </ol>
-<p>Now run a logistic regression of hypertensive on age, BMI, college, and male gender (logistic hypertensive age bmi college male). Write a program called table_q6 that displays a table of odds ratios, like this:</p>
-<p>Regression table (Question 6)</p>
-<p>age        x.xx (x.xx - x.xx)</p>
-<p>bmi        x.xx (x.xx - x.xx)</p>
-<p>college    x.xx (x.xx - x.xx)</p>
-<p>male       x.xx (x.xx - x.xx)</p>
+<p>Now run a logistic regression of hypertensive on age, BMI, college, and male gender (logistic hypertensive age bmi college male). Write a program called <code class="docutils literal notranslate"><span class="pre">table_q6</span></code> that displays a table of odds ratios, like this:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>Regression<span class="k"> table</span> (Question <span class="m">6</span>)
+ 
+age        x<span class="m">.</span>xx (x<span class="m">.</span>xx <span class="o">-</span> x<span class="m">.</span>xx)
+bmi        x<span class="m">.</span>xx (x<span class="m">.</span>xx <span class="o">-</span> x<span class="m">.</span>xx)
+college    x<span class="m">.</span>xx (x<span class="m">.</span>xx <span class="o">-</span> x<span class="m">.</span>xx)
+male       x<span class="m">.</span>xx (x<span class="m">.</span>xx <span class="o">-</span> x<span class="m">.</span>xx)
+</pre></div>
+</div>
 <p>except fill in the correct numbers.</p>
-<p><strong>age        1.01 (1.00-1.02)</strong></p>
-<p><strong>bmi        1.02 (1.00-1.04)</strong></p>
-<p><strong>college    0.91 (0.72-1.14)</strong></p>
-<p><strong>male       1.21 (0.96-1.53)</strong></p>
-<p><strong>Values might be slightly different since the def of “college” is undefined if rec_educ is “some college” or missing</strong></p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>age        <span class="m">1.01</span> (<span class="m">1.00-1.02</span>)
+bmi        <span class="m">1.02</span> (<span class="m">1.00-1.04</span>)
+college    <span class="m">0.91</span> (<span class="m">0.72-1.14</span>)
+male       <span class="m">1.21</span> (<span class="m">0.96-1.53</span>)
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">Values</span> <span class="pre">might</span> <span class="pre">be</span> <span class="pre">slightly</span> <span class="pre">different</span> <span class="pre">since</span> <span class="pre">the</span> <span class="pre">def</span> <span class="pre">of</span> <span class="pre">&quot;college&quot;</span> <span class="pre">is</span> <span class="pre">undefined</span> <span class="pre">if</span> <span class="pre">rec_educ</span> <span class="pre">is</span> <span class="pre">&quot;some</span> <span class="pre">college&quot;</span> <span class="pre">or</span> <span class="pre">missing</span></code></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -448,6 +480,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1">Part 1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2">Part 2</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

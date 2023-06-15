@@ -580,7 +580,7 @@ document.write(`
 <ul>
 <li><p>Plain text (str49 = string of length 49 -&gt; <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">median</span> <span class="pre">age</span> <span class="pre">in</span> <span class="pre">this</span> <span class="pre">population</span> <span class="pre">is</span> <span class="pre">40</span> <span class="pre">years</span> <span class="pre">old</span></code>)</p></li>
 <li><p>File path (/users/d/desktop)</p></li>
-<li><p>Url (<a class="reference external" href="https://www.stata-press.com/data/r8/lifeexp.dta">https://www.stata-press.com/data/r8/lifeexp.dta</a>)</p></li>
+<li><p>Url (<a class="reference external" href="https://www.stata-press.com/data/r8/">https://www.stata-press.com/data/r8/</a>)</p></li>
 </ul>
 </li>
 </ul>
@@ -609,7 +609,7 @@ document.write(`
 <li><p>file &gt; example datasets &gt; lifeexp.dta &gt; use</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sysuse</span> <span class="pre">lifeexp.dta</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">webuse</span> <span class="pre">lifeexp.dta</span></code></p></li>
-<li><p>use <a class="reference external" href="https://www.stata-press.com/data/r8/lifeexp.dta">https://www.stata-press.com/data/r8/lifeexp.dta</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">use</span> <span class="pre">https://www.stata-press.com/data/r8/lifeexp.dta</span></code></p></li>
 </ul>
 </li>
 </ul>
@@ -670,10 +670,22 @@ Sorted<span class="k"> by</span>:
 <li><p>perform basic analysis</p></li>
 </ul>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">webuse</span> lifeexp,<span class="k"> clear</span> 
-<span class="k">describe</span>
 <span class="k">encode</span> country,<span class="k"> gen</span>(Country)
 <span class="k">twoway scatter</span> lexp Country, xscale(off)
 <span class="k">graph</span> export lexp_bycountry<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> webuse</span> lifeexp,<span class="k"> clear</span> 
+(Life expectancy, <span class="m">1998</span>)
+
+.<span class="k"> encode</span> country,<span class="k"> gen</span>(Country)
+
+.<span class="k"> twoway scatter</span> lexp Country, xscale(off)
+
+.<span class="k"> graph</span> export lexp_bycountry<span class="m">.</span>png,<span class="k"> replace</span> 
+<span class="k">file</span> <span class="o">/</span>Users<span class="o">/</span>d<span class="o">/</span>Dropbox (Personal)<span class="o">/</span>1f<span class="m">.</span>ἡἔρις,κ<span class="o">/</span><span class="m">1.</span>ontology<span class="o">/</span>summer<span class="o">/</span>lexp_bycountry<span class="m">.</span>png saved<span class="k"> as</span> PNG<span class="k"> format</span>
+
+. 
 </pre></div>
 </div>
 <p><img alt="" src="_images/lexp_bycountry.png" /></p>
