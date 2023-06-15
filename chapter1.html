@@ -502,9 +502,9 @@ document.write(`
 <p>The <code class="docutils literal notranslate"><span class="pre">system</span></code> is the <u>Stata application</u> and its a simple noun. It is not <strike>STATA</strike>, which gives the impression of being an acronym. I presume you’ve all installed Stata onto your local machines. If not I presume you’ll be doing so very soon or you will be remotely accessing it. The <code class="docutils literal notranslate"><span class="pre">user</span></code> includes you, me, the teaching assistants, collaborators, or stranger.</p>
 <p>As a user, you will or have already downloaded and installed a system of programs, mostly ado-files, which form the foundation of all the commands you will be using in Stata. These are the <strong>native</strong> Stata system files.</p>
 <p>But soon you will begin to write your own Stata programs or <code class="docutils literal notranslate"><span class="pre">.ado</span></code> files and install them into the system folders (as I’ve done with <code class="docutils literal notranslate"><span class="pre">table1_afecdvi.ado</span></code>). Then, it will be helpful to think of your role at as part of the system. In your new role as system, it will be helpful to anticipate the needs of the known and unknown future users of your program. This will call for <strong>empathy</strong> (anticipating user needs), <strong>sharing</strong> (your code with others), and <strong>caring</strong> (that its user-friendly).</p>
-<ul class="simple">
-<li><p>Installation</p>
 <ul>
+<li><p>Installation</p>
+<ul class="simple">
 <li><p>Local</p>
 <ul>
 <li><p>MacOSX</p></li>
@@ -529,7 +529,7 @@ document.write(`
 </ul>
 </li>
 <li><p>Local</p>
-<ul>
+<ul class="simple">
 <li><p><a class="reference external" href="https://www.stata.com/manuals13/gsw2.pdf#gsw2TheStatauserinterface">Menu</a></p>
 <ul>
 <li><p>file</p></li>
@@ -571,6 +571,49 @@ document.write(`
 <li><p>Other terms or synonyms include code, Stata code, code snippet.</p></li>
 </ul>
 </li>
+</ul>
+<p>A few commands are useful on their own</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">chelp</span>
+<span class="k">pwd</span>
+</pre></div>
+</div>
+<p>To name but a few. The majority of commands will only work in context of syntax</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>clear
+set obs 1000
+generate bmi=rnormal(28,5)
+hist bmi, normal
+graph export bmi.png, replace</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+```stata
+
+.  clear 
+
+.  set obs 1000
+Number of observations (_N) was 0, now 1,000.
+
+.  generate bmi=rnormal(28,5)
+
+.  hist bmi, normal
+(bin=29, start=13.457429, width=.99248317)
+
+.  graph export bmi.png, replace 
+file /Applications/Stata/ado/base/h/bmi.png saved	as	PNG	format
+
+. 
+end of do-file
+
+. 
+</pre></div>
+</div>
+<p><img alt="" src="_images/bmi.png" /></p>
+<p>In the above example the very first <code class="docutils literal notranslate"><span class="pre">legitimate</span></code> word is a command and is rendered blue on my machine but purple in this book. If you type any random word that has no corresponding ado-file, you’ll get an error message.</p>
+<p>The words that come after the command might be further commands or subcommands. If so, they’ll aso be rendered blue on my machine. The ones that appear in white or black (dark or light mode) are either third-party programs/commands or they are part of the Stata syntax.</p>
+<ul class="simple">
 <li><p>Input</p>
 <ul>
 <li><p>Menu (<strong>see above:</strong> outputs commands and syntax in results window)</p></li>
@@ -610,8 +653,6 @@ document.write(`
 <ul>
 <li><p>Self (e.g., GitHub)</p></li>
 <li><p>Journal (e.g. JAMA)</p></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
