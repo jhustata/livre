@@ -9,7 +9,7 @@ By contrast, exclusively in-person class formats without the zoom option make it
 Our class will be structured as follows:
    
    + 8:30-9:30 lecture
-   + 9:30[-](labs.md)10:00 lab
+   + 9:30-10:00 lab
    + 10:00-10:15 break
    + 10:15-11:15 lecture
    + 11:15-11:50 lab     
@@ -31,7 +31,7 @@ A few words on academic integrity. Copying small code snippets from books, the I
 tokenize `c(ALPHA)'  // Adapted from code at https://www.statalist.org/forums/forum/general-stata-discussion/general/1380433-creating-a-counter-with-alphabets
 ```
 
-Use of AI including chatGPT as a co-pilot, guide, or assistant is <u>strongly</u> encouraged during- and long after completion of this course.
+Use of AI including chatGPT as a co-pilot, guide, or assistant is <u>strongly</u> encouraged during- and long after completion of this course[.](labs.md)
 
 ## Table of contents
 

@@ -695,7 +695,7 @@ Sorted<span class="k"> by</span>:
 			(View complete PDF manual entry)
 </pre></div>
 </div>
-<p>We’ve already discussed (see <strong>output</strong> above) numeric values and strings as the two types of output will be dealing with in Stata. So the <code class="docutils literal notranslate"><span class="pre">display</span></code> command displays, as it were, these values based on the specific syntax you provide</p>
+<p>We’ve already discussed (see <strong>output</strong> above) numeric values and strings as the two types of output we will be dealing with in Stata. So the <code class="docutils literal notranslate"><span class="pre">display</span></code> command, as it were, displays these values based on the specific syntax you provide</p>
 <p>Those values will typically have two properties:</p>
 <ul class="simple">
 <li><p>name (e.g. <code class="docutils literal notranslate"><span class="pre">c(N)</span></code> and <code class="docutils literal notranslate"><span class="pre">c(k)</span></code>)</p></li>
@@ -731,7 +731,7 @@ Sorted<span class="k"> by</span>:
 <span class="k">pwd</span>
 </pre></div>
 </div>
-<p>To name but a few. But the vast majority of commands will only work in context of the appropriate syntax. In this example below, the command <code class="docutils literal notranslate"><span class="pre">clear</span></code> is useful on its own. But <code class="docutils literal notranslate"><span class="pre">set</span></code> only becomes useful with additional syntax. Here we have <code class="docutils literal notranslate"><span class="pre">obs</span> <span class="pre">2000</span></code>, instructing Stata to create an empty dataset with 1000 observations. The command <code class="docutils literal notranslate"><span class="pre">generate</span></code> with syntax <code class="docutils literal notranslate"><span class="pre">bmi=rnormal(28,5)</span></code> then instructs Stata to create a new variable <code class="docutils literal notranslate"><span class="pre">bmi</span></code> in a simulation of a random sampling process with replacement, 1000 times over, from a population with mean bmi of 28 and standard deviation of 5. Stata is then instructed to create a histogram of these simulated bmi sample and save the figure as a .PNG image. Hopefully this clarifies what a Stata command is and what syntax is. Together these make up Stata code.</p>
+<p>To name but a few. But the vast majority of commands will only work in context of the appropriate syntax. In this example below, the command <code class="docutils literal notranslate"><span class="pre">clear</span></code> is useful on its own. But <code class="docutils literal notranslate"><span class="pre">set</span></code> only becomes useful with additional syntax. Here we have <code class="docutils literal notranslate"><span class="pre">obs</span> <span class="pre">1000</span></code>, instructing Stata to create an empty dataset with 1000 observations. The command <code class="docutils literal notranslate"><span class="pre">generate</span></code> with syntax <code class="docutils literal notranslate"><span class="pre">bmi=rnormal(28,5)</span></code> then instructs Stata to create a new variable <code class="docutils literal notranslate"><span class="pre">bmi</span></code> in a simulation of a random sampling process with replacement, 1000 times over, from a population with mean bmi of 28 and standard deviation of 5. Stata is then instructed to create a histogram of these simulated bmi sample and save the figure as a .PNG image. Hopefully this clarifies what a Stata command is and what syntax is. Together these make up Stata code.</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k"> clear</span> 
 <span class="k"> set</span> obs <span class="m">1000</span>
 <span class="k"> generate</span> bmi=<span class="nf">rnormal</span>(<span class="m">28</span>,<span class="m">5</span>)
@@ -759,7 +759,7 @@ Number of observations (_N) was <span class="m">0</span>, now <span class="m">1<
 </pre></div>
 </div>
 <p><img alt="" src="_images/bmi.png" /></p>
-<p>In the above example the very first <code class="docutils literal notranslate"><span class="pre">legitimate</span></code> word is a command and is rendered blue on my machine but purple in this book. If you type any random word that has no corresponding ado-file, you’ll get an error message.</p>
+<p>In the above example the very first <code class="docutils literal notranslate"><span class="pre">legitimate</span></code> word is a command and is rendered blue on my machine but purple in this book. If you type any random word that has no corresponding ado-file, you’ll get an error message. Notice also that since its not a native Stata command, it black (or white), but not purple.</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>myfirstprogram
 </pre></div>
 </div>
