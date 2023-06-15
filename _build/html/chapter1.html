@@ -462,9 +462,21 @@ document.write(`
 <ul class="simple">
 <li><p>System</p>
 <ul>
-<li><p>Native (stata application, support files, <code class="docutils literal notranslate"><span class="pre">.ado</span></code> files)</p></li>
-<li><p>Third-party (typically <code class="docutils literal notranslate"><span class="pre">.ado</span></code> files)</p></li>
-<li><p>Your <code class="docutils literal notranslate"><span class="pre">.ado</span></code> files (you’ll learn to write &amp; install your own programs)</p></li>
+<li><p>Native (stata application, support files, <code class="docutils literal notranslate"><span class="pre">.ado</span></code> files)</p>
+<ul>
+<li><p>If you type <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">help</span></code> into your command window you get something like: <code class="docutils literal notranslate"><span class="pre">/Applications/Stata/ado/base/h/help.ado</span></code></p></li>
+</ul>
+</li>
+<li><p>Third-party (typically <code class="docutils literal notranslate"><span class="pre">.ado</span></code> files)</p>
+<ul>
+<li><p>When I type <code class="docutils literal notranslate"><span class="pre">which</span> <span class="pre">table1_afecdvi</span></code> I get <code class="docutils literal notranslate"><span class="pre">/Applications/Stata/ado/base/t/table1_afecdvi.ado</span></code></p></li>
+</ul>
+</li>
+<li><p>Your <code class="docutils literal notranslate"><span class="pre">.ado</span></code> files (you’ll learn to write &amp; install your own programs)</p>
+<ul>
+<li><p>Since you don’t have it you’ll get <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">table1_afecdv</span> <span class="pre">not</span> <span class="pre">found</span> <span class="pre">as</span> <span class="pre">either</span> <span class="pre">built-in</span> <span class="pre">or</span> <span class="pre">ado-file</span></code></p></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p>User</p>
