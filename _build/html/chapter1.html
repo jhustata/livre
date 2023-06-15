@@ -502,9 +502,9 @@ document.write(`
 <p>The <code class="docutils literal notranslate"><span class="pre">system</span></code> is the <u>Stata application</u> and its a simple noun. It is not <strike>STATA</strike>, which gives the impression of being an acronym. I presume you’ve all installed Stata onto your local machines. If not I presume you’ll be doing so very soon or you will be remotely accessing it. The <code class="docutils literal notranslate"><span class="pre">user</span></code> includes you, me, the teaching assistants, collaborators, or strangers.</p>
 <p>As a user, you will or have already downloaded and installed a system of programs, mostly ado-files, which form the foundation of all the commands you will be using in Stata. These are the <strong>native</strong> Stata system files.</p>
 <p>But soon you will begin to write your own Stata programs or <code class="docutils literal notranslate"><span class="pre">.ado</span></code> files and install them into the system folders (as I’ve done with <code class="docutils literal notranslate"><span class="pre">table1_afecdvi.ado</span></code>). Then, it will be helpful to think of your role at as part of the system. In your new role as system, it will be helpful to anticipate the needs of the known and unknown future users of your program. This will call for <strong>empathy</strong> (anticipating user needs), <strong>sharing</strong> (your code with others), and <strong>caring</strong> (that its user-friendly).</p>
-<ul>
-<li><p>Installation</p>
 <ul class="simple">
+<li><p>Installation</p>
+<ul>
 <li><p>Local</p>
 <ul>
 <li><p>MacOSX</p></li>
@@ -529,7 +529,7 @@ document.write(`
 </ul>
 </li>
 <li><p>Local</p>
-<ul class="simple">
+<ul>
 <li><p><a class="reference external" href="https://www.stata.com/manuals13/gsw2.pdf#gsw2TheStatauserinterface">Menu</a></p>
 <ul>
 <li><p>file</p></li>
@@ -571,45 +571,6 @@ document.write(`
 <li><p>Other terms or synonyms include code, Stata code, code snippet.</p></li>
 </ul>
 </li>
-</ul>
-<p>A few commands are useful on their own:</p>
-</li>
-</ul>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">chelp</span>
-<span class="k">pwd</span>
-</pre></div>
-</div>
-<p>To name but a few. But the vast majority of commands will only work in context of the appropriate syntax</p>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k"> clear</span> 
-<span class="k"> set</span> obs <span class="m">1000</span>
-<span class="k"> generate</span> bmi=<span class="nf">rnormal</span>(<span class="m">28</span>,<span class="m">5</span>)
-<span class="k"> hist</span> bmi, normal
-<span class="k"> graph</span> export bmi<span class="m">.</span>png,<span class="k"> replace</span> 
-</pre></div>
-</div>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>. <span class="k"> clear</span> 
-
-. <span class="k"> set</span> obs <span class="m">1000</span>
-Number of observations (_N) was <span class="m">0</span>, now <span class="m">1</span>,<span class="m">000</span>.
-
-. <span class="k"> generate</span> bmi=<span class="nf">rnormal</span>(<span class="m">28</span>,<span class="m">5</span>)
-
-. <span class="k"> hist</span> bmi, normal
-(bin=<span class="m">29</span>, start=<span class="m">13.457429</span>, width=.<span class="m">99248317</span>)
-
-. <span class="k"> graph</span> export bmi<span class="m">.</span>png,<span class="k"> replace</span> 
-<span class="k">file</span> <span class="o">/</span>Applications<span class="o">/</span>Stata<span class="o">/</span>ado<span class="o">/</span>base<span class="o">/</span>h<span class="o">/</span>bmi<span class="m">.</span>png saved<span class="k">	as</span>	PNG<span class="k">	format</span>
-
-. 
-<span class="k">end</span> of<span class="k"> do</span><span class="o">-</span>file
-
-. 
-</pre></div>
-</div>
-<p><img alt="" src="_images/bmi.png" /></p>
-<p>In the above example the very first <code class="docutils literal notranslate"><span class="pre">legitimate</span></code> word is a command and is rendered blue on my machine but purple in this book. If you type any random word that has no corresponding ado-file, you’ll get an error message.</p>
-<p>The words that come after the command might be further commands or subcommands. If so, they’ll also be rendered blue on my machine. The ones that appear in white or black (dark or light mode) are either third-party programs/commands or they are part of the Stata syntax.</p>
-<ul class="simple">
 <li><p>Input</p>
 <ul>
 <li><p>Menu (<strong>see above:</strong> outputs commands and syntax in results window)</p></li>
@@ -652,6 +613,8 @@ Number of observations (_N) was <span class="m">0</span>, now <span class="m">1<
 </ul>
 </li>
 </ul>
+</li>
+</ul>
 <p>Let’s use a simple example to illustrate some of the terms we’ve introduced:</p>
 <ul class="simple">
 <li><p>Menu</p>
@@ -663,82 +626,6 @@ Number of observations (_N) was <span class="m">0</span>, now <span class="m">1<
 </ul>
 </li>
 </ul>
-<ul class="simple">
-<li><p>Command</p>
-<ul>
-<li><p>import data into Stata</p></li>
-</ul>
-</li>
-</ul>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">webuse</span> lifeexp,<span class="k"> clear</span>
-</pre></div>
-</div>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> webuse</span> lifeexp,<span class="k"> clear</span>
-(Life expectancy, <span class="m">1998</span>)
-
-. 
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>explore the imported data</p></li>
-</ul>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">display</span> <span class="nf">c</span>(N) 
-<span class="k">display</span> <span class="nf">c</span>(k)
-<span class="k">describe</span> 
-</pre></div>
-</div>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> display</span> <span class="nf">c</span>(N) 
-<span class="m">68</span>
-
-.<span class="k"> display</span> <span class="nf">c</span>(k)
-<span class="m">6</span>
-
-.<span class="k"> describe</span> 
-
-Contains data from https:<span class="o">//</span>www<span class="m">.</span>stata<span class="o">-</span>press<span class="m">.</span>com<span class="o">/</span>data<span class="o">/</span>r18<span class="o">/</span>lifeexp<span class="m">.</span>dta
-Observations:            <span class="m">68</span>                  Life expectancy, <span class="m">1998</span>
-Variables:                <span class="m">6</span>                  <span class="m">26</span> Mar <span class="m">2022</span> <span class="m">09</span>:<span class="m">40</span>
-(_dta has<span class="k"> notes</span>)
-		
-Variable      Storage   Display    Value
-name           <span class="k"> type</span>   <span class="k"> format</span>    <span class="k"> label</span>      Variable<span class="k"> label</span>
-		
-region          byte    <span class="nx">%16.0g</span>     region     Region
-country         str28   <span class="nx">%28s</span>                  Country
-popgrowth       float   <span class="nx">%9.0g</span>               <span class="o">*</span> Avg. annual % growth
-lexp            byte    <span class="nx">%9.0g</span>               <span class="o">*</span> Life expectancy at birth
-gnppc           float   <span class="nx">%9.0g</span>               <span class="o">*</span> GNP per capita
-safewater       byte    <span class="nx">%9.0g</span>               <span class="o">*</span> Safe water
-<span class="c1">* indicated variables have	notes</span>
-		
-Sorted<span class="k"> by</span>: 
-
-. 
-</pre></div>
-</div>
-<ul class="simple">
-<li><p>perform basic analysis</p></li>
-</ul>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">webuse</span> lifeexp,<span class="k"> clear</span> 
-<span class="k">encode</span> country,<span class="k"> gen</span>(Country)
-<span class="k">twoway scatter</span> lexp Country, xscale(off)
-<span class="k">graph</span> export lexp_bycountry<span class="m">.</span>png,<span class="k"> replace</span> 
-</pre></div>
-</div>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> webuse</span> lifeexp,<span class="k"> clear</span> 
-(Life expectancy, <span class="m">1998</span>)
-
-.<span class="k"> encode</span> country,<span class="k"> gen</span>(Country)
-
-.<span class="k"> twoway scatter</span> lexp Country, xscale(off)
-
-.<span class="k"> graph</span> export lexp_bycountry<span class="m">.</span>png,<span class="k"> replace</span> 
-<span class="k">file</span> <span class="o">/</span>Users<span class="o">/</span>d<span class="o">/</span>Dropbox (Personal)<span class="o">/</span>1f<span class="m">.</span>ἡἔρις,κ<span class="o">/</span><span class="m">1.</span>ontology<span class="o">/</span>summer<span class="o">/</span>lexp_bycountry<span class="m">.</span>png saved<span class="k"> as</span> PNG<span class="k"> format</span>
-
-. 
-</pre></div>
-</div>
-<p><img alt="" src="_images/lexp_bycountry.png" /></p>
 <ul class="simple">
 <li><p>do file</p>
 <ul>
@@ -758,13 +645,7 @@ Sorted<span class="k"> by</span>:
 </section>
 <section id="command">
 <h2>1.2 Command<a class="headerlink" href="#command" title="Permalink to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Command</p>
-<ul>
-<li><p>import data into Stata</p></li>
-</ul>
-</li>
-</ul>
+<p>Let’s instruct Stata to import some data:</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">webuse</span> lifeexp,<span class="k"> clear</span>
 </pre></div>
 </div>
@@ -774,9 +655,7 @@ Sorted<span class="k"> by</span>:
 . 
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>explore the imported data</p></li>
-</ul>
+<p>The results window has some output informing us that we’ve imported Life expectancy data from 1998. Now let’s explore these imported data:</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">display</span> <span class="nf">c</span>(N) 
 <span class="k">display</span> <span class="nf">c</span>(k)
 <span class="k">describe</span> 
@@ -811,9 +690,19 @@ Sorted<span class="k"> by</span>:
 . 
 </pre></div>
 </div>
+<p>By now you should be quick to point out that <code class="docutils literal notranslate"><span class="pre">display</span></code> is a command. To better understand what this command does, you can type <code class="docutils literal notranslate"><span class="pre">help</span> <span class="pre">display</span></code> in the the command window. If you do so, you’ll learn the following:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>[P]<span class="k"> display</span>	<span class="o">--</span>	Display strings and values of<span class="k"> scalar</span> expressions
+			(View complete PDF manual entry)
+</pre></div>
+</div>
+<p>We’ve already discussed (see <strong>output</strong> above) numeric values and strings as the two types of output will be dealing with in Stata. So the <code class="docutils literal notranslate"><span class="pre">display</span></code> command displays, as it were, these values based on the specific syntax you provide</p>
+<p>Those values will typically have two properties:</p>
 <ul class="simple">
-<li><p>perform basic analysis</p></li>
+<li><p>name (e.g. <code class="docutils literal notranslate"><span class="pre">c(N)</span></code> and <code class="docutils literal notranslate"><span class="pre">c(k)</span></code>)</p></li>
+<li><p>content (i.e., number of observations and number of variables)</p></li>
 </ul>
+<p>Such values as we will learn tomorrow are called <u>macros</u>. In this given example, these are system-defined macros. And as you might have already guessed, there are also user-defined macros. More on this tomorrow!</p>
+<p>For now, let’s perform a basic analysis on our imported data to learn a little more about syntax and output:</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">webuse</span> lifeexp,<span class="k"> clear</span> 
 <span class="k">encode</span> country,<span class="k"> gen</span>(Country)
 <span class="k">twoway scatter</span> lexp Country, xscale(off)
