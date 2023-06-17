@@ -580,20 +580,40 @@ document.write(`
 </li>
 <li><p>Output/Results</p>
 <ul>
-<li><p>Numeric (types by range)</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">byte</span></code>: integer <span class="math notranslate nohighlight">\(-127\)</span> to <span class="math notranslate nohighlight">\(100\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">int</span></code>: integer <span class="math notranslate nohighlight">\(-32767\)</span> to <span class="math notranslate nohighlight">\(32740\)</span></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">long</span></code>: integer <span class="math notranslate nohighlight">\(\pm   2\)</span> billion</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">float</span></code>: decimal <span class="math notranslate nohighlight">\(\pm   10^{38}\)</span> billion</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">double</span></code>: decimal <span class="math notranslate nohighlight">\(\pm   10^{307}\)</span> billion</p></li>
-</ul>
-</li>
 <li><p>String</p>
 <ul>
-<li><p>Plain text (str49 = string of length 49 -&gt; <code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">median</span> <span class="pre">age</span> <span class="pre">in</span> <span class="pre">this</span> <span class="pre">population</span> <span class="pre">is</span> <span class="pre">40</span> <span class="pre">years</span> <span class="pre">old</span></code>)</p></li>
-<li><p>File path (/users/d/desktop)</p></li>
-<li><p>Url (<a class="reference external" href="https://www.stata-press.com/data/r8/">https://www.stata-press.com/data/r8/</a>)</p></li>
+<li><p>text (e.g., <code class="docutils literal notranslate"><span class="pre">str49</span></code> below = string of 49 characters <u>including spaces</u>)</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">The</span> <span class="pre">median</span> <span class="pre">age</span> <span class="pre">in</span> <span class="pre">this</span> <span class="pre">population</span> <span class="pre">is</span> <span class="pre">40</span> <span class="pre">years</span> <span class="pre">old</span></code></p></li>
+</ul>
+</li>
+<li><p>url</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">https://www.stata-press.com/data/r8</span></code></p></li>
+</ul>
+</li>
+<li><p>filepath</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">/users/d/desktop</span></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Numeric (types by range)</p>
+<ul>
+<li><p>integer</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">byte</span></code>: <span class="math notranslate nohighlight">\(-127\)</span> to <span class="math notranslate nohighlight">\(100\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span></code>: <span class="math notranslate nohighlight">\(-32767\)</span> to <span class="math notranslate nohighlight">\(32740\)</span></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">long</span></code>: <span class="math notranslate nohighlight">\(\pm   2\)</span> billion</p></li>
+</ul>
+</li>
+<li><p>decimal</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">float</span></code>: <span class="math notranslate nohighlight">\(\pm   10^{38}\)</span> billion</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">double</span></code>: <span class="math notranslate nohighlight">\(\pm   10^{307}\)</span> billion</p></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -610,9 +630,6 @@ document.write(`
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="c1">#import numpy as np</span>
-<span class="c1">#import sklearn as skl</span>
-<span class="c1"># </span>
 
 <span class="c1">#plt.figure(figsize=[2, 2])</span>
 <span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
