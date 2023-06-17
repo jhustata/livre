@@ -2,7 +2,7 @@
 
 Welcome to the [340.600](https://www.jhsph.edu/courses/course/36824/2023/340.600.11/stata-programming) Summer Institute Course in Stata Programming!
 
-This class will be offered in a hybrid-format to cater to both those who will be in-person at the Bloomberg School (**Room W4019**) and those who will be joining us virtually (Zoom [link](https://jhjhm.zoom.us/j/98481767907)). In-person attendees are encouraged to also log into zoom, which allows students to share code and to collectively `debug` as a group. Students last summer unanimiously described this as one of the best aspects of their learning experience. 
+This class will be offered in a hybrid-format to cater to both those who will be in-person at the Bloomberg School (**Room W4019**) and those who will be joining us virtually (Zoom [link](https://jhjhm.zoom.us/j/98481767907)). In-person attendees are encouraged to also log into zoom, which allows students to share code and to collectively `debug` as a group. Students last summer described this as one of the best aspects of their learning experience. 
 
 By contrast, exclusively in-person class formats without the zoom option make it difficult for students to articulate the issues they might be confronting. This makes collective troubleshooting a nightmare. 
 
@@ -31,7 +31,7 @@ A few words on academic integrity. Copying small code snippets from books, the I
 tokenize `c(ALPHA)'  // Adapted from code at https://www.statalist.org/forums/forum/general-stata-discussion/general/1380433-creating-a-counter-with-alphabets
 ```
 
-Use of AI including chatGPT as a co-pilot, guide, or assistant is <u>strongly</u> encouraged during- and long after completion of this course[.](labs.md)
+Use of AI including chatGPT as a copilot, guide, or assistant is <u>strongly</u> encouraged during- and long after completion of this course[.](labs.md)
 
 ## Table of contents
 
