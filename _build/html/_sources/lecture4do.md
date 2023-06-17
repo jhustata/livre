@@ -4,7 +4,7 @@ log using lecture4.log, replace text
 
 //This log file contains most of the examples used in Lecture 4 of
 //summer Stata Programming and Data Management, 
-///along with additional explanations and examples.
+//along with additional explanations and examples.
 
 version 12 //We're teaching new-style merging
 clear all //clear all data from memory
@@ -289,6 +289,5 @@ stsum, by(don_ecd)
 sts test don_ecd
 sts test gender
 log close
-
-
 ```
+
