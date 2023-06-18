@@ -501,7 +501,7 @@ document.write(`
 </ul>
 <p>The <code class="docutils literal notranslate"><span class="pre">system</span></code> is the <u>Stata application</u> and its a simple noun. It is not <strike>STATA</strike>, which gives the impression of being an acronym. I presume you’ve all installed Stata onto your local machines. If not I presume you’ll be doing so very soon or you will be remotely accessing it. The <code class="docutils literal notranslate"><span class="pre">user</span></code> includes you, me, the teaching assistants, collaborators, or strangers.</p>
 <p>As a user, you will or have already downloaded and installed a system of programs, mostly ado-files, which form the foundation of all the commands you will be using in Stata. These are the <strong>native</strong> Stata system files.</p>
-<p>But soon you will begin to write your own Stata programs or <code class="docutils literal notranslate"><span class="pre">.ado</span></code> files and install them into the system folders (as I’ve done with <code class="docutils literal notranslate"><span class="pre">table1_afecdvi.ado</span></code>). Then, it will be helpful to think of your role at as part of the system. In your new role as system, it will be helpful to anticipate the needs of the known and unknown future users of your program. This will call for <strong>empathy</strong> (anticipating user needs), <strong>sharing</strong> (your code with others), and <strong>caring</strong> (that its user-friendly).</p>
+<p>But soon you will begin to write your own Stata programs or <code class="docutils literal notranslate"><span class="pre">.ado</span></code> files and install them into the system folders (as I’ve done with <code class="docutils literal notranslate"><span class="pre">table1_afecdvi.ado</span></code>). Then, it will be helpful to think of your role as part of the system. In your new role as system, it will be helpful to anticipate the needs of the known and unknown future users of your program. This will call for <strong>empathy</strong> (anticipating user needs), <strong>sharing</strong> (your code with others), and <strong>caring</strong> (that its user-friendly).</p>
 <ul class="simple">
 <li><p>Installation</p>
 <ul>
@@ -674,10 +674,10 @@ document.write(`
 <ul>
 <li><p>Results window</p></li>
 <li><p>Graph</p></li>
-<li><p>File: excel, log, dta, word, html</p></li>
+<li><p>File: excel, log, dta, word, html, etc.</p></li>
 </ul>
 </li>
-<li><p>Publish</p>
+<li><p>Publish/<a class="reference external" href="https://en.wikipedia.org/wiki/Markup_language">Markup</a></p>
 <ul>
 <li><p>Self (e.g., GitHub)</p></li>
 <li><p>Journal (e.g. JAMA)</p></li>
@@ -760,16 +760,16 @@ Sorted<span class="k"> by</span>:
 . 
 </pre></div>
 </div>
-<p>By now you should be quick to point out that <code class="docutils literal notranslate"><span class="pre">display</span></code> is a command. To better understand what this command does, you can type <code class="docutils literal notranslate"><span class="pre">help</span> <span class="pre">display</span></code> in the the command window. If you do so, you’ll learn the following:</p>
+<p>By now you should be quick to point out that <code class="docutils literal notranslate"><span class="pre">display</span></code> is a command. To better understand what this command does, you can type <code class="docutils literal notranslate"><span class="pre">help</span> <span class="pre">display</span></code> in the command window. If you do so, you’ll learn the following:</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>[P]<span class="k"> display</span>	<span class="o">--</span>	Display strings and values of<span class="k"> scalar</span> expressions
 			(View complete PDF manual entry)
 </pre></div>
 </div>
-<p>We’ve already discussed (see <strong>output</strong> above) numeric values and strings as the two types of output we will be dealing with in Stata. So the <code class="docutils literal notranslate"><span class="pre">display</span></code> command, as it were, displays these values based on the specific syntax you provide</p>
-<p>Those values will typically have two properties:</p>
+<p>We’ve already discussed (see <strong>output</strong> above) <u>string</u> and <u>numeric</u> values as the two types of output we will be dealing with in Stata. So the <code class="docutils literal notranslate"><span class="pre">display</span></code> command displays, as it were, these <strong>values</strong> based on the specific syntax you provide</p>
+<p>Output values will typically have two properties:</p>
 <ul class="simple">
-<li><p>name (e.g. <code class="docutils literal notranslate"><span class="pre">c(N)</span></code> and <code class="docutils literal notranslate"><span class="pre">c(k)</span></code>)</p></li>
-<li><p>content (i.e., number of observations and number of variables)</p></li>
+<li><p>Name (e.g. <code class="docutils literal notranslate"><span class="pre">c(N)</span></code> and <code class="docutils literal notranslate"><span class="pre">c(k)</span></code>)</p></li>
+<li><p>Content (i.e., number of observations and number of variables)</p></li>
 </ul>
 <p>Such values as we will learn tomorrow are called <u>macros</u>. In this given example, these are system-defined macros. And as you might have already guessed, there are also user-defined macros. More on this tomorrow!</p>
 <p>For now, let’s perform a basic analysis on our imported data to learn a little more about syntax and output:</p>
@@ -829,7 +829,7 @@ Number of observations (_N) was <span class="m">0</span>, now <span class="m">1<
 </pre></div>
 </div>
 <p><img alt="" src="_images/bmi.png" /></p>
-<p>In the above example the very first <code class="docutils literal notranslate"><span class="pre">valid</span></code> word is a command and is rendered blue on my machine but purple in this book. If you type any random word that has no corresponding ado-file, you’ll get an error message. Notice also that since its not a native Stata command, it black (or white), but not purple.</p>
+<p>In the above example the very first <code class="docutils literal notranslate"><span class="pre">valid</span></code> word is a command and is rendered blue on my machine but purple in this book. If you type any random word that has no corresponding ado-file, you’ll get an error message. Notice also that since its not a native Stata command, it appears black (or white), but not purple.</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>myfirstprogram
 </pre></div>
 </div>
