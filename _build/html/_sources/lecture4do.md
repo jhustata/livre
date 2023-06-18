@@ -1,4 +1,5 @@
 ```stata
+
 capture log close
 log using lecture4.log, replace text
 
@@ -289,5 +290,11 @@ stsum, by(don_ecd)
 sts test don_ecd
 sts test gender
 log close
+
 ```
 
+```stata
+//rank-sum tests
+sts test don_ecd
+sts test gender
+```
