@@ -1,7 +1,7 @@
 ﻿# Lab 1     
      
-## Part 1     [class roster](340.600 Stata Programming preliminary roster 6-14-2023.xlsx)
-     
+## Part 1     
+               
 Write Stata commands to solve the following questions. Keep them in a .txt or .docx file. In the second half of today's class you will learn how to put them in a .do file or script to run all of the commands at the same time. For now, put them in a text file and copy & paste one line at a time into Stata to get the answers.        
      
 You will turn this work in together with Lab 1 Part 2.     
