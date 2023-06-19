@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Lab 1 &#8212; Stata Programming</title>
   
@@ -155,7 +155,7 @@ const thebe_selector_output = ".output, .cell_output"
             </li>
         </ul>
         <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="chapter1.html">1. Overview, syntax, commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter1.html">1. Overview, commands, syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter2.html">2. Return values, macros, programs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter3.html">3. Loops and program syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter4.html">4. Functions and advanced commands</a></li>
@@ -373,7 +373,7 @@ document.write(`
 <h2>Part 1<a class="headerlink" href="#part-1" title="Permalink to this heading">#</a></h2>
 <p>Write Stata commands to solve the following questions. Keep them in a .txt or .docx file. In the second half of today’s class you will learn how to put them in a .do file or script to run all of the commands at the same time. For now, put them in a text file and copy &amp; paste one line at a time into Stata to get the answers.</p>
 <p>You will turn this work in together with Lab 1 Part 2.</p>
-<p>Write Stata commands to answer the following questions about the dataset <a class="reference external" href="https://raw.githubusercontent.com/jhustata/livre/main/transplants.txt">transplants.txt</a>:</p>
+<p>Write Stata commands to answer the following questions about the dataset <span class="xref myst">transplants.dta</span>:</p>
 <ol class="arabic simple">
 <li><p>How many total patients are in the dataset? <code class="docutils literal notranslate"><span class="pre">2000</span></code></p></li>
 <li><p>The variable <code class="docutils literal notranslate"><span class="pre">dx</span></code> represents diagnosis and <code class="docutils literal notranslate"><span class="pre">age</span></code> represents patient age. How many patients were between the ages of 50 and 60 and had diabetes as their primary diagnosis at the time of transplant? <code class="docutils literal notranslate"><span class="pre">29</span></code></p></li>
@@ -386,7 +386,7 @@ document.write(`
 <h2>Part 2<a class="headerlink" href="#part-2" title="Permalink to this heading">#</a></h2>
 <ol class="arabic simple" start="6">
 <li><p>Generate a variable called <code class="docutils literal notranslate"><span class="pre">age_categories</span></code> that is 0 for children (ages&lt;18), 1 for adults (18-60), and 2 for senior citizens (&gt;60). What is the mean number of years patients spent on the waitlist in each age group? (<u>Hint</u>: consider <code class="docutils literal notranslate"><span class="pre">tab</span></code>, <code class="docutils literal notranslate"><span class="pre">sum</span></code>)  <code class="docutils literal notranslate"><span class="pre">0.71y;</span> <span class="pre">2.48y;</span> <span class="pre">2.27y</span></code></p></li>
-<li><p>Type the command <code class="docutils literal notranslate"><span class="pre">describe</span></code> to see a list of all variables. Which ones don’t have a variable label? Write code to give a variable label to all variables that don’t yet have one. Then run describe again to show the labeled variables.  <code class="docutils literal notranslate"><span class="pre">Any</span> <span class="pre">description</span> <span class="pre">is</span> <span class="pre">fine</span></code></p></li>
+<li><p>Type the command describe to see a list of all variables. Which ones don’t have a variable label? Write code to give a variable label to all variables that don’t yet have one. Then run describe again to show the labeled variables.  <code class="docutils literal notranslate"><span class="pre">Any</span> <span class="pre">description</span> <span class="pre">is</span> <span class="pre">fine</span></code></p></li>
 <li><p>Variable <code class="docutils literal notranslate"><span class="pre">abo</span></code> represents blood type and is coded as 1=A, 2=B, 3=AB, 4=O. Variable <code class="docutils literal notranslate"><span class="pre">prev</span></code> represents whether the patient has had a previous transplant and is coded 0=No, 1=Yes. Create a value label for <code class="docutils literal notranslate"><span class="pre">prev</span></code>. Put the command <code class="docutils literal notranslate"><span class="pre">tab</span> <span class="pre">abo</span> <span class="pre">prev</span></code> in your script, to produce the following output (with xxxx filled in):</p></li>
 </ol>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> tab</span> abo prev 

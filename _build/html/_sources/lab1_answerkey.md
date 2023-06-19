@@ -6,7 +6,7 @@ Write Stata commands to solve the following questions. Keep them in a .txt or .d
      
 You will turn this work in together with Lab 1 Part 2.     
      
-Write Stata commands to answer the following questions about the dataset [transplants.txt](https://raw.githubusercontent.com/jhustata/livre/main/transplants.txt):     
+Write Stata commands to answer the following questions about the dataset [transplants.dta](transplants):     
      
 1. How many total patients are in the dataset? `2000`     
 2. The variable `dx` represents diagnosis and `age` represents patient age. How many patients were between the ages of 50 and 60 and had diabetes as their primary diagnosis at the time of transplant? `29`     
@@ -17,7 +17,7 @@ Write Stata commands to answer the following questions about the dataset [transp
 ## Part 2
      
 6. Generate a variable called `age_categories` that is 0 for children (ages<18), 1 for adults (18-60), and 2 for senior citizens (>60). What is the mean number of years patients spent on the waitlist in each age group? (<u>Hint</u>: consider `tab`, `sum`)  `0.71y; 2.48y; 2.27y`      
-7. Type the command `describe` to see a list of all variables. Which ones don't have a variable label? Write code to give a variable label to all variables that don't yet have one. Then run describe again to show the labeled variables.  `Any description is fine`       
+7. Type the command describe to see a list of all variables. Which ones don’t have a variable label? Write code to give a variable label to all variables that don’t yet have one. Then run describe again to show the labeled variables.  `Any description is fine`       
 8. Variable `abo` represents blood type and is coded as 1=A, 2=B, 3=AB, 4=O. Variable `prev` represents whether the patient has had a previous transplant and is coded 0=No, 1=Yes. Create a value label for `prev`. Put the command `tab abo prev` in your script, to produce the following output (with xxxx filled in):     
 
 ```stata
