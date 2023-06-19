@@ -441,6 +441,66 @@ underweight |         <span class="m">51</span>        <span class="m">2.77</spa
 .
 </pre></div>
 </div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">qui</span> {
+<span class="c1">   *10 pts per q; 100 max</span>
+   cls
+<span class="k">   use</span> transplants,<span class="k"> clear</span> <span class="c1">//10pts   </span>
+<span class="k">   noi count</span> <span class="c1">//q1, 10pts     </span>
+<span class="k">   noi count if</span> <span class="nf">inrange</span>(age,<span class="m">50</span>,<span class="m">60</span>)<span class="o">&amp;</span>dx<span class="o">==</span><span class="m">2</span> <span class="c1">//q2, 10pts </span>
+<span class="k">   noi count if</span> <span class="nf">inrange</span>(wait_yrs,<span class="m">5</span>,<span class="m">100</span>) <span class="c1">//q3, 10pts</span>
+<span class="k">   noi list</span> age race rec_hcv_antibody<span class="k"> if</span> fake_id<span class="o">==</span><span class="m">493</span> <span class="c1">//q4, 10pts</span>
+<span class="k">   if</span> <span class="m">5</span> {  
+<span class="k">       egen</span> sum_age =<span class="k"> mean</span>(age),<span class="k"> by</span>(gender) <span class="c1">//4pts</span>
+<span class="k">       egen</span> tag_gender = tag(gender) <span class="c1">//3pts</span>
+<span class="k">       noi list</span> sum_age<span class="k"> if</span> tag_gender <span class="c1">//3pts</span>
+   }
+<span class="k">   if</span> <span class="m">6</span> {  
+<span class="k">	   g</span> age_categories=<span class="m">0</span><span class="k"> if</span> <span class="nf">inrange</span>(age,<span class="m">0</span>,<span class="m">17</span>) <span class="c1">//3pts, alternative1</span>
+<span class="k">	   replace</span> age_categories=<span class="m">1</span><span class="k"> if</span> <span class="nf">inrange</span>(age,<span class="m">18</span>,<span class="m">60</span>) <span class="c1">//2pts</span>
+<span class="k">	   replace</span> age_categories=<span class="m">2</span><span class="k"> if</span> <span class="nf">inrange</span>(age,<span class="m">61</span>,<span class="m">100</span>) <span class="c1">//2pts</span>
+<span class="k">	   noi tab</span> age_categories,<span class="k"> sum</span>(wait_yrs) <span class="c1">//3pts</span>
+<span class="k">	   egen</span> mean_wait_yrs =<span class="k"> mean</span>(wait_yrs),<span class="k"> by</span>(age_categories) <span class="c1">//alternative2</span>
+<span class="k">	   forval</span> i=<span class="m">1</span><span class="o">/</span><span class="m">3</span> {
+<span class="k">          noi di</span> mean_wait_yrs[<span class="nv">`i&#39;</span>] <span class="c1">//order different; starts with 1, ends with 0</span>
+	   }
+	   
+   }
+<span class="k">   if</span> <span class="m">7</span> {  
+<span class="k">   	   desc</span> <span class="c1">//1pt</span>
+<span class="k">	   lab var</span> fake_id <span class="s">&quot;Unique ID&quot;</span> <span class="c1">//1pt</span>
+<span class="k">	   lab var</span> ctr_id <span class="s">&quot;Center ID&quot;</span> <span class="c1">//1pt </span>
+<span class="k">	   lab var</span> end_date <span class="s">&quot;End Date&quot;</span> <span class="c1">//1pt</span>
+<span class="k">	   lab var</span> died <span class="s">&quot;Died&quot;</span> <span class="c1">//1pt </span>
+<span class="k">	   lab var</span> tx_failed <span class="s">&quot;Transplant Failed&quot;</span> <span class="c1">//1pt</span>
+<span class="k">	   lab var</span> wait_yrs <span class="s">&quot;Years on the waiting list&quot;</span> <span class="c1">//1pt</span>
+<span class="k">	   lab var</span> gender <span class="s">&quot;Gender&quot;</span> <span class="c1">//1pt</span>
+<span class="k">	   noi desc</span> <span class="c1">//2pt</span>
+   }
+<span class="k">   if</span> <span class="m">8</span> {  
+<span class="k">       label</span> define Prev <span class="m">0</span> <span class="s">&quot;No&quot;</span> <span class="m">1</span> <span class="s">&quot;Yes&quot;</span> <span class="c1">//3pts </span>
+<span class="k">   	   label</span> values prev Prev <span class="c1">//4pts</span>
+<span class="k">	   noi tab</span> abo prev <span class="c1">//3pts</span>
+   }
+<span class="k">   if</span> <span class="m">9</span> {  
+<span class="k">	   g</span> bmi_whocat=<span class="m">1</span><span class="k"> if</span> <span class="nf">inrange</span>(bmi,<span class="m">0</span>,<span class="m">18.5</span>) <span class="c1">//2pt</span>
+<span class="k">	   replace</span> bmi_whocat=<span class="m">2</span><span class="k"> if</span> <span class="nf">inrange</span>(bmi,<span class="m">18.5</span>,<span class="m">25</span>) <span class="c1">//1pt</span>
+<span class="k">	   replace</span> bmi_whocat=<span class="m">3</span><span class="k"> if</span> <span class="nf">inrange</span>(bmi,<span class="m">25.1</span>,<span class="m">30</span>) <span class="c1">//1pt</span>
+<span class="k">	   replace</span> bmi_whocat=<span class="m">4</span><span class="k"> if</span> <span class="nf">inrange</span>(bmi,<span class="m">30.1</span>,<span class="m">100</span>) <span class="c1">//1pt</span>
+<span class="k">	   label</span> define Bmi_whocat <span class="m">1</span> <span class="s">&quot;underweight&quot;</span> <span class="m">2</span> <span class="s">&quot;normal&quot;</span> <span class="cs">///</span>
+	      <span class="m">3</span> <span class="s">&quot;overweight&quot;</span> <span class="m">4</span> <span class="s">&quot;obese&quot;</span> <span class="c1">//2pt</span>
+<span class="k">	   label</span> values bmi_whocat Bmi_whocat <span class="c1">//2pt</span>
+<span class="k">       noi tab</span> abo prev <span class="c1">//1pt</span>
+   }
+<span class="k">   if</span> <span class="m">10</span> {
+<span class="k">	   gsort</span> <span class="o">-</span>age <span class="c1">//5pts: 1 for age; 1 for -; 1 for sort; 2 gsort  </span>
+<span class="k">	   noi list</span> fake_id age<span class="k"> if</span> age<span class="o">&gt;</span><span class="m">80</span>, clean noobs 
+	   <span class="c1">//5pts: 2 for list; 1 for fake_id; 1 for age; 1 for if age&gt;80</span>
+   }
+}
+
+ 
+</pre></div>
+</div>
 </section>
 </section>
 
