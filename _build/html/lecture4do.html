@@ -366,7 +366,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>capture log close
+  <div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+capture log close
 log using lecture4.log, replace text
 
 //This log file contains most of the examples used in Lecture 4 of
@@ -656,9 +659,17 @@ stsum, by(don_ecd)
 sts test don_ecd
 sts test gender
 log close
-
-
 </pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>  <span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">line</span> <span class="mi">8</span>
+    <span class="n">version</span> <span class="mi">12</span> <span class="o">//</span><span class="n">We</span><span class="s1">&#39;re teaching new-style merging</span>
+                   <span class="o">^</span>
+<span class="ne">SyntaxError</span>: unterminated string literal (detected at line 8)
+</pre></div>
+</div>
+</div>
 </div>
 
     <script type="text/x-thebe-config">
