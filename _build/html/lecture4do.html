@@ -262,7 +262,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/lecture4do.md" target="_blank"
+      <li><a href="_sources/lecture4do.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -272,7 +272,7 @@ const thebe_selector_output = ".output, .cell_output"
 <span class="btn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="btn__text-container">.md</span>
+<span class="btn__text-container">.ipynb</span>
 </a>
 </li>
       
@@ -366,13 +366,12 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>
-capture log close
+  <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>capture log close
 log using lecture4.log, replace text
 
 //This log file contains most of the examples used in Lecture 4 of
 //summer Stata Programming and Data Management, 
-//along with additional explanations and examples.
+///along with additional explanations and examples.
 
 version 12 //We&#39;re teaching new-style merging
 clear all //clear all data from memory
@@ -658,11 +657,7 @@ sts test don_ecd
 sts test gender
 log close
 
-</pre></div>
-</div>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">//rank-sum tests</span>
-<span class="k">sts test</span> don_ecd
-<span class="k">sts test</span> gender
+
 </pre></div>
 </div>
 

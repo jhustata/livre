@@ -366,448 +366,354 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">capture log close</span> _all
-<span class="k">capture cmdlog close</span>
-<span class="k">log</span> using lecture01<span class="m">.</span>log,<span class="k"> replace</span> text
+  <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">capture log close</span>
+<span class="k">log</span> using lecture02<span class="m">.</span>log,<span class="k"> replace</span> text
 
-<span class="c1">//This log file contains most of the examples used in Lecture 1 of</span>
+<span class="c1">//This log file contains most of the examples used in Lecture 2 of</span>
 <span class="c1">//Stata Programming and Data Management, along with additional explanations</span>
 <span class="c1">//and examples.</span>
 
-<span class="k">version</span> <span class="m">12</span> <span class="c1">//I&#39;m using Stata 16, but some students may have earlier versions</span>
+<span class="c1">//commented out &quot;version 12&quot; because I want to use some Stata 15 features</span>
+<span class="c1">//version 12 //I&#39;m using Stata 18, but some students may have earlier versions</span>
 <span class="k">clear</span> all <span class="c1">//clear all data from memory</span>
 <span class="k">macro drop</span> _all <span class="c1">//clear all macros in memory</span>
 <span class="k">set more</span> off   <span class="c1">//give output all at once (not one screenful at a time)</span>
 <span class="k">set</span> linesize <span class="m">80</span> <span class="c1">//maximum allowed width for output</span>
- 
-<span class="c1">//logging</span>
-<span class="c1">//remember &quot;log using lecture01.txt, replace&quot; above</span>
-<span class="c1">// &quot;, replace&quot; = if the file exists, overwrite it</span>
 
-<span class="c1">//getting help</span>
-<span class="c1">//usually you won&#39;t have this in your .do file</span>
-<span class="c1">//instead you would type &quot;help [command]&quot; interactively</span>
-<span class="c1">//these examples use &quot;chelp&quot; and &quot;man&quot; which displays the help in the Stata</span>
-<span class="c1">//output window instead of popping up a new window</span>
-<span class="k">chelp generate</span>
-<span class="k">man generate</span>
-<span class="k">man</span> legend option <span class="c1">//show help for the legend option</span>
-
-<span class="c1">//some help files are not for a specific command - just general info</span>
-<span class="k">man</span> language 
-
-<span class="c1">//do some stuff</span>
-<span class="k">display</span> <span class="s">&quot;hello everybody&quot;</span>
-<span class="k">use</span> transplants,<span class="k"> clear</span>
-<span class="k">summarize</span> wait_yrs age 
-<span class="k">tab</span> rec_hcv
-<span class="k">regress</span> wait_yrs age rec_hcv
-
-
-<span class="c1">//loading a data file into memory</span>
-<span class="k">use</span> transplants<span class="m">.</span>dta
-
-<span class="c1">//clear the memory before loading the file. NOTE: Stata can only have one</span>
-<span class="c1">//dataset at a time in memory. If you have changed the data since loading</span>
-<span class="c1">//it, then &quot;use transplants.dta&quot; will fail unless you specify the &quot;clear&quot; </span>
-<span class="c1">//option.</span>
-<span class="k">use</span> transplants<span class="m">.</span>dta,<span class="k"> clear</span>
-
-<span class="c1">//load only records from females (gender=1)</span>
-<span class="k">use</span> transplants<span class="k"> if</span> pretx_cmv<span class="o">==</span><span class="m">1</span>
-
-<span class="c1">//load only the first fifty records</span>
-<span class="k">use</span> transplants<span class="k"> in</span> <span class="m">1</span><span class="o">/</span><span class="m">50</span>
-
-<span class="c1">//load only certain variables</span>
-<span class="k">use</span> age gender rec_hcv_antibody wait_yrs fake_id using transplants
-
-<span class="c1">//more examples.</span>
-<span class="k">use</span> age dx using transplants  <span class="c1">//only age and diagnosis</span>
-<span class="k">use</span> transplants<span class="k"> in</span> <span class="m">1</span><span class="o">/</span><span class="m">50</span>,<span class="k"> clear</span> <span class="c1">//only the first 50 records</span>
-<span class="k">use</span> transplants<span class="k"> in</span> <span class="m">44</span>  <span class="c1">//only the 44th record</span>
-<span class="k">use</span> transplants<span class="k"> if</span> rec_work<span class="o">==</span><span class="m">1</span> <span class="c1">//only records of patients who work for an income</span>
-<span class="k">use</span> a<span class="o">*</span> p<span class="o">*</span> using transplants<span class="k"> in</span> <span class="m">1</span><span class="o">/</span><span class="m">100</span> <span class="c1">//all variables that the name starts</span>
-<span class="c1">// with A or P. Only the first 100 rows.</span>
-
-<span class="c1">//load the entire dataset now</span>
+<span class="c1">//open up transplants.dta</span>
 <span class="k">use</span> transplants,<span class="k"> clear</span>
 
-<span class="c1">//describe command</span>
-<span class="k">describe</span> <span class="c1">//describe all the variables</span>
-<span class="k">describe</span>, simple  <span class="c1">//just list all the variable names</span>
-
-<span class="c1">//don&#39;t list variable names. list some summary info about the file</span>
-<span class="k">describe</span>, short   
-
-<span class="k">describe</span> a<span class="o">*</span>   <span class="c1">//only variables that name starts with A</span>
-<span class="k">describe</span> using transplants<span class="m">.</span>dta  <span class="c1">//describe transplants.dta without loading </span>
-<span class="c1">// data into memory</span>
-
-<span class="k">rename</span> age a_very_long_variable_name
-<span class="k">describe</span>  <span class="c1">//note that the long name gets truncated</span>
-
-<span class="k">describe</span>, fullnames <span class="c1">//now the long name can be read</span>
-
-<span class="c1">//here&#39;s an interesting one. Make a dataset of variables!</span>
-<span class="c1">//lists the position order, name, type, and other information</span>
-<span class="k">describe</span>,<span class="k"> replace clear</span>
-
-<span class="k">use</span> transplants,<span class="k"> clear</span>
-
-<span class="k">codebook</span> <span class="c1">//list codebook info: type, mean, range, etc</span>
-<span class="k">codebook</span> rec_education rec_work abo  <span class="c1">//do it for only a few variables</span>
-<span class="k">codebook</span> a<span class="o">*</span><span class="k"> e</span><span class="o">*</span>, compact <span class="c1">//compact format</span>
-<span class="k">codebook</span>, problems   <span class="c1">//ask Stata to identify problems with the dataset</span>
-<span class="c1">//codebook, problems is a good check, but don&#39;t let it substitute for your </span>
-<span class="c1">//judgment</span>
-
-<span class="k">list</span>  <span class="c1">//print all the data in memory</span>
-<span class="k">list</span> prev_ki wait_yrs<span class="k"> if</span> race<span class="o">==</span><span class="m">7</span>  <span class="c1">//list two variables  </span>
-<span class="c1">//(previous KT &amp; time on waitlist) for records that have race variable equal to 7</span>
-
-<span class="k">list</span> <span class="o">*</span>date<span class="k"> in</span> <span class="m">1</span><span class="o">/</span><span class="m">10</span> <span class="c1">//list all variables that the name ends with &quot;date&quot;. List</span>
-<span class="c1">//only the first ten observations.</span>
-
-<span class="c1">//by default, &quot;list&quot; draws these weird ASCII boxes around the data. Also</span>
-<span class="c1">//it lists a record # for each record. </span>
-<span class="c1">//list, clean&quot; gets rid of the boxes. &quot;list, noobs&quot; gets rid of record #s.</span>
-<span class="k">list</span> dx<span class="k"> in</span> <span class="m">1</span><span class="o">/</span><span class="m">10</span>, clean noobs
-
-<span class="c1">//usually, before displaying anything, list goes through the data to try</span>
-<span class="c1">//to determine how much width to give each variable for the display.</span>
-<span class="c1">//list, fast skips all that - handy for very large datasets</span>
-<span class="k">list</span> age, fast
-
-<span class="c1">//Count. </span>
-<span class="k">count</span>  <span class="c1">//display a count of all the records in memory</span>
-<span class="k">count if</span> rec_work<span class="o">==</span><span class="m">1</span>   <span class="c1">//display a count of records with &quot;race&quot; equal to 1</span>
-<span class="k">count if</span> rec_work <span class="o">!=</span> <span class="m">1</span>  <span class="c1">//records with race *not* equal to 1</span>
-<span class="k">count if</span> bmi<span class="o">&lt;</span><span class="m">20</span> | bmi <span class="o">&gt;</span> <span class="m">35</span>  <span class="c1">//records with BMI less than 20 or greater than 35</span>
-<span class="k">count if</span> bmi<span class="o">&gt;</span><span class="m">25</span> <span class="o">&amp;</span> bmi <span class="o">&lt;</span> <span class="m">30</span>  <span class="c1">//records with BMI greater than 25 and less than 30</span>
-<span class="k">count if</span> <span class="o">!</span>(age<span class="o">&gt;</span><span class="m">18</span>)    <span class="c1">//count if not (age&gt;18) - records with age 18 and under</span>
-
-<span class="k">count if</span> <span class="nf">inrange</span>(wait_yrs, <span class="m">4</span>, <span class="m">6</span>) <span class="c1">//records w BMI of 20, 25, or anything in between</span>
-<span class="k">count if</span> <span class="o">!</span><span class="nf">inlist</span>(gender, <span class="m">0</span>, <span class="m">1</span>)  <span class="c1">//gender equals either zero or 1</span>
-<span class="k">count if</span> <span class="o">!</span><span class="nf">inlist</span>(age, <span class="m">20</span>, <span class="m">30</span>, <span class="m">40</span>, <span class="m">50</span>)  <span class="c1">//age is 20 or 30 etc</span>
-
-<span class="c1">//Note: this line of code (commented out) does *NOT* work.</span>
-<span class="c1">//you&#39;re not allowed to have a space between &quot;inrange&quot; and the parenthesis.</span>
-<span class="c1">//count if inrange (bmi,20,25) //error!</span>
-
-
-<span class="c1">//Tabulate/tab.</span>
-<span class="k">tab</span> abo  <span class="c1">//1-way frequency table of variable &quot;abo&quot;</span>
-<span class="k">tab</span> abo rec_hcv  <span class="c1">//2-way table of &quot;abo&quot; and &quot;rec_hcv&quot;</span>
-<span class="k">tab</span> rec_hcv,<span class="k"> sum</span>(age) <span class="c1">//display mean, SD and frequency of age, by gender</span>
-<span class="k">tab</span> dx gender<span class="k"> if</span> age<span class="o">&lt;</span><span class="m">40</span> <span class="c1">//2-way table. Only for patients under age 40</span>
-
-<span class="c1">//more examples</span>
-<span class="k">tab</span> dx gender, row <span class="c1">//display row percentages</span>
-<span class="k">tab</span> dx gender, col nofreq <span class="c1">//column percentages. Also, *don&#39;t* display frequency</span>
-<span class="k">tab</span> dx gender, col nofreq chi2 <span class="c1">//add a chi-squared test</span>
-
-<span class="c1">//summarize/sum</span>
-
-<span class="k">sum</span> <span class="c1">//summarize all variables</span>
-<span class="k">sum</span> age wait_yrs  <span class="c1">//summarize only two variables</span>
-<span class="k">sum</span> age wait_yrs, detail <span class="c1">//give more detailed summary</span>
-
-<span class="c1">//missingness.</span>
-<span class="c1">//if data is not available for a record - maybe it wasn&#39;t obtained, maybe </span>
-<span class="c1">//it was recorded improperly, whatever - a variable can be set to a</span>
-<span class="c1">// *missing value* for that record.</span>
-<span class="c1">//one weird quirk of Stata is that a missing value is considered greater</span>
-<span class="c1">//than any finite number value.</span>
-
-<span class="k">count if</span> bmi <span class="o">&gt;</span> <span class="m">30</span>  <span class="c1">//so this is &quot;BMI &gt; 30, or missing BMI&quot;</span>
-<span class="k">count if</span> bmi <span class="o">&gt;</span> <span class="m">1000</span> <span class="c1">//this is &quot;BMI &gt; 1000, or missing&quot;</span>
-<span class="k">tab</span> bmi<span class="k"> if</span> bmi <span class="o">&gt;</span> <span class="m">1000</span>  <span class="c1">// *tab* command does not display missing values</span>
-<span class="k">tab</span> bmi<span class="k"> if</span> bmi <span class="o">&gt;</span> <span class="m">1000</span>, missing  <span class="c1">//Now tab displays missing values</span>
-<span class="k">count if</span> bmi <span class="o">==</span> .  <span class="c1">//the dot represents a missing value.</span>
-<span class="c1">//however, you have to be careful because there are actually several different</span>
-<span class="c1">//missing values. All of these are valid missing values: </span>
-<span class="c1">//    .    .a   .b    .c   .d                etc.</span>
-<span class="c1">//maybe you could set .a to mean &quot;missing, patient was not asked&quot;</span>
-<span class="c1">//.b could mean &quot;missing, patient did not know&quot;</span>
-<span class="c1">//.c could mean &quot;missing, data has not been entered yet&quot;</span>
-<span class="c1">//etc.</span>
-
-<span class="k">count if</span> bmi <span class="o">==</span> .a    <span class="c1">//checking for a different missing value</span>
-<span class="k">count if</span> <span class="nf">missing</span>(bmi)  <span class="c1">//this one counts _all_ missing values</span>
-
-<span class="c1">//generate / gen.</span>
-<span class="c1">//create new variable age_lastyear. Calculate it as current age minus 1</span>
-<span class="k">gen</span> age_lastyear=age<span class="m">-1</span> 
-
-<span class="c1">//create new variable any_college. Set to 1 if rec_education &gt;= 3, 0 otherwise</span>
-<span class="k">gen</span> any_college=(rec_educ<span class="o">&gt;=</span><span class="m">3</span>)
-
-
-<span class="c1">//create new variable youngman. Set to 1 if age&lt;40 and gender is 0;</span>
-<span class="c1">//otherwise set to 0 </span>
-<span class="k">gen</span> youngman=(age<span class="o">&lt;</span><span class="m">40</span>)<span class="o">&amp;</span>(gender<span class="o">==</span><span class="m">0</span>)
-
-<span class="c1">//more examples</span>
-<span class="k">gen</span> byte thin=(bmi<span class="o">&lt;</span><span class="m">22</span>) <span class="c1">//1 if BMI &lt; 22, 0 otherwise</span>
-
-<span class="c1">//if patient is female, age_f is the same as age. Otherwise it&#39;s missing</span>
-<span class="k">gen</span> age_f = age<span class="k"> if</span> gender<span class="o">==</span><span class="m">1</span>
-
-<span class="c1">//one way to make a spline. &quot;age&gt;40&quot; evaluates to 1 for patients over </span>
-<span class="c1">//age 40 and zero for everyone else. So for patients who are, say, 37,</span>
-<span class="c1">//this evaluates to 0*-3 which is zero. For patients who are age 59,</span>
-<span class="c1">//it evaluates to 1*(59-40) = 1*19 = 19.</span>
-<span class="k">gen</span> age_spline=(age<span class="o">&gt;</span><span class="m">40</span>)<span class="o">*</span>(age<span class="m">-40</span>)
-
-<span class="c1">//_n</span>
-<span class="k">gen</span> new_id = _n  <span class="c1">//new_id = current record number</span>
-<span class="k">gen</span> total_records = _N  <span class="c1">//total_records = count of records in the dataset</span>
-<span class="c1">//(same for all patients)</span>
-
-<span class="c1">//ranges from near zero for first record, to 1 for the last record</span>
-<span class="k">gen</span> percentile = <span class="m">100</span><span class="o">*</span>_n<span class="o">/</span>_N 
-
-
-<span class="c1">//sort and gsort. They are the same, except that with sort you can only</span>
-<span class="c1">//sort an ascending order (e.g. A-Z or 1-10) whereas gsort allows you to </span>
-<span class="c1">//sort in either ascending or *descending* order (e.g. Z-A or 10-1)</span>
-
-<span class="k">sort</span> age <span class="c1">//sort on age</span>
-<span class="k">sort</span> age dx <span class="c1">//sort first on age, then diagnosis</span>
-
-<span class="c1">//reverse sort on age, then gender, then reverse sort on ethnicity category</span>
-<span class="k">gsort</span> <span class="o">-</span>age dx <span class="o">-</span>race 
-
-
-<span class="c1">//drop most variables from the database. Keep only age, gender, BMI, </span>
-<span class="c1">//fake_id, and any variable whose name starts with e</span>
-<span class="k">keep</span> age gender bmi fake_id<span class="k"> e</span><span class="o">*</span>
-
-<span class="k">drop</span> end_date <span class="c1">//get rid of variable end_date</span>
-
-<span class="c1">//reload original dataset</span>
-<span class="k">use</span> transplants,<span class="k"> clear</span>
-
-<span class="c1">//using &quot;keep&quot; and &quot;drop&quot; to drop records instead of variables</span>
-<span class="k">keep in</span> <span class="m">1</span><span class="o">/</span><span class="m">100</span>  <span class="c1">//keep only the first 100 records</span>
-<span class="k">drop if</span> wait_yrs <span class="o">&lt;</span> <span class="m">1</span>  <span class="c1">//drop everyone who was on waitlist for less than 1 year</span>
-<span class="k">keep if</span> prev_ki<span class="o">==</span><span class="m">1</span>  <span class="c1">//keep only those with previous kidney transplant</span>
-<span class="k">drop if</span> age<span class="o">&lt;</span><span class="m">18</span> <span class="o">&amp;</span> abo<span class="o">==</span><span class="m">2</span> <span class="c1">//drop people age&lt;18 with blood type B</span>
-
-<span class="c1">//reload original dataset</span>
-<span class="k">use</span> transplants,<span class="k"> clear</span>
-
-<span class="c1">//replace: change the value of a variable</span>
-<span class="k">replace</span> prev=<span class="m">0</span>  <span class="c1">//prev now equals zero for all records</span>
-<span class="k">replace</span> wait_yrs=<span class="m">5</span><span class="k"> if</span> wait_yrs<span class="o">&gt;</span><span class="m">5</span>  <span class="c1">//wait_years now equals 5 if it was &gt; 5</span>
-<span class="k">replace</span> gender=gender<span class="m">+1</span>  <span class="c1">//gender was 0 or 1; now it&#39;s 1 or 2</span>
-
-<span class="c1">//change BMI to missing if it&#39;s out of range</span>
-<span class="k">replace</span> bmi = .<span class="k"> if</span> <span class="o">!</span><span class="nf">inrange</span>(bmi, <span class="m">18</span>,<span class="m">40</span>) 
-
-<span class="c1">//rename: rename a variable. Pretty straightforward</span>
-<span class="k">rename</span> age age_at_transplant
-<span class="k">rename</span> gender female
-
-<span class="c1">//reverse the above &quot;rename&quot;</span>
-<span class="k">rename</span> female gender 
-
-<span class="c1">//recode</span>
-<span class="k">recode</span> rec_education (<span class="m">3</span> <span class="m">4</span> <span class="m">5</span> = <span class="m">9</span>) <span class="c1">//any record with rec_education of 3, 4, or 5 changes to 9</span>
-
-<span class="k">recode</span> dx (<span class="m">1</span>=<span class="m">1</span>) (<span class="m">2</span>=<span class="m">2</span>) (<span class="o">*</span>=<span class="m">9</span>) <span class="c1">//any dx value other than 1 or 2 gets changed to 9</span>
-
-<span class="c1">//create new variable male. Any record that has gender=0, male=1 and vice versa</span>
-<span class="k">recode</span> gender (<span class="m">0</span>=<span class="m">1</span>) (<span class="m">1</span>=<span class="m">0</span>),<span class="k"> gen</span>(male)
-
-
-
-
-<span class="c1">//erase data in memory</span>
-<span class="k">clear</span>
-
-<span class="c1">//reload</span>
-<span class="k">use</span> transplants
-
-<span class="c1">//leaving &quot;save newfile&quot; commented out. Will cause an error if &quot;newfile&quot; exists</span>
-<span class="c1">//save newfile</span>
-
-<span class="c1">//overwrite &quot;newfile&quot; if it exists</span>
-<span class="k">save</span> newfile,<span class="k"> replace</span>
-
-<span class="k">save</span>,<span class="k"> replace</span> <span class="c1">//overwrite the current filename. Usually, you don&#39;t want to</span>
-<span class="c1">//do this in a .do file. You should keep the old file that was the source for</span>
-<span class="c1">//your data manipulation.</span>
-
-<span class="c1">//if you have Stata 11 or 12, save in Stata 10 format</span>
-
-<span class="c1">//commented out because it may not work if you&#39;re running Stata 10</span>
-<span class="c1">//saveold transplants_stata10</span>
-
-
-<span class="c1">//insheet.</span>
-<span class="c1">//these are all commented out because I didn&#39;t actually create all these</span>
-<span class="c1">//text files.</span>
-<span class="cm">/*</span>
-
-<span class="cm">import delimited textfile.txt</span>
-<span class="cm">import delimited text2.txt, clear</span>
-<span class="cm">import delimited text3.txt, delim(&quot; &quot;)</span>
-<span class="cm">import delimited text4.txt, delim(tab)</span>
-<span class="cm">import delimited text5.txt, varnames(1)</span>
-<span class="cm">import delimited text6.txt, varnames(nonames)</span>
-
-<span class="cm">import delimited using textfile.txt //pull in data from a text file.</span>
-<span class="cm">//Stata tries to make a reasonable guess as to what character is the</span>
-<span class="cm">// *delimiter* separating columns within a row.</span>
-
-<span class="cm">//import, but clear the memory first. If there&#39;s unsaved data in memory, and </span>
-<span class="cm">//you run import delimited, you&#39;ll get an error</span>
-<span class="cm">import delimited using text2.txt, clear</span>
-
-<span class="cm">//tell Stata that the delimiter is a comma</span>
-<span class="cm">import delimited using text3.txt, delimiter(&quot;,&quot;)</span>
-
-<span class="cm">//tell Stata the delimiter is a tab</span>
-<span class="cm">import delimited using text4.txt, delimiter(tab) </span>
-
-<span class="cm">import delimited using text5.txt, delimiter (&quot; &quot;)  //delimiter is a space</span>
-
-<span class="cm">//first row contains variable names, not data</span>
-<span class="cm">import delimited using text5.txt, varnames(1)</span>
-
-<span class="cm">//first row contains data, not variable names</span>
-<span class="cm">import delimited using text5.txt, nonames</span>
-
-<span class="cm">//here are other commands for importing data.</span>
-<span class="cm">//we won&#39;t go over these in detail; see the help file for each command,</span>
-<span class="cm">//, or type &quot;help import&quot;</span>
-<span class="cm">infile</span>
-<span class="cm">infix</span>
-<span class="cm">import excel using file.xlsx</span>
-<span class="cm">import sasxport using file.sas7bdat</span>
-<span class="cm">import odbc</span>
-<span class="cm">*/</span>
-
-<span class="c1">//display / disp</span>
-<span class="k">display</span> <span class="s">&quot;hi there&quot;</span>  <span class="c1">//print &quot;hi there&quot;</span>
-<span class="k">disp</span> <span class="m">4+7</span>  <span class="c1">//print &quot;11&quot;</span>
-<span class="k">sum</span> wait_yrs  <span class="c1">//summarize age</span>
-
-<span class="cm">/* </span>
-<span class="cm">print this:</span>
-<span class="cm">variable            mean</span>
-<span class="cm">*/</span>
-<span class="k">disp</span> <span class="s">&quot;Variable&quot;</span> _col(<span class="m">20</span>) <span class="s">&quot;mean&quot;</span> 
-
-<span class="cm">/*</span>
-<span class="cm">print this:</span>
-<span class="cm">Wait time          [mean wait_yrs obtained from &quot;sum&quot; command above]</span>
-<span class="cm">*/</span>
-<span class="k">disp</span> <span class="s">&quot;Wait time&quot;</span> _col(<span class="m">20</span>) <span class="nf">r</span>(mean)
-
-<span class="c1">//capture. Run a command, but if there&#39;s an error, don&#39;t display the error</span>
-
-<span class="k">capture sum</span> nonexistent_variable <span class="c1">//no output, since this variable does not exist</span>
-<span class="k">capture disp</span> <span class="m">4+3</span>   <span class="c1">//displays 7</span>
-<span class="k">capture disp</span> <span class="m">4</span><span class="o">+</span>    <span class="c1">//no output, since there would be an error</span>
-
-<span class="c1">//assert</span>
-<span class="c1">//if all ages are &lt; 100, nothing happens. If any age is &gt;= 100, Stata gives</span>
-<span class="c1">//an error and halts the script</span>
-<span class="k">assert</span> age <span class="o">&lt;</span> <span class="m">100</span><span class="k"> if</span> <span class="o">!</span><span class="nf">missing</span>(age)
-<span class="c1">//assert age &lt; 50  //commented out. However, if we ran this, we&#39;d get an error</span>
-<span class="k">assert</span> end_date <span class="o">&gt;=</span> transplant_date
-<span class="k">assert</span> <span class="nf">inlist</span>(gender, <span class="m">0</span>, <span class="m">1</span>)
-
-<span class="c1">//also commented out.</span>
-<span class="c1">//either one of these statements is useful. Since what&#39;s being asserted is </span>
-<span class="c1">//false, then the script will halt here if we uncomment one of these lines.</span>
-<span class="c1">//assert 2 &lt; 1</span>
-<span class="c1">//assert 0</span>
-
-<span class="c1">//quietly</span>
-<span class="c1">//run a command, but suppress output</span>
-<span class="k">quietly sum</span> wait_yrs  <span class="c1">//silently computes summary for wait_yrs</span>
-<span class="k">disp</span> <span class="s">&quot;Mean wait time: &quot;</span> <span class="nf">r</span>(mean)  <span class="c1">//we can display mean wait time calculated by &quot;sum wait_yrs&quot;</span>
-
-<span class="c1">//using &quot;quietly&quot; on several commands at once. Suppress all output.</span>
-<span class="k">quietly</span> {
-<span class="k">    sum</span> bmi
-<span class="k">    replace</span> bmi = .<span class="k"> if</span> bmi <span class="o">&gt;</span> <span class="nf">r</span>(mean)<span class="o">*</span><span class="m">3</span>
+<span class="c1">//a very brief overview of statistical commands</span>
+
+<span class="c1">//chi2</span>
+<span class="k">tab</span> dx gender, row
+<span class="k">tab</span> dx gender, row chi2
+
+<span class="c1">//exact</span>
+<span class="k">tab</span> abo gender<span class="k"> in</span> <span class="m">1</span><span class="o">/</span><span class="m">100</span>, row
+<span class="k">tab</span> abo gender<span class="k"> in</span> <span class="m">1</span><span class="o">/</span><span class="m">100</span>, row exact
+
+<span class="c1">//t test, 2 sample unpaired by group</span>
+<span class="k">ttest</span> age,<span class="k"> by</span>(prev)
+
+<span class="c1">//t test, 2 sample unpaired - comparing two variables</span>
+<span class="k">ttest</span> don_wgt_kg<span class="o">==</span>rec_wgt_kg, unpaired
+
+<span class="c1">//t test, 2 sample paired</span>
+<span class="k">ttest</span> don_wgt_kg<span class="o">==</span>rec_wgt_kg
+
+<span class="c1">//linear regression</span>
+<span class="k">regress</span> rec_wgt_kg rec_hgt
+
+<span class="k">regress</span> rec_wgt rec_hgt age gender
+
+<span class="c1">//logistic regression</span>
+<span class="k">logit</span> rec_work age
+<span class="k">logit</span> rec_work age gender 
+<span class="k">logistic</span> rec_work age
+<span class="k">logistic</span> rec_work age gender 
+
+
+<span class="c1">//review.</span>
+<span class="k">sum</span> age   <span class="c1">//get summary data for age variable</span>
+<span class="k">disp</span> <span class="s">&quot;variable&quot;</span> _col(<span class="m">20</span>) <span class="s">&quot;mean&quot;</span>
+<span class="k">disp</span> <span class="s">&quot;age&quot;</span> _col(<span class="m">20</span>) <span class="nf">r</span>(mean)  <span class="c1">//display mean age obtained from sum command</span>
+
+<span class="c1">//what else is available?</span>
+<span class="k">return list</span>
+<span class="k">disp</span> <span class="nf">r</span>(N)   <span class="c1">//# records with nonmissing age</span>
+<span class="k">disp</span> <span class="nx">%4.3f</span> <span class="nf">r</span>(mean)  <span class="c1">//mean</span>
+<span class="k">disp</span> <span class="nx">%4.3f</span> <span class="nf">r</span>(var)  <span class="c1">//variance</span>
+<span class="k">disp</span> <span class="nx">%4.3f</span> <span class="nf">r</span>(sd)  <span class="c1">//standard dev. Square root of variance</span>
+<span class="k">disp</span> <span class="nf">r</span>(min)  <span class="c1">//minimum</span>
+<span class="k">disp</span> <span class="nf">r</span>(max)  <span class="c1">//maximum</span>
+<span class="k">disp</span> <span class="nf">r</span>(sum) <span class="c1">//sum of all values for age</span>
+
+<span class="k">sum</span> age<span class="k"> if</span> abo<span class="o">==</span><span class="m">1</span> <span class="c1">//summarize age for a subset of data</span>
+<span class="k">return list</span>  <span class="c1">//everything is different; we&#39;re looking at patients with abo==1</span>
+<span class="k">disp</span> <span class="nf">r</span>(N)   <span class="c1">//Now we see a much smaller number of records</span>
+<span class="k">disp</span> <span class="nx">%4.3f</span> <span class="nf">r</span>(mean)  <span class="c1">//mean is different</span>
+<span class="k">disp</span> <span class="nx">%4.3f</span> <span class="nf">r</span>(var)  <span class="c1">//variance is different</span>
+<span class="c1">//etc</span>
+
+<span class="c1">//if we do sum, detail we get more returned data</span>
+<span class="k">return list</span>
+<span class="k">disp</span> <span class="nf">r</span>(skewness)  <span class="c1">//skewness</span>
+<span class="k">disp</span> <span class="nf">r</span>(p50)  <span class="c1">//median</span>
+<span class="k">disp</span> <span class="nf">r</span>(p25)  <span class="c1">//first quartile</span>
+<span class="k">disp</span> <span class="nf">r</span>(p75)  <span class="c1">//third quartile</span>
+
+<span class="c1">//another example of sum, detail, from the slides</span>
+<span class="k">sum</span> bmi, detail
+<span class="k">disp</span> <span class="s">&quot;median: &quot;</span> _col(<span class="m">12</span>) <span class="nf">r</span>(p50)
+<span class="k">disp</span> <span class="s">&quot;IQR: &quot;</span> _col(<span class="m">12</span>) <span class="nf">r</span>(p25) <span class="s">&quot;-&quot;</span> <span class="nf">r</span>(p75)
+<span class="k">disp</span> <span class="s">&quot;kurtosis: &quot;</span> _col(<span class="m">12</span>) <span class="nf">r</span>(kurtosis)
+
+<span class="c1">//more examples of r-class commands. </span>
+<span class="k">count if</span> age <span class="o">&lt;</span> <span class="m">45</span>   <span class="c1">//counts # patients with age &lt; 45</span>
+<span class="k">disp</span> <span class="nf">r</span>(N) <span class="s">&quot; young patients&quot;</span>
+
+<span class="k">tab</span> race abo, chi2   <span class="c1">//2-way table of ethnicity and ABO blood type</span>
+<span class="c1">//with chi-square test</span>
+<span class="k">disp</span> <span class="s">&quot;p-value: &quot;</span> <span class="nf">r</span>(p) <span class="c1">//display p value of chi2 test</span>
+
+<span class="k">sum</span> age
+<span class="k">assert</span> <span class="nf">inrange</span>(<span class="nf">r</span>(mean), <span class="m">45</span>, <span class="m">55</span>) <span class="c1">//assert that mean age is between 40 and 50.</span>
+<span class="c1">//so if mean age is 47, then we keep going. If mean age is 39, then there will</span>
+<span class="c1">//be an error and the script will stop.</span>
+
+<span class="k">tab</span> race abo, chi2
+<span class="k">assert</span> <span class="nf">r</span>(p) <span class="o">&lt;</span> <span class="m">0.05</span> <span class="c1">//check that there is a statistically significant </span>
+<span class="c1">//relationship between race and abo, per chi2 test</span>
+
+<span class="k">sum</span> age
+<span class="k">disp</span> <span class="s">&quot;Mean: &quot;</span> <span class="nf">r</span>(mean) <span class="s">&quot; years&quot;</span>  <span class="c1">//display mean age, in a sentence</span>
+
+<span class="k">sum</span> age
+<span class="k">disp</span> <span class="s">&quot;Mean: &quot;</span> <span class="nx">%4.0f</span> <span class="nf">r</span>(mean) <span class="s">&quot; years&quot;</span> <span class="c1">//dispay, formatted. </span>
+<span class="c1">//output: Mean: 50 years </span>
+<span class="c1">//the &quot;0&quot; of &quot;%4.0f&quot; means &quot;display zero digits after the decimal point&quot;</span>
+<span class="c1">//the &quot;4&quot; doesn&#39;t mean much - it just has to be any number higher than &quot;0&quot;</span>
+<span class="c1">//so %4.2f or %6.2f or %9.2f would display &quot;50.40 years&quot;</span>
+
+<span class="c1">//ereturn</span>
+<span class="k">regress</span> bmi gender age
+<span class="k">ereturn list</span>
+
+<span class="c1">//log likelihood</span>
+<span class="k">disp e</span>(ll)
+
+<span class="k">regress</span> <span class="c1">//&quot;replay&quot; the regression; show results again without re-computing</span>
+
+<span class="c1">//show the betas (regression coefficients)</span>
+<span class="k">disp</span> _b[gender]
+<span class="k">disp</span> _b[age]
+<span class="k">disp</span> _b[_cons]
+
+<span class="c1">//show several betas together</span>
+<span class="k">disp</span> <span class="s">&quot;estimated BMI: &quot;</span> <span class="nx">%3.2f</span> _b[_cons] <span class="s">&quot; + &quot;</span> <span class="nx">%3.2f</span> _b[age] <span class="cs">///</span>
+    <span class="s">&quot;*age (+ &quot;</span> _b[gender] <span class="s">&quot; if male)&quot;</span> 
+
+<span class="c1">//NOTE: for logistic regression, the beta is the *LOG of the odds ratio.</span>
+<span class="c1">//So to see the odds ratio you&#39;d say &quot;disp exp(_b[gender])&quot;</span>
+<span class="c1">//same thing for Cox (exponentiate to obtain hazard ratio), etc.</span>
+
+<span class="c1">//more examples of the exp() function to exponentiate</span>
+<span class="k">disp</span> <span class="nf">exp</span>(<span class="m">0</span>)  <span class="c1">//returns 1</span>
+<span class="k">disp</span> <span class="nf">exp</span>(<span class="m">1</span>)  <span class="c1">//returns 0</span>
+
+<span class="c1">//show the regression results again</span>
+<span class="k">regress</span>
+
+<span class="c1">//standard error matrix</span>
+<span class="k">disp</span> _se[gender]
+<span class="k">disp</span> _se[age]
+
+<span class="c1">//t statistic</span>
+<span class="k">disp</span> _b[gender]<span class="o">/</span>_se[gender]
+<span class="k">disp</span> _b[age]<span class="o">/</span>_se[age]
+
+<span class="c1">//Absolute value of t-statistic:</span>
+<span class="k">disp</span> <span class="nf">abs</span>(_b[gender]<span class="o">/</span>_se[gender]) <span class="c1">//function &quot;abs&quot; returns absolute value</span>
+
+<span class="c1">//a few more examples with &quot;abs&quot;</span>
+<span class="k">disp</span> <span class="nf">abs</span>(<span class="m">5</span>)
+<span class="k">disp</span> <span class="nf">abs</span>(<span class="o">-</span><span class="m">4</span>)
+<span class="k">disp</span> <span class="nf">abs</span>(<span class="m">0</span>)
+
+<span class="c1">//residual degrees of freedom from regression</span>
+<span class="c1">//(necessary for obtaining p value of t statistic)</span>
+<span class="k">disp e</span>(df_r)
+
+<span class="k">regress</span>
+<span class="c1">//p value</span>
+<span class="c1">//returns p value of t statistic abs(beta/se) with e(df_r) degrees of freedom</span>
+<span class="c1">//see &quot;help ttail&quot; for details</span>
+<span class="k">di</span> <span class="m">2</span><span class="o">*</span><span class="nf">ttail</span>(<span class="nf">e</span>(df_r), <span class="nf">abs</span>(_b[gender]<span class="o">/</span>_se[gender]))
+
+<span class="c1">//NOTE: for logistic regression or Cox regression, instead of using a </span>
+<span class="c1">//t statistic you use a Z statistic (normal distribution)</span>
+<span class="c1">//which would be this:</span>
+<span class="c1">//di 2*(1-normal(abs(_b[gender]/_se[gender])))</span>
+
+<span class="k">regress</span>
+<span class="c1">//lower and upper bound of confidence interval</span>
+<span class="k">disp</span> _b[gender] <span class="o">+</span> _se[gender]<span class="o">*</span><span class="nf">invttail</span>(<span class="nf">e</span>(df_r), <span class="m">0.975</span>)
+<span class="k">disp</span> _b[gender] <span class="o">+</span> _se[gender]<span class="o">*</span><span class="nf">invttail</span>(<span class="nf">e</span>(df_r), <span class="m">0.025</span>)
+
+<span class="c1">//NOTE: for logistic, Cox, etc. you would again use the normal distribution,</span>
+<span class="c1">//not the t distribution, to obtain confidence intervals. </span>
+<span class="c1">//And again you would exponentiate to obtain OR/HR etc</span>
+<span class="c1">//example: disp exp(_b[age]+invnormal(0.025)*_se[age]) //lower bound</span>
+<span class="c1">//example: disp exp(_b[age]+invnormal(0.975)*_se[age]) //upper bound</span>
+
+<span class="c1">//Stata 15.1: an easier way to do confidence intervals and p values</span>
+<span class="k">if</span> <span class="nf">c</span>(version) <span class="o">&gt;=</span> <span class="m">15.09</span> {
+<span class="k">    regress</span> bmi age
+<span class="k">    lincom</span> age
+<span class="k">    disp</span> <span class="nf">r</span>(p)
+<span class="k">    disp</span> <span class="nf">r</span>(lb) <span class="s">&quot; - &quot;</span> <span class="nf">r</span>(ub)
+
+<span class="k">    logit</span> rec_work age prev
+<span class="k">    lincom</span> prev
+<span class="k">    disp</span> <span class="nf">r</span>(p)
+    <span class="c1">//the coefficient is the log odds ratio, </span>
+    <span class="c1">//so let&#39;s see the 95% CI of the odds ratio</span>
+<span class="k">    disp</span> <span class="nf">exp</span>(<span class="nf">r</span>(lb)) <span class="s">&quot; - &quot;</span> <span class="nf">exp</span>(<span class="nf">r</span>(ub))
 }
 
-<span class="c1">//Comments</span>
-<span class="k">sum</span> age   <span class="c1">//here are my comments explaining what this command does</span>
+<span class="c1">//creturn examples. This information isn&#39;t as useful as return/ereturn</span>
+<span class="c1">//but it might come in handy</span>
 
-<span class="cm">/*</span>
-<span class="cm">Here is a multiline comment</span>
-<span class="cm">See? It&#39;s still a comment</span>
-<span class="cm">*/</span>
+<span class="k">disp</span> <span class="nf">c</span>(current_date)
+<span class="k">disp</span> <span class="nf">c</span>(os)
+<span class="k">disp</span> <span class="nf">c</span>(pi)
+<span class="k">creturn list</span>
 
-<span class="k">sum</span> age, detail <span class="cm">/*multiline comments can just be on one line */</span>
+<span class="c1">//local macros</span>
+<span class="c1">//there&#39;s also such a thing as a *global* macro </span>
+<span class="c1">//but let&#39;s worry about those later</span>
+<span class="k">local</span> a = <span class="m">4</span>  <span class="c1">//set macro a equal to 4</span>
+<span class="k">disp</span> <span class="nv">`a&#39;</span>   <span class="c1">//display the value of macro a</span>
 
-<span class="cm">* If the asterisk is the first character, the line is a comment</span>
+<span class="k">local</span> a <span class="m">4</span> <span class="c1">//another way to set the value of a macro</span>
+<span class="k">disp</span> <span class="nv">`a&#39;</span>
 
-<span class="c1">//line continuation</span>
-<span class="c1">// type /// and two lines are run as a single command</span>
-<span class="k">describe</span> age rec_hcv pretx_cmv <span class="cs">///</span>
-    don_ecd
+<span class="k">local</span> a <span class="m">4</span> <span class="o">+</span> <span class="m">7</span>  <span class="c1">//this means, set a equal to &quot;4 + 7&quot;. </span>
+<span class="c1">//At this point, Stata doesn&#39;t actually compute what 4+7 is</span>
+
+<span class="k">disp</span> <span class="nv">`a&#39;</span><span class="o">*</span><span class="m">2</span>  <span class="c1">//becomes &quot;disp 4 + 7*2&quot; which is the same as 4+14 which is 18</span>
+
+<span class="k">local</span> a = <span class="m">4</span> <span class="o">+</span> <span class="m">7</span> <span class="c1">//the equals means, *COMPUTE* 4+7 and set a equal to the answer</span>
+<span class="k">disp</span> <span class="nv">`a&#39;</span><span class="o">*</span><span class="m">2</span>  <span class="c1">//becomes &quot;disp 11*2&quot; which is 22</span>
 
 
-<span class="k">recode</span> race <span class="cs">///</span>
-    (<span class="m">1</span>=<span class="m">1</span>) <span class="cs">///</span>
-    (<span class="m">2</span>=<span class="m">2</span>) <span class="cs">///</span>
-    (<span class="m">4</span> <span class="m">5</span> <span class="m">6</span> <span class="m">7</span> <span class="m">9</span> = <span class="m">9</span>)
+<span class="c1">//another macro example</span>
+<span class="c1">//we want to display the mean age for males, and the mean age for females,</span>
+<span class="c1">//on the same line</span>
+<span class="k">quietly sum</span> age<span class="k"> if</span> gender<span class="o">==</span><span class="m">0</span>
+<span class="k">local</span> age_m = <span class="nf">r</span>(mean)  <span class="c1">//store mean age for males in macro &quot;age_m&quot;</span>
+<span class="k">quietly sum</span> age<span class="k"> if</span> gender<span class="o">==</span><span class="m">1</span>
+<span class="k">local</span> age_f = <span class="nf">r</span>(mean)  <span class="c1">//store mean age for females in macro &quot;age_f&quot;</span>
+<span class="k">disp</span> <span class="s">&quot;Mean age: &quot;</span> <span class="nx">%3.1f</span> <span class="nv">`age_m&#39;</span> <span class="s">&quot; (males) &quot;</span> <span class="nx">%3.1f</span> <span class="nv">`age_f&#39;</span> <span class="s">&quot; (females)&quot;</span>
+<span class="c1">//Note the use of formatting code %3.1f. </span>
+<span class="c1">//one digit to the right of the decimal point will be shown.</span>
 
-<span class="c1">//labels</span>
-<span class="k">describe</span> dx <span class="c1">//user has no idea what variable &quot;dx&quot; means</span>
-<span class="k">label var</span> dx <span class="s">&quot;kidney disease diagnosis&quot;</span> <span class="c1">//assign a label to the variable</span>
-<span class="k">describe</span> dx  <span class="c1">//now we can see the description</span>
+<span class="c1">//More macro examples</span>
+<span class="k">local</span> my_var age  <span class="c1">//my_var is a macro which equals &quot;age&quot;</span>
+<span class="k">disp</span> <span class="s">&quot;Here&#39;s a summary of </span><span class="nv">`my_var&#39;</span><span class="s">&quot;</span>  <span class="c1">//displays &quot;Here&#39;s a summary of age&quot;</span>
+<span class="k">sum</span> <span class="nv">`my_var&#39;</span> <span class="c1">//sumarizes age</span>
+
+<span class="k">local</span> my_command<span class="k"> summarize</span>  <span class="c1">//my_command is a macro which equals &quot;summarize&quot;</span>
+<span class="c1">//Stata sees &quot;summarize age, detail&quot;</span>
+<span class="nv">`my_command&#39;</span> <span class="nv">`my_var&#39;</span>, detail
+
+<span class="c1">//here are some additional macros not in the slides.</span>
+<span class="c1">//they are a bit more complex but they show how this macro thing works</span>
+<span class="k">local</span> mymacro<span class="k"> gen</span>
+<span class="k">sum</span> <span class="nv">`mymacro&#39;</span>der  <span class="c1">//Stata sees &quot;sum gender&quot;</span>
+
+<span class="k">local</span> macro1<span class="k"> ma</span>  <span class="c1">//macro1 is &quot;ma&quot;</span>
+<span class="k">local</span> macro2 age gender <span class="c1">//macro2 is &quot;age gender&quot;</span>
+<span class="k">sum</span> <span class="nv">``macro1&#39;cro2&#39;</span> 
+<span class="c1">//first, `macro1&#39; becomes &quot;ma&quot;</span>
+<span class="c1">//so ``macro1&#39;cro2&#39; becomes `macro2&#39;</span>
+<span class="c1">//next, `macro2&#39; becomes &quot;age gender&quot;</span>
+<span class="c1">//so &quot;sum `macro2&#39;&quot; becomes &quot;sum age gender&quot;</span>
+
+<span class="c1">//In this case, in_study defines a subpopulation of age&lt;45 and gender==male</span>
+<span class="c1">//and then we run several commands using this macro</span>
+<span class="c1">//if we later decide to include females instead, </span>
+<span class="c1">//all we have to do is change &quot;gender==0&quot; to &quot;gender==1&quot;</span>
+<span class="c1">//and everything will run on females instead of males</span>
+<span class="k">local</span> in_study<span class="k"> if</span> age<span class="o">&lt;</span><span class="m">45</span> <span class="o">&amp;</span> gender<span class="o">==</span><span class="m">0</span>
+<span class="k">sum</span> bmi <span class="nv">`in_study&#39;</span>
+<span class="k">sum</span> peak_pra <span class="nv">`in_study&#39;</span>
+<span class="k">regress</span> bmi age <span class="nv">`in_study&#39;</span>
+
+<span class="c1">//here, &quot;confounders&quot; refers to a set of three variables</span>
+<span class="c1">//you can imagine that we would do several different analyses </span>
+<span class="c1">//treating these variables the same.</span>
+<span class="c1">//if we change the list of confounders, we just have to change the macro</span>
+<span class="c1">//instead of changing every command</span>
+<span class="k">local</span> confounders age gender peak_pra
+<span class="k">regress</span> bmi wait_yrs <span class="nv">`confounders&#39;</span>
+
+
+<span class="c1">//review: quietly</span>
+<span class="c1">//run a regression. Don&#39;t print any output or error messages</span>
+<span class="k">quietly regress</span> bmi age
+
+<span class="c1">//a &quot;quietly block&quot;: run several commands without printing anything</span>
+<span class="k">quietly</span> {
+<span class="k">    gen</span> over40 = (age <span class="o">&gt;</span> <span class="m">40</span>)
+<span class="k">    count if</span> over40 <span class="o">==</span> <span class="m">1</span>
+<span class="k">    regress</span> bmi over40
+}
+
+<span class="k">drop</span> over40
+<span class="c1">//now, let&#39;s run several commands and only print output from the last one</span>
+<span class="k">quietly</span> {
+<span class="k">    gen</span> over40 = (age <span class="o">&gt;</span> <span class="m">40</span>)
+<span class="k">    sum</span> bmi<span class="k"> if</span> over40 <span class="o">==</span> <span class="m">1</span>
+<span class="k">    noisily di</span> <span class="s">&quot;mean BMI: &quot;</span> <span class="nx">%3.1f</span> <span class="nf">r</span>(mean)
+}
+
+<span class="c1">//which command. Show whether a command is built-in, or a stata .do file</span>
+<span class="k">which tab</span>
+<span class="k">which chelp</span>
+<span class="k">which gen</span>
+<span class="k">which regress</span>
+<span class="k">which help</span>
+<span class="k">which graph</span>
+
+<span class="c1">//define a program &quot;do_something&quot;</span>
+<span class="c1">//first, if the program already exists in memory, delete it</span>
+<span class="c1">//(NOTE: this is superfluous here, since line 9 says &quot;clear all&quot; which deletes</span>
+<span class="c1">//all programs in memory... but it&#39;s a good idea to do &quot;capture program drop&quot;</span>
+<span class="c1">//before any &quot;program define&quot;</span>
+<span class="k">capture program drop</span> do_something
+
+<span class="c1">//now, define the program. All it does is display &quot;It doesn&#39;t do much.&quot;</span>
+<span class="k">program</span> define do_something  <span class="c1">//create a program called do_something</span>
+<span class="k">    disp</span> <span class="s">&quot;It doesn&#39;t do much.&quot;</span>  <span class="c1">//here&#39;s what the program does.</span>
+<span class="k">end</span>  <span class="c1">//that&#39;s the end of the program definition</span>
+
+do_something
+
+<span class="k">capture program drop</span> do_something_else
+<span class="k">program</span> define do_something_else  <span class="c1">//create a program called do_something</span>
+<span class="k">    disp</span> <span class="s">&quot;One line is not enough.&quot;</span>
+<span class="k">    disp</span> <span class="s">&quot;So display two lines.&quot;</span>
+<span class="k">end</span>  <span class="c1">//that&#39;s the end of the program definition</span>
+
+do_something_else
+
+<span class="c1">//now for a program that actually does something useful.</span>
+<span class="c1">//NOTE: this would be more efficient with loops, but those come later</span>
+
+<span class="k">capture program drop</span> table1
+<span class="k">program</span> define table1
+<span class="k">    disp</span> <span class="s">&quot;Variable&quot;</span> _col(<span class="m">20</span>) <span class="s">&quot;mean (SD)&quot;</span> _col(<span class="m">40</span>) <span class="s">&quot;range&quot;</span>
+<span class="k">    quietly sum</span> age
+<span class="k">    disp</span> <span class="s">&quot;age&quot;</span> _col(<span class="m">20</span>) <span class="nx">%3.2f</span> <span class="nf">r</span>(mean) <span class="s">&quot; (&quot;</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(sd) <span class="s">&quot;)&quot;</span> <span class="cs">///</span>
+            _col(<span class="m">40</span>) <span class="nx">%3.2f</span> <span class="nf">r</span>(min) <span class="s">&quot;-&quot;</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(max)
+<span class="k">    quietly sum</span> wait_yrs
+<span class="k">    disp</span> <span class="s">&quot;wait_yrs&quot;</span> _col(<span class="m">20</span>) <span class="nx">%3.2f</span> <span class="nf">r</span>(mean) <span class="s">&quot; (&quot;</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(sd) <span class="s">&quot;)&quot;</span> <span class="cs">///</span>
+            _col(<span class="m">40</span>) <span class="nx">%3.2f</span> <span class="nf">r</span>(min) <span class="s">&quot;-&quot;</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(max)
+<span class="k">    quietly sum</span> bmi
+<span class="k">    disp</span> <span class="s">&quot;bmi&quot;</span> _col(<span class="m">20</span>) <span class="nx">%3.2f</span> <span class="nf">r</span>(mean) <span class="s">&quot; (&quot;</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(sd) <span class="s">&quot;)&quot;</span> <span class="cs">///</span>
+            _col(<span class="m">40</span>) <span class="nx">%3.2f</span> <span class="nf">r</span>(min) <span class="s">&quot;-&quot;</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(max)
+<span class="k">end</span>
 
 <span class="k">use</span> transplants,<span class="k"> clear</span>
-<span class="c1">//making value labels.</span>
-
-
-<span class="k">tab</span> gender <span class="c1">//output is confusing; is &quot;1&quot; male or female?</span>
-
-<span class="k">label</span> define g_label <span class="m">0</span> <span class="s">&quot;0=Male&quot;</span> <span class="cs">///</span>
-    <span class="m">1</span> <span class="s">&quot;1=Female&quot;</span> 
-
-<span class="c1">//tell Stata to label values for variable &quot;race&quot; with label &quot;eth_label&quot;</span>
-<span class="k">label</span> values gender g_label
-<span class="c1">//NOTE: the data for &quot;race&quot; does not change, just the display</span>
-
-<span class="k">tab</span> gender <span class="c1">//much better</span>
-<span class="k">tab</span> gender, nolabel <span class="c1">//don&#39;t show label</span>
-
-<span class="c1">//recode+labels</span>
-<span class="k">recode</span> race (<span class="m">1</span>=<span class="m">0</span> <span class="s">&quot;Cauc&quot;</span>) <span class="cs">///</span>
-            (<span class="m">2</span>=<span class="m">1</span> <span class="s">&quot;AA&quot;</span>) <span class="cs">///</span>
-            (<span class="m">4</span>=<span class="m">2</span> <span class="s">&quot;Hisp/Latino&quot;</span>) <span class="cs">///</span>
-            (<span class="m">5</span><span class="o">/</span><span class="m">9</span>=<span class="m">3</span> <span class="s">&quot;Other&quot;</span>), <span class="cs">/// Discuss this with Sam</span>
-<span class="k">            gen</span>(race_cat)
-<span class="k">tab</span> race_cat
-
-<span class="c1">//preserve and restore</span>
-<span class="k">sum</span> age <span class="c1">//mean = 50 years</span>
-<span class="k">preserve</span> <span class="c1">//like setting a bookmark</span>
-<span class="k">drop if</span> age <span class="o">&lt;</span> <span class="m">50</span>
-<span class="k">sum</span> age <span class="c1">//mean = 61 years</span>
-<span class="k">restore</span> <span class="c1">//it&#39;s as if everything after the line &quot;preserve&quot; didn&#39;t happen</span>
-<span class="k">sum</span> age <span class="c1">//mean = 50 years</span>
+table1
 
 <span class="k">log close</span> _all
 
 <span class="c1">//exit command. Within a .do file, it doesn&#39;t close Stata. It just stops </span>
 <span class="c1">//running the .do file</span>
 <span class="k">exit</span>
-
-<span class="k">sum</span> age
-So you see, the <span class="s">&quot;sum age&quot;</span> command won&#39;t get<span class="k"> run</span>, since it&#39;s after <span class="s">&quot;exit&quot;</span>
-Also, what I&#39;m typing here isn&#39;t commented<span class="k"> out</span>, but since it comes after <span class="s">&quot;exit&quot;</span>,
-Stata doesn&#39;t process it
 </pre></div>
 </div>
 
