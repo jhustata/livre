@@ -1,3 +1,5 @@
-﻿1. post-hoc hypothesis
-2. not motivated (show off your skills of counterfeiting)
-3. can't see how this changes that current state or projected trajectories of science, guidelines, or policy
+Hi Howard, 
+
+can you see this? Hope so!
+
+Please get in touch with Monica, one of the teaching assistants. She's sent you an email
