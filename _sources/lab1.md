@@ -6,7 +6,7 @@ Write Stata commands to solve the following questions. Keep them in a .txt or .d
      
 You will turn this work in together with Lab 1 Part 2.     
      
-Write Stata commands to answer the following questions about the dataset [transplants.txt](https://raw.githubusercontent.com/jhustata/livre/main/transplants.txt):     
+Write Stata commands to answer the following questions about the dataset [transplants.dta](transplants.dta):     
      
 1. How many total patients are in the dataset?      
 2. The variable `dx` represents diagnosis and `age` represents patient age. How many patients were between the ages of 50 and 60 and had diabetes as their primary diagnosis at the time of transplant?     
