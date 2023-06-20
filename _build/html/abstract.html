@@ -356,7 +356,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abimereki-muzaale">Abimereki Muzaale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-md-mph">Author, MD MPH</a></li>
 </ul>
             </nav>
         </div>
@@ -370,8 +370,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="how-to-embed-stata-results-in-html">
 <h1>How to embed Stata results in .html<a class="headerlink" href="#how-to-embed-stata-results-in-html" title="Permalink to this heading">#</a></h1>
-<section id="abimereki-muzaale">
-<h2>Abimereki Muzaale<a class="headerlink" href="#abimereki-muzaale" title="Permalink to this heading">#</a></h2>
+<section id="author-md-mph">
+<h2>Author, MD MPH<a class="headerlink" href="#author-md-mph" title="Permalink to this heading">#</a></h2>
 <p><strong>Background:</strong>
 A <u>user</u> downloads and installs a <u>system</u> of program files, mostly ado-files, which form the foundation of most of the commands
 used in Stata Programming. Using those commands and additional syntax written out sequentially in a do-file, the user creates
@@ -386,7 +386,7 @@ in this document that is not ordinary text including <code class="docutils liter
 Results that might be numeric, string, alphanumeric, or formatted as macros are embeded at these markedup points. We then saved this
 document using the file extension .do; however, any text file extension will work (.txt, .md, .do, etc). To the <code class="docutils literal notranslate"><span class="pre">pwd</span></code> where we saved
 this text file, we added a cascading style sheet <a class="reference external" href="https://raw.githubusercontent.com/jhustata/livre/main/stmarkdown.css">stmarkdown.css</a> and <a class="reference external" href="https://raw.githubusercontent.com/jhustata/livre/main/header.txt">header.txt</a> to enhance the aesthetic of our .html file. Finally, we typed the
-following command into the Stata command window: <code class="docutils literal notranslate"><span class="pre">dyndoc</span> <span class="pre">filename.txt,</span> <span class="pre">saving(filename.html)</span></code>.</p>
+following command into the Stata command window: <code class="docutils literal notranslate"><span class="pre">dyndoc</span> <span class="pre">filename.do,</span> <span class="pre">saving(filename.html)</span> <span class="pre">replace</span></code>.</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">webuse</span> lifeexp,<span class="k"> clear</span> 
 <span class="k">encode</span> country,<span class="k"> gen</span>(Country)
 <span class="k">quietly sum</span> lexp
@@ -421,13 +421,13 @@ Of course <span class="math notranslate nohighlight">\(\beta_1\)</span> is zero 
 .<span class="k"> list in</span> <span class="m">1</span><span class="o">/</span><span class="m">5</span>  
 
 						
-    region	            country	    popgro<span class="o">~</span>h	lexp	gnppc	safewa<span class="o">~</span>r	
+    region	            country	    popgro<span class="o">~</span>h	 lexp	    gnppc	safewa<span class="o">~</span>r	
 						
-<span class="m">1</span>.  Europe <span class="o">&amp;</span> C. Asia	Albania	    <span class="m">1.2</span>	        <span class="m">72</span>	    <span class="m">810</span>	    <span class="m">76</span>	
-<span class="m">2</span>.  Europe <span class="o">&amp;</span> C. Asia	Armenia	    <span class="m">1.1</span>	        <span class="m">74</span>	    <span class="m">460</span>	    .	
-<span class="m">3</span>.  Europe <span class="o">&amp;</span> C. Asia	Austria	    .<span class="m">4</span>	        <span class="m">79</span>	    <span class="m">26830</span>	.	
-<span class="m">4</span>.  Europe <span class="o">&amp;</span> C. Asia	Azerbaijan	<span class="m">1.4</span>	        <span class="m">71</span>	    <span class="m">480</span>	    .	
-<span class="m">5</span>.  Europe <span class="o">&amp;</span> C. Asia	Belarus	    .<span class="m">3</span>	        <span class="m">68</span>	    <span class="m">2180</span>	.	
+<span class="m">1</span>.  Europe <span class="o">&amp;</span> C. Asia	Albania	       <span class="m">1.2</span>	        <span class="m">72</span>	    <span class="m">810</span>	    <span class="m">76</span>	
+<span class="m">2</span>.  Europe <span class="o">&amp;</span> C. Asia	Armenia	       <span class="m">1.1</span>	        <span class="m">74</span>	    <span class="m">460</span>	    .	
+<span class="m">3</span>.  Europe <span class="o">&amp;</span> C. Asia	Austria	       .<span class="m">4</span>	        <span class="m">79</span>	    <span class="m">26830</span>	 .	
+<span class="m">4</span>.  Europe <span class="o">&amp;</span> C. Asia	Azerbaijan	    <span class="m">1.4</span>	        <span class="m">71</span>	    <span class="m">480</span>	    .	
+<span class="m">5</span>.  Europe <span class="o">&amp;</span> C. Asia	Belarus	       .<span class="m">3</span>	        <span class="m">68</span>	    <span class="m">2180</span>	    .	
 						
 
 . 
@@ -496,7 +496,7 @@ in .xlsx, .log, .dta, .docx, etc.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abimereki-muzaale">Abimereki Muzaale</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#author-md-mph">Author, MD MPH</a></li>
 </ul>
   </nav></div>
 

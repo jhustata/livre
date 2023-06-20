@@ -1,6 +1,6 @@
 # How to embed Stata results in .html  
 
-### Abimereki Muzaale
+### Author, MD MPH
 
 **Background:** 
 A <u>user</u> downloads and installs a <u>system</u> of program files, mostly ado-files, which form the foundation of most of the commands 
@@ -17,7 +17,7 @@ in this document that is not ordinary text including `<<dd_version: 2>>`, `<<dd_
 Results that might be numeric, string, alphanumeric, or formatted as macros are embeded at these markedup points. We then saved this 
 document using the file extension .do; however, any text file extension will work (.txt, .md, .do, etc). To the `pwd` where we saved
 this text file, we added a cascading style sheet [stmarkdown.css](https://raw.githubusercontent.com/jhustata/livre/main/stmarkdown.css) and [header.txt](https://raw.githubusercontent.com/jhustata/livre/main/header.txt) to enhance the aesthetic of our .html file. Finally, we typed the 
-following command into the Stata command window: `dyndoc filename.txt, saving(filename.html)`. 
+following command into the Stata command window: `dyndoc filename.do, saving(filename.html) replace`. 
 
 ```stata
 webuse lifeexp, clear 
@@ -57,13 +57,13 @@ Of course $\beta_1$ is zero or meaningless (countries are alphabetically listed)
 . list in 1/5  
 
 						
-    region	            country	    popgro~h	lexp	gnppc	safewa~r	
+    region	            country	    popgro~h	 lexp	    gnppc	safewa~r	
 						
-1.  Europe & C. Asia	Albania	    1.2	        72	    810	    76	
-2.  Europe & C. Asia	Armenia	    1.1	        74	    460	    .	
-3.  Europe & C. Asia	Austria	    .4	        79	    26830	.	
-4.  Europe & C. Asia	Azerbaijan	1.4	        71	    480	    .	
-5.  Europe & C. Asia	Belarus	    .3	        68	    2180	.	
+1.  Europe & C. Asia	Albania	       1.2	        72	    810	    76	
+2.  Europe & C. Asia	Armenia	       1.1	        74	    460	    .	
+3.  Europe & C. Asia	Austria	       .4	        79	    26830	 .	
+4.  Europe & C. Asia	Azerbaijan	    1.4	        71	    480	    .	
+5.  Europe & C. Asia	Belarus	       .3	        68	    2180	    .	
 						
 
 . 
