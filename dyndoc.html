@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>How to embed your Stata results in a .html file &#8212; Stata Programming</title>
+    <title>&lt;no title&gt; &#8212; Stata Programming</title>
   
   
   
@@ -61,8 +61,6 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'dyndoc';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -346,7 +344,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>How to embed your Stata results in a .html file</h1>
+    <h1><no title></h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -355,9 +353,9 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abimereki-muzaale">Abimereki Muzaale</a></li>
+                <ul class="simple visible nav section-nav flex-column">
 </ul>
+
             </nav>
         </div>
     </div>
@@ -368,68 +366,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <p>&lt;&lt;dd_version: 2&gt;&gt;
-&lt;&lt;dd_include: header.txt&gt;&gt;</p>
-<section class="tex2jax_ignore mathjax_ignore" id="how-to-embed-your-stata-results-in-a-html-file">
-<h1>How to embed your Stata results in a .html file<a class="headerlink" href="#how-to-embed-your-stata-results-in-a-html-file" title="Permalink to this heading">#</a></h1>
-<section id="abimereki-muzaale">
-<h2>Abimereki Muzaale<a class="headerlink" href="#abimereki-muzaale" title="Permalink to this heading">#</a></h2>
-<p><strong>Background:</strong>
-A <u>user</u> downloads and installs a <u>system</u> of program files, mostly ado-files, which form the foundation of most of the commands
-used in Stata Programming. Using those commands and additional syntax written out sequentially in a do-file, the user creates
-well-formed instruction to Stata called a do-file script. Once the user runs this script, results are generated and displayed
-in the results window, in a graph, or in a file (<code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>, <code class="docutils literal notranslate"><span class="pre">.log</span></code>, <code class="docutils literal notranslate"><span class="pre">.dta</span></code>, <code class="docutils literal notranslate"><span class="pre">.docx</span></code>, <code class="docutils literal notranslate"><span class="pre">.md</span></code>, <code class="docutils literal notranslate"><span class="pre">LaTeX</span></code>, <code class="docutils literal notranslate"><span class="pre">.html</span></code>, etc). The <code class="docutils literal notranslate"><span class="pre">.html</span></code> file format is of specific
-interest since its the pathway to self-publication. To illustrate how this may be achieved in Stata, we hereby introduce the <code class="docutils literal notranslate"><span class="pre">dyndoc</span></code>
-command.</p>
-<p><strong>Methods:</strong>
-We created a do-file and populated it with this abstract using <a class="reference external" href="https://en.wikipedia.org/wiki/Markdown">markdown</a> language. Anything
-in this document that is not ordinary text including <code class="docutils literal notranslate"><span class="pre">&lt;&lt;dd_version:</span> <span class="pre">2&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;dd_do:nooutput&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;/dd_do&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;dd_display:</span> <span class="pre">c(N)&gt;&gt;</span></code> is a
-<a class="reference external" href="https://en.wikipedia.org/wiki/Markup_language#:~:text=A%20markup%20language%20is%20a,content%20to%20facilitate%20automated%20processing.">markup</a>.
-Results that might be numeric, string, alphanumeric, or formatted as macros are embeded at these markedup points. We then saved this
-document using the file extension .do; however, any text file extension will work (.txt, .md, .do, etc). To the <code class="docutils literal notranslate"><span class="pre">pwd</span></code> where we saved
-this text file, we added a cascading style sheet <a class="reference download internal" download="" href="_downloads/9dab6dd67964afd011b337dcfb083ca2/stmarkdown.css"><span class="xref download myst">(stmarkdown.css)</span></a> and <a class="reference download internal" download="" href="_downloads/487253ad27db23d67fd59556d15a2692/header.txt"><span class="xref download myst">(<code class="docutils literal notranslate"><span class="pre">header.txt</span></code>)</span></a> to enhance the aesthetic of our .html file. Finally, we typed the
-following command into the Stata command window: <code class="docutils literal notranslate"><span class="pre">dyndoc</span> <span class="pre">filename.txt,</span> <span class="pre">saving(filename.html)</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>&lt;&lt;dd_do:nooutput&gt;&gt;
-webuse lifeexp, clear 
-encode country, gen(Country)
-quietly sum lexp
-qui local lexp_mean: di %3.0f r(mean) 
-quietly sum Country
-qui local Country_mean: di r(mean)  
-twoway scatter lexp Country, ///
-   xscale(off) ///
-   yline(`lexp_mean&#39;, ///
-      lc(red) ///
-      lp(dash) ///
-   ) ///
-   text(`lexp_mean&#39; `Country_mean&#39; &quot;Mean life expectancy among countries&quot;)
-graph export lexp_bycountry.png, replace 
-&lt;&lt;/dd_do&gt;&gt;
-</pre></div>
-</div>
-<p>&lt;&lt;dd_graph&gt;&gt;</p>
-<p><span class="math notranslate nohighlight">\(Y  = \beta_0   +  \beta_1 X\)</span><br />
-Where Y is Life expectancy at birth in years.<br />
-X is the country, the predictor or independent variable.<br />
-And <span class="math notranslate nohighlight">\(\beta_0\)</span> is the average life expectancy of all countries.<br />
-Of course <span class="math notranslate nohighlight">\(\beta_1\)</span> is zero or meaningless (countries are alphabetically listed)</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;&lt;</span><span class="n">dd_do</span><span class="o">&gt;&gt;</span>
-<span class="n">display</span> <span class="n">c</span><span class="p">(</span><span class="n">N</span><span class="p">)</span> 
-<span class="n">display</span> <span class="n">c</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>  
-<span class="nb">list</span> <span class="ow">in</span> <span class="mi">1</span><span class="o">/</span><span class="mi">5</span>  
-<span class="o">&lt;&lt;/</span><span class="n">dd_do</span><span class="o">&gt;&gt;</span>
-</pre></div>
-</div>
-<p><strong>Results:</strong>
-We identified the newly created .html file in our folder and openned it to compare its format to this markdown file. And we saw all that
-we had made, and behold, it was very good. Ghastly looking macros in the original markdown language now appeared as neatly formatted
-results. For instance, there were  &lt;&lt;dd_display: c(N)&gt;&gt; observations and &lt;&lt;dd_display: c(k) &gt;&gt; observations in the analyzed dataset.</p>
-<p><strong>Conclusions:</strong>
-In walking you through syntax, do-file creation, queued commands, generated results, through to embedding neatly formatted output in
-.html, we believe you now have a solid sense of all that Stata has to offer you. These ideas can be generalized to embedding results
-in .xlsx, .log, .dta, .docx, etc.</p>
-</section>
-</section>
+  <p><a class="reference download internal" download="" href="_downloads/04e2e4882722b4a6d79ee06620c1f8e4/filename.do"><span class="xref download myst">filename.do</span></a><br />
+<a class="reference download internal" download="" href="_downloads/5a9647982e7eaadb4ce055154fc9adac/filename.html"><span class="xref download myst">filename.html</span></a></p>
 
     <script type="text/x-thebe-config">
     {
@@ -479,9 +417,9 @@ in .xlsx, .log, .dta, .docx, etc.</p>
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abimereki-muzaale">Abimereki Muzaale</a></li>
+    <ul class="simple visible nav section-nav flex-column">
 </ul>
+
   </nav></div>
 
 </div></div>

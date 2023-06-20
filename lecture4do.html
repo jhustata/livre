@@ -368,6 +368,21 @@ document.write(`
                   
   <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">capture log close</span>
 <span class="k">log</span> using lecture4<span class="m">.</span>log,<span class="k"> replace</span> text
+
+<span class="c1">//This log file contains most of the examples used in Lecture 4 of</span>
+<span class="c1">//summer Stata Programming and Data Management, </span>
+<span class="cs">///along with additional explanations and examples.</span>
+
+<span class="k">version</span> <span class="m">12</span> <span class="c1">//We&#39;re teaching new-style merging</span>
+<span class="k">clear</span> all <span class="c1">//clear all data from memory</span>
+<span class="k">macro drop</span> _all <span class="c1">//clear all macros in memory</span>
+<span class="k">set more</span> off   <span class="c1">//give output all at once (not one screenful at a time)</span>
+<span class="k">set</span> linesize <span class="m">80</span> <span class="c1">//maximum allowed width for output</span>
+
+<span class="k">use</span> transplants,<span class="k"> clear</span>
+
+<span class="c1">//examples of syntax for merging</span>
+<span class="c1">//NOTE: after each example we reload transplants.dta</span>
 </pre></div>
 </div>
 <p>capture log close
