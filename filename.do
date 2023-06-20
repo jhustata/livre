@@ -1,3 +1,6 @@
+<<dd_version: 2>>     
+<<dd_include: header.txt>>
+
 # How to embed Stata results in .html  
 
 ### Author, MD MPH
@@ -17,9 +20,10 @@ in this document that is not ordinary text including `<<dd_version: 2>>`, `<<dd_
 Results that might be numeric, string, alphanumeric, or formatted as macros are embeded at these markedup points. We then saved this 
 document using the file extension .do; however, any text file extension will work (.txt, .md, .do, etc). To the `pwd` where we saved
 this text file, we added a cascading style sheet [stmarkdown.css](https://raw.githubusercontent.com/jhustata/livre/main/stmarkdown.css) and [header.txt](https://raw.githubusercontent.com/jhustata/livre/main/header.txt) to enhance the aesthetic of our .html file. Finally, we typed the 
-following command into the Stata command window: `dyndoc filename.do, saving(filename.html) replace`. 
+following command into the Stata command window: `dyndoc filename.txt, saving(filename.html)`. 
 
-```stata
+```
+<<dd_do:nooutput>>
 webuse lifeexp, clear 
 encode country, gen(Country)
 quietly sum lexp
@@ -34,54 +38,36 @@ twoway scatter lexp Country, ///
    ) ///
    text(`lexp_mean' `Country_mean' "Mean life expectancy among countries")
 graph export lexp_bycountry.png, replace 
+<</dd_do>>
 ```
 
-![](lexp_bycountry.png)
+<<dd_graph>>
 
 $Y  = \beta_0   +  \beta_1 X$       
-Where Y is Life expectancy at birth in years.     
-X is the country, the predictor or independent variable.       
+Where $Y$ is Life expectancy at birth in years.     
+$X$ is the country, the predictor or independent variable.       
 And $\beta_0$ is the average life expectancy of all countries.  
-Of course $\beta_1$ is zero or meaningless (countries are alphabetically listed)         
+Of course $\beta_1$ is $zero$ or meaningless (countries are alphabetically listed)         
   
-```stata
-. webuse lifeexp, clear 
-(Life expectancy, 1998)
 
-. display c(N) 
-68
-
-. display c(k)  
-6
-
-. list in 1/5  
-
-						
-    region	            country	    popgro~h	 lexp	    gnppc	safewa~r	
-						
-1.  Europe & C. Asia	Albania	       1.2	        72	    810	    76	
-2.  Europe & C. Asia	Armenia	       1.1	        74	    460	    .	
-3.  Europe & C. Asia	Austria	       .4	        79	    26830	 .	
-4.  Europe & C. Asia	Azerbaijan	    1.4	        71	    480	    .	
-5.  Europe & C. Asia	Belarus	       .3	        68	    2180	    .	
-						
-
-. 
-end of do-file
-
-. 
-
+```
+<<dd_do>>
+display c(N) 
+display c(k)  
+list in 1/5  
+<</dd_do>>
 ```
 
 **Results:** 
 We identified the newly created .html file in our folder and openned it to compare its format to this markdown file. And we saw all that
 we had made, and behold, it was very good. Ghastly looking macros in the original markdown language now appeared as neatly formatted
-results. For instance, there were  68 observations and 6 observations in the analyzed dataset. 
+results. For instance, there were  <<dd_display: c(N)>> observations and <<dd_display: c(k) >> observations in the analyzed dataset. 
 
 **Conclusions:** 
 In walking you through syntax, do-file creation, queued commands, generated results, through to embedding neatly formatted output in
 .html, we believe you now have a solid sense of all that Stata has to offer you. These ideas can be generalized to embedding results 
 in .xlsx, .log, .dta, .docx, etc. 
+
 
 
 
