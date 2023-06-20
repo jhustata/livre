@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>&lt;no title&gt; &#8212; Stata Programming</title>
+    <title>How to embed Stata results in .html &#8212; Stata Programming</title>
   
   
   
@@ -61,7 +61,9 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'dyndoc';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'abstract';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -232,7 +234,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fdyndoc.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fabstract.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -262,7 +264,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/dyndoc.md" target="_blank"
+      <li><a href="_sources/abstract.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -344,7 +346,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1><no title></h1>
+    <h1>How to embed Stata results in .html</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -353,9 +355,9 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="simple visible nav section-nav flex-column">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abimereki-muzaale">Abimereki Muzaale</a></li>
 </ul>
-
             </nav>
         </div>
     </div>
@@ -366,12 +368,84 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <p><a class="reference internal" href="abstract.html"><span class="doc std std-doc">abstract.html</span></a>
-<a class="reference external" href="https://raw.githubusercontent.com/jhustata/livre/main/filename.do">filename.do</a><br />
-<a class="reference download internal" download="" href="_downloads/5a9647982e7eaadb4ce055154fc9adac/filename.html"><span class="xref download myst">filename.html</span></a><br />
-<a class="reference external" href="https://raw.githubusercontent.com/jhustata/livre/main/header.txt">header.txt</a><br />
-<a class="reference external" href="https://raw.githubusercontent.com/jhustata/livre/main/stmarkdown.css">stmarkdown.css</a><br />
-<a class="reference external" href="https://raw.githubusercontent.com/jhustata/livre/main/Graph.svg">graph.svg</a></p>
+  <section class="tex2jax_ignore mathjax_ignore" id="how-to-embed-stata-results-in-html">
+<h1>How to embed Stata results in .html<a class="headerlink" href="#how-to-embed-stata-results-in-html" title="Permalink to this heading">#</a></h1>
+<section id="abimereki-muzaale">
+<h2>Abimereki Muzaale<a class="headerlink" href="#abimereki-muzaale" title="Permalink to this heading">#</a></h2>
+<p><strong>Background:</strong>
+A <u>user</u> downloads and installs a <u>system</u> of program files, mostly ado-files, which form the foundation of most of the commands
+used in Stata Programming. Using those commands and additional syntax written out sequentially in a do-file, the user creates
+well-formed instruction to Stata called a do-file script. Once the user runs this script, results are generated and displayed
+in the results window, in a graph, or in a file (<code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>, <code class="docutils literal notranslate"><span class="pre">.log</span></code>, <code class="docutils literal notranslate"><span class="pre">.dta</span></code>, <code class="docutils literal notranslate"><span class="pre">.docx</span></code>, <code class="docutils literal notranslate"><span class="pre">.md</span></code>, <code class="docutils literal notranslate"><span class="pre">LaTeX</span></code>, <code class="docutils literal notranslate"><span class="pre">.html</span></code>, etc). The <code class="docutils literal notranslate"><span class="pre">.html</span></code> file format is of specific
+interest since its the pathway to self-publication. To illustrate how this may be achieved in Stata, we hereby introduce the <code class="docutils literal notranslate"><span class="pre">dyndoc</span></code>
+command.</p>
+<p><strong>Methods:</strong>
+We created a <a class="reference external" href="https://raw.githubusercontent.com/jhustata/livre/main/filename.do">do-file</a> and populated it with this abstract using <a class="reference external" href="https://en.wikipedia.org/wiki/Markdown">markdown</a> language. Anything
+in this document that is not ordinary text including <code class="docutils literal notranslate"><span class="pre">&lt;&lt;dd_version:</span> <span class="pre">2&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;dd_do:nooutput&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;/dd_do&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;dd_display:</span> <span class="pre">c(N)&gt;&gt;</span></code> is a
+<a class="reference external" href="https://en.wikipedia.org/wiki/Markup_language#:~:text=A%20markup%20language%20is%20a,content%20to%20facilitate%20automated%20processing.">markup</a>.
+Results that might be numeric, string, alphanumeric, or formatted as macros are embeded at these markedup points. We then saved this
+document using the file extension .do; however, any text file extension will work (.txt, .md, .do, etc). To the <code class="docutils literal notranslate"><span class="pre">pwd</span></code> where we saved
+this text file, we added a cascading style sheet <a class="reference external" href="https://raw.githubusercontent.com/jhustata/livre/main/stmarkdown.css">stmarkdown.css</a> and <a class="reference external" href="https://raw.githubusercontent.com/jhustata/livre/main/header.txt">header.txt</a> to enhance the aesthetic of our .html file. Finally, we typed the
+following command into the Stata command window: <code class="docutils literal notranslate"><span class="pre">dyndoc</span> <span class="pre">filename.txt,</span> <span class="pre">saving(filename.html)</span></code>.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">webuse</span> lifeexp,<span class="k"> clear</span> 
+<span class="k">encode</span> country,<span class="k"> gen</span>(Country)
+<span class="k">quietly sum</span> lexp
+<span class="k">qui local</span> lexp_mean:<span class="k"> di</span> <span class="nx">%3.0f</span> <span class="nf">r</span>(mean) 
+<span class="k">quietly sum</span> Country
+<span class="k">qui local</span> Country_mean:<span class="k"> di</span> <span class="nf">r</span>(mean)  
+<span class="k">twoway scatter</span> lexp Country, <span class="cs">///</span>
+   xscale(off) <span class="cs">///</span>
+   yline(<span class="nv">`lexp_mean&#39;</span>, <span class="cs">///</span>
+      lc(red) <span class="cs">///</span>
+      lp(dash) <span class="cs">///</span>
+   ) <span class="cs">///</span>
+   text(<span class="nv">`lexp_mean&#39;</span> <span class="nv">`Country_mean&#39;</span> <span class="s">&quot;Mean life expectancy among countries&quot;</span>)
+<span class="k">graph</span> export lexp_bycountry<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<p><img alt="" src="_images/lexp_bycountry.png" /></p>
+<p><span class="math notranslate nohighlight">\(Y  = \beta_0   +  \beta_1 X\)</span><br />
+Where Y is Life expectancy at birth in years.<br />
+X is the country, the predictor or independent variable.<br />
+And <span class="math notranslate nohighlight">\(\beta_0\)</span> is the average life expectancy of all countries.<br />
+Of course <span class="math notranslate nohighlight">\(\beta_1\)</span> is zero or meaningless (countries are alphabetically listed)</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> webuse</span> lifeexp,<span class="k"> clear</span> 
+(Life expectancy, <span class="m">1998</span>)
+
+.<span class="k"> display</span> <span class="nf">c</span>(N) 
+<span class="m">68</span>
+
+.<span class="k"> display</span> <span class="nf">c</span>(k)  
+<span class="m">6</span>
+
+.<span class="k"> list in</span> <span class="m">1</span><span class="o">/</span><span class="m">5</span>  
+
+						
+    region	            country	    popgro<span class="o">~</span>h	lexp	gnppc	safewa<span class="o">~</span>r	
+						
+<span class="m">1</span>.  Europe <span class="o">&amp;</span> C. Asia	Albania	    <span class="m">1.2</span>	        <span class="m">72</span>	    <span class="m">810</span>	    <span class="m">76</span>	
+<span class="m">2</span>.  Europe <span class="o">&amp;</span> C. Asia	Armenia	    <span class="m">1.1</span>	        <span class="m">74</span>	    <span class="m">460</span>	    .	
+<span class="m">3</span>.  Europe <span class="o">&amp;</span> C. Asia	Austria	    .<span class="m">4</span>	        <span class="m">79</span>	    <span class="m">26830</span>	.	
+<span class="m">4</span>.  Europe <span class="o">&amp;</span> C. Asia	Azerbaijan	<span class="m">1.4</span>	        <span class="m">71</span>	    <span class="m">480</span>	    .	
+<span class="m">5</span>.  Europe <span class="o">&amp;</span> C. Asia	Belarus	    .<span class="m">3</span>	        <span class="m">68</span>	    <span class="m">2180</span>	.	
+						
+
+. 
+<span class="k">end</span> of<span class="k"> do</span><span class="o">-</span>file
+
+. 
+</pre></div>
+</div>
+<p><strong>Results:</strong>
+We identified the newly created .html file in our folder and openned it to compare its format to this markdown file. And we saw all that
+we had made, and behold, it was very good. Ghastly looking macros in the original markdown language now appeared as neatly formatted
+results. For instance, there were  68 observations and 6 observations in the analyzed dataset.</p>
+<p><strong>Conclusions:</strong>
+In walking you through syntax, do-file creation, queued commands, generated results, through to embedding neatly formatted output in
+.html, we believe you now have a solid sense of all that Stata has to offer you. These ideas can be generalized to embedding results
+in .xlsx, .log, .dta, .docx, etc.</p>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -421,9 +495,9 @@ document.write(`
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav class="bd-toc-nav page-toc">
-    <ul class="simple visible nav section-nav flex-column">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#abimereki-muzaale">Abimereki Muzaale</a></li>
 </ul>
-
   </nav></div>
 
 </div></div>
