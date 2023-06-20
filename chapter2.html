@@ -569,6 +569,14 @@ closed<span class="k"> on</span>:  <span class="m">20</span> Jun <span class="m"
 </section>
 <section id="dta">
 <h2>2.3 dta<a class="headerlink" href="#dta" title="Permalink to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">postutil clear</span> 
+<span class="k">postfile</span> pp a b c using output<span class="m">.</span>dta
+<span class="k">post</span> pp (<span class="s">&quot;1&quot;</span>) (<span class="s">&quot;25&quot;</span>) (<span class="s">&quot;123&quot;</span>)
+<span class="k">post</span> pp (<span class="s">&quot;2&quot;</span>) (<span class="s">&quot;31&quot;</span>) (<span class="s">&quot;164&quot;</span>)
+<span class="k">post</span> pp (<span class="s">&quot;3&quot;</span>) (<span class="s">&quot;29&quot;</span>) (<span class="s">&quot;118&quot;</span>)
+<span class="k">postclose</span> pp
+</pre></div>
+</div>
 </section>
 <section id="docx">
 <h2>2.4 docx<a class="headerlink" href="#docx" title="Permalink to this heading">#</a></h2>
