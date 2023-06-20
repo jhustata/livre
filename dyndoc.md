@@ -1,4 +1,5 @@
-[filename.do](filename.do)                 
+[filename.do](https://raw.githubusercontent.com/jhustata/livre/main/filename.do)                 
 [filename.html](filename.html)         
 [header.txt](https://raw.githubusercontent.com/jhustata/livre/main/header.txt)     
 [stmarkdown.css](https://raw.githubusercontent.com/jhustata/livre/main/stmarkdown.css)     
+[graph.svg](https://raw.githubusercontent.com/jhustata/livre/main/Graph.svg)
