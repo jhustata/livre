@@ -425,13 +425,22 @@ document.write(`
 <li><p><a class="reference internal" href="lecture4do.html"><span class="doc std std-doc">lecture4.do</span></a>    <a class="reference internal" href="lec4demodo.html"><span class="doc std std-doc">lec4demo.do</span></a></p></li>
 <li><p><a class="reference internal" href="lecture5do.html"><span class="doc std std-doc">lecture5.do</span></a></p></li>
 </ul>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nf">c</span>(version) <span class="o">&lt;</span> <span class="m">16</span> {
+<span class="k">   use</span> transplants,<span class="k"> clear</span> 
+
+}
+<span class="k">else</span> {
+<span class="k">   di</span> <span class="s">&quot;Ignore this message!&quot;</span>
+}
+</pre></div>
+</div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
-<p>Last updated: 1:41 PM 06/20/2023</p>
+<p>Last updated: 3:12 PM 06/20/2023</p>
 <ol class="arabic simple">
 <li><p>Video recording of Session 2 has gone live (see above)</p></li>
 <li><p>The passcode for the video recording is available at <a class="reference external" href="https://courseplus.jhu.edu/core/index.cfm/go/home/">CoursePlus &gt; Content &gt; Session2</a></p></li>
-<li><p><strong>Only</strong> those doing the class for credit are required to hand in their lab do-file. But everyone is welcome to do so!</p></li>
+<li><p>For our in-person attendees, we will use Wolfe <strong>E2014</strong> (Sommer Hall) for the rest of the week.</p></li>
 </ol>
 </div>
 </section>

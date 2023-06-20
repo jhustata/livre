@@ -2,7 +2,7 @@
 
 ## Part 1
 
-Write a .do file which imports [transplants.dta](transplants.dta) and performs the data management/exploratory data analysis tasks described below using the slides we have discussed in class. Your .do file (lab3_lastname.do) must create a log file (lab3_lastname.log). This file will contain your answers for both part 1 and part 2 of today's lab. Do **not** submit your log files as part of the assignment. 
+Write a .do file which imports [transplants.dta](transplants.dta) and performs the data management/exploratory data analysis tasks. Your .do file (lab3_lastname.do) must create a log file (lab3_lastname.log). This file will contain only <u>code</u> and some annotation, but <u>no answers</u> (we will get these on our machines when we run your script). Do **not** submit your log files as part of the assignment. 
 
 1. Perform a $\chi^2$ test to test the association between recipient work-status (`rec_work`) and gender (`gender`). Using conditional `if` and `else` statements, make Stata print:
 
