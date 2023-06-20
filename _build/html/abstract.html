@@ -376,7 +376,7 @@ document.write(`
 A <u>user</u> downloads and installs a <u>system</u> of program files, mostly ado-files, which form the foundation of most of the commands
 used in Stata Programming. Using those commands and additional syntax written out sequentially in a do-file, the user creates
 well-formed instruction to Stata called a do-file script. Once the user runs this script, results are generated and displayed
-in the results window, in a graph, or in a file (<code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>, <code class="docutils literal notranslate"><span class="pre">.log</span></code>, <code class="docutils literal notranslate"><span class="pre">.dta</span></code>, <code class="docutils literal notranslate"><span class="pre">.docx</span></code>, <code class="docutils literal notranslate"><span class="pre">.md</span></code>, <code class="docutils literal notranslate"><span class="pre">LaTeX</span></code>, <code class="docutils literal notranslate"><span class="pre">.html</span></code>, etc). The <code class="docutils literal notranslate"><span class="pre">.html</span></code> file format is of specific
+in the results window, in a graph, or in a format (<code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>, <code class="docutils literal notranslate"><span class="pre">.log</span></code>, <code class="docutils literal notranslate"><span class="pre">.dta</span></code>, <code class="docutils literal notranslate"><span class="pre">.docx</span></code>, <code class="docutils literal notranslate"><span class="pre">.md</span></code>, <code class="docutils literal notranslate"><span class="pre">LaTeX</span></code>, <code class="docutils literal notranslate"><span class="pre">.html</span></code>, etc). The <code class="docutils literal notranslate"><span class="pre">.html</span></code> file format is of specific
 interest since its the pathway to self-publication. To illustrate how this may be achieved in Stata, we hereby introduce the <code class="docutils literal notranslate"><span class="pre">dyndoc</span></code>
 command.</p>
 <p><strong>Methods:</strong>
@@ -386,7 +386,7 @@ in this document that is not ordinary text including <code class="docutils liter
 Results that might be numeric, string, alphanumeric, or formatted as macros are embeded at these markedup points. We then saved this
 document using the file extension .do; however, any text file extension will work (.txt, .md, .do, etc). To the <code class="docutils literal notranslate"><span class="pre">pwd</span></code> where we saved
 this text file, we added a cascading style sheet <a class="reference external" href="https://raw.githubusercontent.com/jhustata/livre/main/stmarkdown.css">stmarkdown.css</a> and <a class="reference external" href="https://raw.githubusercontent.com/jhustata/livre/main/header.txt">header.txt</a> to enhance the aesthetic of our .html file. Finally, we typed the
-following command into the Stata command window: <code class="docutils literal notranslate"><span class="pre">dyndoc</span> <span class="pre">filename.do,</span> <span class="pre">saving(filename.html)</span> <span class="pre">replace</span></code>.</p>
+following command into the Stata command window: <code class="docutils literal notranslate"><span class="pre">dyndoc</span> <span class="pre">filename.do,</span> <span class="pre">saving(filename.html)</span> <span class="pre">replace</span></code>. In the key analysis, <span class="math notranslate nohighlight">\(Y  = \beta_0   +  \beta_1 X\)</span>, where <span class="math notranslate nohighlight">\(Y\)</span> is life expectancy at birth in years, the outcome or dependent variable; <span class="math notranslate nohighlight">\(X\)</span> is the country, the predictor or independent variable being tested.</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> webuse</span> lifeexp,<span class="k"> clear</span> 
 (Life expectancy, <span class="m">1998</span>)
 
@@ -418,15 +418,12 @@ following command into the Stata command window: <code class="docutils literal n
 </pre></div>
 </div>
 <p><img alt="" src="_images/lexp_bycountry.png" /></p>
-<p><span class="math notranslate nohighlight">\(Y  = \beta_0   +  \beta_1 X\)</span><br />
-Where Y is Life expectancy at birth in years.<br />
-X is the country, the predictor or independent variable.<br />
-And <span class="math notranslate nohighlight">\(\beta_0\)</span> is the average life expectancy of all countries.<br />
-Of course <span class="math notranslate nohighlight">\(\beta_1\)</span> is zero or meaningless (countries are alphabetically listed)</p>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> webuse</span> lifeexp,<span class="k"> clear</span> 
-(Life expectancy, <span class="m">1998</span>)
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> qui</span> {
 
-.<span class="k"> display</span> <span class="nf">c</span>(N) 
+.
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> display</span> <span class="nf">c</span>(N) 
 <span class="m">68</span>
 
 .<span class="k"> display</span> <span class="nf">c</span>(k)  
@@ -452,8 +449,8 @@ Of course <span class="math notranslate nohighlight">\(\beta_1\)</span> is zero 
 </div>
 <p><strong>Results:</strong>
 We identified the newly created .html file in our folder and openned it to compare its format to this markdown file. And we saw all that
-we had made, and behold, it was very good. Ghastly looking macros in the original markdown language now appeared as neatly formatted
-results. For instance, there were  68 observations and 6 observations in the analyzed dataset.</p>
+we had made, and behold, it was very good. Ghastly macros in the original markdown language now appeared as neatly formatted
+results. There were 68 observations and 6 observations in the analyzed dataset. Average life expectancy of all countries, <span class="math notranslate nohighlight">\(\beta_0\)</span>, was 72 years. Difference in life expectancy among <u>adjacent</u> countries, <span class="math notranslate nohighlight">\(\beta_1\)</span>, showed no trend or pattern and was 0.002, essentially <span class="math notranslate nohighlight">\(zero\)</span>, and <span class="math notranslate nohighlight">\(p = .95\)</span></p>
 <p><strong>Conclusions:</strong>
 In walking you through syntax, do-file creation, queued commands, generated results, through to embedding neatly formatted output in
 .html, we believe you now have a solid sense of all that Stata has to offer you. These ideas can be generalized to embedding results
