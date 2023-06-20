@@ -20,20 +20,35 @@ this text file, we added a cascading style sheet [stmarkdown.css](https://raw.gi
 following command into the Stata command window: `dyndoc filename.do, saving(filename.html) replace`. 
 
 ```stata
-webuse lifeexp, clear 
-encode country, gen(Country)
-quietly sum lexp
-qui local lexp_mean: di %3.0f r(mean) 
-quietly sum Country
-qui local Country_mean: di r(mean)  
-twoway scatter lexp Country, ///
-   xscale(off) ///
-   yline(`lexp_mean', ///
-      lc(red) ///
-      lp(dash) ///
-   ) ///
-   text(`lexp_mean' `Country_mean' "Mean life expectancy among countries")
-graph export lexp_bycountry.png, replace 
+. webuse lifeexp, clear 
+(Life expectancy, 1998)
+
+. encode country, gen(Country)
+
+. quietly sum lexp
+
+. qui local lexp_mean: di %3.0f r(mean) 
+
+. quietly sum Country
+
+. qui local Country_mean: di r(mean)  
+
+. twoway scatter lexp Country, ///
+>    xscale(off) ///
+>    yline(`lexp_mean', ///
+>       lc(red) ///
+>       lp(dash) ///
+>    ) ///
+>    text(`lexp_mean' `Country_mean' "Mean life expectancy among countries")
+
+. graph export lexp_bycountry.png, replace 
+file /Users/d/Desktop/lexp_bycountry.png saved as PNG format
+
+. 
+end of do-file
+
+. 
+
 ```
 
 ![](lexp_bycountry.png)
@@ -57,13 +72,13 @@ Of course $\beta_1$ is zero or meaningless (countries are alphabetically listed)
 . list in 1/5  
 
 						
-    region	            country	    popgro~h	 lexp	    gnppc	safewa~r	
+    region	            country	    popgro~h	 lexp	    gnppc  safewa~r	
 						
 1.  Europe & C. Asia	Albania	       1.2	        72	    810	    76	
 2.  Europe & C. Asia	Armenia	       1.1	        74	    460	    .	
-3.  Europe & C. Asia	Austria	       .4	        79	    26830	 .	
-4.  Europe & C. Asia	Azerbaijan	    1.4	        71	    480	    .	
-5.  Europe & C. Asia	Belarus	       .3	        68	    2180	    .	
+3.  Europe & C. Asia	Austria	       .4	        79	    26830   .	
+4.  Europe & C. Asia	Azerbaijan    1.4	        71	    480	    .	
+5.  Europe & C. Asia	Belarus	       .3	        68	    2180    .	
 						
 
 . 
