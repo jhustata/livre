@@ -9,8 +9,8 @@
 </head>
 <h1><a href="#how-to-embed-stata-results-in-html" id="how-to-embed-stata-results-in-html">How to embed Stata results in .html</a></h1>
 <h3><a href="#author-md-mph" id="author-md-mph">Author, MD MPH</a></h3>
-<p><strong>Background:</strong> A <u>user</u> downloads and installs a <u>system</u> of program files, mostly ado-files, which form the foundation of most of the commands used in Stata Programming. Using those commands and additional syntax written out sequentially in a do-file, the user creates well-formed instruction to Stata called a do-file script. Once the user runs this script, results are generated and displayed in the results window, in a graph, or in a file (<code>.xlsx</code>, <code>.log</code>, <code>.dta</code>, <code>.docx</code>, <code>.md</code>, <code>LaTeX</code>, <code>.html</code>, etc). The <code>.html</code> file format is of specific interest since its the pathway to self-publication. To illustrate how this may be achieved in Stata, we hereby introduce the <code>dyndoc</code> command.</p>
-<p><strong>Methods:</strong> We created a <a href="https://raw.githubusercontent.com/jhustata/livre/main/filename.do">do-file</a> and populated it with this abstract using <a href="https://en.wikipedia.org/wiki/Markdown">markdown</a> language. Anything in this document that is not ordinary text including <code>&lt;&lt;dd_version: 2&gt;&gt;</code>, <code>&lt;&lt;dd_do:nooutput&gt;&gt;</code>, <code>&lt;&lt;/dd_do&gt;&gt;</code>, <code>&lt;&lt;dd_display: c(N)&gt;&gt;</code> is a <a href="https://en.wikipedia.org/wiki/Markup_language#:~:text=A%20markup%20language%20is%20a,content%20to%20facilitate%20automated%20processing.">markup</a>. Results that might be numeric, string, alphanumeric, or formatted as macros are embeded at these markedup points. We then saved this document using the file extension .do; however, any text file extension will work (.txt, .md, .do, etc). To the <code>pwd</code> where we saved this text file, we added a cascading style sheet <a href="https://raw.githubusercontent.com/jhustata/livre/main/stmarkdown.css">stmarkdown.css</a> and <a href="https://raw.githubusercontent.com/jhustata/livre/main/header.txt">header.txt</a> to enhance the aesthetic of our .html file. Finally, we typed the following command into the Stata command window: <code>dyndoc filename.txt, saving(filename.html)</code>.</p>
+<p><strong>Background:</strong> A <u>user</u> downloads and installs a <u>system</u> of program files, mostly ado-files, which form the foundation of most of the commands used in Stata Programming. Using those commands and additional syntax written out sequentially in a do-file, the user creates well-formed instruction to Stata called a do-file script. Once the user runs this script, results are generated and displayed in the results window, in a graph, or in a format (<code>.xlsx</code>, <code>.log</code>, <code>.dta</code>, <code>.docx</code>, <code>.md</code>, <code>LaTeX</code>, <code>.html</code>, etc). The <code>.html</code> file format is of specific interest since its the pathway to self-publication. To illustrate how this may be achieved in Stata, we hereby introduce the <code>dyndoc</code> command.</p>
+<p><strong>Methods:</strong> We created a <a href="https://raw.githubusercontent.com/jhustata/livre/main/filename.do">do-file</a> and populated it with this abstract using <a href="https://en.wikipedia.org/wiki/Markdown">markdown</a> language. Anything in this document that is not ordinary text including <code>&lt;&lt;dd_version: 2&gt;&gt;</code>, <code>&lt;&lt;dd_do:nooutput&gt;&gt;</code>, <code>&lt;&lt;/dd_do&gt;&gt;</code>, <code>&lt;&lt;dd_display: c(N)&gt;&gt;</code> is a <a href="https://en.wikipedia.org/wiki/Markup_language#:~:text=A%20markup%20language%20is%20a,content%20to%20facilitate%20automated%20processing.">markup</a>. Input &amp; output that might be numeric, string, alphanumeric, or formatted as macros are embeded at these markedup points. We then saved this document using the file extension .do; however, any text file extension will work (.txt, .md, .do, etc). To the <code>pwd</code> where we saved this text file, we added a cascading style sheet <a href="https://raw.githubusercontent.com/jhustata/livre/main/stmarkdown.css">stmarkdown.css</a> and <a href="https://raw.githubusercontent.com/jhustata/livre/main/header.txt">header.txt</a> to enhance the aesthetic of our .html file. Finally, we typed the following command into the Stata command window:   <code>dyndoc filename.do, saving(filename.html) replace</code>. In the key analysis, $Y  = \beta_0   +  \beta_1 X$, where $Y$ is life expectancy at birth in years, the outcome or dependent variable; $X$ is the country, the predictor or independent variable being tested.</p>
 <pre><code>. webuse lifeexp, clear 
 
 . encode country, gen(Country)
@@ -34,19 +34,18 @@
 . graph export lexp_bycountry.png, replace 
 
 </code></pre>
-<p><img src="Graph1.svg" ></p>
-<p>$Y  = \beta_0   +  \beta_1 X$<br />
-Where $Y$ is Life expectancy at birth in years.<br />
-$X$ is the country, the predictor or independent variable.<br />
-And $\beta_0$ is the average life expectancy of all countries.<br />
-Of course $\beta_1$ is $zero$ or meaningless (countries are alphabetically listed)</p>
+<p><img src="Graph.svg" ></p>
+<pre><code>. qui {
+
+. 
+</code></pre>
 <pre><code>. display c(N) 
 68
 
 . display c(k)  
 7
 
-. list in 1/5  
+. list in 1/5 
 
      +---------------------------------------------------------------------------------+
      |           region      country   popgro~h   lexp   gnppc   safewa~r      Country |
@@ -59,5 +58,5 @@ Of course $\beta_1$ is $zero$ or meaningless (countries are alphabetically liste
      +---------------------------------------------------------------------------------+
 
 </code></pre>
-<p><strong>Results:</strong> We identified the newly created .html file in our folder and openned it to compare its format to this markdown file. And we saw all that we had made, and behold, it was very good. Ghastly looking macros in the original markdown language now appeared as neatly formatted results. For instance, there were  68 observations and 7 observations in the analyzed dataset.</p>
-<p><strong>Conclusions:</strong> In walking you through syntax, do-file creation, queued commands, generated results, through to embedding neatly formatted output in .html, we believe you now have a solid sense of all that Stata has to offer you. These ideas can be generalized to embedding results in .xlsx, .log, .dta, .docx, etc.</p>
+<p><strong>Results:</strong> We identified the newly created .html file in our directory and opened it to compare its format to this markdown file. And we saw all that we had made, and behold, it was very good. Ghastly macros in the original markdown language were now rendered as neatly formatted results. There were  68 observations and 7 variables in the analyzed dataset. Average life expectancy of all countries, $\beta_0$, was 72 years. Difference in life expectancy among <u>adjacent</u> countries, $\beta_1$, showed no trend or pattern and was .002, essentially $zero$, and $p$ = .95</p>
+<p><strong>Conclusions:</strong> In walking you through syntax, do-file creation, queued commands, generated results, through to embedding neatly formatted output in .html, we believe you now have a sense of what that Stata might offer you. These ideas can be generalized to embedding results in .xlsx, .log, .dta, .docx, etc.</p>
