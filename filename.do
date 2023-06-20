@@ -68,7 +68,7 @@ list in 1/5
 **Results:** 
 We identified the newly created .html file in our directory and opened it to compare its format to this markdown file. And we saw all that
 we had made, and behold, it was very good. Ghastly macros in the original markdown language were now rendered as neatly formatted
-results. There were  <<dd_display: c(N)>> observations and <<dd_display: c(k) >> variables in the analyzed dataset. Average life expectancy of all countries, $\beta_0$, was <<dd_display: `b0' >> years. Difference in life expectancy among <u>adjacent</u> countries, $\beta_1$, showed no trend or pattern and was <<dd_display: `b1' >>, essentially $zero$, and $p$ = <<dd_display: `p' >>
+results. There were  <<dd_display: c(N)>> observations and <<dd_display: c(k) >> variables in the analyzed dataset. Average life expectancy of all countries, $\beta_0$, was <<dd_display: `b0' >> years. Difference in life expectancy among <u>adjacent</u> countries, $\beta_1$, showed no trend or pattern and was <<dd_display: `b1' >> years, essentially $zero$, and $p$ = <<dd_display: `p' >>
 
 **Conclusions:** 
 In walking you through syntax, do-file creation, queued commands, generated results, through to embedding neatly formatted output in

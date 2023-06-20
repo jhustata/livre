@@ -88,9 +88,9 @@ end of do-file
 ```
 
 **Results:** 
-We identified the newly created .html file in our folder and openned it to compare its format to this markdown file. And we saw all that
+We identified the newly created .html file in our folder and opened it to compare its format to this markdown file. And we saw all that
 we had made, and behold, it was very good. Ghastly macros in the original markdown language now appeared as neatly formatted
-results. There were 68 observations and 6 observations in the analyzed dataset. Average life expectancy of all countries, $\beta_0$, was 72 years. Difference in life expectancy among <u>adjacent</u> countries, $\beta_1$, showed no trend or pattern and was 0.002, essentially $zero$, and $p = .95$
+results. There were 68 observations and 6 observations in the analyzed dataset. Average life expectancy of all countries, $\beta_0$, was 72 years. Difference in life expectancy among <u>adjacent</u> countries, $\beta_1$, showed no trend or pattern and was 0.002 year, essentially $zero$, and $p = .95$
 
 **Conclusions:** 
 In walking you through syntax, do-file creation, queued commands, generated results, through to embedding neatly formatted output in
