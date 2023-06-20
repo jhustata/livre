@@ -17,7 +17,7 @@ command.
 We created a [do-file](https://raw.githubusercontent.com/jhustata/livre/main/filename.do) and populated it with this abstract using [markdown](https://en.wikipedia.org/wiki/Markdown) language. Anything 
 in this document that is not ordinary text including `<<dd_version: 2>>`, `<<dd_do:nooutput>>`, `<</dd_do>>`, `<<dd_display: c(N)>>` is a 
 [markup](https://en.wikipedia.org/wiki/Markup_language#:~:text=A%20markup%20language%20is%20a,content%20to%20facilitate%20automated%20processing.). 
-Results that might be numeric, string, alphanumeric, or formatted as macros are embeded at these markedup points. We then saved this 
+Input & output that might be numeric, string, alphanumeric, or formatted as macros are embeded at these markedup points. We then saved this 
 document using the file extension .do; however, any text file extension will work (.txt, .md, .do, etc). To the `pwd` where we saved
 this text file, we added a cascading style sheet [stmarkdown.css](https://raw.githubusercontent.com/jhustata/livre/main/stmarkdown.css) and [header.txt](https://raw.githubusercontent.com/jhustata/livre/main/header.txt) to enhance the aesthetic of our .html file. Finally, we typed the 
 following command into the Stata command window: `dyndoc filename.txt, saving(filename.html)`. 
@@ -60,12 +60,12 @@ list in 1/5
 
 **Results:** 
 We identified the newly created .html file in our folder and openned it to compare its format to this markdown file. And we saw all that
-we had made, and behold, it was very good. Ghastly looking macros in the original markdown language now appeared as neatly formatted
+we had made, and behold, it was very good. Ghastly looking macros in the original markdown language were now rendered as neatly formatted
 results. For instance, there were  <<dd_display: c(N)>> observations and <<dd_display: c(k) >> observations in the analyzed dataset. 
 
 **Conclusions:** 
 In walking you through syntax, do-file creation, queued commands, generated results, through to embedding neatly formatted output in
-.html, we believe you now have a solid sense of all that Stata has to offer you. These ideas can be generalized to embedding results 
+.html, we believe you now have a sense of what that Stata might offer you. These ideas can be generalized to embedding results 
 in .xlsx, .log, .dta, .docx, etc. 
 
 
