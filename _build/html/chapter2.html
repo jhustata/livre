@@ -362,9 +362,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#log">2.2 log</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dta">2.3 dta</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docx">2.4 docx</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-embed-stata-results-in-docx">How to embed Stata results in .docx</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#putdocx">2.4.1. Putdocx</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.4.2. Putdocx</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dyndoc">2.4.2. dyndoc</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#author-md-mph">Author, MD MPH</a></li>
 </ul>
 </li>
@@ -372,7 +371,7 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#html">2.5 html</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-embed-stata-results-in-html">2.5.1. How to embed Stata results in .html</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Author, MD MPH</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Author, MD MPH</a></li>
 </ul>
 </li>
 </ul>
@@ -573,14 +572,11 @@ closed<span class="k"> on</span>:  <span class="m">20</span> Jun <span class="m"
 </section>
 <section id="docx">
 <h2>2.4 docx<a class="headerlink" href="#docx" title="Permalink to this heading">#</a></h2>
-<section id="how-to-embed-stata-results-in-docx">
-<h3>How to embed Stata results in .docx<a class="headerlink" href="#how-to-embed-stata-results-in-docx" title="Permalink to this heading">#</a></h3>
-<p>This can be approached in two very distinct ways:</p>
+<p>We may embed Stata results in a .docx file in two very distinct ways:</p>
 <ul class="simple">
 <li><p>putdocx</p></li>
 <li><p>dyndoc</p></li>
 </ul>
-</section>
 <section id="putdocx">
 <h3>2.4.1. Putdocx<a class="headerlink" href="#putdocx" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
@@ -611,8 +607,8 @@ putdocx<span class="k"> save</span> myfirst<span class="m">.</span>docx,<span cl
 <p>Results. We identified the newly created .html file in our folder and opened it to compare its format to this markdown file. And we saw all that we had made, and behold, it was very good. Ghastly macros in the original markdown language now appeared as neatly formatted results. There were 68 observations and 6 observations in the analyzed dataset. Average life expectancy of all countries, b0, was 72 years. Difference in life expectancy among adjacent countries, b1, showed no trend or pattern and was 0.002 year, essentially zero, and p=0.95</p>
 <p>Conclusion. In walking you through syntax, do-file creation, queued commands, generated results, through to embedding neatly formatted output in .html, we believe you now have a solid sense of all that Stata has to offer you. These ideas can be generalized to embedding results in .xlsx, .log, .dta, .docx, etc.</p>
 </section>
-<section id="id1">
-<h3>2.4.2. Putdocx<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<section id="dyndoc">
+<h3>2.4.2. dyndoc<a class="headerlink" href="#dyndoc" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Identical to the .html approach discussed in the next section</p></li>
 <li><p>But has some caveats that we will discuss</p></li>
@@ -711,8 +707,8 @@ in .xlsx, .log, .dta, .docx, etc.</p>
 <section id="how-to-embed-stata-results-in-html">
 <h3>2.5.1. How to embed Stata results in .html<a class="headerlink" href="#how-to-embed-stata-results-in-html" title="Permalink to this heading">#</a></h3>
 </section>
-<section id="id2">
-<h3>Author, MD MPH<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<section id="id1">
+<h3>Author, MD MPH<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p><strong>Background:</strong>
 A <u>user</u> downloads and installs a <u>system</u> of program files, mostly ado-files, which form the foundation of most of the commands
 used in Stata Programming. Using those commands and additional syntax written out sequentially in a do-file, the user creates
@@ -871,9 +867,8 @@ in .xlsx, .log, .dta, .docx, etc.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#log">2.2 log</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dta">2.3 dta</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#docx">2.4 docx</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-embed-stata-results-in-docx">How to embed Stata results in .docx</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#putdocx">2.4.1. Putdocx</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">2.4.2. Putdocx</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dyndoc">2.4.2. dyndoc</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#author-md-mph">Author, MD MPH</a></li>
 </ul>
 </li>
@@ -881,7 +876,7 @@ in .xlsx, .log, .dta, .docx, etc.</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#html">2.5 html</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#how-to-embed-stata-results-in-html">2.5.1. How to embed Stata results in .html</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Author, MD MPH</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Author, MD MPH</a></li>
 </ul>
 </li>
 </ul>
