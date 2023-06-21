@@ -437,6 +437,55 @@ male       <span class="m">1.21</span> (<span class="m">0.96-1.53</span>)
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">Values</span> <span class="pre">might</span> <span class="pre">be</span> <span class="pre">slightly</span> <span class="pre">different</span> <span class="pre">since</span> <span class="pre">the</span> <span class="pre">def</span> <span class="pre">of</span> <span class="pre">&quot;college&quot;</span> <span class="pre">is</span> <span class="pre">undefined</span> <span class="pre">if</span> <span class="pre">rec_educ</span> <span class="pre">is</span> <span class="pre">&quot;some</span> <span class="pre">college&quot;</span> <span class="pre">or</span> <span class="pre">missing</span></code></p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">log</span> using lab2<span class="m">.</span>log,<span class="k"> replace</span> 
+<span class="k">use</span> transplants,<span class="k"> clear</span> <span class="c1">//5pt, -1 pt for every error e.g. filepath, clear, etc</span>
+
+<span class="c1">//Q1</span>
+<span class="k">quietly tab</span> rec_hcv gender, chi2 exact <span class="c1">//5pt </span>
+
+<span class="k">disp</span> <span class="s">&quot;Chi-squared p value (question 1): &quot;</span> <span class="nx">%4.3f</span> <span class="nf">r</span>(p) <span class="c1">//5pt</span>
+
+<span class="c1">//Q2</span>
+<span class="k">disp</span> <span class="s">&quot;One-sided Fisher exact p value (question 2): &quot;</span> <span class="nx">%4.3f</span> <span class="nf">r</span>(p1_exact) <span class="c1">//5pt</span>
+
+<span class="c1">//Q3</span>
+<span class="k">logistic</span> rec_hcv age <span class="c1">//10pt</span>
+<span class="k">quietly lincom</span> age <span class="c1">//10pt</span>
+<span class="k">return list</span> <span class="c1">//10pt, but ok if they know the r() from memory</span>
+<span class="k">disp</span> <span class="s">&quot;Odds ratio (question 3): &quot;</span> <span class="cs">/// </span>
+    <span class="nx">%3.2f</span> <span class="nf">r</span>(estimate) <span class="s">&quot; (95% CI &quot;</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(lb) <span class="s">&quot;-&quot;</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(ub) <span class="s">&quot;)&quot;</span> <span class="c1">//5pt</span>
+
+<span class="c1">//Q4</span>
+<span class="k">disp</span> <span class="s">&quot;P value (question 4): &quot;</span> <span class="nx">%5.4f</span> <span class="nf">r</span>(p)  <span class="c1">//5pt</span>
+
+<span class="c1">//Q5</span>
+<span class="k">quietly sum</span> peak_pra<span class="k"> if</span> gender<span class="o">==</span><span class="m">0</span> <span class="c1">//5pt</span>
+<span class="k">local m</span> = <span class="nf">r</span>(mean) <span class="c1">//5pt </span>
+<span class="k">quietly sum</span> peak_pra<span class="k"> if</span> gender<span class="o">==</span><span class="m">1</span> <span class="c1">//5pt</span>
+<span class="k">local</span> f = <span class="nf">r</span>(mean) <span class="c1">//5pt</span>
+
+<span class="k">disp</span> <span class="s">&quot;Question 5: mean peak PRA is &quot;</span> <span class="nx">%2.1f</span> <span class="nv">`m&#39;</span> <span class="cs">///</span>
+     <span class="s">&quot;  in males and &quot;</span> <span class="nx">%2.1f</span> <span class="nv">`f&#39;</span> <span class="s">&quot; in females&quot;</span> <span class="c1">//10pt</span>
+
+<span class="c1">//Q6 </span>
+<span class="k">gen</span> byte hypertensive = dx<span class="o">==</span><span class="m">4</span> <span class="c1">//1pt</span>
+<span class="k">gen</span> byte college = rec_educ<span class="o">&gt;=</span><span class="m">3</span><span class="k"> if</span> <span class="o">!</span><span class="nf">missing</span>(rec_educ) <span class="c1">//1pt</span>
+<span class="k">gen</span> byte male = <span class="o">!</span>gender <span class="c1">//1pt</span>
+<span class="k">capture program drop</span> q6 <span class="c1">//1pt</span>
+<span class="k">program</span> define q6 <span class="c1">//1pt</span>
+<span class="k">    local</span> vlist age bmi college male 
+<span class="k">    quietly logistic</span> hypertensive <span class="nv">`vlist&#39;</span> <span class="c1">//1pt</span>
+<span class="k">    foreach</span> v of<span class="k"> varlist</span> <span class="nv">`vlist&#39;</span> {
+<span class="k">        quietly lincom</span> <span class="nv">`v&#39;</span> <span class="c1">//1pt</span>
+<span class="k">        disp</span> <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s">&quot;</span> _col(<span class="m">12</span>) <span class="nx">%3.2f</span> <span class="nf">r</span>(estimate) <span class="s">&quot; (&quot;</span> <span class="cs">///</span>
+            <span class="nx">%3.2f</span> <span class="nf">r</span>(lb) <span class="s">&quot;-&quot;</span> <span class="nx">%3.2f</span> <span class="nf">r</span>(ub) <span class="s">&quot;)&quot;</span> <span class="c1">//1pt</span>
+    } 
+<span class="k">end</span> <span class="c1">//1pt</span>
+q6 <span class="c1">//1pt</span>
+
+<span class="k">log close</span>
+</pre></div>
+</div>
 </section>
 </section>
 
