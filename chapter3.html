@@ -333,7 +333,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -349,6 +351,26 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loop">3.1 Loop</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#over-numeric-values">3.1.1 Over numeric values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#over-string-values">3.1.2 Over string values</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#program-syntax">3.2 program syntax</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#myfirst">3.2.1 myfirst</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mysecond">3.2.2 mysecond</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mythird">3.2.3 mythird</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#myfourth">3.2.4. myfourth</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#myfifth">3.2.5. myfifth</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -360,6 +382,377 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="loops-and-program-syntax">
 <h1>3. Loops and program syntax<a class="headerlink" href="#loops-and-program-syntax" title="Permalink to this heading">#</a></h1>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="c1">#import numpy as np</span>
+<span class="c1">#import sklearn as skl</span>
+<span class="c1"># </span>
+
+<span class="c1">#plt.figure(figsize=[2, 2])</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">()</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;user&quot;</span><span class="p">,</span>  <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="mi">550</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;system&quot;</span><span class="p">,</span>  <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">550</span><span class="p">,</span><span class="mi">500</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;program&quot;</span><span class="p">,</span>  <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">960</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;syntax&quot;</span><span class="p">,</span>  <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">950</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;ado&quot;</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">3000</span><span class="p">,</span> <span class="mi">550</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;do&quot;</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3000</span><span class="p">,</span> <span class="mi">550</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;command&quot;</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1900</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;queue&quot;</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1900</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;results&quot;</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;dta&quot;</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">475</span><span class="p">))</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;log&quot;</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">1900</span><span class="p">,</span> <span class="o">-</span><span class="mi">475</span><span class="p">))</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;excel&quot;</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">4000</span><span class="p">,</span> <span class="o">-</span><span class="mi">475</span><span class="p">))</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;word&quot;</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1900</span><span class="p">,</span> <span class="o">-</span><span class="mi">475</span><span class="p">))</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;html&quot;</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4000</span><span class="p">,</span> <span class="o">-</span><span class="mi">475</span><span class="p">))</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="s2">&quot;publish&quot;</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">950</span><span class="p">))</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([</span> <span class="p">(</span><span class="s2">&quot;program&quot;</span><span class="p">,</span><span class="s2">&quot;ado&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;syntax&quot;</span><span class="p">,</span> <span class="s2">&quot;do&quot;</span><span class="p">)])</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="s2">&quot;ado&quot;</span><span class="p">,</span> <span class="s2">&quot;command&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;do&quot;</span><span class="p">,</span> <span class="s2">&quot;queue&quot;</span><span class="p">)</span> <span class="p">])</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="s2">&quot;command&quot;</span><span class="p">,</span> <span class="s2">&quot;results&quot;</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;queue&quot;</span><span class="p">,</span> <span class="s2">&quot;results&quot;</span><span class="p">),(</span><span class="s2">&quot;results&quot;</span><span class="p">,</span><span class="s2">&quot;excel&quot;</span><span class="p">),(</span><span class="s2">&quot;results&quot;</span><span class="p">,</span><span class="s2">&quot;word&quot;</span><span class="p">),(</span><span class="s2">&quot;results&quot;</span><span class="p">,</span><span class="s2">&quot;html&quot;</span><span class="p">)])</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="s2">&quot;results&quot;</span><span class="p">,</span><span class="s2">&quot;dta&quot;</span><span class="p">),(</span><span class="s2">&quot;results&quot;</span><span class="p">,</span><span class="s2">&quot;log&quot;</span><span class="p">)])</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="s2">&quot;dta&quot;</span><span class="p">,</span><span class="s2">&quot;publish&quot;</span><span class="p">),(</span><span class="s2">&quot;log&quot;</span><span class="p">,</span><span class="s2">&quot;publish&quot;</span><span class="p">),(</span><span class="s2">&quot;excel&quot;</span><span class="p">,</span><span class="s2">&quot;publish&quot;</span><span class="p">),(</span><span class="s2">&quot;word&quot;</span><span class="p">,</span><span class="s2">&quot;publish&quot;</span><span class="p">),(</span><span class="s2">&quot;html&quot;</span><span class="p">,</span><span class="s2">&quot;publish&quot;</span><span class="p">)])</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> 
+        <span class="n">nx</span><span class="o">.</span><span class="n">get_node_attributes</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="s1">&#39;pos&#39;</span><span class="p">),</span> 
+        <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+        <span class="n">font_weight</span><span class="o">=</span><span class="s1">&#39;bold&#39;</span><span class="p">,</span> 
+        <span class="n">node_size</span> <span class="o">=</span> <span class="mi">4500</span><span class="p">,</span>
+        <span class="n">node_color</span> <span class="o">=</span> <span class="s2">&quot;lightblue&quot;</span><span class="p">,</span>
+        <span class="n">linewidths</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">collections</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">set_edgecolor</span><span class="p">(</span><span class="s2">&quot;#000000&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">5000</span><span class="p">,</span> <span class="mi">5000</span><span class="p">])</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">([</span><span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">1000</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/cf897162df8cde377a32eb942eea0152ade328c27161cecc7805ebaa9c2a1742.png" src="_images/cf897162df8cde377a32eb942eea0152ade328c27161cecc7805ebaa9c2a1742.png" />
+</div>
+</div>
+<p>By now you should be aware that our key ambitions are to:</p>
+<ol class="arabic simple">
+<li><p>Learn the commands and syntax that generate output, typically for statistical inference</p></li>
+<li><p>Identify the names of the <code class="docutils literal notranslate"><span class="pre">c()</span></code>, <code class="docutils literal notranslate"><span class="pre">r()</span></code>, or <code class="docutils literal notranslate"><span class="pre">e()</span></code> class <u>system-defined</u> macros that define key parameters in our output</p></li>
+<li><p>Format these values to fit aesthetic, publication, or editorial criteria and save them as <u>user-defined</u> macros</p></li>
+<li><p>Embed the macros into text, graph, or file (.xlsx, .log, .dta, .docx, .html)</p></li>
+<li><p>Achieve these aims in a workflow that is automated, collaborative, open, reproducible, legible, user-friendly, and therefore <strong>rigorous</strong></p></li>
+</ol>
+<p>Today we are going to focus on commands and syntax that exponentially increase our efficiency in coding, a key step towards automation. One way to achieve this is by learning about loops. The other is by writing flexible programs that are driven by user-defined inputs.</p>
+<section id="loop">
+<h2>3.1 Loop<a class="headerlink" href="#loop" title="Permalink to this heading">#</a></h2>
+<section id="over-numeric-values">
+<h3>3.1.1 Over numeric values<a class="headerlink" href="#over-numeric-values" title="Permalink to this heading">#</a></h3>
+<p>Take this code snippet for instance</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">forvalues</span> i = <span class="m">1</span><span class="o">/</span><span class="m">26</span> {
+<span class="k">    di</span> <span class="nv">`i&#39;</span>
+}
+<span class="nv">``</span>
+
+<span class="nv">```stata</span>
+<span class="nv">. forvalues i =	1/26	{</span>
+<span class="nv">2.     di `i&#39;</span>
+<span class="nv">3. }</span>
+<span class="nv">1</span>
+<span class="nv">2</span>
+<span class="nv">3</span>
+<span class="nv">4</span>
+<span class="nv">5</span>
+<span class="nv">6</span>
+<span class="nv">7</span>
+<span class="nv">8</span>
+<span class="nv">9</span>
+<span class="nv">10</span>
+<span class="nv">11</span>
+<span class="nv">12</span>
+<span class="nv">13</span>
+<span class="nv">14</span>
+<span class="nv">15</span>
+<span class="nv">16</span>
+<span class="nv">17</span>
+<span class="nv">18</span>
+<span class="nv">19</span>
+<span class="nv">20</span>
+<span class="nv">21</span>
+<span class="nv">22</span>
+<span class="nv">23</span>
+<span class="nv">24</span>
+<span class="nv">25</span>
+<span class="nv">26</span>
+
+<span class="nv">. </span>
+
+
+<span class="nv">``</span>
+<span class="nv">![](forvalues_chatGPT.png)</span>
+
+<span class="nv">And take this one:</span>
+
+<span class="nv">```stata</span>
+<span class="nv">use transplants, clear</span>
+<span class="nv">foreach v of varlist * {</span>
+<span class="nv">	di `v&#39;</span>
+<span class="nv">}</span>
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> use</span> transplants,<span class="k"> clear</span>
+
+.<span class="k"> foreach</span> v of<span class="k"> varlist</span> <span class="o">*</span>	{
+<span class="m">2</span>.        <span class="k"> di</span> <span class="nv">`v&#39;</span>
+<span class="m">3</span>. }
+<span class="m">1</span>
+<span class="m">12</span>
+<span class="m">18551.324</span>
+<span class="m">177</span>
+<span class="m">79</span>
+<span class="m">2</span>
+<span class="m">0</span>
+<span class="m">9</span>
+<span class="m">4</span>
+<span class="m">157.48</span>
+<span class="m">69.58</span>
+<span class="m">28</span>
+<span class="m">0</span>
+<span class="m">56</span>
+<span class="m">28</span>
+<span class="m">20421.895</span>
+<span class="m">0</span>
+<span class="m">1</span>
+<span class="m">5.1937032</span>
+<span class="m">4</span>
+<span class="m">1</span>
+<span class="m">0</span>
+<span class="m">0</span>
+<span class="m">1</span>
+<span class="m">1</span>
+REFLUX NEPHROPATHY
+
+. 
+</pre></div>
+</div>
+<p><img alt="" src="_images/forvalues2_chatGPT.png" /></p>
+</section>
+<section id="over-string-values">
+<h3>3.1.2 Over string values<a class="headerlink" href="#over-string-values" title="Permalink to this heading">#</a></h3>
+<p>Let’s make a subtle modification to the code snippet above:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span>
+<span class="k">foreach</span> v of<span class="k"> varlist</span> <span class="o">*</span> {
+<span class="k">	di</span> <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s">&quot;</span>
+}
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> use</span> transplants,<span class="k"> clear</span>
+
+.<span class="k"> foreach</span> v of<span class="k"> varlist</span> <span class="o">*</span>	{
+<span class="m">2</span>.        <span class="k"> di</span> <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s">&quot;</span>
+<span class="m">3</span>. }
+fake_id
+ctr_id
+transplant_date
+don_hgt_cm
+don_wgt_kg
+don_cod
+don_ecd
+dx
+race
+rec_hgt_cm
+rec_wgt_kg
+bmi
+prev_ki
+age
+peak_pra
+end_date
+died
+tx_failed
+wait_yrs
+abo
+gender
+rec_hcv_antibody
+rec_work
+pretx_cmv
+rec_education
+extended_dgn
+
+. 
+</pre></div>
+</div>
+<p>The code you provided loads a dataset named “transplants” and then iterates over all the variables in that dataset using a foreach loop.</p>
+<p>Within each iteration of the loop, the di command is used to display the name of the current variable v.</p>
+<p>Based on the output you provided, it seems that the dataset “transplants” contains a list of variable names. The code successfully printed the names of each variable in the dataset, with one variable name displayed per line. The variable names include “fake_id”, “ctr_id”, “transplant_date”, “don_hgt_cm”, “don_wgt_kg”, and so on.</p>
+<p>The code snippet you provided successfully displays the names of the variables in the dataset “transplants”.</p>
+<p>– chatGPT</p>
+<p>What is the output:code ratio in these two examples I’ve given? Might that be a crude metric of efficiency?</p>
+<p>Consider the following code snippet:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span>
+<span class="k">foreach</span> v of<span class="k"> varlist</span> <span class="o">*</span> {
+<span class="k">	if</span> <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s">&quot;</span> <span class="o">!=</span> <span class="s">&quot;died&quot;</span> | <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s">&quot;</span> <span class="o">!=</span><span class="s">&quot;extended_dgn&quot;</span> {
+<span class="k">	    capture logistic</span> died <span class="nv">`v&#39;</span>
+<span class="k">	    capture lincom</span> <span class="nv">`v&#39;</span>
+<span class="k">	    scalar</span> p = <span class="nf">r</span>(p)
+<span class="k">	    di</span> <span class="s">&quot;p-value for </span><span class="nv">`v&#39;</span><span class="s"> : &quot;</span> p 	
+	}
+<span class="k">	else</span> {
+<span class="k">		di</span> <span class="s">&quot; &quot;</span>
+	}
+	
+	
+}
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> use</span> transplants,<span class="k"> clear</span>
+
+.<span class="k"> foreach</span> v of<span class="k"> varlist</span> <span class="o">*</span> {
+<span class="m">2</span>.        <span class="k"> if</span> <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s">&quot;</span> <span class="o">!=</span> <span class="s">&quot;died&quot;</span>  <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s">&quot;</span> <span class="o">!=</span><span class="s">&quot;extended_dgn&quot;</span>	{
+<span class="m">3</span>.            <span class="k"> capture logistic</span> died <span class="nv">`v&#39;</span>
+<span class="m">4</span>.            <span class="k"> capture lincom</span> <span class="nv">`v&#39;</span>
+<span class="m">5</span>.            <span class="k"> scalar</span> p = <span class="nf">r</span>(p)
+<span class="m">6</span>.            <span class="k"> di</span> <span class="s">&quot;p-value for </span><span class="nv">`v&#39;</span><span class="s"> : &quot;</span> p   
+<span class="m">7</span>.         }
+<span class="m">8</span>.        <span class="k"> else</span> {
+<span class="m">9</span>.                <span class="k"> di</span> <span class="s">&quot; &quot;</span>
+<span class="m">10</span>.         }
+<span class="m">11</span>.         
+.         
+. }
+p<span class="o">-</span>value<span class="k"> for</span> fake_id : .<span class="m">46371117</span>
+p<span class="o">-</span>value<span class="k"> for</span> ctr_id : .<span class="m">52178434</span>
+p<span class="o">-</span>value<span class="k"> for</span> transplant_date : <span class="m">2.926e-24</span>
+p<span class="o">-</span>value<span class="k"> for</span> don_hgt_cm : .<span class="m">93751316</span>
+p<span class="o">-</span>value<span class="k"> for</span> don_wgt_kg : .<span class="m">49371195</span>
+p<span class="o">-</span>value<span class="k"> for</span> don_cod : .<span class="m">25255576</span>
+p<span class="o">-</span>value<span class="k"> for</span> don_ecd : <span class="m">6.736e-13</span>
+p<span class="o">-</span>value<span class="k"> for</span> dx : .<span class="m">00894634</span>
+p<span class="o">-</span>value<span class="k"> for</span> race : .<span class="m">00028468</span>
+p<span class="o">-</span>value<span class="k"> for</span> rec_hgt_cm : .<span class="m">01878141</span>
+p<span class="o">-</span>value<span class="k"> for</span> rec_wgt_kg : .<span class="m">10279242</span>
+p<span class="o">-</span>value<span class="k"> for</span> bmi : .<span class="m">67785746</span>
+p<span class="o">-</span>value<span class="k"> for</span> prev_ki : .<span class="m">02051579</span>
+p<span class="o">-</span>value<span class="k"> for</span> age : <span class="m">1.648e-20</span>
+p<span class="o">-</span>value<span class="k"> for</span> peak_pra : .<span class="m">02585959</span>
+p<span class="o">-</span>value<span class="k"> for</span> end_date : <span class="m">2.891e-63</span>
+p<span class="o">-</span>value<span class="k"> for</span> died : .
+p<span class="o">-</span>value<span class="k"> for</span> tx_failed : .
+p<span class="o">-</span>value<span class="k"> for</span> wait_yrs : .<span class="m">49225994</span>
+p<span class="o">-</span>value<span class="k"> for</span> abo : .<span class="m">03522145</span>
+p<span class="o">-</span>value<span class="k"> for</span> gender : .<span class="m">10388923</span>
+p<span class="o">-</span>value<span class="k"> for</span> rec_hcv_antibody : .<span class="m">02039008</span>
+p<span class="o">-</span>value<span class="k"> for</span> rec_work : .<span class="m">00018548</span>
+p<span class="o">-</span>value<span class="k"> for</span> pretx_cmv : .<span class="m">17525206</span>
+p<span class="o">-</span>value<span class="k"> for</span> rec_education : .<span class="m">47738727</span>
+p<span class="o">-</span>value<span class="k"> for</span> extended_dgn : .
+</pre></div>
+</div>
+<p><img alt="" src="_images/chatGPT1.png" /></p>
+<p><img alt="" src="_images/chatgpt4.png" /></p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">local</span> decimal_format <span class="s">&quot;%.2f&quot;</span>
+
+<span class="k">foreach</span> v of<span class="k"> varlist</span> <span class="o">*</span> {
+<span class="k">    if</span> <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s">&quot;</span> <span class="o">!=</span> <span class="s">&quot;died&quot;</span> <span class="o">&amp;</span> <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s">&quot;</span> <span class="o">!=</span> <span class="s">&quot;extended_dgn&quot;</span> {
+<span class="k">        capture logistic</span> died <span class="nv">`v&#39;</span>
+<span class="k">        capture lincom</span> <span class="nv">`v&#39;</span>
+<span class="k">        scalar</span> p = <span class="nf">r</span>(p)
+<span class="k">        </span>
+<span class="k">        local</span> p_value_label <span class="s">&quot;&quot;</span>
+<span class="k">        </span>
+<span class="k">        if</span> p <span class="o">&lt;</span> <span class="m">0.01</span> {
+<span class="k">            local</span> p_value_label <span class="s">&quot;p&lt;0.01&quot;</span>
+        }
+<span class="k">        else if</span> p <span class="o">&lt;=</span> <span class="m">0.05</span> {
+<span class="k">            local</span> p_value_label <span class="nf">string</span>(<span class="nf">round</span>(p, <span class="m">0.01</span>))
+        }
+<span class="k">        else</span> {
+<span class="k">            local</span> p_value_label <span class="nf">string</span>(<span class="nf">round</span>(p, <span class="m">0.1</span>))
+        }
+<span class="k">        </span>
+<span class="k">        di</span> <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s"> : &quot;</span> <span class="nv">`p_value_label&#39;</span>
+    }
+<span class="k">    else</span> {
+<span class="k">        di</span> <span class="s">&quot; &quot;</span>
+    }
+}
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> local</span> decimal_format <span class="s">&quot;%.2f&quot;</span>
+
+. 
+.<span class="k"> foreach</span> v of<span class="k"> varlist</span> <span class="o">*</span> {
+<span class="m">2</span>.    <span class="k"> if</span> <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s">&quot;</span> <span class="o">!=</span> <span class="s">&quot;died&quot;</span> <span class="o">&amp;</span> <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s">&quot;</span> <span class="o">!=</span> <span class="s">&quot;extended_dgn&quot;</span> {
+<span class="m">3</span>.        <span class="k"> capture logistic</span> died <span class="nv">`v&#39;</span>
+<span class="m">4</span>.        <span class="k"> capture lincom</span> <span class="nv">`v&#39;</span>
+<span class="m">5</span>.        <span class="k"> scalar</span> p = <span class="nf">r</span>(p)
+<span class="m">6</span>.         
+.        <span class="k"> local</span> p_value_label <span class="s">&quot;&quot;</span>
+<span class="m">7</span>.         
+.        <span class="k"> if</span> p <span class="o">&lt;</span> <span class="m">0.01</span> {
+<span class="m">8</span>.            <span class="k"> local</span> p_value_label <span class="s">&quot;p&lt;0.01&quot;</span>
+<span class="m">9</span>.         }
+<span class="m">10</span>.        <span class="k"> else if</span> p <span class="o">&lt;=</span> <span class="m">0.05</span> {
+<span class="m">11</span>.            <span class="k"> local</span> p_value_label <span class="nf">string</span>(<span class="nf">round</span>(p, <span class="m">0.01</span>))
+<span class="m">12</span>.         }
+<span class="m">13</span>.        <span class="k"> else</span> {
+<span class="m">14</span>.            <span class="k"> local</span> p_value_label <span class="nf">string</span>(<span class="nf">round</span>(p, <span class="m">0.1</span>))
+<span class="m">15</span>.         }
+<span class="m">16</span>.         
+.        <span class="k"> di</span> <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s"> : &quot;</span> <span class="nv">`p_value_label&#39;</span>
+<span class="m">17</span>.     }
+<span class="m">18</span>.    <span class="k"> else</span> {
+<span class="m">19</span>.        <span class="k"> di</span> <span class="s">&quot; &quot;</span>
+<span class="m">20</span>.     }
+<span class="m">21</span>. }
+fake_id : .<span class="m">5</span>
+ctr_id : .<span class="m">5</span>
+transplant_date : <span class="m">1</span>
+don_hgt_cm : .<span class="m">9</span>
+don_wgt_kg : .<span class="m">5</span>
+don_cod : .<span class="m">3</span>
+don_ecd : <span class="m">1</span>
+dx : <span class="m">1</span>
+race : <span class="m">1</span>
+rec_hgt_cm : .<span class="m">02</span>
+rec_wgt_kg : .<span class="m">1</span>
+bmi : .<span class="m">7</span>
+prev_ki : .<span class="m">02</span>
+age : <span class="m">1</span>
+peak_pra : .<span class="m">03</span>
+end_date : <span class="m">1</span>
+
+tx_failed : .
+wait_yrs : .<span class="m">5</span>
+abo : .<span class="m">04</span>
+gender : .<span class="m">1</span>
+rec_hcv_antibody : .<span class="m">02</span>
+rec_work : <span class="m">1</span>
+pretx_cmv : .<span class="m">2</span>
+rec_education : .<span class="m">5</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="program-syntax">
+<h2>3.2 program syntax<a class="headerlink" href="#program-syntax" title="Permalink to this heading">#</a></h2>
+<section id="myfirst">
+<h3>3.2.1 myfirst<a class="headerlink" href="#myfirst" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="mysecond">
+<h3>3.2.2 mysecond<a class="headerlink" href="#mysecond" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="mythird">
+<h3>3.2.3 mythird<a class="headerlink" href="#mythird" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="myfourth">
+<h3>3.2.4. myfourth<a class="headerlink" href="#myfourth" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="myfifth">
+<h3>3.2.5. myfifth<a class="headerlink" href="#myfifth" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -420,6 +813,32 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loop">3.1 Loop</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#over-numeric-values">3.1.1 Over numeric values</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#over-string-values">3.1.2 Over string values</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#program-syntax">3.2 program syntax</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#myfirst">3.2.1 myfirst</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mysecond">3.2.2 mysecond</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mythird">3.2.3 mythird</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#myfourth">3.2.4. myfourth</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#myfifth">3.2.5. myfifth</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
