@@ -488,18 +488,14 @@ document.write(`
 <span class="nv">26</span>
 
 <span class="nv">. </span>
-
-
-<span class="nv">``</span>
-<span class="nv">![](forvalues_chatGPT.png)</span>
-
-<span class="nv">And take this one:</span>
-
-<span class="nv">```stata</span>
-<span class="nv">use transplants, clear</span>
-<span class="nv">foreach v of varlist * {</span>
-<span class="nv">	di `v&#39;</span>
-<span class="nv">}</span>
+</pre></div>
+</div>
+<p><img alt="" src="_images/forvalues_chatGPT.png" /></p>
+<p>And take this one:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span>
+<span class="k">foreach</span> v of<span class="k"> varlist</span> <span class="o">*</span> {
+<span class="k">	di</span> <span class="nv">`v&#39;</span>
+}
 </pre></div>
 </div>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> use</span> transplants,<span class="k"> clear</span>
