@@ -602,81 +602,81 @@ list ext if regexm(ext, &quot;X$&quot;)
 
 tab ext if regexm(ext, &quot;HIV.*Y&quot;) 
 //contains &quot;HIV&quot;, then some other stuff, then Y
+</pre></div>
+</div>
+<p>That’s it with the math functions</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">//date and time functions</span>
+<span class="c1">//review of number formats</span>
+<span class="k">disp</span> <span class="nx">%3.2f</span> <span class="nf">exp</span>(<span class="m">1</span>)
+<span class="k">disp</span> <span class="nx">%4.1f</span> <span class="m">3.14159</span>
+
+<span class="c1">//examples of the %td format for dates (days since 1/1/1960)</span>
+<span class="k">disp</span> <span class="nx">%td</span> <span class="m">19400</span>
+<span class="k">disp</span> <span class="nx">%td</span> <span class="m">366</span>
+<span class="k">disp</span> <span class="nx">%td</span> <span class="o">-</span><span class="m">5</span>
+
+<span class="c1">//doing math on Stata dates</span>
+<span class="k">use</span> transplants,<span class="k"> clear</span>
+<span class="k">gen</span> oneweek = transplant_date <span class="o">+</span><span class="m">7</span>
+<span class="k">format</span> <span class="nx">%td</span> oneweek
+<span class="k">list</span> transplant_date  oneweek<span class="k"> in</span> <span class="m">1</span><span class="o">/</span><span class="m">3</span>
+
+<span class="c1">//date functions</span>
+<span class="c1">//td() function to give the integer date for a given calendar date</span>
+<span class="k">disp</span> <span class="nf">td</span>(04jul1976)
+
+<span class="c1">//&quot;Back to the future&quot; start date</span>
+<span class="k">disp</span> <span class="nf">td</span>(26oct1985) 
+
+<span class="c1">//mdy() function to give the integer date for a given month/day/year</span>
+<span class="k">disp</span> <span class="nf">mdy</span>(<span class="m">7</span>,<span class="m">4</span>,<span class="m">1976</span>)
+
+<span class="c1">//&quot;Back to the future&quot; start date</span>
+<span class="k">disp</span> <span class="nf">mdy</span>(<span class="m">10</span>,<span class="m">26</span>,<span class="m">1985</span>) 
 
 
-//date and time functions
-//review of number formats
-disp %3.2f exp(1)
-disp %4.1f 3.14159
 
-//examples of the %td format for dates (days since 1/1/1960)
-disp %td 19400
-disp %td 366
-disp %td -5
+<span class="c1">//date() function to convert strings to dates</span>
+<span class="c1">//Woodstock festival starts</span>
+<span class="k">disp</span> <span class="nf">date</span>(<span class="s">&quot;August 15, 1969&quot;</span>, <span class="s">&quot;MDY&quot;</span>)
+<span class="c1">//Next perihelion of Halley&#39;s comet</span>
+<span class="k">disp</span> <span class="nf">date</span>(<span class="s">&quot;2061 28 July&quot;</span>, <span class="s">&quot;YDM&quot;</span>)
 
-//doing math on Stata dates
-use transplants, clear
-gen oneweek = transplant_date +7
-format %td oneweek
-list transplant_date  oneweek in 1/3
+<span class="k">use</span> donors,<span class="k"> clear</span>
+<span class="k">gen</span> donor_dob = <span class="nf">date</span>(fake_don_dob, <span class="s">&quot;DMY&quot;</span>)
 
-//date functions
-//td() function to give the integer date for a given calendar date
-disp td(04jul1976)
+<span class="k">format</span> <span class="nx">%td</span> donor_dob
+<span class="k">list</span> donor_dob fake_don_dob<span class="k"> in</span> <span class="m">1</span><span class="o">/</span><span class="m">5</span>
 
-//&quot;Back to the future&quot; start date
-disp td(26oct1985) 
+<span class="k">use</span> transplants,<span class="k"> clear</span>
+<span class="c1">//survival analysis overview</span>
 
-//mdy() function to give the integer date for a given month/day/year
-disp mdy(7,4,1976)
+<span class="c1">//prep work</span>
+<span class="k">gen</span> f_time = end_date<span class="o">-</span>transplant_date
 
-//&quot;Back to the future&quot; start date
-disp mdy(10,26,1985) 
+<span class="c1">//stset (1)</span>
+<span class="k">stset</span> f_time, failure(died)
 
+<span class="c1">//stset (2)</span>
+<span class="k">stset</span> end_date, origin(transplant_date) failure(died)
 
+<span class="c1">//set a scale to measure time in years instead of days</span>
+<span class="k">stset</span> end_date, origin(transplant_date) failure(died) scale(<span class="m">365.25</span>)
 
-//date() function to convert strings to dates
-//Woodstock festival starts
-disp date(&quot;August 15, 1969&quot;, &quot;MDY&quot;)
-//Next perihelion of Halley&#39;s comet
-disp date(&quot;2061 28 July&quot;, &quot;YDM&quot;)
+<span class="c1">//Kaplan-Meier curve</span>
+<span class="k">sts graph</span>
 
-use donors, clear
-gen donor_dob = date(fake_don_dob, &quot;DMY&quot;)
+<span class="c1">//stratified K-M curve</span>
+<span class="k">sts graph</span>,<span class="k"> by</span>(don_ecd)
 
-format %td donor_dob
-list donor_dob fake_don_dob in 1/5
+<span class="c1">//calculate incidence rate per person-year</span>
+<span class="k">stsum</span>
+<span class="k">stsum</span>,<span class="k"> by</span>(don_ecd)
 
-use transplants, clear
-//survival analysis overview
-
-//prep work
-gen f_time = end_date-transplant_date
-
-//stset (1)
-stset f_time, failure(died)
-
-//stset (2)
-stset end_date, origin(transplant_date) failure(died)
-
-//set a scale to measure time in years instead of days
-stset end_date, origin(transplant_date) failure(died) scale(365.25)
-
-//Kaplan-Meier curve
-sts graph
-
-//stratified K-M curve
-sts graph, by(don_ecd)
-
-//calculate incidence rate per person-year
-stsum
-stsum, by(don_ecd)
-
-//rank-sum tests
-sts test don_ecd
-sts test gender
-log close
-
+<span class="c1">//rank-sum tests</span>
+<span class="k">sts test</span> don_ecd
+<span class="k">sts test</span> gender
+<span class="k">log close</span>
 </pre></div>
 </div>
 <p>In the code above, we cover examples related to various math functions, string functions, date and time functions, and survival analysis functions in Stata. Each section is clearly commented to explain the purpose and usage of the specific functions.</p>
