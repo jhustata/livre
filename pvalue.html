@@ -498,7 +498,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/136a455e562bf634733d50eb88d82a95e46217a8b74ec4d1270f4b88442c6dd7.png" src="_images/136a455e562bf634733d50eb88d82a95e46217a8b74ec4d1270f4b88442c6dd7.png" />
+<img alt="_images/f3ae78fc8b8f7e813a045c31dc88b4e422957e48f399710f96085f2fa8b4a406.png" src="_images/f3ae78fc8b8f7e813a045c31dc88b4e422957e48f399710f96085f2fa8b4a406.png" />
 </div>
 </div>
 </section>
@@ -507,12 +507,12 @@ document.write(`
 <p>The p-value in the above case is:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">0.178</span> <span class="o">+</span> <span class="mf">0.187</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="mf">.2715</span> <span class="o">*</span> <span class="mi">2</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.365
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.543
 </pre></div>
 </div>
 </div>
@@ -522,13 +522,7 @@ document.write(`
 <span class="k">logistic</span> died prev age gender race dx bmi peak_pra don_ecd wait_yrs 
 </pre></div>
 </div>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------------------------------------------------</span>
-      name:  <span class="o">&lt;</span>unnamed<span class="o">&gt;</span>
-<span class="k">       log</span>:  <span class="o">/</span>Users<span class="o">/</span>d<span class="o">/</span>Desktop<span class="o">/</span>stata13<span class="m">.</span>log
-<span class="k">  log type</span>:  text
- opened<span class="k"> on</span>:  <span class="m">20</span> Jun <span class="m">2023</span>, <span class="m">20</span>:<span class="m">27</span>:<span class="m">16</span>
-
-.<span class="k"> use</span> transplants,<span class="k"> clear</span> 
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> use</span> transplants,<span class="k"> clear</span> 
 
 .<span class="k"> logistic</span> died prev age gender race dx bmi peak_pra don_ecd wait_yrs
 
@@ -552,13 +546,6 @@ Log likelihood = <span class="o">-</span><span class="m">518.87252</span>       
        _cons |   .<span class="m">0143836</span>   .<span class="m">0095138</span>    <span class="o">-</span><span class="m">6.41</span>   <span class="m">0.000</span>     .<span class="m">0039342</span>    .<span class="m">0525873</span>
 <span class="o">------------------------------------------------------------------------------</span>
 Note: _cons<span class="k"> estimates</span> baseline odds.
-
-.<span class="k"> log close</span> 
-      name:  <span class="o">&lt;</span>unnamed<span class="o">&gt;</span>
-<span class="k">       log</span>:  <span class="o">/</span>Users<span class="o">/</span>d<span class="o">/</span>Desktop<span class="o">/</span>stata13<span class="m">.</span>log
-<span class="k">  log type</span>:  text
- closed<span class="k"> on</span>:  <span class="m">20</span> Jun <span class="m">2023</span>, <span class="m">20</span>:<span class="m">27</span>:<span class="m">16</span>
-<span class="o">---------------------------------------------------------------------------------</span>
 </pre></div>
 </div>
 <p>In the above multivariable logistic regression, we can manually estimate the <span class="math notranslate nohighlight">\(z\)</span> statistic for the hypothesis of <span class="math notranslate nohighlight">\(zero\)</span> difference in risk of death among female vs. male kidney transplant recipients. Below the - sign points to longer odds for men; however, <span class="math notranslate nohighlight">\(|z|&lt;2\)</span> and so the difference in odds by gender is not statistically significant.</p>
@@ -640,13 +627,7 @@ Note: _cons<span class="k"> estimates</span> baseline odds.
 stata13 died prev age gender race dx bmi peak_pra don_ecd wait_yrs,<span class="k"> test</span>(<span class="m">4</span>)
 </pre></div>
 </div>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="o">--------------------------------------------------------------------------------------------------------</span>
-      name:  <span class="o">&lt;</span>unnamed<span class="o">&gt;</span>
-<span class="k">       log</span>:  <span class="o">/</span>Users<span class="o">/</span>d<span class="o">/</span>Desktop<span class="o">/</span>flexprog<span class="m">.</span>log
-<span class="k">  log type</span>:  text
- opened<span class="k"> on</span>:  <span class="m">20</span> Jun <span class="m">2023</span>, <span class="m">20</span>:<span class="m">47</span>:<span class="m">05</span>
-
-.<span class="k"> use</span> transplants,<span class="k"> clear</span> 
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> use</span> transplants,<span class="k"> clear</span> 
 
 . stata13 died prev age gender race dx bmi peak_pra don_ecd wait_yrs,<span class="k"> test</span>(<span class="m">4</span>)
 
@@ -682,15 +663,94 @@ upper bound of <span class="m">95</span>% CI<span class="k"> for</span> gender: 
 <span class="o">-------------+----------------------------------------------------------------</span>
          (<span class="m">1</span>) |   .<span class="m">8965847</span>   .<span class="m">1610239</span>    <span class="o">-</span><span class="m">0.61</span>   <span class="m">0.543</span>     .<span class="m">6305479</span>    <span class="m">1.274866</span>
 <span class="o">------------------------------------------------------------------------------</span>
-
-.<span class="k"> log close</span>
-      name:  <span class="o">&lt;</span>unnamed<span class="o">&gt;</span>
-<span class="k">       log</span>:  <span class="o">/</span>Users<span class="o">/</span>d<span class="o">/</span>Desktop<span class="o">/</span>flexprog<span class="m">.</span>log
-<span class="k">  log type</span>:  text
- closed<span class="k"> on</span>:  <span class="m">20</span> Jun <span class="m">2023</span>, <span class="m">20</span>:<span class="m">47</span>:<span class="m">05</span>
-<span class="o">--------------------------------------------------------------------------------------------------------</span>
 </pre></div>
 </div>
+<p>Lets test this programs flexibility by using a different dataset:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">webuse</span> lifeexp,<span class="k"> clear</span> 
+<span class="k">drop if</span> region<span class="o">==</span><span class="m">1</span>
+<span class="k">replace</span> region=<span class="m">3</span><span class="o">-</span>region
+stata13 region lexp safewater gnppc popgrowth,<span class="k"> test</span>(<span class="m">2</span>)
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> webuse</span> lifeexp,<span class="k"> clear</span> 
+(Life expectancy, <span class="m">1998</span>)
+
+.<span class="k"> drop if</span> region<span class="o">==</span><span class="m">1</span>
+(<span class="m">44</span> observations deleted)
+
+.<span class="k"> replace</span> region=<span class="m">3</span><span class="o">-</span>region
+(<span class="m">24</span> real changes made)
+
+. stata13 region lexp safewater gnppc popgrowth,<span class="k"> test</span>(<span class="m">2</span>)
+
+Logistic regression                                     Number of obs =     <span class="m">21</span>
+                                                        LR <span class="nf">chi2</span>(<span class="m">4</span>)    =   <span class="m">0.16</span>
+                                                        Prob <span class="o">&gt;</span> chi2   = <span class="m">0.9971</span>
+Log likelihood = <span class="o">-</span><span class="m">14.454224</span>                             Pseudo R2     = <span class="m">0.0054</span>
+
+<span class="o">------------------------------------------------------------------------------</span>
+      region | Odds<span class="k"> ratio</span>   Std.<span class="k"> err</span>.      z    P<span class="o">&gt;</span>|z|     [<span class="m">95</span>%<span class="k"> conf</span>. interval]
+<span class="o">-------------+----------------------------------------------------------------</span>
+        lexp |   .<span class="m">9484384</span>   .<span class="m">1303485</span>    <span class="o">-</span><span class="m">0.39</span>   <span class="m">0.700</span>     .<span class="m">7244766</span>    <span class="m">1.241635</span>
+   safewater |   <span class="m">1.010336</span>   .<span class="m">0428857</span>     <span class="m">0.24</span>   <span class="m">0.809</span>     .<span class="m">9296832</span>    <span class="m">1.097986</span>
+       gnppc |   <span class="m">1.000011</span>   .<span class="m">0001483</span>     <span class="m">0.08</span>   <span class="m">0.938</span>      .<span class="m">999721</span>    <span class="m">1.000302</span>
+   popgrowth |   .<span class="m">8985873</span>   .<span class="m">7424254</span>    <span class="o">-</span><span class="m">0.13</span>   <span class="m">0.897</span>     .<span class="m">1779449</span>    <span class="m">4.537691</span>
+       _cons |   <span class="m">25.38364</span>   <span class="m">213.5416</span>     <span class="m">0.38</span>   <span class="m">0.701</span>     <span class="m">1.75e-06</span>    <span class="m">3.68e+08</span>
+<span class="o">------------------------------------------------------------------------------</span>
+Note: _cons<span class="k"> estimates</span> baseline odds.
+z statistic<span class="k"> for</span> lexp: <span class="o">-</span>.<span class="m">38518898</span>
+p<span class="o">-</span>value<span class="k"> for</span> lexp: <span class="m">1.2</span>
+lower bound of <span class="m">95</span>% CI<span class="k"> for</span> lexp: .<span class="m">72447663</span>
+upper bound of <span class="m">95</span>% CI<span class="k"> for</span> lexp: <span class="m">1.2416349</span>
+
+ ( <span class="m">1</span>)  [region]lexp = <span class="m">0</span>
+
+<span class="o">------------------------------------------------------------------------------</span>
+      region | Odds<span class="k"> ratio</span>   Std.<span class="k"> err</span>.      z    P<span class="o">&gt;</span>|z|     [<span class="m">95</span>%<span class="k"> conf</span>. interval]
+<span class="o">-------------+----------------------------------------------------------------</span>
+         (<span class="m">1</span>) |   .<span class="m">9484384</span>   .<span class="m">1303485</span>    <span class="o">-</span><span class="m">0.39</span>   <span class="m">0.700</span>     .<span class="m">7244766</span>    <span class="m">1.241635</span>
+<span class="o">------------------------------------------------------------------------------</span>
+</pre></div>
+</div>
+<p>The p-value calculation needs debugging. Otherwise, everything else looks good!</p>
+<p><img alt="" src="chatGPTflex." /></p>
+<p><img alt="" src="_images/chatGPTflex.png" /></p>
+<p>The given code appears to define a program called “stata13” in Stata version 13. The program is designed to perform logistic regression analysis and calculate various statistics such as z-statistic, p-value, and confidence intervals.</p>
+<p>Here’s a breakdown of the code:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">program</span> define stata13
+<span class="k">    syntax varlist</span>,<span class="k"> test</span>(numlist)
+</pre></div>
+</div>
+<p>This line defines a program called “stata13” that takes two arguments: <code class="docutils literal notranslate"><span class="pre">varlist</span></code>, which represents a list of variables, and <code class="docutils literal notranslate"><span class="pre">test</span></code>, which is a numeric list.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">    local</span> y:<span class="k"> di</span> <span class="nf">word</span>(<span class="s">&quot;</span><span class="nv">`varlist&#39;</span><span class="s">&quot;</span>,<span class="m">1</span>)
+<span class="k">    if</span> <span class="nv">`test&#39;</span> <span class="o">==</span> <span class="m">1</span> {
+<span class="k">        di in</span> red <span class="s">&quot;The outcome can&#39;t be tested!&quot;</span>
+<span class="k">        exit</span> <span class="m">340</span>
+    }
+</pre></div>
+</div>
+<p>This section extracts the first variable from <code class="docutils literal notranslate"><span class="pre">varlist</span></code> and assigns it to the local macro <code class="docutils literal notranslate"><span class="pre">y</span></code>. It then checks if the <code class="docutils literal notranslate"><span class="pre">test</span></code> argument is equal to 1. If it is, it displays a message indicating that the outcome variable cannot be tested and exits the program with error code 340.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">    noi logistic</span> <span class="nv">`varlist&#39;</span>
+<span class="k">    local</span> x<span class="nv">`test&#39;</span>:<span class="k"> di</span> <span class="nf">word</span>(<span class="s">&quot;</span><span class="nv">`varlist&#39;</span><span class="s">&quot;</span>,<span class="nv">`test&#39;</span>)   
+    cls
+</pre></div>
+</div>
+<p>These lines perform a logistic regression analysis using the variables specified in <code class="docutils literal notranslate"><span class="pre">varlist</span></code>. It then extracts the <code class="docutils literal notranslate"><span class="pre">test</span></code>-th word from <code class="docutils literal notranslate"><span class="pre">varlist</span></code> and assigns it to the local macro <code class="docutils literal notranslate"><span class="pre">x</span></code>test’’. The <code class="docutils literal notranslate"><span class="pre">cls</span></code> command clears the Stata output window.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">    scalar</span> z = _b[<span class="nv">`x`test&#39;&#39;</span>]<span class="o">/</span>_se[<span class="nv">`x`test&#39;&#39;</span>]
+<span class="k">    noi di</span> <span class="s">&quot;z statistic for </span><span class="nv">`x`test&#39;&#39;</span><span class="s">: &quot;</span> z
+<span class="k">    scalar</span> p = <span class="m">2</span><span class="o">*</span>(<span class="m">1</span><span class="o">-</span><span class="nf">normal</span>(<span class="nf">abs</span>(z)))
+<span class="k">    noi di</span> <span class="s">&quot;p-value for </span><span class="nv">`x`test&#39;&#39;</span><span class="s">: &quot;</span> p 
+<span class="k">    di</span> <span class="s">&quot;lower bound of 95% CI for </span><span class="nv">`x`test&#39;&#39;</span><span class="s">: &quot;</span> <span class="nf">exp</span>(_b[<span class="nv">`x`test&#39;&#39;</span>]<span class="o">+</span><span class="nf">invnormal</span>(<span class="m">0.025</span>) <span class="o">*</span> _se[<span class="nv">`x`test&#39;&#39;</span>])
+<span class="k">    di</span> <span class="s">&quot;upper bound of 95% CI for </span><span class="nv">`x`test&#39;&#39;</span><span class="s">: &quot;</span> <span class="nf">exp</span>(_b[<span class="nv">`x`test&#39;&#39;</span>]<span class="o">+</span><span class="nf">invnormal</span>(<span class="m">0.975</span>) <span class="o">*</span> _se[<span class="nv">`x`test&#39;&#39;</span>])   
+</pre></div>
+</div>
+<p>These lines calculate the z-statistic, p-value, and 95% confidence intervals for the <code class="docutils literal notranslate"><span class="pre">test</span></code>-th variable. The z-statistic is computed as the coefficient divided by its standard error. The p-value is calculated as 2 times the area under the normal distribution curve beyond the absolute value of the z-statistic. The confidence intervals are computed using the coefficient, standard error, and the inverse of the standard normal distribution at the specified quantiles.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">lincom</span> <span class="nv">`x`test&#39;&#39;</span>
+</pre></div>
+</div>
+<p>This line performs a linear combination test using the <code class="docutils literal notranslate"><span class="pre">test</span></code>-th variable.</p>
+<p>Finally, the program is called with a specific dataset and variables: <code class="docutils literal notranslate"><span class="pre">transplants</span></code> dataset with the variables <code class="docutils literal notranslate"><span class="pre">died</span></code>, <code class="docutils literal notranslate"><span class="pre">prev</span></code>, <code class="docutils literal notranslate"><span class="pre">age</span></code>, <code class="docutils literal notranslate"><span class="pre">gender</span></code>, <code class="docutils literal notranslate"><span class="pre">race</span></code>, <code class="docutils literal notranslate"><span class="pre">dx</span></code>, <code class="docutils literal notranslate"><span class="pre">bmi</span></code>, <code class="docutils literal notranslate"><span class="pre">peak_pra</span></code>, <code class="docutils literal notranslate"><span class="pre">don_ecd</span></code>, and <code class="docutils literal notranslate"><span class="pre">wait_yrs</span></code>. The <code class="docutils literal notranslate"><span class="pre">test(4)</span></code> argument indicates that the analysis should be performed on the 4th variable (<code class="docutils literal notranslate"><span class="pre">gender</span></code>).</p>
+<p>Note that the provided code is specific to Stata version 13. If you’re using a newer version of Stata, you may need to make adjustments to the code to ensure compatibility.</p>
 </section>
 
     <script type="text/x-thebe-config">
