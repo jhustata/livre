@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>3. Loops and program syntax &#8212; Stata Programming</title>
   
@@ -356,7 +356,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loop">3.1 Loop</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loops">3.1 Loops</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#over-numeric-values">3.1.1 Over numeric values</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#over-string-values">3.1.2 Over string values</a></li>
 </ul>
@@ -446,48 +446,47 @@ document.write(`
 <li><p>Achieve these aims in a workflow that is automated, collaborative, open, reproducible, legible, user-friendly, and therefore <strong>rigorous</strong></p></li>
 </ol>
 <p>Today we are going to focus on commands and syntax that exponentially increase our efficiency in coding, a key step towards automation. One way to achieve this is by learning about loops. The other is by writing flexible programs that are driven by user-defined inputs.</p>
-<section id="loop">
-<h2>3.1 Loop<a class="headerlink" href="#loop" title="Permalink to this heading">#</a></h2>
+<section id="loops">
+<h2>3.1 Loops<a class="headerlink" href="#loops" title="Permalink to this heading">#</a></h2>
 <section id="over-numeric-values">
 <h3>3.1.1 Over numeric values<a class="headerlink" href="#over-numeric-values" title="Permalink to this heading">#</a></h3>
 <p>Take this code snippet for instance</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">forvalues</span> i = <span class="m">1</span><span class="o">/</span><span class="m">26</span> {
 <span class="k">    di</span> <span class="nv">`i&#39;</span>
 }
-<span class="nv">``</span>
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> forvalues</span> i =	<span class="m">1</span><span class="o">/</span><span class="m">26</span>	{
+<span class="m">2</span>.    <span class="k"> di</span> <span class="nv">`i&#39;</span>
+<span class="m">3</span>. }
+<span class="m">1</span>
+<span class="m">2</span>
+<span class="m">3</span>
+<span class="m">4</span>
+<span class="m">5</span>
+<span class="m">6</span>
+<span class="m">7</span>
+<span class="m">8</span>
+<span class="m">9</span>
+<span class="m">10</span>
+<span class="m">11</span>
+<span class="m">12</span>
+<span class="m">13</span>
+<span class="m">14</span>
+<span class="m">15</span>
+<span class="m">16</span>
+<span class="m">17</span>
+<span class="m">18</span>
+<span class="m">19</span>
+<span class="m">20</span>
+<span class="m">21</span>
+<span class="m">22</span>
+<span class="m">23</span>
+<span class="m">24</span>
+<span class="m">25</span>
+<span class="m">26</span>
 
-<span class="nv">```stata</span>
-<span class="nv">. forvalues i =	1/26	{</span>
-<span class="nv">2.     di `i&#39;</span>
-<span class="nv">3. }</span>
-<span class="nv">1</span>
-<span class="nv">2</span>
-<span class="nv">3</span>
-<span class="nv">4</span>
-<span class="nv">5</span>
-<span class="nv">6</span>
-<span class="nv">7</span>
-<span class="nv">8</span>
-<span class="nv">9</span>
-<span class="nv">10</span>
-<span class="nv">11</span>
-<span class="nv">12</span>
-<span class="nv">13</span>
-<span class="nv">14</span>
-<span class="nv">15</span>
-<span class="nv">16</span>
-<span class="nv">17</span>
-<span class="nv">18</span>
-<span class="nv">19</span>
-<span class="nv">20</span>
-<span class="nv">21</span>
-<span class="nv">22</span>
-<span class="nv">23</span>
-<span class="nv">24</span>
-<span class="nv">25</span>
-<span class="nv">26</span>
-
-<span class="nv">. </span>
+. 
 </pre></div>
 </div>
 <p><img alt="" src="_images/forvalues_chatGPT.png" /></p>
@@ -729,12 +728,65 @@ pretx_cmv : .<span class="m">2</span>
 rec_education : .<span class="m">5</span>
 </pre></div>
 </div>
+<p><img alt="" src="_images/chatGPT6.png" /></p>
+<p>And so you can use AI as an assistant or copilot for labs, work, and fun:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span>
+
+<span class="k">local</span> decimal_format <span class="s">&quot;%.2f&quot;</span>
+
+<span class="c1">// Create an empty Excel file</span>
+putexcel<span class="k"> set</span> results<span class="m">.</span>xlsx,<span class="k"> replace</span>
+
+<span class="c1">// Write variable names and formatted p-values to Excel</span>
+putexcel A1 = <span class="s">&quot;Variable&quot;</span> B1 = <span class="s">&quot;p-value&quot;</span>
+
+<span class="k">local</span> row = <span class="m">2</span>
+<span class="k">foreach</span> v of<span class="k"> varlist</span> <span class="o">*</span> {
+<span class="k">    if</span> <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s">&quot;</span> <span class="o">!=</span> <span class="s">&quot;died&quot;</span> <span class="o">&amp;</span> <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s">&quot;</span> <span class="o">!=</span> <span class="s">&quot;extended_dgn&quot;</span> {
+<span class="k">        capture logistic</span> died <span class="nv">`v&#39;</span>
+<span class="k">        capture lincom</span> <span class="nv">`v&#39;</span>
+<span class="k">        scalar</span> p = <span class="nf">r</span>(p)
+<span class="k">        </span>
+<span class="k">        local</span> p_value_label <span class="s">&quot;&quot;</span>
+<span class="k">        </span>
+<span class="k">        if</span> p <span class="o">&lt;</span> <span class="m">0.01</span> {
+<span class="k">            local</span> p_value_label <span class="s">&quot;p&lt;0.01&quot;</span>
+        }
+<span class="k">        else if</span> p <span class="o">&lt;=</span> <span class="m">0.05</span> {
+<span class="k">            local</span> p_value_label:<span class="k"> di</span> <span class="nx">%3.2f</span> p
+        }
+<span class="k">        else</span> {
+<span class="k">            local</span> p_value_label:<span class="k"> di</span> <span class="nx">%2.1f</span> p
+        }
+        
+        putexcel A<span class="nv">`row&#39;</span> = <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s">&quot;</span>
+        putexcel B<span class="nv">`row&#39;</span> = <span class="s">&quot;</span><span class="nv">`p_value_label&#39;</span><span class="s">&quot;</span> 
+<span class="k">        </span>
+<span class="k">        local</span> row = <span class="nv">`row&#39;</span> <span class="o">+</span> <span class="m">1</span>
+    }
+}
+
+<span class="c1">// Save and close the Excel file</span>
+putexcel<span class="k"> close</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="program-syntax">
 <h2>3.2 program syntax<a class="headerlink" href="#program-syntax" title="Permalink to this heading">#</a></h2>
+<p>We wrote our first program on Monday and today we should build on that foundation.</p>
 <section id="myfirst">
 <h3>3.2.1 myfirst<a class="headerlink" href="#myfirst" title="Permalink to this heading">#</a></h3>
+<p>Remember the program? The quickest way to locate it among the sytem ado-files is as follows:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">which</span> myfirst
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> which</span> myfirst
+<span class="o">/</span>Applications<span class="o">/</span>Stata<span class="o">/</span>ado<span class="o">/</span>base<span class="o">/</span>m<span class="o">/</span>myfirst<span class="m">.</span>ado
+
+. 
+</pre></div>
+</div>
 </section>
 <section id="mysecond">
 <h3>3.2.2 mysecond<a class="headerlink" href="#mysecond" title="Permalink to this heading">#</a></h3>
@@ -818,7 +870,7 @@ rec_education : .<span class="m">5</span>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loop">3.1 Loop</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#loops">3.1 Loops</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#over-numeric-values">3.1.1 Over numeric values</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#over-string-values">3.1.2 Over string values</a></li>
 </ul>
