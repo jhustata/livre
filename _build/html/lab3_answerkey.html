@@ -447,6 +447,90 @@ Female Gender       <span class="m">0.05</span> (<span class="m">0.03-0.08</span
 White vs Non<span class="o">-</span>white  <span class="m">1.57</span> (<span class="m">1.22-2.02</span>)
 </pre></div>
 </div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="m">0</span> {
+	<span class="m">1</span>. This is just a very general guide
+	<span class="m">2</span>. Any solution with correct output is fine
+	<span class="m">3</span>. Remove 1pt per mistake (e<span class="m">.</span>g. includes<span class="k"> file</span> path<span class="k"> on</span> their computer)
+}
+
+cls
+<span class="k">capture log close</span>  
+<span class="k">log</span> using lab3<span class="m">.</span>log,<span class="k"> replace</span> <span class="c1">//2pt</span>
+<span class="k">use</span> transplants,<span class="k"> clear</span> <span class="c1">//2pt</span>
+
+<span class="k">tab</span> rec_work gender, chi2 <span class="c1">//2pt</span>
+<span class="k">local</span> p = <span class="nf">r</span>(p) <span class="c1">//2pt</span>
+
+<span class="k">if</span> <span class="nv">`p&#39;</span> <span class="o">&lt;</span> <span class="m">0.05</span> { <span class="c1">//2pt</span>
+<span class="k">    disp</span> <span class="s">&quot;Question 1: working for income is associated w gender, p=&quot;</span> <span class="nx">%4.3f</span> <span class="nv">`p&#39;</span> <span class="c1">//2pt</span>
+}
+<span class="k">else</span> { <span class="c1">//2pt</span>
+<span class="k">    disp</span> <span class="s">&quot;Question 1: working for income is not associated w gender, p=&quot;</span> <span class="cs">///</span>
+    <span class="nx">%3.2f</span> <span class="nv">`p&#39;</span> <span class="c1">//2pt</span>
+}
+
+<span class="c1">//q2</span>
+<span class="k">assert</span> <span class="o">!</span><span class="nf">missing</span>(dx)
+<span class="k">gen</span> byte hypertensive = dx<span class="o">==</span><span class="m">4</span> <span class="c1">//2pt</span>
+<span class="k">gen</span> byte male = gender<span class="o">==</span><span class="m">0</span> <span class="c1">//2pt</span>
+<span class="k">gen</span> byte college = <span class="nf">inrange</span>(rec_edu, <span class="m">3</span>, <span class="m">5</span>)<span class="k"> if</span> <span class="o">!</span><span class="nf">missing</span>(rec_edu) <span class="c1">//2pt</span>
+<span class="k">gen</span> byte college2 = <span class="nf">inrange</span>(rec_edu, <span class="m">4</span>, <span class="m">5</span>)<span class="k"> if</span> <span class="o">!</span><span class="nf">missing</span>(rec_edu) <span class="c1">//2pt </span>
+<span class="k">gen</span> age_10y = age<span class="o">/</span><span class="m">10</span> <span class="c1">//2pt</span>
+<span class="k">tab</span> rec_edu college <span class="c1">//2pt</span>
+
+<span class="k">capture program drop</span> table_loop <span class="c1">//2pt</span>
+<span class="k">program</span> define table_loop <span class="c1">//2pt</span>
+<span class="k">    foreach</span> v of<span class="k"> varlist</span> age bmi college male { <span class="c1">//2pt</span>
+<span class="k">        disp</span> <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s">&quot;</span> _col(<span class="m">15</span>) <span class="nx">%3.2f</span> <span class="nf">exp</span>(_b[<span class="nv">`v&#39;</span>]) <span class="cs">///</span>
+            <span class="s">&quot;  (&quot;</span> <span class="nx">%3.2f</span> <span class="nf">exp</span>(_b[<span class="nv">`v&#39;</span>] <span class="o">+</span> <span class="nf">invnormal</span>(<span class="m">0.025</span>)<span class="o">*</span>_se[<span class="nv">`v&#39;</span>]) <span class="s">&quot;-&quot;</span> <span class="cs">///</span>
+                  <span class="nx">%3.2f</span> <span class="nf">exp</span>(_b[<span class="nv">`v&#39;</span>] <span class="o">+</span> <span class="nf">invnormal</span>(<span class="m">0.975</span>)<span class="o">*</span>_se[<span class="nv">`v&#39;</span>]) <span class="s">&quot;)&quot;</span> <span class="c1">//2pt</span>
+    }
+<span class="k">end</span> <span class="c1">//2pt</span>
+
+<span class="k">logistic</span> hypertensive age bmi college male <span class="c1">//2pt</span>
+table_loop <span class="c1">//2pt</span>
+
+<span class="c1">//q3, </span>
+<span class="k">capture program drop</span> table_varlist <span class="c1">//2pt</span>
+<span class="k">program</span> define table_varlist <span class="c1">//2pt</span>
+<span class="k">    syntax varlist</span> <span class="c1">//2pt</span>
+<span class="k">    foreach</span> v of<span class="k"> varlist</span> <span class="nv">`varlist&#39;</span> {
+<span class="k">        disp</span> <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s">&quot;</span> _col(<span class="m">15</span>) <span class="nx">%3.2f</span> <span class="nf">exp</span>(_b[<span class="nv">`v&#39;</span>]) <span class="cs">///</span>
+            <span class="s">&quot;  (&quot;</span> <span class="nx">%3.2f</span> <span class="nf">exp</span>(_b[<span class="nv">`v&#39;</span>] <span class="o">+</span> <span class="nf">invnormal</span>(<span class="m">0.025</span>)<span class="o">*</span>_se[<span class="nv">`v&#39;</span>]) <span class="s">&quot;-&quot;</span> <span class="cs">///</span>
+                  <span class="nx">%3.2f</span> <span class="nf">exp</span>(_b[<span class="nv">`v&#39;</span>] <span class="o">+</span> <span class="nf">invnormal</span>(<span class="m">0.975</span>)<span class="o">*</span>_se[<span class="nv">`v&#39;</span>]) <span class="s">&quot;)&quot;</span> <span class="c1">//2pt</span>
+    }
+<span class="k">end</span> <span class="c1">//2pt</span>
+
+<span class="c1">//q4: </span>
+
+<span class="k">sum</span> rec_hgt_cm,det <span class="c1">//2pt</span>
+<span class="k">gen</span> tall = <span class="m">1</span><span class="k"> if</span> rec_hgt_cm<span class="o">&gt;=</span><span class="nf">r</span>(p75) <span class="c1">//2pt</span>
+<span class="k">replace</span> tall =<span class="m">0</span><span class="k"> if</span> tall<span class="o">==</span>. <span class="c1">//2pt</span>
+<span class="k">replace</span> tall = .<span class="k"> if</span> rec_hgt_cm <span class="o">==</span>. <span class="c1">//2pt</span>
+<span class="k">gen</span> white = race<span class="o">==</span><span class="m">1</span> <span class="c1">//2pt</span>
+
+
+<span class="k">lab var</span> age_10y <span class="s">&quot;Age (per 10y)&quot;</span> <span class="c1">//1pt</span>
+<span class="k">lab var</span> gender <span class="s">&quot;Female Gender&quot;</span> <span class="c1">//1pt</span>
+<span class="k">lab var</span> white <span class="s">&quot;White vs Non-white&quot;</span> <span class="c1">//1pt</span>
+<span class="k">lab var</span> rec_wgt <span class="s">&quot;Weight in kg&quot;</span> <span class="c1">//1pt</span>
+
+putexcel<span class="k"> set</span> lab3_test<span class="m">.</span>xlsx, modify <span class="c1">//3pt</span>
+putexcel A1=(<span class="s">&quot;Variable&quot;</span>) B1=(<span class="s">&quot;OR&quot;</span>) C1=(<span class="s">&quot;95% CI&quot;</span>) <span class="c1">//15pt</span>
+<span class="k">logistic</span> tall age_10y rec_wgt_kg gender white <span class="c1">//1pt</span>
+<span class="k">local</span> row = <span class="m">2</span> <span class="c1">//1pt</span>
+<span class="k">foreach</span> v of<span class="k"> varlist</span> age_10y rec_wgt_kg gender white { <span class="c1">//2pt</span>
+<span class="k">    local</span> varlabel: variable<span class="k"> label</span> <span class="nv">`v&#39;</span> <span class="c1">//2pt</span>
+<span class="k">    local</span> beta:<span class="k"> disp</span> <span class="nx">%3.2f</span> <span class="nf">exp</span>(_b[<span class="nv">`v&#39;</span>]) <span class="c1">//2pt</span>
+<span class="k">	local</span> limits:<span class="k"> disp</span> <span class="nx">%3.2f</span> <span class="nf">exp</span>(_b[<span class="nv">`v&#39;</span>]<span class="o">+</span><span class="nf">invnormal</span>(<span class="m">0.025</span>)<span class="o">*</span>_se[<span class="nv">`v&#39;</span>]) <span class="s">&quot;-&quot;</span> <span class="cs">///</span>
+	<span class="nx">%3.2f</span> <span class="nf">exp</span>(_b[<span class="nv">`v&#39;</span>]<span class="o">+</span><span class="nf">invnormal</span>(<span class="m">0.975</span>)<span class="o">*</span>_se[<span class="nv">`v&#39;</span>]) <span class="c1">//1pt</span>
+	putexcel A<span class="nv">`row&#39;</span>=(<span class="s">&quot;</span><span class="nv">`varlabel&#39;</span><span class="s">&quot;</span>) B<span class="nv">`row&#39;</span>=(<span class="s">&quot;</span><span class="nv">`beta&#39;</span><span class="s">&quot;</span>) C<span class="nv">`row&#39;</span>=(<span class="s">&quot;</span><span class="nv">`limits&#39;</span><span class="s">&quot;</span>) <span class="c1">//3pt</span>
+<span class="k">    local</span> row = <span class="nv">`row&#39;</span> <span class="o">+</span> <span class="m">1</span> <span class="c1">//2pt</span>
+}
+
+<span class="k">log close</span> <span class="c1">//2pt</span>
+</pre></div>
+</div>
 </section>
 </section>
 
