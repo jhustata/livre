@@ -364,21 +364,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#program-syntax">3.2 program syntax</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#myfirst">3.2.1 myfirst</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mysecond">3.2.2 mysecond</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prev-ki-941235-3097531-0-18-0-854-4938263-1-793998-age-1-052174-0078088-6-85-0-000-1-03698-1-067591-gender-8965847-1610239-0-61-0-543-6305479-1-274866-race-8689853-0496138-2-46-0-014-7769875-971876-dx-1-036562-0277149-1-34-0-179-9836403-1-092331-bmi-9869627-0165649-0-78-0-434-9550244-1-019969-peak-pra-9989866-0034624-0-29-0-770-9922234-1-005796-don-ecd-1-775691-3403014-3-00-0-003-1-219662-2-585208-wait-yrs-9609635-0432799-0-88-0-377-8797726-1-049647-cons-0143836-0095138-6-41-0-000-0039342-0525873">————-+—————————————————————-
-prev_ki |    .941235   .3097531    -0.18   0.854     .4938263    1.793998
-age |   1.052174   .0078088     6.85   0.000      1.03698    1.067591
-gender |   .8965847   .1610239    -0.61   0.543     .6305479    1.274866
-race |   .8689853   .0496138    -2.46   0.014     .7769875     .971876
-dx |   1.036562   .0277149     1.34   0.179     .9836403    1.092331
-bmi |   .9869627   .0165649    -0.78   0.434     .9550244    1.019969
-peak_pra |   .9989866   .0034624    -0.29   0.770     .9922234    1.005796
-don_ecd |   1.775691   .3403014     3.00   0.003     1.219662    2.585208
-wait_yrs |   .9609635   .0432799    -0.88   0.377     .8797726    1.049647
-_cons |   .0143836   .0095138    -6.41   0.000     .0039342    .0525873</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">————-+—————————————————————-
-(1) |   .8965847   .1610239    -0.61   0.543     .6305479    1.274866</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mythird">3.2.3 mythird</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#myfourth">3.2.4. myfourth</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#myfifth">3.2.5. myfifth</a></li>
@@ -870,45 +855,42 @@ Hello,<span class="k"> class</span><span class="o">!</span>
 stata13 died prev age gender race dx bmi peak_pra don_ecd wait_yrs,<span class="k"> test</span>(<span class="m">4</span>)
 </pre></div>
 </div>
-<p>. use transplants, clear</p>
-<p>. stata13 died prev age gender race dx bmi peak_pra don_ecd wait_yrs, test(4)</p>
-<p>Logistic regression                                     Number of obs =  1,518
-LR chi2(9)    = 114.86
-Prob &gt; chi2   = 0.0000
-Log likelihood = -518.87252                             Pseudo R2     = 0.0996</p>
-<hr class="docutils" />
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    died | Odds ratio   Std. err.      z    P&gt;|z|     [95% conf. interval]
-</pre></div>
-</div>
-</section>
-</section>
-<section id="prev-ki-941235-3097531-0-18-0-854-4938263-1-793998-age-1-052174-0078088-6-85-0-000-1-03698-1-067591-gender-8965847-1610239-0-61-0-543-6305479-1-274866-race-8689853-0496138-2-46-0-014-7769875-971876-dx-1-036562-0277149-1-34-0-179-9836403-1-092331-bmi-9869627-0165649-0-78-0-434-9550244-1-019969-peak-pra-9989866-0034624-0-29-0-770-9922234-1-005796-don-ecd-1-775691-3403014-3-00-0-003-1-219662-2-585208-wait-yrs-9609635-0432799-0-88-0-377-8797726-1-049647-cons-0143836-0095138-6-41-0-000-0039342-0525873">
-<h2>————-+—————————————————————-
-prev_ki |    .941235   .3097531    -0.18   0.854     .4938263    1.793998
-age |   1.052174   .0078088     6.85   0.000      1.03698    1.067591
-gender |   .8965847   .1610239    -0.61   0.543     .6305479    1.274866
-race |   .8689853   .0496138    -2.46   0.014     .7769875     .971876
-dx |   1.036562   .0277149     1.34   0.179     .9836403    1.092331
-bmi |   .9869627   .0165649    -0.78   0.434     .9550244    1.019969
-peak_pra |   .9989866   .0034624    -0.29   0.770     .9922234    1.005796
-don_ecd |   1.775691   .3403014     3.00   0.003     1.219662    2.585208
-wait_yrs |   .9609635   .0432799    -0.88   0.377     .8797726    1.049647
-_cons |   .0143836   .0095138    -6.41   0.000     .0039342    .0525873<a class="headerlink" href="#prev-ki-941235-3097531-0-18-0-854-4938263-1-793998-age-1-052174-0078088-6-85-0-000-1-03698-1-067591-gender-8965847-1610239-0-61-0-543-6305479-1-274866-race-8689853-0496138-2-46-0-014-7769875-971876-dx-1-036562-0277149-1-34-0-179-9836403-1-092331-bmi-9869627-0165649-0-78-0-434-9550244-1-019969-peak-pra-9989866-0034624-0-29-0-770-9922234-1-005796-don-ecd-1-775691-3403014-3-00-0-003-1-219662-2-585208-wait-yrs-9609635-0432799-0-88-0-377-8797726-1-049647-cons-0143836-0095138-6-41-0-000-0039342-0525873" title="Permalink to this heading">#</a></h2>
-<p>Note: _cons estimates baseline odds.
-z statistic for gender: -.60781897
-p-value for gender: .54330755
-lower bound of 95% CI for gender: .63054792
-upper bound of 95% CI for gender: 1.2748661</p>
-<p>( 1)  [died]gender = 0</p>
-<hr class="docutils" />
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>    died | Odds ratio   Std. err.      z    P&gt;|z|     [95% conf. interval]
-</pre></div>
-</div>
-</section>
-<section id="id1">
-<h2>————-+—————————————————————-
-(1) |   .8965847   .1610239    -0.61   0.543     .6305479    1.274866<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> use</span> transplants,<span class="k"> clear</span> 
+
+. stata13 died prev age gender race dx bmi peak_pra don_ecd wait_yrs,<span class="k"> test</span>(<span class="m">4</span>)
+
+Logistic regression                                     Number of obs =  <span class="m">1</span>,<span class="m">518</span>
+                                                        LR <span class="nf">chi2</span>(<span class="m">9</span>)    = <span class="m">114.86</span>
+                                                        Prob <span class="o">&gt;</span> chi2   = <span class="m">0.0000</span>
+Log likelihood = <span class="o">-</span><span class="m">518.87252</span>                             Pseudo R2     = <span class="m">0.0996</span>
+
+<span class="o">------------------------------------------------------------------------------</span>
+        died | Odds<span class="k"> ratio</span>   Std.<span class="k"> err</span>.      z    P<span class="o">&gt;</span>|z|     [<span class="m">95</span>%<span class="k"> conf</span>. interval]
+<span class="o">-------------+----------------------------------------------------------------</span>
+     prev_ki |    .<span class="m">941235</span>   .<span class="m">3097531</span>    <span class="o">-</span><span class="m">0.18</span>   <span class="m">0.854</span>     .<span class="m">4938263</span>    <span class="m">1.793998</span>
+         age |   <span class="m">1.052174</span>   .<span class="m">0078088</span>     <span class="m">6.85</span>   <span class="m">0.000</span>      <span class="m">1.03698</span>    <span class="m">1.067591</span>
+      gender |   .<span class="m">8965847</span>   .<span class="m">1610239</span>    <span class="o">-</span><span class="m">0.61</span>   <span class="m">0.543</span>     .<span class="m">6305479</span>    <span class="m">1.274866</span>
+        race |   .<span class="m">8689853</span>   .<span class="m">0496138</span>    <span class="o">-</span><span class="m">2.46</span>   <span class="m">0.014</span>     .<span class="m">7769875</span>     .<span class="m">971876</span>
+          dx |   <span class="m">1.036562</span>   .<span class="m">0277149</span>     <span class="m">1.34</span>   <span class="m">0.179</span>     .<span class="m">9836403</span>    <span class="m">1.092331</span>
+         bmi |   .<span class="m">9869627</span>   .<span class="m">0165649</span>    <span class="o">-</span><span class="m">0.78</span>   <span class="m">0.434</span>     .<span class="m">9550244</span>    <span class="m">1.019969</span>
+    peak_pra |   .<span class="m">9989866</span>   .<span class="m">0034624</span>    <span class="o">-</span><span class="m">0.29</span>   <span class="m">0.770</span>     .<span class="m">9922234</span>    <span class="m">1.005796</span>
+     don_ecd |   <span class="m">1.775691</span>   .<span class="m">3403014</span>     <span class="m">3.00</span>   <span class="m">0.003</span>     <span class="m">1.219662</span>    <span class="m">2.585208</span>
+    wait_yrs |   .<span class="m">9609635</span>   .<span class="m">0432799</span>    <span class="o">-</span><span class="m">0.88</span>   <span class="m">0.377</span>     .<span class="m">8797726</span>    <span class="m">1.049647</span>
+       _cons |   .<span class="m">0143836</span>   .<span class="m">0095138</span>    <span class="o">-</span><span class="m">6.41</span>   <span class="m">0.000</span>     .<span class="m">0039342</span>    .<span class="m">0525873</span>
+<span class="o">------------------------------------------------------------------------------</span>
+Note: _cons<span class="k"> estimates</span> baseline odds.
+z statistic<span class="k"> for</span> gender: <span class="o">-</span>.<span class="m">60781897</span>
+p<span class="o">-</span>value<span class="k"> for</span> gender: .<span class="m">54330755</span>
+lower bound of <span class="m">95</span>% CI<span class="k"> for</span> gender: .<span class="m">63054792</span>
+upper bound of <span class="m">95</span>% CI<span class="k"> for</span> gender: <span class="m">1.2748661</span>
+
+ ( <span class="m">1</span>)  [died]gender = <span class="m">0</span>
+
+<span class="o">------------------------------------------------------------------------------</span>
+        died | Odds<span class="k"> ratio</span>   Std.<span class="k"> err</span>.      z    P<span class="o">&gt;</span>|z|     [<span class="m">95</span>%<span class="k"> conf</span>. interval]
+<span class="o">-------------+----------------------------------------------------------------</span>
+         (<span class="m">1</span>) |   .<span class="m">8965847</span>   .<span class="m">1610239</span>    <span class="o">-</span><span class="m">0.61</span>   <span class="m">0.543</span>     .<span class="m">6305479</span>    <span class="m">1.274866</span>
+<span class="o">------------------------------------------------------------------------------</span>
 </pre></div>
 </div>
 <p>Let our second program extract the <code class="docutils literal notranslate"><span class="pre">syntax</span> <span class="pre">varlist</span></code> code that has been introduced</p>
@@ -934,6 +916,7 @@ mysecond
 <span class="nf">r</span>(<span class="m">100</span>);
 </pre></div>
 </div>
+</section>
 <section id="mythird">
 <h3>3.2.3 mythird<a class="headerlink" href="#mythird" title="Permalink to this heading">#</a></h3>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">capture program drop</span> mythird
@@ -1062,21 +1045,6 @@ mytfourth died gender</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#program-syntax">3.2 program syntax</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#myfirst">3.2.1 myfirst</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mysecond">3.2.2 mysecond</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prev-ki-941235-3097531-0-18-0-854-4938263-1-793998-age-1-052174-0078088-6-85-0-000-1-03698-1-067591-gender-8965847-1610239-0-61-0-543-6305479-1-274866-race-8689853-0496138-2-46-0-014-7769875-971876-dx-1-036562-0277149-1-34-0-179-9836403-1-092331-bmi-9869627-0165649-0-78-0-434-9550244-1-019969-peak-pra-9989866-0034624-0-29-0-770-9922234-1-005796-don-ecd-1-775691-3403014-3-00-0-003-1-219662-2-585208-wait-yrs-9609635-0432799-0-88-0-377-8797726-1-049647-cons-0143836-0095138-6-41-0-000-0039342-0525873">————-+—————————————————————-
-prev_ki |    .941235   .3097531    -0.18   0.854     .4938263    1.793998
-age |   1.052174   .0078088     6.85   0.000      1.03698    1.067591
-gender |   .8965847   .1610239    -0.61   0.543     .6305479    1.274866
-race |   .8689853   .0496138    -2.46   0.014     .7769875     .971876
-dx |   1.036562   .0277149     1.34   0.179     .9836403    1.092331
-bmi |   .9869627   .0165649    -0.78   0.434     .9550244    1.019969
-peak_pra |   .9989866   .0034624    -0.29   0.770     .9922234    1.005796
-don_ecd |   1.775691   .3403014     3.00   0.003     1.219662    2.585208
-wait_yrs |   .9609635   .0432799    -0.88   0.377     .8797726    1.049647
-_cons |   .0143836   .0095138    -6.41   0.000     .0039342    .0525873</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">————-+—————————————————————-
-(1) |   .8965847   .1610239    -0.61   0.543     .6305479    1.274866</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mythird">3.2.3 mythird</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#myfourth">3.2.4. myfourth</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#myfifth">3.2.5. myfifth</a></li>
