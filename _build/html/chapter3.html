@@ -650,7 +650,89 @@ p<span class="o">-</span>value<span class="k"> for</span> extended_dgn : .
 </pre></div>
 </div>
 <p><img alt="" src="_images/chatGPT1.png" /></p>
-<p>Danke!</p>
+<p><img alt="" src="_images/chatgpt4.png" /></p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">local</span> decimal_format <span class="s">&quot;%.2f&quot;</span>
+
+<span class="k">foreach</span> v of<span class="k"> varlist</span> <span class="o">*</span> {
+<span class="k">    if</span> <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s">&quot;</span> <span class="o">!=</span> <span class="s">&quot;died&quot;</span> <span class="o">&amp;</span> <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s">&quot;</span> <span class="o">!=</span> <span class="s">&quot;extended_dgn&quot;</span> {
+<span class="k">        capture logistic</span> died <span class="nv">`v&#39;</span>
+<span class="k">        capture lincom</span> <span class="nv">`v&#39;</span>
+<span class="k">        scalar</span> p = <span class="nf">r</span>(p)
+<span class="k">        </span>
+<span class="k">        local</span> p_value_label <span class="s">&quot;&quot;</span>
+<span class="k">        </span>
+<span class="k">        if</span> p <span class="o">&lt;</span> <span class="m">0.01</span> {
+<span class="k">            local</span> p_value_label <span class="s">&quot;p&lt;0.01&quot;</span>
+        }
+<span class="k">        else if</span> p <span class="o">&lt;=</span> <span class="m">0.05</span> {
+<span class="k">            local</span> p_value_label <span class="nf">string</span>(<span class="nf">round</span>(p, <span class="m">0.01</span>))
+        }
+<span class="k">        else</span> {
+<span class="k">            local</span> p_value_label <span class="nf">string</span>(<span class="nf">round</span>(p, <span class="m">0.1</span>))
+        }
+<span class="k">        </span>
+<span class="k">        di</span> <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s"> : &quot;</span> <span class="nv">`p_value_label&#39;</span>
+    }
+<span class="k">    else</span> {
+<span class="k">        di</span> <span class="s">&quot; &quot;</span>
+    }
+}
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> local</span> decimal_format <span class="s">&quot;%.2f&quot;</span>
+
+. 
+.<span class="k"> foreach</span> v of<span class="k"> varlist</span> <span class="o">*</span> {
+<span class="m">2</span>.    <span class="k"> if</span> <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s">&quot;</span> <span class="o">!=</span> <span class="s">&quot;died&quot;</span> <span class="o">&amp;</span> <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s">&quot;</span> <span class="o">!=</span> <span class="s">&quot;extended_dgn&quot;</span> {
+<span class="m">3</span>.        <span class="k"> capture logistic</span> died <span class="nv">`v&#39;</span>
+<span class="m">4</span>.        <span class="k"> capture lincom</span> <span class="nv">`v&#39;</span>
+<span class="m">5</span>.        <span class="k"> scalar</span> p = <span class="nf">r</span>(p)
+<span class="m">6</span>.         
+.        <span class="k"> local</span> p_value_label <span class="s">&quot;&quot;</span>
+<span class="m">7</span>.         
+.        <span class="k"> if</span> p <span class="o">&lt;</span> <span class="m">0.01</span> {
+<span class="m">8</span>.            <span class="k"> local</span> p_value_label <span class="s">&quot;p&lt;0.01&quot;</span>
+<span class="m">9</span>.         }
+<span class="m">10</span>.        <span class="k"> else if</span> p <span class="o">&lt;=</span> <span class="m">0.05</span> {
+<span class="m">11</span>.            <span class="k"> local</span> p_value_label <span class="nf">string</span>(<span class="nf">round</span>(p, <span class="m">0.01</span>))
+<span class="m">12</span>.         }
+<span class="m">13</span>.        <span class="k"> else</span> {
+<span class="m">14</span>.            <span class="k"> local</span> p_value_label <span class="nf">string</span>(<span class="nf">round</span>(p, <span class="m">0.1</span>))
+<span class="m">15</span>.         }
+<span class="m">16</span>.         
+.        <span class="k"> di</span> <span class="s">&quot;</span><span class="nv">`v&#39;</span><span class="s"> : &quot;</span> <span class="nv">`p_value_label&#39;</span>
+<span class="m">17</span>.     }
+<span class="m">18</span>.    <span class="k"> else</span> {
+<span class="m">19</span>.        <span class="k"> di</span> <span class="s">&quot; &quot;</span>
+<span class="m">20</span>.     }
+<span class="m">21</span>. }
+fake_id : .<span class="m">5</span>
+ctr_id : .<span class="m">5</span>
+transplant_date : <span class="m">1</span>
+don_hgt_cm : .<span class="m">9</span>
+don_wgt_kg : .<span class="m">5</span>
+don_cod : .<span class="m">3</span>
+don_ecd : <span class="m">1</span>
+dx : <span class="m">1</span>
+race : <span class="m">1</span>
+rec_hgt_cm : .<span class="m">02</span>
+rec_wgt_kg : .<span class="m">1</span>
+bmi : .<span class="m">7</span>
+prev_ki : .<span class="m">02</span>
+age : <span class="m">1</span>
+peak_pra : .<span class="m">03</span>
+end_date : <span class="m">1</span>
+
+tx_failed : .
+wait_yrs : .<span class="m">5</span>
+abo : .<span class="m">04</span>
+gender : .<span class="m">1</span>
+rec_hcv_antibody : .<span class="m">02</span>
+rec_work : <span class="m">1</span>
+pretx_cmv : .<span class="m">2</span>
+rec_education : .<span class="m">5</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="program-syntax">
