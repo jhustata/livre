@@ -359,6 +359,7 @@ document.write(`
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Results</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#p-value">P-value</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#two-sided">Two-sided</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatgpt">chatGPT</a></li>
 </ul>
 
             </nav>
@@ -373,7 +374,7 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="results">
 <h1>Results<a class="headerlink" href="#results" title="Permalink to this heading">#</a></h1>
-<p>Lets talk about one specific results: the p-value.</p>
+<p>Lets talk about one specific result: the p-value.</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -432,7 +433,7 @@ document.write(`
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="p-value">
 <h1>P-value<a class="headerlink" href="#p-value" title="Permalink to this heading">#</a></h1>
-<p>The default is to report a p-value from a two-sided hypothesis test that the difference between two values is zero</p>
+<p>The default is to report a p-value from a two-sided hypothesis test that the difference between two values is zero. As with all hypothesis tests, they rely on the reaonsable assumption from the <u>Central Limit Theorem</u> that the sampling distribution of every statistic distribution is normal, including the distribution of difference of log odds (i.e., log odds ratio)</p>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -489,7 +490,7 @@ document.write(`
 
 <span class="c1"># Set plot title and labels</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Standardized difference in logOR of death between women &amp; men&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Standardized difference in log odds of death between women &amp; men&#39;</span><span class="p">)</span>
 
 <span class="c1"># Display the plot</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -498,7 +499,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/6a093ad215f4b97983c4a1386896b52637a6f7309e5f7bd30cf5288b9590e095.png" src="_images/6a093ad215f4b97983c4a1386896b52637a6f7309e5f7bd30cf5288b9590e095.png" />
+<img alt="_images/40a3bbcacafa5acbfcf61fe4d228fab1b7026e93a48479d4880c05ed7a36c86d.png" src="_images/40a3bbcacafa5acbfcf61fe4d228fab1b7026e93a48479d4880c05ed7a36c86d.png" />
 </div>
 </div>
 </section>
@@ -561,7 +562,7 @@ Note: _cons<span class="k"> estimates</span> baseline odds.
 . 
 </pre></div>
 </div>
-<p>Here are three p-values worth committing to memory based on <span class="math notranslate nohighlight">\(z\)</span> statistics (or <span class="math notranslate nohighlight">\(\sigma\)</span>) of 1, 2, and 3. The corresponding 95%CIs are <span class="math notranslate nohighlight">\(\pm   z\)</span>. With these three memories, one may perform back-of-envelope estimates of p-values without any software, as done above.</p>
+<p>Here are three p-values worth committing to memory based on <span class="math notranslate nohighlight">\(z\)</span> statistics (or <span class="math notranslate nohighlight">\(\sigma\)</span>) of 1, 2, and 3 (only values with ticks in figure above). The corresponding %CIs are <span class="math notranslate nohighlight">\(\pm   z\)</span>. With these three committed to memory, one may perform <code class="docutils literal notranslate"><span class="pre">back-of-the-envelope</span></code> estimates of p-values without any software, as done above.</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">di</span> <span class="m">2</span><span class="o">*</span>(<span class="m">1</span><span class="o">-</span><span class="nf">normal</span>(<span class="nf">abs</span>(<span class="m">1</span>)))
 <span class="k">di</span> <span class="m">2</span><span class="o">*</span>(<span class="m">1</span><span class="o">-</span><span class="nf">normal</span>(<span class="nf">abs</span>(<span class="m">2</span>)))
 <span class="k">di</span> <span class="m">2</span><span class="o">*</span>(<span class="m">1</span><span class="o">-</span><span class="nf">normal</span>(<span class="nf">abs</span>(<span class="m">3</span>)))
@@ -582,7 +583,7 @@ Note: _cons<span class="k"> estimates</span> baseline odds.
 . 
 </pre></div>
 </div>
-<p>The corresponding 95%CI of the <span class="math notranslate nohighlight">\(z\)</span> statistic (also the most common null-hypothesis) are 68%, 95%, and 99.7%</p>
+<p>The corresponding %CI of the <span class="math notranslate nohighlight">\(z\)</span> statistic (also the most common null-hypothesis) are 68%, 95%, and 99.7%. So very quickly you can conclude that the unshaded area in the figure above is less than 68% (since <span class="math notranslate nohighlight">\(|z| &lt; 1\)</span>).</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">di</span> <span class="m">1</span> <span class="o">-</span> <span class="m">2</span><span class="o">*</span>(<span class="m">1</span><span class="o">-</span><span class="nf">normal</span>(<span class="nf">abs</span>(<span class="m">1</span>)))
 <span class="k">di</span> <span class="m">1</span> <span class="o">-</span> <span class="m">2</span><span class="o">*</span>(<span class="m">1</span><span class="o">-</span><span class="nf">normal</span>(<span class="nf">abs</span>(<span class="m">2</span>)))
 <span class="k">di</span> <span class="m">1</span> <span class="o">-</span> <span class="m">2</span><span class="o">*</span>(<span class="m">1</span><span class="o">-</span><span class="nf">normal</span>(<span class="nf">abs</span>(<span class="m">3</span>)))
@@ -714,6 +715,10 @@ upper bound of <span class="m">95</span>% CI<span class="k"> for</span> lexp: <s
 </div>
 <p>The p-value calculation needs debugging. Otherwise, everything else looks good!</p>
 <p><img alt="" src="chatGPTflex." /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="chatgpt">
+<h1>chatGPT<a class="headerlink" href="#chatgpt" title="Permalink to this heading">#</a></h1>
+<p>I copied &amp; pasted the entire program Stata13 into chatGPT including a test example. And without any further prompting, chatGPT provided rich documentation, which I personally prefer to annotation. We finally get to seperate code from text. And that’s how this class book is also set up. There are interspersed code and text blocks, but very minimal annotation within the code.</p>
 <p><span class="math notranslate nohighlight">\(\vdots\)</span></p>
 <p><img alt="" src="_images/chatGPTflex.png" /></p>
 <p>The given code appears to define a program called “stata13” in Stata version 13. The program is designed to perform logistic regression analysis and calculate various statistics such as z-statistic, p-value, and confidence intervals.</p>
@@ -806,6 +811,7 @@ upper bound of <span class="m">95</span>% CI<span class="k"> for</span> lexp: <s
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Results</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#p-value">P-value</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#two-sided">Two-sided</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#chatgpt">chatGPT</a></li>
 </ul>
 
   </nav></div>
