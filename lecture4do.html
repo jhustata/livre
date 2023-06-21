@@ -569,7 +569,8 @@ list extended_dgn in 1/5, clean
 disp word(&quot;Hello, is there anybody in there?&quot;, 4)
 list extended_dgn if word(ext, 5) != &quot;&quot;, clean noobs
 disp strlen(&quot;Same as it ever was&quot;)
-list extended_dgn if strlen(ext)&lt; 6, clean
+//weird output here; adm knocked this code out
+//list extended_dgn if strlen(ext)&lt; 3, clean  
 assert regexm(&quot;Earth&quot;, &quot;art&quot;)
 assert !regexm(&quot;team&quot;, &quot;I&quot;)
 
