@@ -61,7 +61,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'lecture4do';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lecture4do_original';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -232,7 +232,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flecture4do.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Flecture4do_original.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -262,7 +262,7 @@ const thebe_selector_output = ".output, .cell_output"
       
       
       
-      <li><a href="_sources/lecture4do.ipynb" target="_blank"
+      <li><a href="_sources/lecture4do_original.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -366,182 +366,162 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <p>Code block followed with documentation!</p>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">capture log close</span>
-<span class="k">log</span> using lecture4<span class="m">.</span>log,<span class="k"> replace</span> text
+  <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>capture log close
+log using lecture4.log, replace text
 
-<span class="c1">//This log file contains most of the examples used in Lecture 4 of</span>
-<span class="c1">//summer Stata Programming and Data Management, </span>
-<span class="cs">///along with additional explanations and examples.</span>
+//This log file contains most of the examples used in Lecture 4 of
+//summer Stata Programming and Data Management, 
+///along with additional explanations and examples.
 
-<span class="k">version</span> <span class="m">12</span> <span class="c1">//We&#39;re teaching new-style merging</span>
-<span class="k">clear</span> all <span class="c1">//clear all data from memory</span>
-<span class="k">macro drop</span> _all <span class="c1">//clear all macros in memory</span>
-<span class="k">set more</span> off   <span class="c1">//give output all at once (not one screenful at a time)</span>
-<span class="k">set</span> linesize <span class="m">80</span> <span class="c1">//maximum allowed width for output</span>
-</pre></div>
-</div>
-<p>In the code above, the capture log close command is used to close any previously open log files. The log using lecture4.log, replace text command opens a new log file named “lecture4.log” and replaces its contents if it already exists. The text option specifies that both the executed code and the output should be logged.</p>
-<p>The subsequent comments provide a brief description of the log file’s purpose, stating that it contains examples used in Lecture 4 of a Stata Programming and Data Management course, along with additional explanations and examples.</p>
-<p>The version 12 command sets the Stata version to 12, indicating that the code is compatible with that version. The clear all command clears all data from memory, removing any previously loaded datasets. The macro drop _all command clears all macros in memory. The set more off command disables the feature that displays output one screenful at a time, showing all output at once. Finally, the set linesize 80 command sets the maximum allowed width for output to 80 characters, ensuring that output is displayed within the specified limit.</p>
-<p>These initial steps help prepare the environment for executing the subsequent code and logging the results in the “lecture4.log” file.</p>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span>
+version 12 //We&#39;re teaching new-style merging
+clear all //clear all data from memory
+macro drop _all //clear all macros in memory
+set more off   //give output all at once (not one screenful at a time)
+set linesize 80 //maximum allowed width for output
 
-<span class="c1">//examples of syntax for merging</span>
-<span class="c1">//NOTE: after each example we reload transplants.dta</span>
+use transplants, clear
 
-<span class="c1">//simplest merge: link data in memory (transplants.dta) to donors_recipients.dta</span>
-<span class="c1">//by matching on the variable fake_id which appears in both datasets</span>
-<span class="k">merge</span> <span class="m">1</span>:<span class="m">1</span> fake_id using donors_recipients
+//examples of syntax for merging
+//NOTE: after each example we reload transplants.dta
 
-<span class="c1">//the merge command creates a new variable, _merge</span>
-<span class="c1">//check how many records matched</span>
-<span class="k">tab</span> _merge
+//simplest merge: link data in memory (transplants.dta) to donors_recipients.dta
+//by matching on the variable fake_id which appears in both datasets
+merge 1:1 fake_id using donors_recipients
 
-<span class="c1">//&quot;master&quot; = dataset that was in memory before we merged</span>
-<span class="c1">//&quot;using&quot; = dataset that we are bringing in with the merge command</span>
-<span class="c1">//&quot;match&quot; = appears in both master and using datasets</span>
-</pre></div>
-</div>
-<p>In the code above, we start by using the dataset transplants and clearing any existing data in memory. Then, we demonstrate examples of syntax for merging datasets.</p>
-<p>The first example shows the simplest merge where we link the data in memory (transplants.dta) to donors_recipients.dta using a one-to-one match on the variable fake_id which appears in both datasets. The merge command is used for merging.</p>
-<p>After the merge, a new variable called _merge is created. To check how many records matched during the merge, we use the tab command on _merge.</p>
-<p>In the context of merging, the terms “master” and “using” refer to the datasets involved in the merge operation. “Master” refers to the dataset that was in memory before the merge, while “using” refers to the dataset that we are bringing in with the merge command. The term “match” indicates the records that appear in both the master and using datasets.</p>
-<p>Please let me know if you need further assistance or if there’s anything else I can help you with!</p>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span>
-<span class="k">merge</span> <span class="m">1</span>:<span class="m">1</span> fake_id using donors_recipients,<span class="k"> keep</span>(match)
-<span class="c1">//only keep records that appear both in the original dataset and in the new dataset</span>
+//the merge command creates a new variable, _merge
+//check how many records matched
+tab _merge
 
-<span class="k">use</span> transplants,<span class="k"> clear</span>
-<span class="k">merge</span> <span class="m">1</span>:<span class="m">1</span> fake_id using donors_recipients,<span class="k"> keep</span>(master match)
-<span class="c1">//only keep records that appear in the master dataset only, or both datasets</span>
+//&quot;master&quot; = dataset that was in memory before we merged
+//&quot;using&quot; = dataset that we are bringing in with the merge command
+//&quot;match&quot; = appears in both master and using datasets
 
-<span class="k">use</span> transplants,<span class="k"> clear</span>
-<span class="k">merge</span> <span class="m">1</span>:<span class="m">1</span> fake_id using donors_recipients,<span class="k"> keep</span>(master using)
-<span class="c1">//only keep records that appear in the master dataset only, or the using dataset only, but not both</span>
-
-<span class="k">use</span> transplants,<span class="k"> clear</span>
-<span class="k">merge</span> <span class="m">1</span>:<span class="m">1</span> fake_id using donors_recipients,<span class="k"> keep</span>(master match)<span class="k"> gen</span>(mergevar)
-<span class="c1">//call the newly created variable &quot;mergevar&quot; instead of &quot;_merge&quot;</span>
-
-<span class="k">use</span> transplants,<span class="k"> clear</span>
-<span class="k">merge</span> <span class="m">1</span>:<span class="m">1</span> fake_id using donors_recipients,<span class="k"> keep</span>(match) nogen
-<span class="c1">//don&#39;t create a new variable</span>
-
-<span class="k">merge m</span>:<span class="m">1</span> fake_don_id using donors,<span class="k"> keep</span>(match) nogen keepusing(age_don)
-<span class="c1">//don&#39;t load all the new variables from the donors dataset, just load age_don.</span>
-
-<span class="k">corr</span> age<span class="o">*</span>
-<span class="c1">//are donor age and recipient age correlated in our fake data? No.</span>
-
-<span class="c1">//merging: using assert to make sure that all your records match</span>
-<span class="k">use</span> transplants,<span class="k"> clear</span>
-<span class="k">merge</span> <span class="m">1</span>:<span class="m">1</span> fake_id using donors_recipients,<span class="k"> keep</span>(master match)
-<span class="k">assert</span> _merge<span class="o">==</span><span class="m">3</span>
-<span class="k">drop</span> _merge
-
-<span class="c1">//merging: using assert to make sure that *most* of your records match</span>
-<span class="k">use</span> transplants,<span class="k"> clear</span>
-<span class="k">merge</span> <span class="m">1</span>:<span class="m">1</span> fake_id using donors_recipients,<span class="k"> keep</span>(master match)
-<span class="k">assert</span> <span class="nf">inlist</span>(_merge, <span class="m">1</span>, <span class="m">3</span>) <span class="c1">//master only or matched</span>
-<span class="k">quietly count if</span> _merge <span class="o">==</span> <span class="m">3</span>
-<span class="k">assert</span> <span class="nf">r</span>(N)<span class="o">/</span>_N <span class="o">&gt;</span> <span class="m">0.99</span>  <span class="c1">//99% of records have _merge==3</span>
-<span class="k">drop</span> _merge
-</pre></div>
-</div>
-<p>In the code above, we continue with examples of merging datasets using different options:</p>
-<p>The first example merges the datasets transplants.dta and donors_recipients.dta based on a one-to-one match on the variable fake_id. It keeps only the records that appear in both datasets using the keep(match) option.</p>
-<p>The second example keeps records that appear in the master dataset only or in both datasets using the keep(master match) option.
-The third example keeps records that appear in the master dataset only or the using dataset only, but not in both, using the keep(master using) option.</p>
-<p>The fourth example creates a new variable called “mergevar” instead of the default _merge using the gen(mergevar) option.<br />
-The fifth example performs the merge but does not create a new variable using the nogen option.<br />
-The sixth example demonstrates merging using a one-to-many match (m:1) and selects specific variables to load from the donors dataset using the keepusing() option.<br />
-The code then computes the correlation between the variables age_don and age_rec using the corr command to check if donor age and recipient age are correlated in the fake data.<br />
-The next set of examples introduces the use of assert to check the validity of the merge. The first example uses assert to ensure that all records have a _merge value of 3 (indicating a match) and then drops the _merge variable.<br />
-The second example uses assert to check that most of the records have a _merge value of 1 (indicating they are in the master dataset) or 3 (indicating a match), with at least 99% of the records meeting this condition. The _merge variable is dropped afterwards.</p>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="c1">//by</span>
-
-<span class="k">use</span> transplants,<span class="k"> clear</span>
-<span class="k">sort</span> abo
-<span class="k">by</span> abo:<span class="k"> gen</span> cat_n = _N <span class="c1">//cat_n = # records in each abo category</span>
-
-<span class="k">sort</span> abo age
-<span class="k">by</span> abo:<span class="k"> gen</span> cat_id = _n <span class="c1">//1 for youngest patient, 2 for next youngest, etc.</span>
+use transplants, clear
+merge 1:1 fake_id using donors_recipients, keep(match)
+//only keep records that appear both in the original dataset and in the new dataset
 
 
-<span class="c1">//egen</span>
+use transplants, clear
+merge 1:1 fake_id using donors_recipients, keep(master match)
+//only keep records that appear in the master dataset only, or both datasets
 
-<span class="c1">//obtaining mean age and storing it in a variable</span>
-<span class="k">use</span> transplants,<span class="k"> clear</span>
-<span class="k">egen</span> mean_age =<span class="k"> mean</span>(age)
+use transplants, clear
+merge 1:1 fake_id using donors_recipients, keep(master using)
+//only keep records that appear in the master dataset only, 
+//or the using dataset only, but not both
 
-<span class="c1">//more egen examples</span>
-<span class="k">egen</span> median_age =<span class="k"> median</span>(age)
-<span class="k">egen</span> max_age = <span class="nf">max</span>(age)
-<span class="k">egen</span> min_age = <span class="nf">min</span>(age)
-<span class="k">egen</span> age_q1 =<span class="k"> pctile</span>(age), p(<span class="m">25</span>) <span class="c1">//25th percentile</span>
-<span class="k">egen</span> age_sd = sd(age)  <span class="c1">//standard deviation</span>
-<span class="k">egen</span> total_prev =<span class="k"> sum</span>(prev) <span class="c1">//add all the values (all are 1 or 0 in this case)</span>
+use transplants, clear
+merge 1:1 fake_id using donors_recipients, keep(master match) gen(mergevar)
+//call the newly created created variable &quot;mergevar&quot; instead of &quot;_merge&quot;
 
-<span class="c1">//using egen with by</span>
-<span class="k">use</span> transplants,<span class="k"> clear</span>
-<span class="k">sort</span> dx
-<span class="k">by</span> dx:<span class="k"> egen</span> mean_age =<span class="k"> mean</span>(age)
-<span class="k">by</span> dx:<span class="k"> egen</span> min_bmi = <span class="nf">min</span>(bmi)
+use transplants, clear
+merge 1:1 fake_id using donors_recipients, keep(match) nogen
+//don&#39;t create a new variable
 
-<span class="c1">//combining sort and by to get bysort / bys</span>
-<span class="k">use</span> transplants,<span class="k"> clear</span>
-<span class="k">bys</span> abo:<span class="k"> egen</span> m_bmi=mean(bmi)
-<span class="k">bys</span> abo gender:<span class="k"> egen</span> max_bmi = <span class="nf">max</span>(bmi)
-<span class="k">bys</span> abo gender:<span class="k"> egen</span> min_bmi = <span class="nf">min</span>(bmi)
-<span class="k">gen</span> spread = max_bmi <span class="o">-</span> min_bmi
+merge m:1 fake_don_id using donors, keep(match) nogen keepusing(age_don)
+//don&#39;t load all the new variables from the donors dataset.
+//just load age_don.
 
-<span class="c1">//egen = tag</span>
-<span class="k">egen</span> grouptag = tag(abo gender)
-<span class="c1">//now, for all groups of abo/gender, (1/M, 3/F, etc), there&#39;s exactly one</span>
-<span class="c1">//record that has grouptag = &quot;1&quot;. All others have grouptag = &quot;0&quot;.</span>
+corr age*
+//are donor age and recipient age correlated in our fake data? No.
 
-<span class="k">list</span> abo gend spread<span class="k"> if</span> grouptag
+//merging: using assert to make sure that all your records match
+use transplants, clear
+merge 1:1 fake_id using donors_recipients, keep(master match)
+assert _merge==3
+drop _merge
 
-<span class="c1">//more examples of bys</span>
-<span class="k">use</span> donors_recipients,<span class="k"> clear</span>
-<span class="k">bys</span> fake_don:<span class="k"> gen</span> n_tx = _N
-<span class="k">bys</span> fake_don:<span class="k"> gen</span> tx_id = _n
-<span class="k">egen</span> don_tag = tag(fake_don)
-<span class="k">tab</span> n_tx<span class="k"> if</span> don_tag
+//merging: using assert to make sure that *most* of your records match
+use transplants, clear
+merge 1:1 fake_id using donors_recipients, keep(master match)
+assert inlist(_merge, 1, 3) //master only, or matched
+quietly count if _merge == 3
+assert r(N)/_N &gt; 0.99  //99% of records have _merge==3
+drop _merge
 
 
-<span class="c1">//graphing example with egen and tag</span>
-<span class="k">use</span> transplants,<span class="k"> clear</span>
-<span class="k">egen</span> tag_race = tag(race)
-<span class="k">bys</span> race:<span class="k"> egen</span> mean_bmi=mean(bmi)
-<span class="k">bys</span> race:<span class="k"> egen</span> mean_age=mean(age)
+//by
 
-<span class="k">label</span> define race_label <span class="m">1</span> <span class="s">&quot;White&quot;</span> <span class="cs">///</span>
-    <span class="m">2</span> <span class="s">&quot;Black/AA&quot;</span> <span class="m">4</span> <span class="s">&quot;Hispanic/Latino&quot;</span> <span class="cs">///</span>
-    <span class="m">5</span> <span class="s">&quot;East Asian&quot;</span> <span class="m">6</span> <span class="s">&quot;Native American&quot;</span> <span class="cs">///</span>
-    <span class="m">7</span> <span class="s">&quot;Asian Indian&quot;</span> <span class="m">9</span> <span class="s">&quot;Other&quot;</span>  <span class="c1">//create a label race_label</span>
+use transplants, clear
+sort abo
+by abo: gen cat_n = _N //cat_n = # records in each abo category
 
-<span class="c1">//I personally find this more legible than cond() with seven cases,</span>
-<span class="c1">//although cond() has its champions</span>
-<span class="k">gen</span> racedesc = <span class="s">&quot;White/Caucasian&quot;</span><span class="k"> if</span> race<span class="o">==</span><span class="m">1</span>
-<span class="k">replace</span> racedesc = <span class="s">&quot;Black/AA&quot;</span><span class="k"> if</span> race<span class="o">==</span><span class="m">2</span>
-<span class="k">replace</span> racedesc = <span class="s">&quot;Hispanic/Latino&quot;</span><span class="k"> if</span> race<span class="o">==</span><span class="m">4</span>
-<span class="k">replace</span> racedesc = <span class="s">&quot;Native American&quot;</span><span class="k"> if</span> race<span class="o">==</span><span class="m">5</span>
-<span class="k">replace</span> racedesc = <span class="s">&quot;East Asian&quot;</span><span class="k"> if</span> race<span class="o">==</span><span class="m">6</span>
-<span class="k">replace</span> racedesc = <span class="s">&quot;Asian Indian&quot;</span><span class="k"> if</span> race<span class="o">==</span><span class="m">7</span>
-<span class="k">replace</span> racedesc = <span class="s">&quot;Other&quot;</span><span class="k"> if</span> race<span class="o">==</span><span class="m">9</span>
+sort abo age
+by abo: gen cat_id = _n //1 for youngest patient, 2 for next youngest, etc.
 
-<span class="k">twoway scatter m</span><span class="o">~</span>_bmi<span class="k"> m</span><span class="o">~</span>_age<span class="k"> if</span> tag_race, <span class="cs">///</span>
-    title(<span class="s">&quot;Mean age and BMI by race/ethnicity&quot;</span>) <span class="cs">///</span>
-    xtitle(<span class="s">&quot;Mean age&quot;</span>) ytitle(<span class="s">&quot;Mean BMI&quot;</span>) <span class="cs">///</span>
-    xlabel(<span class="m">40</span>(<span class="m">2</span>)<span class="m">60</span>) ylabel(<span class="m">20</span>(<span class="m">2</span>)<span class="m">30</span>) <span class="cs">///</span>
+
+//egen
+
+//obtaining mean age and storing it in a variable
+use transplants, clear
+egen mean_age = mean(age)
+
+//more egen examples
+egen median_age = median(age)
+egen max_age = max(age)
+egen min_age = min(age)
+egen age_q1 = pctile(age), p(25) //25th percentile
+egen age_sd = sd(age)  //standard deviation
+egen total_prev = sum(prev) //add all the values (all are 1 or 0 in this case)
+
+//using egen with by
+use transplants, clear
+sort dx
+by dx: egen mean_age = mean(age)
+by dx: egen min_bmi = min(bmi)
+
+//combining sort and by to get bysort / bys
+use transplants, clear
+bys abo: egen m_bmi=mean(bmi)
+bys abo gender: egen max_bmi = max(bmi)
+bys abo gender: egen min_bmi = min(bmi)
+gen spread = max_bmi - min_bmi
+
+//egen = tag
+egen grouptag = tag(abo gender)
+//now, for all gorups of abo/gender, (1/M, 3/F, etc), there&#39;s exactly one
+//record that has grouptag = &quot;1&quot;. All others have grouptag = &quot;0&quot;.
+
+list abo gend spread if grouptag
+
+//more examples of bys
+use donors_recipients, clear
+bys fake_don: gen n_tx = _N
+bys fake_don: gen tx_id = _n
+egen don_tag = tag(fake_don)
+tab n_tx if don_tag
+
+
+//graphing example with egen and tag
+use transplants, clear
+egen tag_race = tag(race)
+bys race: egen mean_bmi=mean(bmi)
+bys race: egen mean_age=mean(age)
+
+label define race_label 1 &quot;White&quot; ///
+    2 &quot;Black/AA&quot; 4 &quot;Hispanic/Latino&quot; ///
+    5 &quot;East Asian&quot; 6 &quot;Native American&quot; ///
+    7 &quot;Asian Indian&quot; 9 &quot;Other&quot;  //create a label race_label
+
+//I personally find this more legible than cond() with seven cases,
+//although cond() has its champions
+gen racedesc = &quot;White/Caucasian&quot; if race==1
+replace racedesc = &quot;Black/AA&quot; if race==2
+replace racedesc = &quot;Hispanic/Latino&quot; if race==4
+replace racedesc = &quot;Native American&quot; if race==5
+replace racedesc = &quot;East Asian&quot; if race==6
+replace racedesc = &quot;Asian Indian&quot; if race==7
+replace racedesc = &quot;Other&quot; if race==9
+
+twoway scatter m~_bmi m~_age if tag_race, ///
+    title(&quot;Mean age and BMI by race/ethnicity&quot;) ///
+    xtitle(&quot;Mean age&quot;) ytitle(&quot;Mean BMI&quot;) ///
+    xlabel(40(2)60) ylabel(20(2)30) ///
     mlabel(racedesc)
-<span class="k">graph</span> export graph_lecture4<span class="m">.</span>png,<span class="k"> replace</span> width(<span class="m">2400</span>)
-</pre></div>
-</div>
-<p>In the code above, we cover examples related to the by</p>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>//math functions
+graph export graph_lecture4.png, replace width(2400)
+
+
+//math functions
 
 //setup for math functions
 clear
@@ -589,7 +569,8 @@ list extended_dgn in 1/5, clean
 disp word(&quot;Hello, is there anybody in there?&quot;, 4)
 list extended_dgn if word(ext, 5) != &quot;&quot;, clean noobs
 disp strlen(&quot;Same as it ever was&quot;)
-list extended_dgn if strlen(ext)&lt; 6, clean
+//weird output here; adm knocked this code out
+//list extended_dgn if strlen(ext)&lt; 3, clean  
 assert regexm(&quot;Earth&quot;, &quot;art&quot;)
 assert !regexm(&quot;team&quot;, &quot;I&quot;)
 
@@ -621,19 +602,17 @@ format %td oneweek
 list transplant_date  oneweek in 1/3
 
 //date functions
-//td() function to give the integer date for a given calendar date
+//td() function to give integer date for a given calendar date
 disp td(04jul1976)
 
 //&quot;Back to the future&quot; start date
 disp td(26oct1985) 
 
-//mdy() function to give the integer date for a given month/day/year
+//mdy() function to give integer date for a given month/day/year
 disp mdy(7,4,1976)
 
 //&quot;Back to the future&quot; start date
 disp mdy(10,26,1985) 
-
-
 
 //date() function to convert strings to dates
 //Woodstock festival starts
@@ -676,10 +655,8 @@ stsum, by(don_ecd)
 sts test don_ecd
 sts test gender
 log close
-
 </pre></div>
 </div>
-<p>In the code above, we cover examples related to various math functions, string functions, date and time functions, and survival analysis functions in Stata. Each section is clearly commented to explain the purpose and usage of the specific functions.</p>
 
     <script type="text/x-thebe-config">
     {
