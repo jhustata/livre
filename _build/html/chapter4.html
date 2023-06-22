@@ -358,6 +358,19 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#by">4.1 by</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#egen">4.2 egen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tagging">4.3 tagging</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">4.4 Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rounding-numbers">4.4.1 Rounding numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#min-and-max">4.4.2 <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-functions">4.4.3 Other functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-functions">4.4.4 String functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#word">4.4.4.1 word</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strlen">4.4.4.2 strlen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regexm">4.4.4.3 regexm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dates">4.4.5 dates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#survival-analysis">4.5 Survival analysis</a></li>
 </ul>
             </nav>
         </div>
@@ -380,9 +393,11 @@ document.write(`
 <span class="k">else</span> {
 <span class="k">noisily disp</span> <span class="s">&quot;</span><span class="nv">`i&#39;</span><span class="s"> is at least five&quot;</span> }
 }
-}<span class="k"> end</span>
+} 
+<span class="k">end</span>
 </pre></div>
 </div>
+<p><img alt="" src="_images/chatgpt_indent.png" /></p>
 <p>General programming practices</p>
 <ul class="simple">
 <li><p>indent your code</p>
@@ -460,6 +475,124 @@ next youngest, etc.</p>
 </pre></div>
 </div>
 <p>Or we can use <code class="docutils literal notranslate"><span class="pre">bysort</span></code></p>
+<p>More valid egen commands:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">bys</span> abo:<span class="k"> egen</span> m_bmi=mean(bmi)
+<span class="k">bys</span> abo gender:<span class="k"> egen</span> max_bmi = <span class="nf">max</span>(bmi) 
+<span class="k">bys</span> abo gender:<span class="k"> egen</span> min_bmi = <span class="nf">min</span>(bmi) 
+<span class="k">gen</span> spread = max_bmi – min_bmi
+</pre></div>
+</div>
+</section>
+<section id="tagging">
+<h2>4.3 tagging<a class="headerlink" href="#tagging" title="Permalink to this heading">#</a></h2>
+<p>Supposed you’ve generated spread as per the previous slide. You want to look at it:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">list</span> abo gender spread
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">egen</span> <span class="pre">=</span> <span class="pre">tag</span></code> will create a new variable that “tags” one record per abo/gender pair. This
+variable is 1 for each tagged record, and 0 for all others:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">egen</span> grouptag = tag(abo gender) 
+<span class="k">list</span> abo gend spread<span class="k"> if</span> grouptag
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> donors_recipients,<span class="k"> clear</span> 
+<span class="k">bys</span> fake_don:<span class="k"> gen</span> n_tx = _N 
+<span class="k">bys</span> fake_don:<span class="k"> gen</span> tx_id = _n 
+<span class="k">egen</span> don_tag = tag(fake_don) 
+<span class="k">tab</span> n_tx<span class="k"> if</span> don_tag
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Import dataset</p></li>
+<li><p>Total number of recipients for each donor</p></li>
+<li><p>ID for each transplant for a given donor (1 or 2)</p></li>
+<li><p>Tag one record per donor</p></li>
+<li><p>Display a table of transplants per donor</p></li>
+</ol>
+<p>tagging <u>protip</u>: <code class="docutils literal notranslate"><span class="pre">egen</span> <span class="pre">=</span> <span class="pre">tag</span></code> is very handy for graphing (which we haven’t discussed yet). Many graphing commands are slow on large datasets. You can use <code class="docutils literal notranslate"><span class="pre">egen</span> <span class="pre">=</span> <span class="pre">tag</span></code> to run your graphic commands on only one record per group</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span>
+<span class="k">egen</span> ethtag = tag(ethcat)
+<span class="k">bys</span> ethcat:<span class="k"> egen</span> mean_bmi=mean(bmi) 
+<span class="k">bys</span> ethcat:<span class="k"> egen</span> mean_age=mean(age)
+</pre></div>
+</div>
+</section>
+<section id="functions">
+<h2>4.4 Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h2>
+</section>
+<section id="rounding-numbers">
+<h2>4.4.1 Rounding numbers<a class="headerlink" href="#rounding-numbers" title="Permalink to this heading">#</a></h2>
+<p>Round down to the nearest integer:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">disp</span> <span class="nf">floor</span>(<span class="m">0.3</span>)
+<span class="k">disp</span> <span class="nf">floor</span>(<span class="m">8.9</span>)
+</pre></div>
+</div>
+<p>Round up to the nearest integer</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">disp</span> <span class="nf">ceil</span>(<span class="m">0.3</span>)
+<span class="k">disp</span> <span class="nf">ceil</span>(<span class="m">8.9</span>)
+</pre></div>
+</div>
+<p>Round to the nearest integer</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">disp</span> <span class="nf">round</span>(<span class="m">0.3</span>)
+<span class="k">disp</span> round (<span class="m">8.9</span>)
+</pre></div>
+</div>
+</section>
+<section id="min-and-max">
+<h2>4.4.2 <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code><a class="headerlink" href="#min-and-max" title="Permalink to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">disp</span> <span class="nf">min</span>(<span class="m">8</span>,<span class="m">6</span>,<span class="m">7</span>,<span class="m">5</span>,<span class="m">3</span>,<span class="m">0</span>,<span class="m">9</span>)
+<span class="k">disp</span> <span class="nf">max</span>(<span class="m">8</span>,<span class="m">6</span>,<span class="m">7</span>,<span class="m">5</span>,<span class="m">3</span>,<span class="m">0</span>,<span class="m">9</span>)
+</pre></div>
+</div>
+</section>
+<section id="other-functions">
+<h2>4.4.3 Other functions<a class="headerlink" href="#other-functions" title="Permalink to this heading">#</a></h2>
+<p>Useful for transforming a variable (exponent, log, square root):</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">disp</span> <span class="nf">exp</span>(<span class="m">1</span>)
+<span class="k">disp</span> <span class="nf">ln</span>(<span class="m">20</span>)
+<span class="k">disp</span> <span class="nf">sqrt</span>(<span class="m">729</span>)
+</pre></div>
+</div>
+<p>Other math functions:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">di</span> <span class="nf">abs</span>(<span class="o">-</span><span class="m">6</span>) <span class="c1">//absolute value</span>
+<span class="k">disp</span> <span class="nf">mod</span>(<span class="m">529</span>, <span class="m">10</span>) <span class="c1">//modulus (remainder)</span>
+<span class="k">disp</span> <span class="nf">c</span>(pi)
+<span class="k">disp</span> <span class="nf">sin</span>(<span class="nf">c</span>(pi)<span class="o">/</span><span class="m">2</span>) <span class="c1">//sine function</span>
+</pre></div>
+</div>
+</section>
+<section id="string-functions">
+<h2>4.4.4 String functions<a class="headerlink" href="#string-functions" title="Permalink to this heading">#</a></h2>
+<p>As discussed throughout this course, a string variable is data that takes the form of characters instead of numbers.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span>
+<span class="k">ds</span>, has(type string)
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">list</span> extended_dgn<span class="k"> in</span> <span class="m">1</span><span class="o">/</span><span class="m">5</span>, clean
+</pre></div>
+</div>
+<section id="word">
+<h3>4.4.4.1 word<a class="headerlink" href="#word" title="Permalink to this heading">#</a></h3>
+<p>The word function isolates the first (or second, etc.) word of a string.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">disp</span> <span class="nf">word</span>(<span class="s">&quot;Hello, is there anybody in there?&quot;</span>, <span class="m">4</span>)
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">list</span> extended_dgn<span class="k"> if</span> <span class="nf">word</span>(ext, <span class="m">5</span>) <span class="o">!=</span> <span class="s">&quot;&quot;</span>, clean noobs
+</pre></div>
+</div>
+</section>
+<section id="strlen">
+<h3>4.4.4.2 strlen<a class="headerlink" href="#strlen" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="regexm">
+<h3>4.4.4.3 regexm<a class="headerlink" href="#regexm" title="Permalink to this heading">#</a></h3>
+</section>
+<section id="dates">
+<h3>4.4.5 dates<a class="headerlink" href="#dates" title="Permalink to this heading">#</a></h3>
+</section>
+</section>
+<section id="survival-analysis">
+<h2>4.5 Survival analysis<a class="headerlink" href="#survival-analysis" title="Permalink to this heading">#</a></h2>
 </section>
 </section>
 
@@ -532,6 +665,19 @@ next youngest, etc.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#by">4.1 by</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#egen">4.2 egen</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tagging">4.3 tagging</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">4.4 Functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rounding-numbers">4.4.1 Rounding numbers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#min-and-max">4.4.2 <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-functions">4.4.3 Other functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-functions">4.4.4 String functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#word">4.4.4.1 word</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strlen">4.4.4.2 strlen</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regexm">4.4.4.3 regexm</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dates">4.4.5 dates</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#survival-analysis">4.5 Survival analysis</a></li>
 </ul>
   </nav></div>
 
