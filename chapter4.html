@@ -414,7 +414,7 @@ document.write(`
 <p><img alt="" src="_images/chatgpt_indent.png" /></p>
 <p>General programming practices</p>
 <ul class="simple">
-<li><p>indent your code</p>
+<li><p>Indent your code</p>
 <ul>
 <li><p>or copy &amp; paste into chatGPT, which will most certainly indent the code</p></li>
 <li><p>code is much easier to read if indented</p></li>
@@ -423,14 +423,14 @@ document.write(`
 <li><p>you’ll find it easier to modify</p></li>
 </ul>
 </li>
-<li><p>test, test, test</p>
+<li><p>Test, test, test</p>
 <ul>
-<li><p>iterate, iterate, iterate</p></li>
+<li><p>Iterate, iterate, iterate</p></li>
 </ul>
 </li>
-<li><p>collaborate, collaborate, collaborate</p>
+<li><p>Collaborate, collaborate, collaborate</p>
 <ul>
-<li><p>share, share, share</p></li>
+<li><p>Share, share, share</p></li>
 </ul>
 </li>
 </ul>
@@ -855,11 +855,12 @@ antihist_rx |      Freq.     Percent        Cum.
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">stset</span> f_time, failure(died)
 </pre></div>
 </div>
-<p>stset analyzes the dataset and gives output<br />
-showing:<br />
-• how many records were included
-• how many failures were observed
-• how many records were excluded (e.g. invalid data)</p>
+<p><code class="docutils literal notranslate"><span class="pre">stset</span></code> analyzes the dataset and gives output showing:</p>
+<ul class="simple">
+<li><p>how many records were included</p></li>
+<li><p>how many failures were observed</p></li>
+<li><p>how many records were excluded (e.g. invalid data)</p></li>
+</ul>
 <p>And other useful information</p>
 <p>Instead of specifying the amount of followup time, we can specify the start and end date for each record:</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">stset</span> end_date, origin(transplant_date) failure(died)
@@ -1087,6 +1088,7 @@ records will match, it’s a good idea to check this assumption</p>
 <span class="k">assert</span> <span class="nf">r</span>(N)<span class="o">/</span>_N <span class="o">&gt;</span> <span class="m">0.99</span> <span class="c1">//99% of records have _merge==3</span>
 </pre></div>
 </div>
+<p>That’s enough in way of an introduction to the <code class="docutils literal notranslate"><span class="pre">merge</span></code> command. It will come in handy only in specific projects that have relevant variables in different datasets.</p>
 </section>
 </section>
 
