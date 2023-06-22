@@ -358,16 +358,16 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#by">4.1 by</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#egen">4.2 egen</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tagging">4.3 tagging</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">4.4 Functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rounding-numbers">4.4.1 Rounding numbers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#min-and-max">4.4.2 <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-functions">4.4.3 Other functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-functions">4.4.4 String functions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#word">4.4.4.1 word</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strlen">4.4.4.2 strlen</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regexm">4.4.4.3 regexm</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dates">4.4.5 dates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tag">4.3 tag</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function">4.4 function()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#round">4.4.1 round()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#min">4.4.2 min()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exp">4.4.3 exp()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strpos">4.4.4 strpos()</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#word">4.4.4.1 word()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strlen">4.4.4.2 strlen()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regexm">4.4.4.3 regexm()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dates">4.4.5 dates()</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#survival-analysis">4.5 Survival analysis</a></li>
@@ -404,7 +404,7 @@ document.write(`
 <ul>
 <li><p>or copy &amp; paste into chatGPT, which will most certainly indent the code</p></li>
 <li><p>code is much easier to read if indented</p></li>
-<li><p>mycg easier to see and prevent errors</p></li>
+<li><p>much easier to see and prevent errors</p></li>
 <li><p>easier to debug</p></li>
 <li><p>you’ll find it easier to modify</p></li>
 </ul>
@@ -440,9 +440,6 @@ document.write(`
 <p>Which creates a variable <code class="docutils literal notranslate"><span class="pre">cat_id</span></code> which is 1 for the youngest patient in each category, 2 for the
 next youngest, etc.</p>
 <p>You can combine the <code class="docutils literal notranslate"><span class="pre">sort</span></code> and the <code class="docutils literal notranslate"><span class="pre">by</span></code> into <code class="docutils literal notranslate"><span class="pre">bysort</span></code> (or just <code class="docutils literal notranslate"><span class="pre">bys</span></code>)</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-</pre></div>
-</div>
 </section>
 <section id="egen">
 <h2>4.2 egen<a class="headerlink" href="#egen" title="Permalink to this heading">#</a></h2>
@@ -483,9 +480,9 @@ next youngest, etc.</p>
 </pre></div>
 </div>
 </section>
-<section id="tagging">
-<h2>4.3 tagging<a class="headerlink" href="#tagging" title="Permalink to this heading">#</a></h2>
-<p>Supposed you’ve generated spread as per the previous slide. You want to look at it:</p>
+<section id="tag">
+<h2>4.3 tag<a class="headerlink" href="#tag" title="Permalink to this heading">#</a></h2>
+<p>Supposed you’ve generated <code class="docutils literal notranslate"><span class="pre">spread</span></code> as per the previous slide. You want to look at it:</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">list</span> abo gender spread
 </pre></div>
 </div>
@@ -517,11 +514,11 @@ variable is 1 for each tagged record, and 0 for all others:</p>
 </pre></div>
 </div>
 </section>
-<section id="functions">
-<h2>4.4 Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h2>
+<section id="function">
+<h2>4.4 function()<a class="headerlink" href="#function" title="Permalink to this heading">#</a></h2>
 </section>
-<section id="rounding-numbers">
-<h2>4.4.1 Rounding numbers<a class="headerlink" href="#rounding-numbers" title="Permalink to this heading">#</a></h2>
+<section id="round">
+<h2>4.4.1 round()<a class="headerlink" href="#round" title="Permalink to this heading">#</a></h2>
 <p>Round down to the nearest integer:</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">disp</span> <span class="nf">floor</span>(<span class="m">0.3</span>)
 <span class="k">disp</span> <span class="nf">floor</span>(<span class="m">8.9</span>)
@@ -538,15 +535,15 @@ variable is 1 for each tagged record, and 0 for all others:</p>
 </pre></div>
 </div>
 </section>
-<section id="min-and-max">
-<h2>4.4.2 <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code><a class="headerlink" href="#min-and-max" title="Permalink to this heading">#</a></h2>
+<section id="min">
+<h2>4.4.2 min()<a class="headerlink" href="#min" title="Permalink to this heading">#</a></h2>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">disp</span> <span class="nf">min</span>(<span class="m">8</span>,<span class="m">6</span>,<span class="m">7</span>,<span class="m">5</span>,<span class="m">3</span>,<span class="m">0</span>,<span class="m">9</span>)
 <span class="k">disp</span> <span class="nf">max</span>(<span class="m">8</span>,<span class="m">6</span>,<span class="m">7</span>,<span class="m">5</span>,<span class="m">3</span>,<span class="m">0</span>,<span class="m">9</span>)
 </pre></div>
 </div>
 </section>
-<section id="other-functions">
-<h2>4.4.3 Other functions<a class="headerlink" href="#other-functions" title="Permalink to this heading">#</a></h2>
+<section id="exp">
+<h2>4.4.3 exp()<a class="headerlink" href="#exp" title="Permalink to this heading">#</a></h2>
 <p>Useful for transforming a variable (exponent, log, square root):</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">disp</span> <span class="nf">exp</span>(<span class="m">1</span>)
 <span class="k">disp</span> <span class="nf">ln</span>(<span class="m">20</span>)
@@ -561,8 +558,8 @@ variable is 1 for each tagged record, and 0 for all others:</p>
 </pre></div>
 </div>
 </section>
-<section id="string-functions">
-<h2>4.4.4 String functions<a class="headerlink" href="#string-functions" title="Permalink to this heading">#</a></h2>
+<section id="strpos">
+<h2>4.4.4 strpos()<a class="headerlink" href="#strpos" title="Permalink to this heading">#</a></h2>
 <p>As discussed throughout this course, a string variable is data that takes the form of characters instead of numbers.</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span>
 <span class="k">ds</span>, has(type string)
@@ -572,7 +569,7 @@ variable is 1 for each tagged record, and 0 for all others:</p>
 </pre></div>
 </div>
 <section id="word">
-<h3>4.4.4.1 word<a class="headerlink" href="#word" title="Permalink to this heading">#</a></h3>
+<h3>4.4.4.1 word()<a class="headerlink" href="#word" title="Permalink to this heading">#</a></h3>
 <p>The word function isolates the first (or second, etc.) word of a string.</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">disp</span> <span class="nf">word</span>(<span class="s">&quot;Hello, is there anybody in there?&quot;</span>, <span class="m">4</span>)
 </pre></div>
@@ -582,13 +579,74 @@ variable is 1 for each tagged record, and 0 for all others:</p>
 </div>
 </section>
 <section id="strlen">
-<h3>4.4.4.2 strlen<a class="headerlink" href="#strlen" title="Permalink to this heading">#</a></h3>
+<h3>4.4.4.2 strlen()<a class="headerlink" href="#strlen" title="Permalink to this heading">#</a></h3>
+<p>The strlen function counts the number of characters in a string</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">disp</span> <span class="nf">strlen</span>(<span class="s">&quot;Same as it ever was&quot;</span>)
+<span class="k">list</span> extended_dgn<span class="k"> if</span> <span class="nf">strlen</span>(ext)<span class="o">&lt;</span> <span class="m">6</span>, clean
+</pre></div>
+</div>
 </section>
 <section id="regexm">
-<h3>4.4.4.3 regexm<a class="headerlink" href="#regexm" title="Permalink to this heading">#</a></h3>
+<h3>4.4.4.3 regexm()<a class="headerlink" href="#regexm" title="Permalink to this heading">#</a></h3>
+<p>Test whether a string appears inside of another string</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="nf">regexm</span>(<span class="s">&quot;Earth&quot;</span>, <span class="s">&quot;art&quot;</span>)
+<span class="k">assert</span> <span class="o">!</span><span class="nf">regexm</span>(<span class="s">&quot;team&quot;</span>, <span class="s">&quot;I&quot;</span>)
+
+<span class="k">tab</span> ext<span class="k"> if</span> <span class="nf">regexm</span>(ext, <span class="s">&quot;HTN&quot;</span>)
+</pre></div>
+</div>
+<p>regexm actually searches for regular expressions. We won’t go into the syntax, but you can do more powerful searches.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>list ext if regexm(ext, &quot;^A&quot;) 
+//starts with A
+
+list ext if regexm(ext, &quot;X$&quot;) 
+//ends with X
+
+tab ext if regexm(ext, &quot;HIV.*Y&quot;) 
+//contains &quot;HIV&quot;, then some other stuff, then Y
+
+</pre></div>
+</div>
 </section>
 <section id="dates">
-<h3>4.4.5 dates<a class="headerlink" href="#dates" title="Permalink to this heading">#</a></h3>
+<h3>4.4.5 dates()<a class="headerlink" href="#dates" title="Permalink to this heading">#</a></h3>
+<p>How does Stata store dates? Remember this?</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">disp</span> <span class="nx">%3.2f</span> <span class="nf">exp</span>(<span class="m">1</span>)
+<span class="k">disp</span> <span class="nx">%4.1f</span> <span class="m">3.14159</span>
+</pre></div>
+</div>
+<p>Stata stores dates as a special format of integer – the number of days since January 1, 1960</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">disp</span> <span class="nx">%td</span> <span class="m">19400</span>
+<span class="k">disp</span> <span class="nx">%td</span> <span class="m">366</span>
+<span class="k">disp</span> <span class="nx">%td</span> <span class="o">-</span><span class="m">5</span>
+</pre></div>
+</div>
+<p>“td” = “time, date” (probably)</p>
+<p>Since Stata stores dates as numbers, you can do arithmetic on them.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span>
+<span class="k">gen</span> oneweek = transplant_date<span class="m">+7</span>
+<span class="k">format</span> <span class="nx">%td</span> oneweek
+<span class="k">list</span> transplant_date oneweek<span class="k"> in</span> <span class="m">1</span><span class="o">/</span><span class="m">3</span>
+</pre></div>
+</div>
+<p>Converting a date to Stata %td: td()</p>
+<p>The function td() can give the number corresponding to a date written in Stata’s funny default format.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">disp</span> <span class="nf">td</span>(04jul1976)
+<span class="k">disp</span> <span class="nf">td</span>(26oct1985) 
+</pre></div>
+</div>
+<p>The function date() can convert a string to a numerical date. It takes two strings. The first is the date to convert, and the second is a formatting string telling the order of month, date and year.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">disp</span> <span class="nf">date</span>(<span class="s">&quot;August 15, 1969&quot;</span>, <span class="s">&quot;MDY&quot;</span>)
+<span class="k">disp</span> <span class="nf">date</span>(<span class="s">&quot;2061 28 July&quot;</span>, <span class="s">&quot;YDM&quot;</span>)
+</pre></div>
+</div>
+<p>Generate a date variable from a string</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> donors<span class="m">.</span>dta,<span class="k"> clear</span>
+<span class="k">list</span> fake_don_id fake_don_dob
+
+<span class="k">gen</span> donor_dob = <span class="nf">date</span>(fake_don_dob, <span class="s">&quot;DMY&quot;</span>)
+</pre></div>
+</div>
 </section>
 </section>
 <section id="survival-analysis">
@@ -665,16 +723,16 @@ variable is 1 for each tagged record, and 0 for all others:</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#by">4.1 by</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#egen">4.2 egen</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tagging">4.3 tagging</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#functions">4.4 Functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rounding-numbers">4.4.1 Rounding numbers</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#min-and-max">4.4.2 <code class="docutils literal notranslate"><span class="pre">min</span></code> and <code class="docutils literal notranslate"><span class="pre">max</span></code></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#other-functions">4.4.3 Other functions</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string-functions">4.4.4 String functions</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#word">4.4.4.1 word</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strlen">4.4.4.2 strlen</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regexm">4.4.4.3 regexm</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dates">4.4.5 dates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tag">4.3 tag</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function">4.4 function()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#round">4.4.1 round()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#min">4.4.2 min()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exp">4.4.3 exp()</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strpos">4.4.4 strpos()</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#word">4.4.4.1 word()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strlen">4.4.4.2 strlen()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regexm">4.4.4.3 regexm()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dates">4.4.5 dates()</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#survival-analysis">4.5 Survival analysis</a></li>
