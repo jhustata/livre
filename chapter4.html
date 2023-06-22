@@ -368,11 +368,12 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strlen">4.4.4.2 strlen()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regexm">4.4.4.3 regexm()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dates">4.4.5 dates()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.4.6 strpos()</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stset">4.5 stset</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gen">4.5.1 gen</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.5.2 stset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4.5.2 stset</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sts">4.5.3 sts</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sts-graph">4.5.3.1 sts graph</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sts-list">4.5.3.2 sts list</a></li>
@@ -628,6 +629,115 @@ tab ext if regexm(ext, &quot;HIV.*Y&quot;)
 <span class="k">disp</span> <span class="nx">%4.1f</span> <span class="m">3.14159</span>
 </pre></div>
 </div>
+</section>
+<section id="id1">
+<h3>4.4.6 strpos()<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>In Stata, you can use the <code class="docutils literal notranslate"><span class="pre">strpos()</span></code> function to find the position of the first occurrence of a substring within a string.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">di</span> <span class="nf">strpos</span>(<span class="s">&quot;history&quot;</span>, <span class="s">&quot;his&quot;</span>)
+<span class="k">di</span> <span class="nf">strpos</span>(<span class="s">&quot;history&quot;</span>, <span class="s">&quot;story&quot;</span>)
+<span class="k">di</span> <span class="nf">strpos</span>(<span class="s">&quot;history&quot;</span>, <span class="s">&quot;story&quot;</span>)<span class="o">!=</span><span class="m">0</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The substring “his” is found at the beginning of the string “history” and so the output is <code class="docutils literal notranslate"><span class="pre">1</span></code></p></li>
+<li><p>The substring “story” starts at index 4 within the string “history”</p></li>
+</ul>
+<p>If you want to check whether the substring “story” exists within the string “history” using Stata, you can use the <code class="docutils literal notranslate"><span class="pre">strpos()</span></code> function and compare the result to zero. Here’s an example:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nf">strpos</span>(<span class="s">&quot;history&quot;</span>, <span class="s">&quot;story&quot;</span>) <span class="o">!=</span> <span class="m">0</span> {
+<span class="k">    di</span> <span class="s">&quot;Substring &#39;story&#39; exists within the string &#39;history&#39;&quot;</span>
+}
+<span class="k">else</span> {
+<span class="k">    di</span> <span class="s">&quot;Substring &#39;story&#39; does not exist within the string &#39;history&#39;&quot;</span>
+}
+</pre></div>
+</div>
+<p>In this case, if the substring “story” is found within the string “history”, the message “Substring ‘story’ exists within the string ‘history’” will be displayed. Otherwise, if the substring is not found, the message “Substring ‘story’ does not exist within the string ‘history’” will be displayed.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="m">0</span> {
+<span class="k">	log</span> using pde2014<span class="m">.</span>log,<span class="k"> replace</span> 
+<span class="k">    use</span> pde2014,<span class="k"> clear</span>
+<span class="k">    assert</span> <span class="nf">c</span>(N) <span class="o">==</span> <span class="m">25915777</span>
+<span class="k">    set</span> seed <span class="m">340600</span>
+<span class="k">    sample</span> .<span class="m">01</span>
+<span class="k">    keep</span> usrds_id srvc_dt gnn
+<span class="k">    count</span>
+<span class="k">    replace</span> usrds_id=<span class="nf">round</span>(<span class="nf">runiform</span>(<span class="m">0</span>,<span class="m">100</span>))
+<span class="k">    l in</span> <span class="m">1</span><span class="o">/</span><span class="m">10</span>
+<span class="k">    label</span> data <span class="s">&quot;strpos demo for 340.600.11&quot;</span>
+<span class="k">    save</span> strpos<span class="m">.</span>dta,<span class="k"> replace</span>
+<span class="k">	log close</span> 
+}
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.    <span class="k"> use</span> pde2014,<span class="k"> clear</span>
+.    <span class="k"> assert</span> <span class="nf">c</span>(N) <span class="o">==</span> <span class="m">25915777</span>
+.    <span class="k"> set</span> seed <span class="m">340600</span>
+.    <span class="k"> sample</span> .<span class="m">01</span>
+(<span class="m">25</span>,<span class="m">913</span>,<span class="m">185</span> observations deleted)
+.    <span class="k"> keep</span> usrds_id srvc_dt gnn
+.    <span class="k"> count</span>
+  <span class="m">2</span>,<span class="m">592</span>
+.    <span class="k"> replace</span> usrds_id=<span class="nf">round</span>(<span class="nf">runiform</span>(<span class="m">0</span>,<span class="m">100</span>))
+(<span class="m">2</span>,<span class="m">592</span> real changes made)
+.    <span class="k"> l in</span> <span class="m">1</span><span class="o">/</span><span class="m">10</span>
+
+     <span class="o">+-------------------------------------------------------+</span>
+     | usrds_id   gnn                                srvc_dt |
+     |<span class="o">-------------------------------------------------------</span>|
+  <span class="m">1</span>. |       <span class="m">53</span>   CARVEDILOL                       01jul2014 |
+  <span class="m">2</span>. |       <span class="m">45</span>   ATORVASTATIN CALCIUM             16jun2014 |
+  <span class="m">3</span>. |       <span class="m">53</span>   BUPROPION HCL                    23aug2014 |
+  <span class="m">4</span>. |       <span class="m">99</span>   CARVEDILOL                       16apr2014 |
+  <span class="m">5</span>. |       <span class="m">68</span>   CARVEDILOL                       20jan2014 |
+     |<span class="o">-------------------------------------------------------</span>|
+  <span class="m">6</span>. |       <span class="m">18</span>   INSULIN GLARGINE,HUM<span class="m">.</span>REC<span class="m">.</span>ANLOG   13oct2014 |
+  <span class="m">7</span>. |       <span class="m">49</span>   LORAZEPAM                        15nov2014 |
+  <span class="m">8</span>. |       <span class="m">33</span>   LACTULOSE                        06nov2014 |
+  <span class="m">9</span>. |       <span class="m">31</span>   PANTOPRAZOLE SODIUM              11jan2014 |
+ <span class="m">10</span>. |       <span class="m">45</span>   LABETALOL HCL                    12mar2014 |
+     <span class="o">+-------------------------------------------------------+</span>
+.    <span class="k"> label</span> data <span class="s">&quot;strpos demo for 340.600.11&quot;</span>
+.    <span class="k"> save</span> strpos<span class="m">.</span>dta,<span class="k"> replace</span>
+<span class="k">file</span> strpos<span class="m">.</span>dta saved
+</pre></div>
+</div>
+<p><a class="reference download internal" download="" href="_downloads/47d8620d5e05ea69c4fc4f8f3a7a0697/strpos.dta"><span class="xref download myst">strpos.dta</span></a></p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> strpos<span class="m">.</span>dta,<span class="k"> clear</span>
+<span class="k">gen</span>	antihist16=(<span class="nf">strpos</span>(gnn,<span class="s">&quot;BROMPHENIRAMINE&quot;</span>)<span class="o">!=</span><span class="m">0</span>)
+<span class="k">gen</span>	antihist19=(<span class="nf">strpos</span>(gnn,<span class="s">&quot;CARBINOXAMINE&quot;</span>)<span class="o">!=</span><span class="m">0</span>)
+<span class="k">gen</span>	antihist26=(<span class="nf">strpos</span>(gnn,<span class="s">&quot;CHLORPHENIRAMINE&quot;</span>)<span class="o">!=</span><span class="m">0</span>)
+<span class="k">gen</span>	antihist31=(<span class="nf">strpos</span>(gnn,<span class="s">&quot;CLEMASTINE&quot;</span>)<span class="o">!=</span><span class="m">0</span>)
+<span class="k">gen</span>	antihist36=(<span class="nf">strpos</span>(gnn,<span class="s">&quot;CYPROHEPTADINE&quot;</span>)<span class="o">!=</span><span class="m">0</span>)
+<span class="k">gen</span>	antihist39=(<span class="nf">strpos</span>(gnn,<span class="s">&quot;DEXBROMPHENIRAMINE&quot;</span>)<span class="o">!=</span><span class="m">0</span>)
+<span class="k">gen</span>	antihist40=(<span class="nf">strpos</span>(gnn,<span class="s">&quot;DEXCHLORPHENIRAMINE&quot;</span>)<span class="o">!=</span><span class="m">0</span>)
+<span class="k">gen</span>	antihist43=(<span class="nf">strpos</span>(gnn,<span class="s">&quot;DIMENHYDRINATE&quot;</span>)<span class="o">!=</span><span class="m">0</span>)
+<span class="k">gen</span>	antihist47=(<span class="nf">strpos</span>(gnn,<span class="s">&quot;DIPHENHYDRAMINE&quot;</span>)<span class="o">!=</span><span class="m">0</span>)
+<span class="k">gen</span>	antihist51=(<span class="nf">strpos</span>(gnn,<span class="s">&quot;DOXYLAMINE&quot;</span>)<span class="o">!=</span><span class="m">0</span>)
+<span class="k">gen</span>	antihist65=(<span class="nf">strpos</span>(gnn,<span class="s">&quot;HYDROXYZINE&quot;</span>)<span class="o">!=</span><span class="m">0</span>)
+<span class="k">gen</span>	antihist77=(<span class="nf">strpos</span>(gnn,<span class="s">&quot;MECLIZINE&quot;</span>)<span class="o">!=</span><span class="m">0</span>)
+<span class="k">gen</span>	antihist101=(<span class="nf">strpos</span>(gnn,<span class="s">&quot;PROMETHAZINE&quot;</span>)<span class="o">!=</span><span class="m">0</span>)
+<span class="k">gen</span>	antihist105=(<span class="nf">strpos</span>(gnn,<span class="s">&quot;PYRILAMINE&quot;</span>)<span class="o">!=</span><span class="m">0</span>)
+<span class="k">gen</span>	antihist127=(<span class="nf">strpos</span>(gnn,<span class="s">&quot;TRIPROLIDINE&quot;</span>)<span class="o">!=</span><span class="m">0</span>)      
+<span class="k">g</span> antihist_rx=( <span class="cs">///	</span>
+   antihist16<span class="o">+</span>	<span class="cs">///</span>
+   antihist19<span class="o">+</span>	<span class="cs">///</span>
+   antihist26<span class="o">+</span>	<span class="cs">///</span>
+   antihist31<span class="o">+</span>	<span class="cs">///</span>
+   antihist36<span class="o">+</span>	<span class="cs">///</span>
+   antihist39<span class="o">+</span>	<span class="cs">///</span>
+   antihist40<span class="o">+</span>	<span class="cs">///</span>
+   antihist43<span class="o">+</span>	<span class="cs">///</span>
+   antihist47<span class="o">+</span>	<span class="cs">///</span>
+   antihist51<span class="o">+</span>	<span class="cs">///</span>
+   antihist65<span class="o">+</span>	<span class="cs">///</span>
+   antihist77<span class="o">+</span>	<span class="cs">///</span>
+   antihist101<span class="o">+</span>	<span class="cs">///</span>
+   antihist105<span class="o">+</span>	<span class="cs">///</span>
+   antihist127	<span class="cs">///</span>
+     <span class="o">&gt;</span><span class="m">0</span>)
+<span class="k">keep</span> usrds_id srvc_dt antihist_rx
+<span class="k">l in</span> <span class="m">100</span>
+</pre></div>
+</div>
 <p>Stata stores dates as a special format of integer – the number of days since January 1, 1960</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">disp</span> <span class="nx">%td</span> <span class="m">19400</span>
 <span class="k">disp</span> <span class="nx">%td</span> <span class="m">366</span>
@@ -672,8 +782,8 @@ tab ext if regexm(ext, &quot;HIV.*Y&quot;)
 <section id="gen">
 <h3>4.5.1 gen<a class="headerlink" href="#gen" title="Permalink to this heading">#</a></h3>
 </section>
-<section id="id1">
-<h3>4.5.2 stset<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<section id="id2">
+<h3>4.5.2 stset<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 </section>
 <section id="sts">
 <h3>4.5.3 sts<a class="headerlink" href="#sts" title="Permalink to this heading">#</a></h3>
@@ -778,11 +888,12 @@ tab ext if regexm(ext, &quot;HIV.*Y&quot;)
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strlen">4.4.4.2 strlen()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regexm">4.4.4.3 regexm()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dates">4.4.5 dates()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.4.6 strpos()</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stset">4.5 stset</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gen">4.5.1 gen</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.5.2 stset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4.5.2 stset</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sts">4.5.3 sts</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sts-graph">4.5.3.1 sts graph</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sts-list">4.5.3.2 sts list</a></li>
