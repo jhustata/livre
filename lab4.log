@@ -1,0 +1,13 @@
+------------------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/lab4.log
+  log type:  text
+ opened on:  22 Jun 2023, 09:43:59
+
+. di "lab4.log"
+lab4.log
+
+. //log close 
+. 
+end of do-file
+
