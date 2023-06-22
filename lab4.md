@@ -2,7 +2,7 @@
 
 ## Part 1
 
-Write a .do file which imports [transplants.txt](https://raw.githubusercontent.com/jhustata/livre/main/transplants.txt) and performs the data management/exploratory data analysis tasks described below using the slides we have discussed in class. Your .do file (lab4_lastname.do) and must create a log file (lab4_lastname.log). This file will contain your answers for both part 1 and part 2 of today's lab. Your .do file should follow conventions for .do file structure described in class. Do **not** submit your log files as part of the assignment.    
+Write a .do file which imports [transplants.dta](transplants.dta) and performs the data management/exploratory data analysis tasks described below using the slides we have discussed in class. Your .do file (lab4_lastname.do) and must create a log file (lab4_lastname.log). This file will contain your answers for both part 1 and part 2 of today's lab. Your .do file should follow conventions for .do file structure described in class. Do **not** submit your log files as part of the assignment.    
     
 1. Create a new variable called `ctr_volume` that contains the transplant center volume (total number of transplants performed in each transplant center). The transplant center can be identified by `ctr_id`.     
     
@@ -32,7 +32,7 @@ Lab 4 Part 2
 7. Is the difference in post-transplant survival by over50 statistically significant (p>0.05)? Write one of the following sentences:
 
 ```stata
-There is a statistically significant difference in survival by age category (p<0.05)`
+There is a statistically significant difference in survival by age category (p<0.05)
 ```
 
 or

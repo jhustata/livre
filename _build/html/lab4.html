@@ -158,7 +158,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="chapter1.html">1. Overview, commands, syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter2.html">2. Return values, macros, programs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter3.html">3. Loops and program syntax</a></li>
-<li class="toctree-l1"><a class="reference internal" href="chapter4.html">4. Functions and advanced commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="chapter4.html">4. Advanced file management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter5.html">5. Graphs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickrefs.html">Quick References</a></li>
 </ul>
@@ -370,7 +370,7 @@ document.write(`
 <h1>Lab 4<a class="headerlink" href="#lab-4" title="Permalink to this heading">#</a></h1>
 <section id="part-1">
 <h2>Part 1<a class="headerlink" href="#part-1" title="Permalink to this heading">#</a></h2>
-<p>Write a .do file which imports <a class="reference external" href="https://raw.githubusercontent.com/jhustata/livre/main/transplants.txt">transplants.txt</a> and performs the data management/exploratory data analysis tasks described below using the slides we have discussed in class. Your .do file (lab4_lastname.do) and must create a log file (lab4_lastname.log). This file will contain your answers for both part 1 and part 2 of today’s lab. Your .do file should follow conventions for .do file structure described in class. Do <strong>not</strong> submit your log files as part of the assignment.</p>
+<p>Write a .do file which imports <a class="reference download internal" download="" href="_downloads/34a8255f06036b44354b3c36c5583d7e/transplants.dta"><span class="xref download myst">transplants.dta</span></a> and performs the data management/exploratory data analysis tasks described below using the slides we have discussed in class. Your .do file (lab4_lastname.do) and must create a log file (lab4_lastname.log). This file will contain your answers for both part 1 and part 2 of today’s lab. Your .do file should follow conventions for .do file structure described in class. Do <strong>not</strong> submit your log files as part of the assignment.</p>
 <ol class="arabic simple">
 <li><p>Create a new variable called <code class="docutils literal notranslate"><span class="pre">ctr_volume</span></code> that contains the transplant center volume (total number of transplants performed in each transplant center). The transplant center can be identified by <code class="docutils literal notranslate"><span class="pre">ctr_id</span></code>.</p></li>
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">summarize,</span> <span class="pre">detail</span></code> to show the distribution of <code class="docutils literal notranslate"><span class="pre">ctr_volume</span></code>. For question 2, you should analyze one observation per center, not one observation per transplant recipient. (<u>Hint</u>: Tagging can help with this)</p></li>
@@ -395,7 +395,7 @@ document.write(`
 <li><p>Create a variable called <code class="docutils literal notranslate"><span class="pre">over50</span></code> which is a 1 for any recipient age &gt;50 and 0 for everyone else. Draw a survival curve stratified by over50.</p></li>
 <li><p>Is the difference in post-transplant survival by over50 statistically significant (p&gt;0.05)? Write one of the following sentences:</p></li>
 </ol>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>There is a statistically significant difference<span class="k"> in</span> survival<span class="k"> by</span> age category (p<span class="o">&lt;</span><span class="m">0.05</span>)<span class="nv">`</span>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>There is a statistically significant difference<span class="k"> in</span> survival<span class="k"> by</span> age category (p<span class="o">&lt;</span><span class="m">0.05</span>)
 </pre></div>
 </div>
 <p>or</p>

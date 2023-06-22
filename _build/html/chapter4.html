@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>4. Functions and advanced commands &#8212; Stata Programming</title>
+    <title>4. Advanced file management &#8212; Stata Programming</title>
   
   
   
@@ -160,7 +160,7 @@ const thebe_selector_output = ".output, .cell_output"
 <li class="toctree-l1"><a class="reference internal" href="chapter1.html">1. Overview, commands, syntax</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter2.html">2. Return values, macros, programs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter3.html">3. Loops and program syntax</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Functions and advanced commands</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">4. Advanced file management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="chapter5.html">5. Graphs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickrefs.html">Quick References</a></li>
 </ul>
@@ -333,7 +333,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -344,11 +346,20 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>4. Functions and advanced commands</h1>
+    <h1>4. Advanced file management</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#by">4.1 by</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#egen">4.2 egen</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -358,8 +369,98 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="functions-and-advanced-commands">
-<h1>4. Functions and advanced commands<a class="headerlink" href="#functions-and-advanced-commands" title="Permalink to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="advanced-file-management">
+<h1>4. Advanced file management<a class="headerlink" href="#advanced-file-management" title="Permalink to this heading">#</a></h1>
+<p>Is there anything wrong with this code block?</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">program</span> define myprogram
+<span class="k">quietly</span> {
+<span class="k">forvalues</span> i=<span class="m">1</span><span class="o">/</span><span class="m">10</span> {
+<span class="k">if</span> <span class="nv">`i&#39;</span> <span class="o">&lt;</span> <span class="m">5</span> {
+<span class="k">noisily disp</span> <span class="s">&quot;</span><span class="nv">`i&#39;</span><span class="s"> is less than five&quot;</span> }
+<span class="k">else</span> {
+<span class="k">noisily disp</span> <span class="s">&quot;</span><span class="nv">`i&#39;</span><span class="s"> is at least five&quot;</span> }
+}
+}<span class="k"> end</span>
+</pre></div>
+</div>
+<p>General programming practices</p>
+<ul class="simple">
+<li><p>indent your code</p>
+<ul>
+<li><p>or copy &amp; paste into chatGPT, which will most certainly indent the code</p></li>
+<li><p>code is much easier to read if indented</p></li>
+<li><p>mycg easier to see and prevent errors</p></li>
+<li><p>easier to debug</p></li>
+<li><p>you’ll find it easier to modify</p></li>
+</ul>
+</li>
+<li><p>test, test, test</p>
+<ul>
+<li><p>iterate, iterate, iterate</p></li>
+</ul>
+</li>
+<li><p>collaborate, collaborate, collaborate</p>
+<ul>
+<li><p>share, share, share</p></li>
+</ul>
+</li>
+</ul>
+<section id="by">
+<h2>4.1 by<a class="headerlink" href="#by" title="Permalink to this heading">#</a></h2>
+<p>Have you seen this syntax before?</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">gen</span> record_no = _n <span class="c1">//row number </span>
+<span class="k">disp</span> _N <span class="c1">//total # rows</span>
+</pre></div>
+</div>
+<p>What if we want a variable of the total number of records in each ABO blood type category?</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">sort</span> abo
+<span class="k">by</span> abo:<span class="k"> gen</span> cat_n = _N
+</pre></div>
+</div>
+<p>Which creates a variable cat_n storing the number of records in each abo category</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">sort</span> abo age
+<span class="k">by</span> abo:<span class="k"> gen</span> cat_id = _n
+</pre></div>
+</div>
+<p>Which creates a variable <code class="docutils literal notranslate"><span class="pre">cat_id</span></code> which is 1 for the youngest patient in each category, 2 for the
+next youngest, etc.</p>
+<p>You can combine the <code class="docutils literal notranslate"><span class="pre">sort</span></code> and the <code class="docutils literal notranslate"><span class="pre">by</span></code> into <code class="docutils literal notranslate"><span class="pre">bysort</span></code> (or just <code class="docutils literal notranslate"><span class="pre">bys</span></code>)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+<section id="egen">
+<h2>4.2 egen<a class="headerlink" href="#egen" title="Permalink to this heading">#</a></h2>
+<p>We can create a new variable equal to the mean of all records…</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span>
+<span class="k">sum</span> age
+<span class="k">gen</span> mean_age = <span class="nf">r</span>(mean)
+</pre></div>
+</div>
+<p>…but how can we do that with just one command?</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span> 
+<span class="k">egen</span> mean_age =<span class="k"> mean</span>(age)
+</pre></div>
+</div>
+<p>More valid egen commands:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">egen</span> median_age =<span class="k"> median</span>(age)<span class="k"> egen</span> max_age = <span class="nf">max</span>(age)
+<span class="k">egen</span> min_age = <span class="nf">min</span>(age)
+<span class="k">egen</span> age_q1 =<span class="k"> pctile</span>(age), p(<span class="m">25</span>)<span class="k"> egen</span> age_sd = sd(age)
+<span class="k">egen</span> total_prev =<span class="k"> sum</span>(prev)
+</pre></div>
+</div>
+<p>So what’s the big deal? Suppose we want the mean age, stratified by diagnosis? First, we sort on diagnosis</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span> 
+<span class="k">sort</span> dx
+</pre></div>
+</div>
+<p>Now we do <code class="docutils literal notranslate"><span class="pre">by</span> <span class="pre">dx:</span> <span class="pre">egen</span></code></p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">by</span> dx:<span class="k"> egen</span> mean_age =<span class="k"> mean</span>(age)
+<span class="k">by</span> dx:<span class="k"> egen</span> min_bmi = <span class="nf">min</span>(bmi) 
+</pre></div>
+</div>
+<p>Or we can use <code class="docutils literal notranslate"><span class="pre">bysort</span></code></p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -420,6 +521,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#by">4.1 by</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#egen">4.2 egen</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
