@@ -114,15 +114,6 @@ Except fill in the correct values.
 
 ```stata
 
-capture log close
-log using lab4_abimuzaale.log, replace
-
-version 15
-clear all
-macro drop _all
-set more off
-set linesize 255
-
 use transplants, clear
 
 //q1, 10pt
@@ -183,7 +174,7 @@ if p > 0.05 {
 //q8, 15pt
 qui stcox over50  
 
-if c(version) > 15 {
+if c(version) < 16 {
 	disp "Hazard ratio:  " %3.2f exp(_b[over50]) " (95% CI " /// 
 	                       %3.2f exp(_b[over50]+invnormal(0.025)*_se[over50]) ///
 					   "-" %3.2f exp(_b[over50]+invnormal(0.975)*_se[over50]) ")"
