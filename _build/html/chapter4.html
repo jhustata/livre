@@ -363,17 +363,17 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#round">4.4.1 round()</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#min">4.4.2 min()</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exp">4.4.3 exp()</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strpos">4.4.4 strpos()</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string">4.4.4 string()</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#word">4.4.4.1 word()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strlen">4.4.4.2 strlen()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regexm">4.4.4.3 regexm()</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dates">4.4.5 dates()</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.4.6 strpos()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strpos">4.4.5 strpos()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dates">4.4.6 dates()</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stset">4.5 stset</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gen">4.5.1 gen</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4.5.2 stset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.5.2 stset</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sts">4.5.3 sts</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sts-graph">4.5.3.1 sts graph</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sts-list">4.5.3.2 sts list</a></li>
@@ -572,8 +572,8 @@ variable is 1 for each tagged record, and 0 for all others:</p>
 </pre></div>
 </div>
 </section>
-<section id="strpos">
-<h2>4.4.4 strpos()<a class="headerlink" href="#strpos" title="Permalink to this heading">#</a></h2>
+<section id="string">
+<h2>4.4.4 string()<a class="headerlink" href="#string" title="Permalink to this heading">#</a></h2>
 <p>As discussed throughout this course, a string variable is data that takes the form of characters instead of numbers.</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span>
 <span class="k">ds</span>, has(type string)
@@ -619,16 +619,8 @@ tab ext if regexm(ext, &quot;HIV.*Y&quot;) //contains &quot;HIV&quot;, then some
 </pre></div>
 </div>
 </section>
-<section id="dates">
-<h3>4.4.5 dates()<a class="headerlink" href="#dates" title="Permalink to this heading">#</a></h3>
-<p>How does Stata store dates? Remember this?</p>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">disp</span> <span class="nx">%3.2f</span> <span class="nf">exp</span>(<span class="m">1</span>)
-<span class="k">disp</span> <span class="nx">%4.1f</span> <span class="m">3.14159</span>
-</pre></div>
-</div>
-</section>
-<section id="id1">
-<h3>4.4.6 strpos()<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<section id="strpos">
+<h3>4.4.5 strpos()<a class="headerlink" href="#strpos" title="Permalink to this heading">#</a></h3>
 <p>In Stata, you can use the <code class="docutils literal notranslate"><span class="pre">strpos()</span></code> function to find the position of the first occurrence of a substring within a string.</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">di</span> <span class="nf">strpos</span>(<span class="s">&quot;history&quot;</span>, <span class="s">&quot;his&quot;</span>)
 <span class="k">di</span> <span class="nf">strpos</span>(<span class="s">&quot;history&quot;</span>, <span class="s">&quot;story&quot;</span>)
@@ -802,6 +794,14 @@ antihist_rx |      Freq.     Percent        Cum.
 .<span class="k"> log close</span>  
 </pre></div>
 </div>
+</section>
+<section id="dates">
+<h3>4.4.6 dates()<a class="headerlink" href="#dates" title="Permalink to this heading">#</a></h3>
+<p>Remember this? How does Stata store dates</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">disp</span> <span class="nx">%3.2f</span> <span class="nf">exp</span>(<span class="m">1</span>)
+<span class="k">disp</span> <span class="nx">%4.1f</span> <span class="m">3.14159</span>
+</pre></div>
+</div>
 <p>Stata stores dates as a special format of integer – the number of days since January 1, 1960</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">disp</span> <span class="nx">%td</span> <span class="m">19400</span>
 <span class="k">disp</span> <span class="nx">%td</span> <span class="m">366</span>
@@ -845,26 +845,100 @@ antihist_rx |      Freq.     Percent        Cum.
 </ul>
 <section id="gen">
 <h3>4.5.1 gen<a class="headerlink" href="#gen" title="Permalink to this heading">#</a></h3>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">gen</span> f_time = end_d<span class="o">-</span>transplant_d
+</pre></div>
+</div>
 </section>
-<section id="id2">
-<h3>4.5.2 stset<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<section id="id1">
+<h3>4.5.2 stset<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p>Before we start a survival analysis, we need to tell Stata two things about each individual: how long they were followed for and whether they had an outcome</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">stset</span> f_time, failure(died)
+</pre></div>
+</div>
+<p>stset analyzes the dataset and gives output<br />
+showing:<br />
+• how many records were included
+• how many failures were observed
+• how many records were excluded (e.g. invalid data)</p>
+<p>And other useful information</p>
+<p>Instead of specifying the amount of followup time, we can specify the start and end date for each record:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">stset</span> end_date, origin(transplant_date) failure(died)
+</pre></div>
+</div>
+<p>We can specify a scale (e.g. to analyze time in years instead of days):</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">stset</span> end_date, origin(transplant_date) failure(died) scale (<span class="m">365.25</span>)
+</pre></div>
+</div>
 </section>
 <section id="sts">
 <h3>4.5.3 sts<a class="headerlink" href="#sts" title="Permalink to this heading">#</a></h3>
 <section id="sts-graph">
 <h4>4.5.3.1 sts graph<a class="headerlink" href="#sts-graph" title="Permalink to this heading">#</a></h4>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">sts graph</span>
+<span class="k">graph</span> export survival<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<p><img alt="" src="_images/survival.png" /></p>
+<p>Tomorrow we will learn how to make this graph more aesthetically appealing.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">sts graph</span>,<span class="k"> by</span>(don_ecd)
+<span class="k">graph</span> export survival_byecd<span class="m">.</span>png,<span class="k"> replace</span>
+</pre></div>
+</div>
+<p><img alt="" src="_images/survival_byecd.png" /></p>
 </section>
 <section id="sts-list">
 <h4>4.5.3.2 sts list<a class="headerlink" href="#sts-list" title="Permalink to this heading">#</a></h4>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">sts list in</span> <span class="m">300</span><span class="o">/</span><span class="m">310</span>
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> sts list in</span> <span class="m">300</span><span class="o">/</span><span class="m">310</span>
+
+        Failure _d: died
+  Analysis time _t: (end_date<span class="o">-</span>origin)<span class="o">/</span><span class="m">365.25</span>
+            Origin: time transplant_date
+
+Kaplan–Meier survivor function
+
+             At                  Survivor      Std.
+  Time     risk   Fail   Lost    function    <span class="k"> error</span>     [<span class="m">95</span>%<span class="k"> conf</span>. int.]
+<span class="o">------------------------------------------------------------------------</span>
+ .<span class="m">7724</span>       <span class="m">11</span>      <span class="m">0</span>      <span class="m">1</span>      <span class="m">1.0000</span>         .          .         .
+  .<span class="m">789</span>       <span class="m">10</span>      <span class="m">0</span>      <span class="m">1</span>      <span class="m">1.0000</span>         .          .         .
+ .<span class="m">7895</span>        <span class="m">9</span>      <span class="m">0</span>      <span class="m">1</span>      <span class="m">1.0000</span>         .          .         .
+ .<span class="m">7916</span>        <span class="m">8</span>      <span class="m">0</span>      <span class="m">1</span>      <span class="m">1.0000</span>         .          .         .
+ .<span class="m">8002</span>        <span class="m">7</span>      <span class="m">1</span>      <span class="m">0</span>      <span class="m">0.8571</span>    <span class="m">0.1323</span>     <span class="m">0.3341</span>    <span class="m">0.9786</span>
+ .<span class="m">8032</span>        <span class="m">6</span>      <span class="m">0</span>      <span class="m">1</span>      <span class="m">0.8571</span>    <span class="m">0.1323</span>     <span class="m">0.3341</span>    <span class="m">0.9786</span>
+ .<span class="m">8056</span>        <span class="m">5</span>      <span class="m">1</span>      <span class="m">0</span>      <span class="m">0.6857</span>    <span class="m">0.1863</span>     <span class="m">0.2128</span>    <span class="m">0.9121</span>
+ .<span class="m">8081</span>        <span class="m">4</span>      <span class="m">1</span>      <span class="m">0</span>      <span class="m">0.5143</span>    <span class="m">0.2039</span>     <span class="m">0.1178</span>    <span class="m">0.8132</span>
+ .<span class="m">8092</span>        <span class="m">3</span>      <span class="m">0</span>      <span class="m">1</span>      <span class="m">0.5143</span>    <span class="m">0.2039</span>     <span class="m">0.1178</span>    <span class="m">0.8132</span>
+ .<span class="m">8102</span>        <span class="m">2</span>      <span class="m">0</span>      <span class="m">1</span>      <span class="m">0.5143</span>    <span class="m">0.2039</span>     <span class="m">0.1178</span>    <span class="m">0.8132</span>
+ .<span class="m">8103</span>        <span class="m">1</span>      <span class="m">0</span>      <span class="m">1</span>      <span class="m">0.5143</span>    <span class="m">0.2039</span>     <span class="m">0.1178</span>    <span class="m">0.8132</span>
+<span class="o">------------------------------------------------------------------------</span>
+</pre></div>
+</div>
 </section>
 <section id="sts-test">
 <h4>4.5.3.3 sts test<a class="headerlink" href="#sts-test" title="Permalink to this heading">#</a></h4>
+<p>Rank-sum test:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">sts test</span> don_ecd<span class="k"> sts test</span> gender <span class="c1">//p value</span>
+<span class="k">disp</span> <span class="m">1</span><span class="o">-</span><span class="nf">chi2</span>(<span class="nf">r</span>(df), <span class="nf">r</span>(chi2))
+</pre></div>
+</div>
 </section>
 <section id="stsum">
 <h4>4.5.3.4 stsum<a class="headerlink" href="#stsum" title="Permalink to this heading">#</a></h4>
+<p>Calculate the incidence rate:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">stsum</span>
+<span class="k">stsum</span>,<span class="k"> by</span>(don_ecd)
+</pre></div>
+</div>
 </section>
 <section id="stcox">
 <h4>4.5.3.5 stcox<a class="headerlink" href="#stcox" title="Permalink to this heading">#</a></h4>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">stcox</span> don_ecd age
+</pre></div>
+</div>
+<p>Obtain hazard ratios, 95% CIs, p values the same way we did for logistic regression</p>
 </section>
 </section>
 </section>
@@ -947,17 +1021,17 @@ antihist_rx |      Freq.     Percent        Cum.
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#round">4.4.1 round()</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#min">4.4.2 min()</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exp">4.4.3 exp()</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#strpos">4.4.4 strpos()</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#string">4.4.4 string()</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#word">4.4.4.1 word()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strlen">4.4.4.2 strlen()</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regexm">4.4.4.3 regexm()</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dates">4.4.5 dates()</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.4.6 strpos()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#strpos">4.4.5 strpos()</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dates">4.4.6 dates()</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stset">4.5 stset</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gen">4.5.1 gen</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">4.5.2 stset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">4.5.2 stset</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sts">4.5.3 sts</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sts-graph">4.5.3.1 sts graph</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#sts-list">4.5.3.2 sts list</a></li>
