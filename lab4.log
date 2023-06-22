@@ -11,3 +11,1043 @@ lab4.log
 . 
 end of do-file
 
+. di floor(.3)
+0
+
+. di floor(8.9)
+8
+
+. di ceil(8.9)
+9
+
+. cls
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. hist age
+(bin=33, start=0, width=2.5757576)
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. recode age ///
+>    (min/17=1) ///
+>    (18/34=2) ///
+>    (35/64=3) ///
+>    (65/max=4), gen(age_cat)
+(1,998 differences between age and age_cat)
+
+. tab age_cat 
+
+  RECODE of |
+age (Age at |
+        TX) |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         97        4.85        4.85
+          2 |        211       10.55       15.40
+          3 |      1,329       66.45       81.85
+          4 |        363       18.15      100.00
+------------+-----------------------------------
+      Total |      2,000      100.00
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. cls 
+
+. if 0 {
+.         recode age ///
+>    (min/17=1) ///
+>    (18/34=2) ///
+>    (35/64=3) ///
+>    (65/max=4), gen(age_cat)
+. tab age_cat 
+. }
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. cls 
+
+. if 0 {
+.         recode age ///
+>    (min/17=1) ///
+>    (18/34=2) ///
+>    (35/64=3) ///
+>    (65/max=4), gen(age_cat)
+. tab age_cat 
+. }
+
+. 
+. g age_cat = 1 if inrange(0,17)
+invalid syntax
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. cls 
+
+. if 0 {
+.         recode age ///
+>    (min/17=1) ///
+>    (18/34=2) ///
+>    (35/64=3) ///
+>    (65/max=4), gen(age_cat)
+. tab age_cat 
+. }
+
+. 
+. g age_cat = 1 if inrange(age,0,17)
+(1,903 missing values generated)
+
+. replace age_cat = 2 if inrange(age,18,34)
+(211 real changes made)
+
+. replace age_cat = 3 if inrange(age,35,64)
+(1,329 real changes made)
+
+. replace age_cat = 4 if inrange(age,65,100)
+(363 real changes made)
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. cls 
+
+. if 0 {
+.         recode age ///
+>    (min/17=1) ///
+>    (18/34=2) ///
+>    (35/64=3) ///
+>    (65/max=4), gen(age_cat)
+. tab age_cat 
+. }
+
+. 
+. g age_cat = 1 if inrange(age,0,17)
+(1,903 missing values generated)
+
+. replace age_cat = 2 if inrange(age,18,34)
+(211 real changes made)
+
+. replace age_cat = 3 if inrange(age,35,64)
+(1,329 real changes made)
+
+. replace age_cat = 4 if inrange(age,65,100)
+(363 real changes made)
+
+. tab age_cat
+
+    age_cat |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         97        4.85        4.85
+          2 |        211       10.55       15.40
+          3 |      1,329       66.45       81.85
+          4 |        363       18.15      100.00
+------------+-----------------------------------
+      Total |      2,000      100.00
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. cls 
+
+. if 1 {
+.         recode age  ///
+>    (min/17=1) "young" ///
+>    (18/34=2) ///
+>    (35/64=3) ///
+>    (65/max=4), gen(age_cat)
+( expected, "young" found
+r(198);
+. tab age_cat 
+. }
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. cls 
+
+. if 1 {
+.         recode age "young" ///
+>    (min/17=1)  ///
+>    (18/34=2) ///
+>    (35/64=3) ///
+>    (65/max=4), gen(age_cat)
+"young invalid name
+r(198);
+. tab age_cat 
+. }
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. cls 
+
+. if 0 {
+.         recode age ///
+>    (min/17=1)  ///
+>    (18/34=2) ///
+>    (35/64=3) ///
+>    (65/max=4), gen(age_cat)
+. tab age_cat 
+. }
+
+. 
+. if 0 {
+.         g age_cat = 1 if inrange(age,0,17)
+. replace age_cat = 2 if inrange(age,18,34)
+. replace age_cat = 3 if inrange(age,35,64)
+. replace age_cat = 4 if inrange(age,65,100)
+. tab age_cat
+. }
+
+. 
+. if 1 {
+.         recode age ///
+>         (min/17=1 "17 and below") (18/34=2 "18 to 34") (35/64=3 "35 to 64") (65/m
+> ax=4 "65 and above"), gen(age_cat)
+(1,998 differences between age and age_cat)
+. 
+. }
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. cls 
+
+. if 0 {
+.         recode age ///
+>    (min/17=1)  ///
+>    (18/34=2) ///
+>    (35/64=3) ///
+>    (65/max=4), gen(age_cat)
+. tab age_cat 
+. }
+
+. 
+. if 0 {
+.         g age_cat = 1 if inrange(age,0,17)
+. replace age_cat = 2 if inrange(age,18,34)
+. replace age_cat = 3 if inrange(age,35,64)
+. replace age_cat = 4 if inrange(age,65,100)
+. tab age_cat
+. }
+
+. 
+. if 1 {
+.         recode age ///
+>         (min/17=1 "17 and below") (18/34=2 "18 to 34") (35/64=3 "35 to 64") (65/m
+> ax=4 "65 and above"), gen(age_cat)
+(1,998 differences between age and age_cat)
+. 
+.         tab age_cat 
+
+   RECODE of |
+ age (Age at |
+         TX) |      Freq.     Percent        Cum.
+-------------+-----------------------------------
+17 and below |         97        4.85        4.85
+    18 to 34 |        211       10.55       15.40
+    35 to 64 |      1,329       66.45       81.85
+65 and above |        363       18.15      100.00
+-------------+-----------------------------------
+       Total |      2,000      100.00
+. }
+
+. 
+end of do-file
+
+. cls
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. cls 
+
+. if 0 {
+.         recode age ///
+>    (min/17=1)  ///
+>    (18/34=2) ///
+>    (35/64=3) ///
+>    (65/max=4), gen(age_cat)
+. tab age_cat 
+. }
+
+. 
+. if 0 {
+.         g age_cat = 1 if inrange(age,0,17)
+. replace age_cat = 2 if inrange(age,18,34)
+. replace age_cat = 3 if inrange(age,35,64)
+. replace age_cat = 4 if inrange(age,65,100)
+. tab age_cat
+. }
+
+. 
+. if 1 { //chatGPT
+.         recode age ///
+>             (min/17=1 "17 and below") ///
+>                 (18/34=2 "18 to 34") ///
+>                 (35/64=3 "35 to 64") ///
+>                 (65/max=4 "65 and above"), gen(age_cat)
+(1,998 differences between age and age_cat)
+. 
+.         tab age_cat 
+
+   RECODE of |
+ age (Age at |
+         TX) |      Freq.     Percent        Cum.
+-------------+-----------------------------------
+17 and below |         97        4.85        4.85
+    18 to 34 |        211       10.55       15.40
+    35 to 64 |      1,329       66.45       81.85
+65 and above |        363       18.15      100.00
+-------------+-----------------------------------
+       Total |      2,000      100.00
+. }
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. cls 
+
+. if 1 {
+.         recode age ///
+>    (min/17=1)  ///
+>    (18/34=2) ///
+>    (35/64=3) ///
+>    (65/max=4), gen(age_cat)
+(1,998 differences between age and age_cat)
+. tab age_cat 
+
+  RECODE of |
+age (Age at |
+        TX) |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |         97        4.85        4.85
+          2 |        211       10.55       15.40
+          3 |      1,329       66.45       81.85
+          4 |        363       18.15      100.00
+------------+-----------------------------------
+      Total |      2,000      100.00
+. }
+
+. 
+. if 0 {
+.         g age_cat = 1 if inrange(age,0,17)
+. replace age_cat = 2 if inrange(age,18,34)
+. replace age_cat = 3 if inrange(age,35,64)
+. replace age_cat = 4 if inrange(age,65,100)
+. tab age_cat
+. }
+
+. 
+. if 0 { //chatGPT
+.         recode age ///
+>             (min/17=1 "17 and below") ///
+>                 (18/34=2 "18 to 34") ///
+>                 (35/64=3 "35 to 64") ///
+>                 (65/max=4 "65 and above"), gen(age_cat)
+. 
+.         tab age_cat 
+. }
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. cls 
+
+. qui {
+
+. 
+. if 0 {
+.         g age_cat = 1 if inrange(age,0,17)
+. replace age_cat = 2 if inrange(age,18,34)
+. replace age_cat = 3 if inrange(age,35,64)
+. replace age_cat = 4 if inrange(age,65,100)
+. tab age_cat
+. }
+
+. 
+. if 0 { //chatGPT
+.         recode age ///
+>             (min/17=1 "17 and below") ///
+>                 (18/34=2 "18 to 34") ///
+>                 (35/64=3 "35 to 64") ///
+>                 (65/max=4 "65 and above"), gen(age_cat)
+. 
+.         tab age_cat 
+. }
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. cls 
+
+. qui {
+
+. 
+. if 1 {
+.         g age_cat = 1 if inrange(age,0,17)
+variable age_cat already defined
+r(110);
+. replace age_cat = 2 if inrange(age,18,34)
+. replace age_cat = 3 if inrange(age,35,64)
+. replace age_cat = 4 if inrange(age,65,100)
+. tab age_cat
+. }
+r(110);
+
+end of do-file
+
+r(110);
+
+. pwd
+/Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer
+
+. cd /users/d/desktop
+/Users/d/Desktop
+
+. ls -l
+
+total 48
+-rw-r--r--@ 1 d  staff   504 Jun 22 10:07 chatGPT.do
+-rw-r--r--@ 1 d  staff  3924 Jun 22 10:25 filename.do
+-rw-r--r--@ 1 d  staff   340 Jun 22 10:29 header.txt
+-rw-r--r--@ 1 d  staff  4258 Jun 22 10:29 stmarkdown.css
+-rw-------  1 d  staff   512 Jun 22 10:20 ~chatGPT.do.stswp
+
+. rm chatGPT.do
+
+. rm ~chatGPT.do.stswp
+
+. ls -l
+
+total 32
+-rw-r--r--@ 1 d  staff  3924 Jun 22 10:25 filename.do
+-rw-r--r--@ 1 d  staff   340 Jun 22 10:29 header.txt
+-rw-r--r--@ 1 d  staff  4258 Jun 22 10:29 stmarkdown.css
+
+. dyndoc filename.do, saving(filename.html) replace
+<head>
+  <link rel="stylesheet" type="text/css" href="stmarkdown.css">
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+</head>
+
+# How to embed Stata results in .html  
+
+### Author, MD MPH
+
+**Background:** 
+A <u>user</u> downloads and installs a <u>system</u> of program files, mostly ado-files, which form the foundation of most of the commands 
+used in Stata Programming. Using those commands and additional syntax written out sequentially in a do-file, the user creates 
+well-formed instruction to Stata called a do-file script. Once the user runs this script, results are generated and displayed
+in the results window, in a graph, or in a format (`.xlsx`, `.log`, `.dta`, `.docx`, `.md`, `LaTeX`, `.html`, etc). The `.html` file format is of specific 
+interest since its the pathway to self-publication. To illustrate how this may be achieved in Stata, we hereby introduce the `dyndoc`
+command. 
+
+**Methods:** 
+We created a [do-file](https://raw.githubusercontent.com/jhustata/livre/main/filename.do) and populated it with this abstract using [markdown](https://en.wikipedia.org/wiki/Markdown) language. Anything 
+in this document that is not ordinary text including `<<dd_version: 2>>`, `<<dd_do:nooutput>>`, `<</dd_do>>`, `<<dd_display: c(N)>>` is a 
+[markup](https://en.wikipedia.org/wiki/Markup_language#:~:text=A%20markup%20language%20is%20a,content%20to%20facilitate%20automated%20processing.). 
+Input & output that might be numeric, string, alphanumeric, or formatted as macros are embeded at these markedup points. We then saved this 
+document using the file extension .do; however, any text file extension will work (.txt, .md, .do, etc). To the `pwd` where we saved
+this text file, we added a cascading style sheet [stmarkdown.css](https://raw.githubusercontent.com/jhustata/livre/main/stmarkdown.css) and [header.txt](https://raw.githubusercontent.com/jhustata/livre/main/header.txt) to enhance the aesthetic of our .html file. Finally, we typed the 
+following command into the Stata command window:   `dyndoc filename.do, saving(filename.html) replace`. In the key analysis, $Y  = \beta_0   +  \beta_1 X$, where $Y$ is life expectancy at birth in years, the outcome or dependent variable; $X$ is the country, the predictor or independent variable being tested.     
+
+```
+. webuse lifeexp, clear 
+
+. encode country, gen(Country)
+
+. quietly sum lexp
+
+. qui local lexp_mean: di %3.0f r(mean) 
+
+. quietly sum Country
+
+. qui local Country_mean: di r(mean)  
+
+. twoway scatter lexp Country, ///
+>    xscale(off) ///
+>    yline(`lexp_mean', ///
+>       lc(red) ///
+>       lp(dash) ///
+>    ) ///
+>    text(`lexp_mean' `Country_mean' "Mean life expectancy among countries")
+
+. graph export lexp_bycountry.png, replace 
+
+```
+
+<img src="Graph.svg" >
+
+```
+. qui {
+
+. 
+```
+
+```
+. display c(N) 
+68
+
+. display c(k)  
+7
+
+. list in 1/5 
+
+     +---------------------------------------------------------------------------------+
+     |           region      country   popgro~h   lexp   gnppc   safewa~r      Country |
+     |---------------------------------------------------------------------------------|
+  1. | Europe & C. Asia      Albania        1.2     72     810         76      Albania |
+  2. | Europe & C. Asia      Armenia        1.1     74     460          .      Armenia |
+  3. | Europe & C. Asia      Austria         .4     79   26830          .      Austria |
+  4. | Europe & C. Asia   Azerbaijan        1.4     71     480          .   Azerbaijan |
+  5. | Europe & C. Asia      Belarus         .3     68    2180          .      Belarus |
+     +---------------------------------------------------------------------------------+
+
+```
+
+**Results:** 
+We identified the newly created .html file in our directory and opened it to compare its format to this markdown file. And we saw all that
+we had made, and behold, it was very good. Ghastly macros in the original markdown language were now rendered as neatly formatted
+results. There were  68 observations and 7 variables in the analyzed dataset. Average life expectancy of all countries, $\beta_0$, was 72 years. Difference in life expectancy among <u>adjacent</u> countries, $\beta_1$, showed no trend or pattern and was .002 years, essentially $zero$, and $p$ = .95
+
+**Conclusions:** 
+In walking you through syntax, do-file creation, queued commands, generated results, through to embedding neatly formatted output in
+.html, we believe you now have a sense of what that Stata might offer you. These ideas can be generalized to embedding results 
+in .xlsx, .log, .dta, .docx, etc. 
+
+
+
+successfully converted "/Users/d/Desktop/filename.html"
+
+. ls -l
+
+total 280
+-rw-r--r--  1 d  staff  64648 Jun 22 10:31 Graph.svg
+-rw-r--r--@ 1 d  staff   3924 Jun 22 10:25 filename.do
+-rw-r--r--  1 d  staff   5321 Jun 22 10:31 filename.html
+-rw-r--r--@ 1 d  staff    340 Jun 22 10:29 header.txt
+-rw-r--r--  1 d  staff  51421 Jun 22 10:31 lexp_bycountry.png
+-rw-r--r--@ 1 d  staff   4258 Jun 22 10:29 stmarkdown.css
+
+. di floor(8.9)
+8
+
+. di ceil(8.9)
+9
+
+. di round(8.9)
+9
+
+. use transplants, clear
+file transplants.dta not found
+r(601);
+
+. pwd
+/Users/d/Desktop
+
+. use "/Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/donors.dta", clear
+
+. cls
+
+. use transplants, clear
+
+. use transplants, clear
+
+. ds, has(type string)
+extended_dgn
+
+. list extended_dgn in 1/5, clean
+
+             extended_dgn  
+  1.   REFLUX NEPHROPATHY  
+  2.                BLANK  
+  3.                BLANK  
+  4.                BLANK  
+  5.     ETIOLOGY UNKNOWN  
+
+. disp word("Hello, is there anybody in there?", 4)
+anybody
+
+. ds
+fake_id       don_hgt_cm    don_ecd       rec_hgt_cm    prev_ki       end_date      wait_yrs      rec_hcv_an~y  rec_educat~n
+ctr_id        don_wgt_kg    dx            rec_wgt_kg    age           died          abo           rec_work      extended_dgn
+transplant~e  don_cod       race          bmi           peak_pra      tx_failed     gender        pretx_cmv
+
+. return list
+
+macros:
+            r(varlist) : "fake_id ctr_id transplant_date don_hgt_cm don_wgt_kg don_cod don_ecd dx race rec_hgt_cm rec_wgt_kg bmi.."
+
+. di "`r(varlist)'"
+fake_id ctr_id transplant_date don_hgt_cm don_wgt_kg don_cod don_ecd dx race rec_hgt_cm rec_wgt_kg bmi prev_ki age peak_pra end_date
+>  died tx_failed wait_yrs abo gender rec_hcv_antibody rec_work pretx_cmv rec_education extended_dgn
+
+. di word("`r(varlist)'", 2)
+ctr_id
+
+. di word("`r(varlist)'", 4)
+don_hgt_cm
+
+. di strlen("`r(varlist)'")
+230
+
+. di c(k)
+26
+
+. assert regexm("Earth", "art")
+
+. assert regexm("team", "i")
+assertion is false
+r(9);
+
+. di strpos("Team","e")
+2
+
+. di strpos("Team","i")
+0
+
+. di di strpos("Team","a")
+03
+
+. di strpos("Team","a")
+3
+
+. di strpos("Team","a") !=0
+1
+
+. di strpos("Team","1") !=0
+0
+
+. disp %3.2f 5.345
+5.34
+
+. di %td 1
+02jan1960
+
+. use transplants, clear
+
+. gen f_time = end_d-transplant_d
+
+. sum fu_time
+variable fu_time not found
+r(111);
+
+. sum f_time
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+      f_time |      2,000    1426.847    1007.971   1.033203   3645.416
+
+. which stset
+/Applications/Stata/ado/base/s/stset.ado
+*! version 6.2.0  10apr2021
+
+. cat /Applications/Stata/ado/base/s/stset.ado
+*! version 6.2.0  10apr2021
+/*
+        stset
+        stset, [no]show
+        stset, clear
+
+        stset time cat[, options]
+*/
+
+program define stset, sort prop(nocollect)
+        version 6, missing
+
+        if _caller()<6 {
+                ztset_5 `0'
+                exit
+        }
+
+        if replay() {                                   /* sic */
+                syntax [, CLEAR NOShow Show MI]
+                if ("`mi'"=="") {
+                        u_mi_not_mi_set stset
+                        local chkvars "*"
+                }
+                else {
+                        local chkvars "u_mi_check_setvars settime stset"
+                }
+
+                st_is 2 full
+                if ("`clear'"=="" & "`show'"=="" & "`noshow'"=="") {
+                        streset, `mi'
+                        exit
+                }
+                if "`clear'" != "" {
+                        st_set clear "`chkvars'"
+                        exit
+                }
+                if ("`show'"!="" & "`noshow'"!="") {
+                        di as smcl as err ///
+                        "may not specify both {bf:show} and {bf:nowshow}"
+                        exit 198
+                }
+                if ("`show'"!="") {
+                        char _dta[st_show] 
+                }
+                else    char _dta[st_show] "noshow"
+                exit
+        }
+
+        syntax varlist(numeric max=2) [if/] [fw pw iw/] [, /*
+                */ AFTER(string)        /*
+                */ BEFORe(string)       /*
+                */ ENter(string) ENTRy(string)  /*
+                */ EXit(string)         /*
+                */ EVER(string)         /*
+                */ Failure(string)      /*
+                */ ID(varname)          /*
+                */ IFopt(string)        /*
+                */ MI                   /*
+                */ NEVER(string)        /*
+                */ Origin(string)       /*
+                */ SCale(real 1)        /*
+                */ noShow               /*
+                */ TIME0(string) ]
+
+        if ("`mi'"=="") {
+                u_mi_not_mi_set stset
+                local chkvars "*"
+        }
+        else {
+                local chkvars "u_mi_check_setvars settime stset"
+        }
+
+        `chkvars' `varlist'
+
+        tokenize `varlist'
+        if "`2'"!="" {
+                if `"`failure'"' != "" {
+                        di in red "may not mix old and new syntax"
+                        di in red "may not specify two variables and failure()"
+                        exit 198
+                }
+                local failure "`2'"
+        }
+
+        if `"`entry'"' != "" { 
+                if `"`enter'"'!="" {
+                        error 198
+                }
+                local enter `"`entry'"'
+        }
+
+        st_set  set "`chkvars'" "nocmd" /*
+                         id    bt     bt0       fail        bs
+                */      "`id'" "`1'" `"`time0'"' "`failure'"  `scale'   /*
+
+                                        enter           exit
+                */                      `"`enter'"'     `"`exit'"'      /*
+
+                        origin
+                */      `"`origin'"'                                    /*
+
+                        ifexp           if              ever
+                */      `"`if'"'        `"`ifopt'"'     `"`ever'"'      /*
+
+                        never           after           before
+                */      `"`never'"'     `"`after'"'     `"`before'"'    /*
+
+                        wt              wv              show
+                */      "`weight'"      `"`exp'"'       "`show'"
+
+end
+
+. stset 
+data not st 
+r(119);
+
+. h stset
+
+. stset end_date, origin(transplant_date) failure(died)
+
+Survival-time data settings
+
+         Failure event: died!=0 & died<.
+Observed time interval: (origin, end_date]
+     Exit on or before: failure
+     Time for analysis: (time-origin)
+                Origin: time transplant_date
+
+--------------------------------------------------------------------------
+      2,000  total observations
+          0  exclusions
+--------------------------------------------------------------------------
+      2,000  observations remaining, representing
+        236  failures in single-record/single-failure data
+  2,853,693  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =         0
+                                          Last observed exit t =  3,645.42
+
+. sts graph
+
+        Failure _d: died
+  Analysis time _t: (end_date-origin)
+            Origin: time transplant_date
+
+. sts graph
+
+        Failure _d: died
+  Analysis time _t: (end_date-origin)
+            Origin: time transplant_date
+
+. sts graph, fail
+
+        Failure _d: died
+  Analysis time _t: (end_date-origin)
+            Origin: time transplant_date
+
+. sts graph, fail per(100)
+
+        Failure _d: died
+  Analysis time _t: (end_date-origin)
+            Origin: time transplant_date
+
+. stset end_date, origin(transplant_date) failure(died) scale (365.25)
+
+Survival-time data settings
+
+         Failure event: died!=0 & died<.
+Observed time interval: (origin, end_date]
+     Exit on or before: failure
+     Time for analysis: (time-origin)/365.25
+                Origin: time transplant_date
+
+--------------------------------------------------------------------------
+      2,000  total observations
+          0  exclusions
+--------------------------------------------------------------------------
+      2,000  observations remaining, representing
+        236  failures in single-record/single-failure data
+  7,812.987  total analysis time at risk and under observation
+                                                At risk from t =         0
+                                     Earliest observed entry t =         0
+                                          Last observed exit t =  9.980605
+
+. sts graph 
+
+        Failure _d: died
+  Analysis time _t: (end_date-origin)/365.25
+            Origin: time transplant_date
+
+. sts graph, by(abo)
+
+        Failure _d: died
+  Analysis time _t: (end_date-origin)/365.25
+            Origin: time transplant_date
+
+. stsum
+
+        Failure _d: died
+  Analysis time _t: (end_date-origin)/365.25
+            Origin: time transplant_date
+
+         |               Incidence     Number of   |------ Survival time -----|
+         | Time at risk       rate      subjects        25%       50%       75%
+---------+---------------------------------------------------------------------
+   Total |  7,812.98681   .0302061          2000   8.518047         .         .
+
+. stsum, by(don_ecd)
+
+        Failure _d: died
+  Analysis time _t: (end_date-origin)/365.25
+            Origin: time transplant_date
+
+         |               Incidence     Number of   |------ Survival time -----|
+ don_ecd | Time at risk       rate      subjects        25%       50%       75%
+---------+---------------------------------------------------------------------
+       0 |  6,731.10027   .0245131          1717          .         .         .
+       1 |  1,081.88654   .0656261           283   4.868102         .         .
+---------+---------------------------------------------------------------------
+   Total |  7,812.98681   .0302061          2000   8.518047         .         .
+
+.  stsum, by(don_ecd) per(1000)
+option per() not allowed
+r(198);
+
+. stcox don_ecd age
+
+        Failure _d: died
+  Analysis time _t: (end_date-origin)/365.25
+            Origin: time transplant_date
+
+Iteration 0:  Log likelihood = -1625.9574
+Iteration 1:  Log likelihood =  -1567.662
+Iteration 2:  Log likelihood = -1561.4854
+Iteration 3:  Log likelihood =  -1561.478
+Refining estimates:
+Iteration 0:  Log likelihood =  -1561.478
+
+Cox regression with no ties
+
+No. of subjects =      2,000                            Number of obs =  2,000
+No. of failures =        236
+Time at risk    = 7,812.9868
+                                                        LR chi2(2)    = 128.96
+Log likelihood = -1561.478                              Prob > chi2   = 0.0000
+
+------------------------------------------------------------------------------
+          _t | Haz. ratio   Std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     don_ecd |   1.594369   .2383612     3.12   0.002     1.189412    2.137199
+         age |   1.052498    .006308     8.54   0.000     1.040207    1.064935
+------------------------------------------------------------------------------
+
+. cls
+
+. tab abo
+
+        abo |      Freq.     Percent        Cum.
+------------+-----------------------------------
+        1=A |        720       36.00       36.00
+        2=B |        249       12.45       48.45
+       3=AB |        116        5.80       54.25
+        4=O |        915       45.75      100.00
+------------+-----------------------------------
+      Total |      2,000      100.00
+
+. return list
+
+scalars:
+                  r(N) =  2000
+                  r(r) =  4
+
+. tab abo gender
+
+           |        gender
+       abo |         0          1 |     Total
+-----------+----------------------+----------
+       1=A |       447        273 |       720 
+       2=B |       153         96 |       249 
+      3=AB |        68         48 |       116 
+       4=O |       557        358 |       915 
+-----------+----------------------+----------
+     Total |     1,225        775 |     2,000 
+
+. use transplants, clear
+
+. tab dx gender
+
+       Primary |        gender
+     Diagnosis |         0          1 |     Total
+---------------+----------------------+----------
+  1=Glomerular |       237        187 |       424 
+    2=Diabetes |        60         37 |        97 
+         3=PKD |        81         66 |       147 
+4=Hypertensive |       316        176 |       492 
+5=Renovascular |        24         15 |        39 
+  6=Congenital |        46         22 |        68 
+      7=Tubulo |        32         35 |        67 
+    8=Neoplasm |         8          5 |        13 
+       9=Other |       421        232 |       653 
+---------------+----------------------+----------
+         Total |     1,225        775 |     2,000 
+
+. tab dx gender, matcell(table)
+
+       Primary |        gender
+     Diagnosis |         0          1 |     Total
+---------------+----------------------+----------
+  1=Glomerular |       237        187 |       424 
+    2=Diabetes |        60         37 |        97 
+         3=PKD |        81         66 |       147 
+4=Hypertensive |       316        176 |       492 
+5=Renovascular |        24         15 |        39 
+  6=Congenital |        46         22 |        68 
+      7=Tubulo |        32         35 |        67 
+    8=Neoplasm |         8          5 |        13 
+       9=Other |       421        232 |       653 
+---------------+----------------------+----------
+         Total |     1,225        775 |     2,000 
+
+. return list
+
+scalars:
+                  r(N) =  2000
+                  r(r) =  9
+                  r(c) =  2
+
+. di table
+type mismatch
+r(109);
+
+. di table[6,1]
+46
+
