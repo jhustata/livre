@@ -461,6 +461,92 @@ document.write(`
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">3.44</span> <span class="pre">(2.50-4.76)</span></code></p>
 <p>Except fill in the correct values.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>
+capture log close
+log using lab4_abimuzaale.log, replace
+
+version 15
+clear all
+macro drop _all
+set more off
+set linesize 255
+
+use transplants, clear
+
+//q1, 10pt
+bys ctr_id: gen ctr_volume= _N  
+
+//q2, 10pt
+bys ctr_id: gen tx_id = _n
+egen ctr_tag = tag(ctr_id )
+
+summarize ctr_volume if ctr_tag==1, detail 
+
+//q3, 20pt  ; give a full 20 to any N&gt;800
+tab extended_dgn  
+gen unknown=0 
+
+replace unknown=1 if regexm(ext, &quot;UNCERTAIN&quot;) | regexm(ext, &quot;BLANK&quot;) | regexm(ext, &quot;NO REPORT&quot;) | regexm(ext, &quot;^NOT SPECI&quot;) | regexm(ext, &quot;NA$&quot;) | regexm(ext, &quot;UNK&quot;) | regexm(ext, &quot;UNCLEAR&quot;) | regexm(ext, &quot;UNDET&quot;) | regexm(ext, &quot;U$&quot;) | regexm(ext, &quot;OTHER&quot;) | regexm(ext, &quot;ETIOLOGY$&quot;) | regexm(ext, &quot;COMPLEX CAUSES&quot;) | regexm(ext, &quot;UNOS 999&quot;) | regexm(ext, &quot;UKNOWN&quot;)  
+tab extended_dgn unknown
+tab unknown
+count if unknown==1
+display r(N)
+disp (r(N)/(_N)*100)
+disp r(N) &quot; of 2000 patients (&quot; %2.1f (r(N)/(_N)*100) &quot;%) have an unknown cause of ESRD.&quot;
+
+//q4, 10pt
+format end_date %tdnn/dd/CCYY
+gen died_180=0
+replace died_180=1 if died==1 &amp; ( end_date- transplant_date&lt;=180)  
+count if died_180==1  
+display r(N)  
+disp (r(N)/(_N)*100)  
+disp r(N) &quot; of 2000 patients (&quot; %2.1f (r(N)/(_N)*100) &quot;%) died within 6 months of their transplant date.&quot;  
+
+//q5, 10pt 
+sort abo  
+egen abotag = tag(abo)  
+bys abo: egen mean_time = mean(wait_yrs)  
+bys abo: egen median_time = median(wait_yrs)  
+list abo mean_time median_time if abotag==1, noobs  
+
+
+//q6, 10pt
+gen over50=0  
+replace over50=1 if age&gt;50
+assert age!=.
+stset end_date, origin(transplant_date) failure(died==1) scale (365.25)  
+sts graph, by(over50) t
+
+//q7, 15pt 
+sts test over50   
+scalar p=(1-chi2(r(df), r(chi2)))  
+if p &lt; 0.05 {  
+    disp &quot;There is a statistically significant difference in survival by age category (p&lt;0.05)&quot;
+}
+if p &gt; 0.05 {
+    disp &quot;There is no statistically significant difference in survival by age category (p=&quot; p &quot;)&quot;
+}
+
+//q8, 15pt
+qui stcox over50  
+
+if c(version) &gt; 15 {
+	disp &quot;Hazard ratio:  &quot; %3.2f exp(_b[over50]) &quot; (95% CI &quot; /// 
+	                       %3.2f exp(_b[over50]+invnormal(0.025)*_se[over50]) ///
+					   &quot;-&quot; %3.2f exp(_b[over50]+invnormal(0.975)*_se[over50]) &quot;)&quot;
+}
+else {
+	qui lincom over50 
+	disp &quot;Hazard ratio:  &quot; %3.2f exp(r(estimate)) &quot; (95% CI &quot; ///
+	                       %3.2f exp(r(lb)) ///
+					   &quot;-&quot; %3.2f exp(r(ub)) &quot;)&quot;
+}
+
+
+ 
+</pre></div>
+</div>
 </section>
 </section>
 
