@@ -944,6 +944,149 @@ Kaplan–Meier survivor function
 </section>
 <section id="merge">
 <h2>4.6 merge<a class="headerlink" href="#merge" title="Permalink to this heading">#</a></h2>
+<p>Let’s say we wish to assesss whether donor age is correlated with recipient age in deceased-donor transplants. How might we go about it?</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span>
+<span class="k">lookfor</span> age
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> lookfor</span> age
+
+Variable      Storage	Display	Value
+name        <span class="k"> type	format	label</span>	Variable<span class="k"> label</span>
+				
+age             byte	<span class="nx">%12.0g</span>		Age at TX
+
+. 
+<span class="k">end</span> of<span class="k"> do</span><span class="o">-</span>file
+
+. 
+</pre></div>
+</div>
+<p>We only have the recipients age. So we’ll have to look elsewhere for the donor age:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> donors,<span class="k"> clear</span>
+<span class="k">lookfor</span> age
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> use</span> donors,<span class="k">	clear</span>
+
+.<span class="k"> lookfor</span> age
+
+Variable	Storage	Display	Value
+name<span class="k">	type	format	label</span>	Variable<span class="k">	label</span>
+						
+age_don	float	<span class="nx">%9.0g</span>		     
+
+. 
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">donors.dta</span></code> has donor age, but not recipient age.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> donors_recipients,<span class="k"> clear</span>
+<span class="k">list in</span> <span class="m">1</span><span class="o">/</span><span class="m">10</span>
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> use</span> donors_recipients,<span class="k"> clear</span>
+
+.<span class="k"> list in</span> <span class="m">1</span><span class="o">/</span><span class="m">10</span>
+
+     <span class="o">+--------------------+</span>
+     | fake_id   fake_d<span class="o">~</span>d |
+     |<span class="o">--------------------</span>|
+  <span class="m">1</span>. |       <span class="m">1</span>       <span class="m">4999</span> |
+  <span class="m">2</span>. |       <span class="m">2</span>       <span class="m">4998</span> |
+  <span class="m">3</span>. |       <span class="m">3</span>       <span class="m">4997</span> |
+  <span class="m">4</span>. |       <span class="m">4</span>       <span class="m">4996</span> |
+  <span class="m">5</span>. |       <span class="m">5</span>       <span class="m">4995</span> |
+     |<span class="o">--------------------</span>|
+  <span class="m">6</span>. |       <span class="m">6</span>       <span class="m">4994</span> |
+  <span class="m">7</span>. |       <span class="m">7</span>       <span class="m">4993</span> |
+  <span class="m">8</span>. |       <span class="m">8</span>       <span class="m">4992</span> |
+  <span class="m">9</span>. |       <span class="m">9</span>       <span class="m">4991</span> |
+ <span class="m">10</span>. |      <span class="m">10</span>       <span class="m">4990</span> |
+     <span class="o">+--------------------+</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">donors_recipients.dta</span></code> has neither age, but it has fake_id (corresponding to recipients) and fake_don_id (corresponding to donors). Solution?</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear merge</span> <span class="m">1</span>:<span class="m">1</span> fake_id <span class="cs">///</span>
+    using donors_recipients
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> use</span> transplants,<span class="k"> clear</span> 
+
+.<span class="k"> merge</span> <span class="m">1</span>:<span class="m">1</span> fake_id <span class="cs">///</span>
+<span class="o">&gt;</span>     using donors_recipients
+
+    Result                      Number of obs
+    <span class="o">-----------------------------------------</span>
+    Not matched                         <span class="m">3</span>,<span class="m">000</span>
+        from master                         <span class="m">0</span>  (_merge<span class="o">==</span><span class="m">1</span>)
+        from using                      <span class="m">3</span>,<span class="m">000</span>  (_merge<span class="o">==</span><span class="m">2</span>)
+
+    Matched                             <span class="m">2</span>,<span class="m">000</span>  (_merge<span class="o">==</span><span class="m">3</span>)
+    <span class="o">-----------------------------------------</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>We expect each fake_id to appear only once in each dataset (“one-to-one merge”)</p></li>
+<li><p>fake_id is the variable that appears in both datasets, letting us link them</p></li>
+<li><p>donors_recipients is the dataset that we’re merging with the dataset in memory</p></li>
+</ul>
+<ul class="simple">
+<li><p>Zero records appeared only in the “master” dataset (in memory before the merge command)</p></li>
+<li><p>3000 records appeared only in the “using” dataset (donors_recipients.dta)</p></li>
+<li><p>2000 records appeared in both datasets</p></li>
+<li><p>Stata created a variable called _merge telling us whether each record was master-only, using-only, or both (matched)</p></li>
+</ul>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">tab</span> _merge 
+</pre></div>
+</div>
+<p>Let’s try some fancier syntax:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span> 
+<span class="k">merge</span> <span class="m">1</span>:<span class="m">1</span> fake_id using donors_recipients,<span class="k"> keep</span>(match)
+</pre></div>
+</div>
+<p>Only records that appear in both datasets will remain in memory</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span> 
+<span class="k">merge</span> <span class="m">1</span>:<span class="m">1</span> fake_id using donors_recipients,<span class="k"> keep</span>(master match)
+</pre></div>
+</div>
+<p>Only records that appear in the master dataset only, or in both datasets, will remain in memory</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span> 
+<span class="k">merge</span> <span class="m">1</span>:<span class="m">1</span> fake_id using donors_recipients,  <span class="k"> gen</span>(mergevar)
+</pre></div>
+</div>
+<p>Instead of creating a variable called _merge, call it mergevar</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span> 
+<span class="k">merge</span> <span class="m">1</span>:<span class="m">1</span> fake_id using donors_recipients,   nogen
+</pre></div>
+</div>
+<p>Don’t create any new variables, <strong>NOTE:</strong> if the <code class="docutils literal notranslate"><span class="pre">_merge</span></code> variable already exists, the _merge command will give an error unless you use gen() or nogen</p>
+<p>Two merges in a row:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear merge</span> <span class="m">1</span>:<span class="m">1</span> fake_id <span class="cs">///</span>
+    using donors_recipients, <span class="cs">///</span>
+<span class="k">    keep</span>(match) nogen
+<span class="k">merge m</span>:<span class="m">1</span> fake_don_id <span class="cs">///</span>
+ using donors,<span class="k"> keep</span>(match) nogen <span class="cs">///</span>
+    keepusing(age_don)
+</pre></div>
+</div>
+<p>Don’t load all variables from the new (using) dataset. Just load age_don</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">corr</span> age<span class="o">*</span>
+</pre></div>
+</div>
+<p>In our dataset, fake recipient age and fake donor age *** *** correlated.</p>
+<p>Merging protip: using merge, keep(match) might drop more records than you expect. If you think all
+records will match, it’s a good idea to check this assumption</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear merge</span> <span class="m">1</span>:<span class="m">1</span> fake_id using donors_recipients, <span class="cs">///</span>
+<span class="k">     keep</span>(master match)
+<span class="k">assert</span> _merge<span class="o">==</span><span class="m">3</span>
+</pre></div>
+</div>
+<p>Maybe you don’t expect a perfect match, but you want to make sure nearly all of your records match use transplants, clear</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">merge</span> <span class="m">1</span>:<span class="m">1</span> fake_id using donors_recipients,<span class="k"> keep</span>(master match)
+<span class="k">quietly count if</span> _merge <span class="o">==</span> <span class="m">3</span>
+<span class="k">assert</span> <span class="nf">r</span>(N)<span class="o">/</span>_N <span class="o">&gt;</span> <span class="m">0.99</span> <span class="c1">//99% of records have _merge==3</span>
+</pre></div>
+</div>
 </section>
 </section>
 
