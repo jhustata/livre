@@ -462,15 +462,6 @@ document.write(`
 <p><code class="docutils literal notranslate"><span class="pre">3.44</span> <span class="pre">(2.50-4.76)</span></code></p>
 <p>Except fill in the correct values.</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>
-capture log close
-log using lab4_abimuzaale.log, replace
-
-version 15
-clear all
-macro drop _all
-set more off
-set linesize 255
-
 use transplants, clear
 
 //q1, 10pt
@@ -531,7 +522,7 @@ if p &gt; 0.05 {
 //q8, 15pt
 qui stcox over50  
 
-if c(version) &gt; 15 {
+if c(version) &lt; 16 {
 	disp &quot;Hazard ratio:  &quot; %3.2f exp(_b[over50]) &quot; (95% CI &quot; /// 
 	                       %3.2f exp(_b[over50]+invnormal(0.025)*_se[over50]) ///
 					   &quot;-&quot; %3.2f exp(_b[over50]+invnormal(0.975)*_se[over50]) &quot;)&quot;
@@ -544,7 +535,6 @@ else {
 }
 
 
- 
 </pre></div>
 </div>
 </section>
