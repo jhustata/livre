@@ -1051,3 +1051,1866 @@ r(109);
 . di table[6,1]
 46
 
+. gen x=1
+
+. twoway scatter age x
+
+. twoway scatter age x, jitter(100)
+
+. twoway scatter age x, jitter(10)
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+file transplants.dta not found
+r(601);
+
+end of do-file
+
+r(601);
+
+. pwd
+/Users/d/Desktop
+
+. use "/Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/donors_recipients.dta", clear
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. scalar b0=r(mean)
+
+. scalar ub=r(mean)+r(sd)*1.96
+
+. scalar lb=r(mean)-r(sd)*1.96
+
+. twoway scatter age x
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. scalar b0=r(mean)
+
+. scalar ub=r(mean)+r(sd)*1.96
+
+. scalar lb=r(mean)-r(sd)*1.96
+
+. twoway scatter age x, jitter(5)
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. scalar b0=r(mean)
+
+. scalar ub=r(mean)+r(sd)*1.96
+
+. scalar lb=r(mean)-r(sd)*1.96
+
+. twoway scatter age x, ///
+>     jitter(5) ///
+>         xaxis(off)
+xaxis() invalid -- invalid numlist
+r(121);
+
+end of do-file
+
+r(121);
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. scalar b0=r(mean)
+
+. scalar ub=r(mean)+r(sd)*1.96
+
+. scalar lb=r(mean)-r(sd)*1.96
+
+. twoway scatter age x, ///
+>     jitter(5) ///
+>         xscale(off)
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. scalar b0=r(mean)
+
+. scalar ub=r(mean)+r(sd)*1.96
+
+. scalar lb=r(mean)-r(sd)*1.96
+
+. twoway scatter age x, ///
+>     jitter(5) ///
+>         xscale(off) ///
+>     scatter b0 x
+option scatter not allowed
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. scalar b0=r(mean)
+
+. scalar ub=r(mean)+r(sd)*1.96
+
+. scalar lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>     jitter(5) ///
+>         xscale(off) ///
+>            )
+
+.        (scatter b0 x)
+( is not a valid command name
+r(199);
+
+end of do-file
+
+r(199);
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. scalar b0=r(mean)
+
+. scalar ub=r(mean)+r(sd)*1.96
+
+. scalar lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>     jitter(5) ///
+>         xscale(off) ///
+>            ) ///
+>        (scatter b0 x)
+variable b0 not found
+r(111);
+
+end of do-file
+
+r(111);
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+.            ) ///
+
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. local b0=r(mean)
+
+. local ub=r(mean)+r(sd)*1.96
+
+. local lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>     jitter(5) ///
+>         xscale(off) ///
+>            ) ///
+>        (scatter `b0' x)
+404 invalid name
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>     jitter(5) ///
+>         xscale(off) ///
+>            ) ///
+>        (scatter b0 x)
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>     jitter(5) ///
+>         xscale(off) ///
+>            ) ///
+>        (dot b0 x)
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>     jitter(5) ///
+>         xscale(off) ///
+>            ) ///
+>        (scatter b0 x, msize(10))
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>     jitter(5) ///
+>         xscale(off) ///
+>            ) ///
+>        (scatter b0 x, msize(5))
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>     jitter(5) ///
+>         xscale(off) ///
+>            ) ///
+>        (scatter b0 x, msize(3))
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>     jitter(5) ///
+>         xscale(off) ///
+>            ) ///
+>        (scatter b0 x, msize(2))
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>           jitter(5) ///
+>               xscale(off) ///
+>            ) ///
+>        (scatter b0 x, ///
+>               msize(2) ///
+>                   ) ///
+>                 (rcap ub lb x)
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>           jitter(5) ///
+>               xscale(off) ///
+>                   fcolor(orange%20) ///
+>            ) ///
+>        (scatter b0 x, ///
+>               msize(2) ///
+>                   ) ///
+>                 (rcap ub lb x)
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>           jitter(5) ///
+>               xscale(off) ///
+>                   fcolor(orange%10) ///
+>            ) ///
+>        (scatter b0 x, ///
+>               msize(2) ///
+>                   ) ///
+>                 (rcap ub lb x)
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>           jitter(5) ///
+>               xscale(off) ///
+>                   mcolor(orange%10) ///
+>            ) ///
+>        (scatter b0 x, ///
+>               msize(2) ///
+>                   ) ///
+>                 (rcap ub lb x)
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>           jitter(5) ///
+>               xscale(off) ///
+>                   mcolor(orange%5) ///
+>            ) ///
+>        (scatter b0 x, ///
+>               msize(2) ///
+>                   ) ///
+>                 (rcap ub lb x)
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>           jitter(5) ///
+>               xscale(off) ///
+>                   mcolor(midblue%5) ///
+>            ) ///
+>        (scatter b0 x, ///
+>               msize(2) ///
+>                   ) ///
+>                 (rcap ub lb x)
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>           jitter(5) ///
+>               xscale(off) ///
+>                   mcolor(midblue%5) ///
+>            ) ///
+>        (scatter b0 x, ///
+>               msize(2) ///
+>                   mcolor(orange%50) ///
+>                   ) ///
+>                 (rcap ub lb x)
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>           jitter(5) ///
+>               xscale(off) ///
+>                   mcolor(green%5) ///
+>            ) ///
+>        (scatter b0 x, ///
+>               msize(2) ///
+>                   mcolor(orange%50) ///
+>                   ) ///
+>                 (rcap ub lb x)
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>           jitter(5) ///
+>               xscale(off) ///
+>                   mcolor(green%3) ///
+>            ) ///
+>        (scatter b0 x, ///
+>               msize(2) ///
+>                   mcolor(orange%50) ///
+>                   ) ///
+>                 (rcap ub lb x)
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>            jitter(5) ///
+>                xscale(off) ///
+>                    mcolor(green%3) ///
+>            ) ///
+>        (scatter b0 x, ///
+>                msize(2) ///
+>                    mcolor(orange%50) ///
+>                 ) ///
+>                 (rcap ub lb x, ///
+>                    lc(red) ///
+>                 )
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>            jitter(5) ///
+>                xscale(off) ///
+>                    mcolor(green%3) ///
+>            ) ///
+>        (scatter b0 x, ///
+>                msize(2) ///
+>                    mcolor(midblue%50) ///
+>                 ) ///
+>                 (rcap ub lb x, ///
+>                    lc(red) ///
+>                 )
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>            jitter(5) ///
+>                xscale(off) ///
+>                    mcolor(midblue%3) ///
+>            ) ///
+>        (scatter b0 x, ///
+>                msize(2) ///
+>                    mcolor(red%50) ///
+>                 ) ///
+>                 (rcap ub lb x, ///
+>                    lc(green) ///
+>                 )
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>            jitter(5) ///
+>                xscale(off) ///
+>                    mcolor(midblue%3) ///
+>            ) ///
+>        (scatter b0 x, ///
+>                msize(2) ///
+>                    mcolor(red%50) ///
+>                 ) ///
+>                 (rcap ub lb x, ///
+>                    lc(lime) ///
+>                 )
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>            jitter(5) ///
+>                xscale(off) ///
+>                    mcolor(lime%3) ///
+>            ) ///
+>        (scatter b0 x, ///
+>                msize(2) ///
+>                    mcolor(red%50) ///
+>                 ) ///
+>                 (rcap ub lb x, ///
+>                    lc(lime) ///
+>                 )
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>            jitter(5) ///
+>                xscale(off) ///
+>                    mcolor(lime%30) ///
+>            ) ///
+>        (scatter b0 x, ///
+>                msize(2) ///
+>                    mcolor(red%50) ///
+>                 ) ///
+>                 (rcap ub lb x, ///
+>                    lc(lime) ///
+>                 )
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>            jitter(5) ///
+>                xscale(off) ///
+>                    mcolor(lime%5) ///
+>            ) ///
+>        (scatter b0 x, ///
+>                msize(2) ///
+>                    mcolor(orange%50) ///
+>                 ) ///
+>                 (rcap ub lb x, ///
+>                    lc(lime) ///
+>                 )
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>            jitter(5) ///
+>                xscale(off) ///
+>                    mcolor(lime%5) ///
+>            ) ///
+>        (scatter b0 x, ///
+>                msize(2) ///
+>                    mcolor(midblue%80) ///
+>                 ) ///
+>                 (rcap ub lb x, ///
+>                    lc(lime) ///
+>                 )
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>            jitter(5) ///
+>                xscale(off) ///
+>                    mcolor(lime%5) ///
+>            ) ///
+>        (scatter b0 x, ///
+>                msize(2) ///
+>                    mcolor(midblue%80) ///
+>                 ) ///
+>                 (rcap ub lb x, ///
+>                    lc(orange%80) ///
+>                 )
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>            jitter(5) ///
+>                xscale(off) ///
+>                    mcolor(lime%5) ///
+>            ) ///
+>        (scatter b0 x, ///
+>                msize(2) ///
+>                    mcolor(midblue%80) ///
+>                 ) ///
+>                 (rcap ub lb x, ///
+>                    lc(orange%80) ///
+>                    yti("Age, y") ///
+>                    note("Blue dot = mean; Orange line = 95%CO") ///
+>                 )
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>            jitter(5) ///
+>                xscale(off) ///
+>                    mcolor(lime%5) ///
+>            ) ///
+>        (scatter b0 x, ///
+>                msize(2) ///
+>                    mcolor(midblue%80) ///
+>                 ) ///
+>                 (rcap ub lb x, ///
+>                    legend(off) ///
+>                    lc(orange%80) ///
+>                    yti("Age, y") ///
+>                    note("Blue dot = mean; Orange line = 95%CO") ///
+>                 )
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>            jitter(5) ///
+>                xscale(off) ///
+>                    mcolor(lime%5) ///
+>            ) ///
+>        (scatter b0 x, ///
+>                msize(2) ///
+>                    mcolor(midblue%80) ///
+>                 ) ///
+>                 (rcap ub lb x, ///
+>                    legend(off) ///
+>                    lc(orange%80) ///
+>                    yti("Age, y", orientation(horizontal)) ///
+>                    note("Blue dot = mean; Orange line = 95%CO") ///
+>                 )
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>            jitter(5) ///
+>                xscale(off) ///
+>                    mcolor(lime%5) ///
+>            ) ///
+>        (scatter b0 x, ///
+>                msize(2) ///
+>                    mcolor(midblue%80) ///
+>                 ) ///
+>                 (rcap ub lb x, ///
+>                    legend(off) ///
+>                    lc(orange%80) ///
+>                    yti("Age, y (lime); Blue dot = mean; Orange line = 95%CI", orientation(horizontal)) 
+parentheses do not balance
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>            jitter(5) ///
+>                xscale(off) ///
+>                    mcolor(lime%5) ///
+>            ) ///
+>        (scatter b0 x, ///
+>                msize(2) ///
+>                    mcolor(midblue%80) ///
+>                 ) ///
+>                 (rcap ub lb x, ///
+>                    legend(off) ///
+>                    lc(orange%80) ///
+>                    yti("Age, y (lime); Blue dot = mean; Orange line = 95%CI", orientation(horizontal)) ///
+>                 )
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>            jitter(5) ///
+>                xscale(off) ///
+>                    mcolor(lime%5) ///
+>            ) ///
+>        (scatter b0 x, ///
+>                msize(2) ///
+>                    mcolor(midblue%80) ///
+>                 ) ///
+>                 (rcap ub lb x, ///
+>                    legend(off) ///
+>                    lc(orange%80) ///
+>                    yti("Distribution of age plus estimated mean and 95%CI", orientation(horizontal)) ///
+>                 )
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>            jitter(5) ///
+>                xscale(off) ///
+>                    mcolor(lime%5) ///
+>            ) ///
+>        (scatter b0 x, ///
+>                msize(2) ///
+>                    mcolor(midblue%80) ///
+>                 ) ///
+>                 (rcap ub lb x, ///
+>                    legend(off) ///
+>                    lc(orange%80) ///
+>                    yti("Age, y", orientation(horizontal)) ///
+>                 )
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>            jitter(5) ///
+>                xscale(off) ///
+>                    mcolor(lime%5) ///
+>            ) ///
+>        (scatter b0 x, ///
+>                msize(2) ///
+>                    mcolor(midblue%80) ///
+>                 ) ///
+>                 (rcap ub lb x, ///
+>                    legend(off) ///
+>                    lc(orange%80) ///
+>                    yti("Age at Transplant, y", orientation(horizontal)) ///
+>                 )
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>            jitter(5) ///
+>                xscale(off) ///
+>                    mcolor(lime%5) ///
+>            ) ///
+>        (scatter b0 x, ///
+>                msize(2) ///
+>                    mcolor(midblue%80) ///
+>                 ) ///
+>                 (rcap ub lb x, ///
+>                    legend(off) ///
+>                    lc(orange%80) ///
+>                    yti("Age at Transplant, y", orientation(horizontal)) ///
+>                    note("Mean & 95%CI", size(5))
+parentheses do not balance
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>            jitter(5) ///
+>                xscale(off) ///
+>                    mcolor(lime%5) ///
+>            ) ///
+>        (scatter b0 x, ///
+>                msize(2) ///
+>                    mcolor(midblue%80) ///
+>                 ) ///
+>                 (rcap ub lb x, ///
+>                    legend(off) ///
+>                    lc(orange%80) ///
+>                    yti("Age at Transplant, y", orientation(horizontal)) ///
+>                    note("Mean & 95%CI", size(5)) ///
+>                 )
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>            jitter(5) ///
+>                xscale(off) ///
+>                    mcolor(lime%5) ///
+>            ) ///
+>        (scatter b0 x, ///
+>                msize(2) ///
+>                    mcolor(midblue%80) ///
+>                 ) ///
+>                 (rcap ub lb x, ///
+>                    legend(off) ///
+>                    lc(orange%80) ///
+>                    yti("Age at Transplant, y", orientation(horizontal)) ///
+>                    note("Mean & 95%CI", size(2)) ///
+>                 )
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>            jitter(5) ///
+>                xscale(off) ///
+>                    mcolor(lime%5) ///
+>            ) ///
+>        (scatter b0 x, ///
+>                msize(2) ///
+>                    mcolor(midblue%80) ///
+>                 ) ///
+>                 (rcap ub lb x, ///
+>                    legend(off) ///
+>                    lc(orange%80) ///
+>                    yti("Age at Transplant, y", orientation(horizontal)) ///
+>                    note("Mean & 95%CI", size(3)) ///
+>                 )
+
+. 
+end of do-file
+
+. pwd
+/Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g x=1
+
+. qui sum age
+
+. return list
+
+scalars:
+                  r(N) =  2000
+              r(sum_w) =  2000
+               r(mean) =  50.404
+                r(Var) =  249.975771885943
+                 r(sd) =  15.81062212204007
+                r(min) =  0
+                r(max) =  85
+                r(sum) =  100808
+
+. g b0=r(mean)
+
+. g ub=r(mean)+r(sd)*1.96
+
+. g lb=r(mean)-r(sd)*1.96
+
+. twoway (scatter age x, ///
+>            jitter(5) ///
+>                xscale(off) ///
+>                    mcolor(lime%5) ///
+>            ) ///
+>        (scatter b0 x, ///
+>                msize(2) ///
+>                    mcolor(midblue%80) ///
+>                 ) ///
+>                 (rcap ub lb x, ///
+>                    legend(off) ///
+>                    lc(orange%80) ///
+>                    yti("Age at Transplant, y", orientation(horizontal)) ///
+>                    note("Mean & 95%CI", size(3)) ///
+>                 )
+
+. graph export age_m_95ci.png, replace
+file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/age_m_95ci.png saved as PNG format
+
+. 
+end of do-file
+
