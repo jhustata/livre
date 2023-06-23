@@ -3237,3 +3237,108 @@ file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/line_c
 . 
 end of do-file
 
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. regress n yr
+
+      Source |       SS           df       MS      Number of obs   =        10
+-------------+----------------------------------   F(1, 8)         =      5.81
+       Model |  470.412121         1  470.412121   Prob > F        =    0.0425
+    Residual |  647.587879         8  80.9484848   R-squared       =    0.4208
+-------------+----------------------------------   Adj R-squared   =    0.3484
+       Total |        1118         9  124.222222   Root MSE        =    8.9971
+
+------------------------------------------------------------------------------
+           n | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+          yr |   2.387879   .9905522     2.41   0.042     .1036612    4.672096
+       _cons |   -4600.83   1991.507    -2.31   0.050    -9193.254   -8.406172
+------------------------------------------------------------------------------
+
+. twoway line n yr ///
+>   || function y=_b[_cons]+_b[yr]*x, range(yr)
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. regress n yr
+
+      Source |       SS           df       MS      Number of obs   =        10
+-------------+----------------------------------   F(1, 8)         =      5.81
+       Model |  470.412121         1  470.412121   Prob > F        =    0.0425
+    Residual |  647.587879         8  80.9484848   R-squared       =    0.4208
+-------------+----------------------------------   Adj R-squared   =    0.3484
+       Total |        1118         9  124.222222   Root MSE        =    8.9971
+
+------------------------------------------------------------------------------
+           n | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+          yr |   2.387879   .9905522     2.41   0.042     .1036612    4.672096
+       _cons |   -4600.83   1991.507    -2.31   0.050    -9193.254   -8.406172
+------------------------------------------------------------------------------
+
+. twoway line n yr ///
+>   || function y=_b[_cons]+_b[yr]*x, range(yr)
+
+. graph export line_regress.png, replace
+file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/line_regress.png saved as PNG format
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. twoway line female yr /// 
+>     || line male yr ///
+>     || line scd yr ///
+>     || line ecd yr ///
+>     || line n yr
+
+. graph export five_overlay.png, replace
+file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/five_overlay.png saved as PNG format
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. twoway line n yr, yscale(range(0))
+
+. graph export scale.png, replace
+file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/scale.png saved as PNG format
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. twoway line n yr, yscale(range(0 400))
+
+. graph export scale2.png, replace
+file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/scale2.png saved as PNG format
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. tw li n yr, xscale(range(2014))
+
+. graph export range.png, replace 
+file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/range.png saved as PNG format
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. tw li ecd yr, xscale(off) yscale(off)
+
+. graph export scale_off.png, replace 
+file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/scale_off.png saved as PNG format
+
+. 
+end of do-file
+

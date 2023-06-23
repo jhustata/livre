@@ -376,6 +376,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function">5.2.6 function</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#y">5.3 y</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overlay">5.4 overlay</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#axis">5.5 axis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scale">5.5.1 scale()</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -906,6 +910,51 @@ Sorted<span class="k"> by</span>: yr
 </pre></div>
 </div>
 <p><img alt="" src="_images/line_connect.png" /></p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">regress n</span> yr
+<span class="k">twoway line n</span> yr <span class="cs">///</span>
+  || function y=_b[_cons]<span class="o">+</span>_b[yr]<span class="o">*</span>x,<span class="k"> range</span>(yr)
+<span class="k">graph</span> export line_regress<span class="m">.</span>png,<span class="k"> replace</span>
+</pre></div>
+</div>
+<p><img alt="" src="_images/line_regress.png" /></p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">twoway line</span> female yr <span class="cs">/// </span>
+    ||<span class="k"> line</span> male yr <span class="cs">///</span>
+    ||<span class="k"> line</span> scd yr <span class="cs">///</span>
+    ||<span class="k"> line</span> ecd yr <span class="cs">///</span>
+    ||<span class="k"> line n</span> yr
+<span class="k">graph</span> export five_overlay<span class="m">.</span>png,<span class="k"> replace</span>
+</pre></div>
+</div>
+<p><img alt="" src="_images/five_overlay.png" /></p>
+</section>
+<section id="axis">
+<h2>5.5 axis<a class="headerlink" href="#axis" title="Permalink to this heading">#</a></h2>
+<p>The graph of # transplants per year exaggerates year- on-year change; the value for 2009 appears to be near zero, but is actually 180. How can we fix the axis?</p>
+<section id="scale">
+<h3>5.5.1 scale()<a class="headerlink" href="#scale" title="Permalink to this heading">#</a></h3>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">twoway line n</span> yr, yscale(range(<span class="m">0</span>))
+<span class="k">graph</span> export scale<span class="m">.</span>png,<span class="k"> replace</span>
+</pre></div>
+</div>
+<p><img alt="" src="_images/scale.png" /></p>
+<p>Make sure the y axis range includes the number zero</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">twoway line n</span> yr, yscale(range(<span class="m">0</span> <span class="m">400</span>))
+<span class="k">graph</span> export scale2<span class="m">.</span>png,<span class="k"> replace</span>
+</pre></div>
+</div>
+<p><img alt="" src="_images/scale2.png" /></p>
+<p>Make sure the y axis range includes the numbers 0 and 400</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">tw li n</span> yr, xscale(range(<span class="m">2014</span>))
+<span class="k">graph</span> export<span class="k"> range</span><span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<p><img alt="" src="_images/range.png" /></p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">tw li</span> ecd yr, xscale(off) yscale(off)
+<span class="k">graph</span> export scale_off<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<p><img alt="" src="_images/scale_off.png" /></p>
+</section>
 </section>
 </section>
 
@@ -994,6 +1043,10 @@ Sorted<span class="k"> by</span>: yr
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function">5.2.6 function</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#y">5.3 y</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overlay">5.4 overlay</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#axis">5.5 axis</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scale">5.5.1 scale()</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
