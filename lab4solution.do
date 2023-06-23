@@ -67,17 +67,17 @@ if p > 0.05 {
 //q8, 15pt
 qui stcox over50  
 
-if c(version) > 15 {
-	disp "Hazard ratio:  " %3.2f exp(_b[over50]) " (95% CI " /// 
-	                       %3.2f exp(_b[over50]+invnormal(0.025)*_se[over50]) ///
-					   "-" %3.2f exp(_b[over50]+invnormal(0.975)*_se[over50]) ")"
+if c(version) < 15 {      
+	disp "Hazard ratio:  " %3.2f exp(_b[over50]) " (95% CI " ///       
+	                       %3.2f exp(_b[over50]+invnormal(0.025)*_se[over50]) ///      
+					   "-" %3.2f exp(_b[over50]+invnormal(0.975)*_se[over50]) ")"      
 }
-else {
-	qui lincom over50 
-	disp "Hazard ratio:  " %3.2f exp(r(estimate)) " (95% CI " ///
-	                       %3.2f exp(r(lb)) ///
-					   "-" %3.2f exp(r(ub)) ")"
-}
+else {     
+	qui lincom over50      
+	disp "Hazard ratio:  " %3.2f exp(r(estimate)) " (95% CI " ///      
+	                       %3.2f exp(r(lb)) ///      
+					   "-" %3.2f exp(r(ub)) ")"      
+}   
 
 
  
