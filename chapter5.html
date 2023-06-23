@@ -357,6 +357,14 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram">5.1  histogram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#density">5.1.1 density</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fraction">5.1.2 fraction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#percent">5.1.3 percent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency">5.1.4 frequency</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete">5.1.5 discrete</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#addplot">5.1.6 addplot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scheme">5.1.7 scheme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normal">5.1.8 normal</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#twoway">5.2 twoway</a></li>
 </ul>
             </nav>
@@ -397,6 +405,9 @@ document.write(`
 <li><p>First bar is BMI 17-17.71875</p></li>
 <li><p>Each one represents 0.71875 BMI units</p></li>
 </ul>
+</section>
+<section id="density">
+<h2>5.1.1 density<a class="headerlink" href="#density" title="Permalink to this heading">#</a></h2>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">hist</span> bmi, width(<span class="m">2</span>)
 <span class="k">graph</span> export bmi2<span class="m">.</span>png,<span class="k"> replace</span>
 </pre></div>
@@ -440,6 +451,156 @@ document.write(`
 <li><p>Each one represents 2 units</p></li>
 </ul>
 <p><img alt="" src="_images/bmi3.png" /></p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span>
+<span class="k">hist</span> bmi, bin(<span class="m">10</span>)
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> use</span> transplants,<span class="k"> clear</span>
+
+.<span class="k"> hist</span> bmi, bin(<span class="m">10</span>)
+(bin=<span class="m">10</span>, start=<span class="m">17</span>, width=<span class="m">2.3</span>)
+
+.<span class="k"> graph</span> export bmi4<span class="m">.</span>png,<span class="k"> replace</span> 
+<span class="k">file</span> <span class="o">/</span>Users<span class="o">/</span>d<span class="o">/</span>Dropbox (Personal)<span class="o">/</span>1f<span class="m">.</span>ἡἔρις,κ<span class="o">/</span><span class="m">1.</span>ontology<span class="o">/</span>summer<span class="o">/</span>bmi4<span class="m">.</span>png	saved<span class="k">	as</span>	PNG<span class="k">	format</span>
+
+. 
+</pre></div>
+</div>
+<p><img alt="" src="_images/bmi3.png" /></p>
+<ul class="simple">
+<li><p>10 bars</p></li>
+</ul>
+<p>Four flavors of the <code class="docutils literal notranslate"><span class="pre">histogram</span></code> command:</p>
+<ul class="simple">
+<li><p>density (default)</p></li>
+<li><p>fraction</p></li>
+<li><p>percent</p></li>
+<li><p>frequency</p></li>
+</ul>
+</section>
+<section id="fraction">
+<h2>5.1.2 fraction<a class="headerlink" href="#fraction" title="Permalink to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">hist</span> rec_wgt_kkg, fraction
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> hist</span> rec_wgt_kg, fraction
+(bin=<span class="m">32</span>, start=<span class="m">9.67</span>, width=<span class="m">4.5596875</span>)
+
+.<span class="k"> graph</span> export weight<span class="m">.</span>png,<span class="k"> replace</span> 
+<span class="k">file</span> <span class="o">/</span>Users<span class="o">/</span>d<span class="o">/</span>Dropbox (Personal)<span class="o">/</span>1f<span class="m">.</span>ἡἔρις,κ<span class="o">/</span><span class="m">1.</span>ontology<span class="o">/</span>summer<span class="o">/</span>weight<span class="m">.</span>png	saved<span class="k">	as</span>	PNG<span class="k">	format</span>
+
+. 
+</pre></div>
+</div>
+<p><img alt="" src="_images/weight.png" /></p>
+</section>
+<section id="percent">
+<h2>5.1.3 percent<a class="headerlink" href="#percent" title="Permalink to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">hist</span> rec_wgt_kg, percent
+<span class="k">graph</span> export weight2<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> hist</span> rec_wgt_kg, percent
+(bin=<span class="m">32</span>, start=<span class="m">9.67</span>, width=<span class="m">4.5596875</span>)
+
+.<span class="k"> graph</span> export weight2<span class="m">.</span>png,<span class="k"> replace</span> 
+<span class="k">file</span> <span class="o">/</span>Users<span class="o">/</span>d<span class="o">/</span>Dropbox (Personal)<span class="o">/</span>1f<span class="m">.</span>ἡἔρις,κ<span class="o">/</span><span class="m">1.</span>ontology<span class="o">/</span>summer<span class="o">/</span>weight2<span class="m">.</span>png	saved<span class="k">	as</span>	PNG<span class="k">	format</span>
+
+. 
+</pre></div>
+</div>
+<p><img alt="" src="_images/weight2.png" /></p>
+</section>
+<section id="frequency">
+<h2>5.1.4 frequency<a class="headerlink" href="#frequency" title="Permalink to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">hist</span> rec_wgt_kg, freq
+<span class="k">graph</span> export weight3<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> hist</span> rec_wgt_kg, freq
+(bin=<span class="m">32</span>, start=<span class="m">9.67</span>, width=<span class="m">4.5596875</span>)
+
+.<span class="k"> graph</span> export weight3<span class="m">.</span>png,<span class="k"> replace</span> 
+<span class="k">file</span> <span class="o">/</span>Users<span class="o">/</span>d<span class="o">/</span>Dropbox (Personal)<span class="o">/</span>1f<span class="m">.</span>ἡἔρις,κ<span class="o">/</span><span class="m">1.</span>ontology<span class="o">/</span>summer<span class="o">/</span>weight3<span class="m">.</span>png	saved<span class="k">	as</span>	PNG<span class="k">	format</span>
+
+. 
+<span class="k">end</span> 
+</pre></div>
+</div>
+<p><img alt="" src="_images/weight3.png" /></p>
+</section>
+<section id="discrete">
+<h2>5.1.5 discrete<a class="headerlink" href="#discrete" title="Permalink to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">hist</span> dx 
+<span class="k">graph</span> export discrete<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> hist</span> dx 
+(bin=<span class="m">33</span>, start=<span class="m">1</span>, width=.<span class="m">24242424</span>)
+
+.<span class="k"> graph</span> export discrete<span class="m">.</span>png,<span class="k"> replace</span> 
+<span class="k">file</span> <span class="o">/</span>Users<span class="o">/</span>d<span class="o">/</span>Dropbox (Personal)<span class="o">/</span>1f<span class="m">.</span>ἡἔρις,κ<span class="o">/</span><span class="m">1.</span>ontology<span class="o">/</span>summer<span class="o">/</span>discrete<span class="m">.</span>png	saved<span class="k">	as</span>	PNG<span class="k">	format</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>0.242424 diagnoses?</p></li>
+<li><p>meaningless</p></li>
+<li><p>option to adapt output to discrete variable</p></li>
+</ul>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">hist</span> dx, disc
+<span class="k">graph</span> export discrete2<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> hist</span> dx, disc
+(start=<span class="m">1</span>, width=<span class="m">1</span>)
+
+.<span class="k"> graph</span> export discrete2<span class="m">.</span>png,<span class="k"> replace</span> 
+<span class="k">file</span> <span class="o">/</span>Users<span class="o">/</span>d<span class="o">/</span>Dropbox (Personal)<span class="o">/</span>1f<span class="m">.</span>ἡἔρις,κ<span class="o">/</span><span class="m">1.</span>ontology<span class="o">/</span>summer<span class="o">/</span>discrete2<span class="m">.</span>png	saved<span class="k">	as</span>	PNG<span class="k">	format</span>
+
+. 
+<span class="k">end</span>
+</pre></div>
+</div>
+</section>
+<section id="addplot">
+<h2>5.1.6 addplot<a class="headerlink" href="#addplot" title="Permalink to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">hist</span> height<span class="k"> if</span> gender<span class="o">==</span><span class="m">0</span>, addplot(hist height<span class="k"> if</span> gender <span class="o">==</span><span class="m">1</span>)
+<span class="k">graph</span> export addplot<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<p><img alt="" src="_images/addplot.png" /></p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">hist</span> rec_hgt_cm<span class="k"> if</span> gender<span class="o">==</span><span class="m">0</span>, fcolor(midblue%<span class="m">50</span>) <span class="cs">///</span>
+    addplot(hist rec_hgt_cm<span class="k"> if</span> gender <span class="o">==</span><span class="m">1</span>, fcolor(orange%<span class="m">40</span>))
+<span class="k">graph</span> export addplot2<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<p><img alt="" src="_images/addplot2.png" /></p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">hist</span> rec_hgt_cm<span class="k"> if</span> gender<span class="o">==</span><span class="m">0</span>, <span class="cs">///</span>
+    fcolor(midblue%<span class="m">50</span>) <span class="cs">///</span>
+    legend( <span class="cs">///</span>
+<span class="k">	    lab</span>(<span class="m">1</span> <span class="s">&quot;Male&quot;</span>) <span class="cs">///</span>
+<span class="k">		lab</span>(<span class="m">2</span> <span class="s">&quot;Female&quot;</span>)) <span class="cs">///</span>
+    addplot(hist rec_hgt_cm<span class="k"> if</span> gender <span class="o">==</span><span class="m">1</span>, fcolor(orange%<span class="m">40</span>))
+<span class="k">graph</span> export addplot3<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<p><img alt="" src="_images/addplot3.png" /></p>
+</section>
+<section id="scheme">
+<h2>5.1.7 scheme<a class="headerlink" href="#scheme" title="Permalink to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">hist</span> rec_hgt_cm, scheme(s2color)
+<span class="k">graph</span> export scheme<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<p><img alt="" src="_images/scheme.png" /></p>
+</section>
+<section id="normal">
+<h2>5.1.8 normal<a class="headerlink" href="#normal" title="Permalink to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">hist</span> rec_hgt_cm, normal
+<span class="k">graph</span> export overlay<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<p><img alt="" src="_images/overlay.png" /></p>
 </section>
 <section id="twoway">
 <h2>5.2 twoway<a class="headerlink" href="#twoway" title="Permalink to this heading">#</a></h2>
@@ -515,6 +676,14 @@ document.write(`
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram">5.1  histogram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#density">5.1.1 density</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fraction">5.1.2 fraction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#percent">5.1.3 percent</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#frequency">5.1.4 frequency</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discrete">5.1.5 discrete</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#addplot">5.1.6 addplot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scheme">5.1.7 scheme</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normal">5.1.8 normal</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#twoway">5.2 twoway</a></li>
 </ul>
   </nav></div>
