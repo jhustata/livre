@@ -434,6 +434,59 @@ stcolor
 </div>
 <p><img alt="" src="_images/lexp_s2color.png" /></p>
 <p>I think the above output clarifies what the <code class="docutils literal notranslate"><span class="pre">c</span></code> in <code class="docutils literal notranslate"><span class="pre">c(scheme)</span></code> refers to: a constant default, even when I change the output parameter.</p>
+<p>So lets reset my default:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">set</span> scheme s2color
+<span class="k">webuse</span> lifeexp
+<span class="k">di</span> <span class="nf">c</span>(scheme)
+<span class="k">hist</span> lexp
+<span class="k">graph</span> export lexp_setscheme<span class="m">.</span>png,<span class="k"> replace</span>
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> set</span> scheme s2color
+
+.<span class="k"> webuse</span> lifeexp
+(Life expectancy, <span class="m">1998</span>)
+
+.<span class="k"> di</span> <span class="nf">c</span>(scheme)
+s2color
+
+.<span class="k"> hist</span> lexp
+(bin=<span class="m">8</span>, start=<span class="m">54</span>, width=<span class="m">3.125</span>)
+
+.<span class="k"> graph</span> export lexp_setscheme<span class="m">.</span>png,<span class="k"> replace</span>
+<span class="k">file</span> <span class="o">/</span>Users<span class="o">/</span>d<span class="o">/</span>Dropbox (Personal)<span class="o">/</span>1f<span class="m">.</span>ἡἔρις,κ<span class="o">/</span><span class="m">1.</span>ontology<span class="o">/</span>summer<span class="o">/</span>lexp_setscheme<span class="m">.</span>png	saved<span class="k">	as</span>	PNG
+<span class="k">format</span>
+
+. 
+</pre></div>
+</div>
+<p><img alt="" src="_images/lexp_setscheme.png" /></p>
+<p>How may one restore their default <code class="docutils literal notranslate"><span class="pre">c(scheme)</span></code>?</p>
+<p><img alt="" src="_images/set_scheme_default.png" /></p>
+<p>So lets see if that works:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">set</span> scheme default
+<span class="k">di</span> <span class="nf">c</span>(N)
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> set</span> scheme default
+scheme default not found
+<span class="nf">r</span>(<span class="m">111</span>);
+</pre></div>
+</div>
+<p>That did not work. And after a Google search (chatGPT hasn’t yet been trained on data from a post Stata18 world!), I found nothing.</p>
+<p>So I’ll just invoke my prior knowledge:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">set</span> scheme stcolor
+<span class="k">di</span> <span class="nf">c</span>(scheme)
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> set</span> scheme stcolor
+
+.<span class="k"> di</span> <span class="nf">c</span>(scheme)
+stcolor
+
+. 
+</pre></div>
+</div>
 <section id="histogram">
 <h2>5.1  histogram<a class="headerlink" href="#histogram" title="Permalink to this heading">#</a></h2>
 <p>Univariable: distribution</p>
