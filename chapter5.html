@@ -611,6 +611,23 @@ stcolor
 <li><p>percent</p></li>
 <li><p>frequency</p></li>
 </ul>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span>
+<span class="k">hist</span> age, addplot(kdensity age)
+<span class="k">graph</span> export hist_kdensity<span class="m">.</span>png,<span class="k"> replace</span>
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> use</span> transplants,<span class="k"> clear</span>
+
+.<span class="k"> hist</span> age, addplot(kdensity age)
+(bin=<span class="m">33</span>, start=<span class="m">0</span>, width=<span class="m">2.5757576</span>)
+
+.<span class="k"> graph</span> export hist_kdensity<span class="m">.</span>png,<span class="k"> replace</span>
+<span class="k">file</span> <span class="o">/</span>Users<span class="o">/</span>d<span class="o">/</span>Dropbox (Personal)<span class="o">/</span>1f<span class="m">.</span>ἡἔρις,κ<span class="o">/</span><span class="m">1.</span>ontology<span class="o">/</span>summer<span class="o">/</span>hist_kdensity<span class="m">.</span>png	saved<span class="k">	as</span>	PNG<span class="k">	format</span>
+
+. 
+</pre></div>
+</div>
+<p><img alt="" src="_images/hist_kdensity.png" /></p>
 </section>
 <section id="fraction">
 <h2>5.1.2 fraction<a class="headerlink" href="#fraction" title="Permalink to this heading">#</a></h2>
