@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>5. Graphs &#8212; Stata Programming</title>
   
@@ -61,6 +61,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'chapter5';</script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -461,7 +463,7 @@ s2color
 </pre></div>
 </div>
 <p><img alt="" src="_images/lexp_setscheme.png" /></p>
-<p>How may one restore their default <code class="docutils literal notranslate"><span class="pre">c(scheme)</span></code>?</p>
+<p>How may one restore the default <code class="docutils literal notranslate"><span class="pre">c(scheme)</span></code>?</p>
 <p><img alt="" src="_images/set_scheme_default.png" /></p>
 <p>So lets see if that works:</p>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">set</span> scheme default
@@ -743,6 +745,35 @@ stcolor
 </pre></div>
 </div>
 <p><img alt="" src="_images/twowway.png" /></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">twoway</span></code> plot may be a simple descriptive visualization of data. But what is implied during this exploratory phase of analysis is the following regression:</p>
+<p><span class="math notranslate nohighlight">\(Y   = \beta_0    +    \beta_1 X_1 +    \beta_2 X_2   +   \cdots   +   \beta_N X_N   \pm   \varepsilon_i  \)</span></p>
+<p>So if you don’t have any predictor, then you’re left with just <span class="math notranslate nohighlight">\(Y   =    \beta_0  \pm    \varepsilon\)</span>, which includes all one-way plots such as histogram, boxplot, or a twoway plot of that one variable against a “meaningless” x-axis:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span>
+<span class="k">g</span> x=<span class="m">1</span>
+<span class="k">qui sum</span> age
+<span class="k">return list</span>
+<span class="k">g</span> b0=<span class="nf">r</span>(mean)
+<span class="k">g</span> ub=<span class="nf">r</span>(mean)<span class="o">+</span><span class="nf">r</span>(sd)<span class="o">*</span><span class="m">1.96</span>
+<span class="k">g</span> lb=<span class="nf">r</span>(mean)<span class="o">-</span><span class="nf">r</span>(sd)<span class="o">*</span><span class="m">1.96</span>
+<span class="k">twoway</span> (scatter age x, <span class="cs">///</span>
+           jitter(<span class="m">5</span>) <span class="cs">///</span>
+	       xscale(off) <span class="cs">///</span>
+		   mcolor(lime%<span class="m">5</span>) <span class="cs">///</span>
+	   ) <span class="cs">///</span>
+       (scatter b0 x, <span class="cs">///</span>
+	       msize(<span class="m">2</span>) <span class="cs">///</span>
+		   mcolor(midblue%<span class="m">80</span>) <span class="cs">///</span>
+		) <span class="cs">///</span>
+		(rcap ub lb x, <span class="cs">///</span>
+		   legend(off) <span class="cs">///</span>
+		   lc(orange%<span class="m">80</span>) <span class="cs">///</span>
+		   yti(<span class="s">&quot;Age at Transplant, y&quot;</span>, orientation(horizontal)) <span class="cs">///</span>
+<span class="k">		   note</span>(<span class="s">&quot;Mean &amp; 95%CI&quot;</span>, size(<span class="m">3</span>)) <span class="cs">///</span>
+		)
+<span class="k">graph</span> export age_m_95ci<span class="m">.</span>png,<span class="k"> replace</span>
+</pre></div>
+</div>
+<p><img alt="" src="_images/age_m_95ci.png" /></p>
 </section>
 </section>
 
