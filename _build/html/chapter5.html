@@ -333,7 +333,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
 </div></div>
       
     </div>
@@ -349,6 +351,15 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram">5.1  histogram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#twoway">5.2 twoway</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -360,6 +371,80 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="graphs">
 <h1>5. Graphs<a class="headerlink" href="#graphs" title="Permalink to this heading">#</a></h1>
+<p>Visualizing data</p>
+<section id="histogram">
+<h2>5.1  histogram<a class="headerlink" href="#histogram" title="Permalink to this heading">#</a></h2>
+<p>Univariable: distribution</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span>
+<span class="k">hist</span> bmi
+<span class="k">graph</span> export bmi<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> use</span> transplants,<span class="k"> clear</span>
+
+.<span class="k"> hist</span> bmi
+(bin=<span class="m">32</span>, start=<span class="m">17</span>, width=.<span class="m">71875</span>)
+
+.<span class="k"> graph</span> export bmi<span class="m">.</span>png,<span class="k"> replace</span> 
+<span class="k">file</span> <span class="o">/</span>Users<span class="o">/</span>d<span class="o">/</span>Dropbox (Personal)<span class="o">/</span>1f<span class="m">.</span>ἡἔρις,κ<span class="o">/</span><span class="m">1.</span>ontology<span class="o">/</span>summer<span class="o">/</span>bmi<span class="m">.</span>png	saved<span class="k">	as</span>	PNG<span class="k">	format</span>
+
+. 
+</pre></div>
+</div>
+<p><img alt="" src="_images/bmi.png" /></p>
+<ul class="simple">
+<li><p>32 bars</p></li>
+<li><p>First bar is BMI 17-17.71875</p></li>
+<li><p>Each one represents 0.71875 BMI units</p></li>
+</ul>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">hist</span> bmi, width(<span class="m">2</span>)
+<span class="k">graph</span> export bmi2<span class="m">.</span>png,<span class="k"> replace</span>
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> hist</span> bmi, width(<span class="m">2</span>)
+(bin=<span class="m">12</span>, start=<span class="m">17</span>, width=<span class="m">2</span>)
+
+.<span class="k"> graph</span> export bmi2<span class="m">.</span>png,<span class="k"> replace</span>
+<span class="k">file</span> <span class="o">/</span>Users<span class="o">/</span>d<span class="o">/</span>Dropbox (Personal)<span class="o">/</span>1f<span class="m">.</span>ἡἔρις,κ<span class="o">/</span><span class="m">1.</span>ontology<span class="o">/</span>summer<span class="o">/</span>bmi2<span class="m">.</span>png	saved<span class="k">	as</span>	PNG<span class="k">	format</span>
+
+. 
+</pre></div>
+</div>
+<p><img alt="" src="_images/bmi2.png" /></p>
+<ul class="simple">
+<li><p>12 bars</p></li>
+<li><p>First bar is BMI 17-19</p></li>
+<li><p>Each on repesents 2 BMI units</p></li>
+</ul>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">hist</span> bmi, bin(<span class="m">500</span>) start(<span class="m">0</span>) 
+<span class="k">graph</span> export bmi3<span class="m">.</span>png, normal<span class="k"> replace</span>
+</pre></div>
+</div>
+<p><img alt="" src="_images/bmi3.png" /></p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">hist</span> bmi, width(<span class="m">2</span>) start(<span class="m">0</span>)
+<span class="k">graph</span> export bmi3<span class="m">.</span>png,<span class="k"> replace</span>
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> hist</span> bmi, width(<span class="m">2</span>) start(<span class="m">0</span>)
+(bin=<span class="m">20</span>, start=<span class="m">0</span>, width=<span class="m">2</span>)
+
+.<span class="k"> graph</span> export bmi3<span class="m">.</span>png,<span class="k"> replace</span>
+<span class="k">file</span> <span class="o">/</span>Users<span class="o">/</span>d<span class="o">/</span>Dropbox (Personal)<span class="o">/</span>1f<span class="m">.</span>ἡἔρις,κ<span class="o">/</span><span class="m">1.</span>ontology<span class="o">/</span>summer<span class="o">/</span>bmi3<span class="m">.</span>png	saved<span class="k">	as</span>	PNG<span class="k">	format</span>
+
+. 
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>20 bars</p></li>
+<li><p>First bar is BMI 0-2</p></li>
+<li><p>Each one represents 2 units</p></li>
+</ul>
+<p><img alt="" src="_images/bmi3.png" /></p>
+</section>
+<section id="twoway">
+<h2>5.2 twoway<a class="headerlink" href="#twoway" title="Permalink to this heading">#</a></h2>
+<p>Bivariable: correlation</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -420,6 +505,21 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#histogram">5.1  histogram</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#twoway">5.2 twoway</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
