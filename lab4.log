@@ -2914,3 +2914,326 @@ file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/age_m_
 . 
 end of do-file
 
+. codebook abo
+
+-------------------------------------------------------------------------------------------------------------------------------
+abo                                                                                                                 (unlabeled)
+-------------------------------------------------------------------------------------------------------------------------------
+
+                  Type: Numeric (byte)
+                 Label: abo
+
+                 Range: [1,4]                         Units: 1
+         Unique values: 4                         Missing .: 0/2,000
+
+            Tabulation: Freq.   Numeric  Label
+                          720         1  1=A
+                          249         2  2=B
+                          116         3  3=AB
+                          915         4  4=O
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g abo_a=abo==1
+
+. g abo_b=abo==2
+
+. g abo_ab=abo=3
+invalid syntax
+r(198);
+
+end of do-file
+
+r(198);
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g abo_a=abo==1
+
+. g abo_b=abo==2
+
+. g abo_ab=abo==3
+
+. g abo_o=abo==4
+
+. tw sc age abo_a abo_b abo_ab abo_o 
+
+. 
+end of do-file
+
+. lookfor year
+
+. lookfor date
+
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+-------------------------------------------------------------------------------------------------------------------------------
+transplant_date float   %d                    Transplant Date
+end_date        float   %9.0g                 
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g abo_a=abo==1
+
+. g abo_b=abo==2
+
+. g abo_ab=abo==3
+
+. g abo_o=abo==4
+
+. g year=year(transplant_date)
+
+. bys abo: egen n=mean(year)
+
+. tw sc n year
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g abo_a=abo==1
+
+. g abo_b=abo==2
+
+. g abo_ab=abo==3
+
+. g abo_o=abo==4
+
+. g year=year(transplant_date)
+
+. bys abo: egen n=mean(year)
+
+. line n year
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. g abo_a=abo==1
+
+. g abo_b=abo==2
+
+. g abo_ab=abo==3
+
+. g abo_o=abo==4
+
+. g year=year(transplant_date)
+
+. bys abo: egen n=mean(year)
+
+. line n year, sort
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. bys age: egen mean_ecd = mean(don_ecd) egen age_tag = tag(age)
+varlist not allowed
+r(101);
+
+end of do-file
+
+r(101);
+
+. pwd
+/Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. bys age: egen mean_ecd = mean(don_ecd) egen age_tag = tag(age)
+varlist not allowed
+r(101);
+
+end of do-file
+
+r(101);
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. bys age: egen mean_ecd = mean(don_ecd) 
+
+. egen age_tag = tag(age)
+
+. graph twoway line mean_ecd age /// 
+> if age_tag==1
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. bys age: egen mean_ecd = mean(don_ecd) 
+
+. egen age_tag = tag(age)
+
+. graph twoway line mean_ecd age if age_tag==1
+
+. graph export twoway_egen.png, replace
+file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/twoway_egen.png saved as PNG format
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use tx_yr.dta, clear
+
+. desc
+
+Contains data from tx_yr.dta
+ Observations:            10                  
+    Variables:            13                  2 Jul 2021 08:07
+-------------------------------------------------------------------------------------------------------------------------------
+Variable      Storage   Display    Value
+    name         type    format    label      Variable label
+-------------------------------------------------------------------------------------------------------------------------------
+yr              int     %8.0g                 Transplant Year
+not_working     double  %9.0g                 Num. Unemployed Recipients
+n               double  %8.0g                 (sum) n
+hypertensive    double  %9.0g                 (sum) hypertensive
+unknown_disease double  %9.0g                 (sum) unknown_disease
+diabetes        double  %9.0g                 (sum) diabetes
+ecd             double  %4.0g                 (sum) ecd
+female          double  %8.0g                 (sum) female
+rec_hcv_antib~y double  %9.0g                 Number HCV+ Recipients
+over70          double  %9.0g                 Number Recips. Over 70 Years Old
+male            int     %8.0g                 
+scd             int     %8.0g                 
+total           float   %9.0g                 Total Num. of Recipients
+-------------------------------------------------------------------------------------------------------------------------------
+Sorted by: yr
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. graph twoway line n yr
+
+. graph export line_n_yr.png, replace 
+file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/line_n_yr.png saved as PNG format
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. graph twoway connected n yr
+
+. graph export connected.png, replace 
+file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/connected.png saved as PNG format
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. graph twoway connected n yr
+
+. graph export connected.png, replace 
+file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/connected.png saved as PNG format
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. graph twoway area n yr
+
+. graph export area.png, replace 
+file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/area.png saved as PNG format
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. graph twoway bar n yr
+
+. graph export bar.png, replace 
+file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/bar.png saved as PNG format
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. graph twoway function y=x^2+2
+
+. graph export function.png
+file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/function.png saved as PNG format
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. graph twoway line ecd scd yr
+
+. graph export line_n_yr2.png, replace 
+file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/line_n_yr2.png saved as PNG format
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. graph twoway area ecd scd yr
+
+. graph export nyvar.png, replace 
+file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/nyvar.png saved as PNG format
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. graph twoway area scd ecd yr
+
+. graph export nyvar2.png, replace 
+file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/nyvar2.png saved as PNG format
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. graph twoway bar scd ecd yr
+
+. graph export nyvar3.png, replace
+file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/nyvar3.png saved as PNG format
+
+. 
+end of do-file
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. twoway line n yr || connected male female yr
+
+. graph export line_connect.png, replace
+file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/line_connect.png saved as PNG format
+
+. 
+end of do-file
+

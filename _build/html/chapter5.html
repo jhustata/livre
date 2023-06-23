@@ -368,6 +368,14 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scheme">5.1.7 scheme</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normal">5.1.8 normal</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#twoway">5.2 twoway</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter">5.2.1 scatter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#line">5.2.2 line</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connected">5.2.3 connected</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#area">5.2.4 area</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bar">5.2.5 bar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function">5.2.6 function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#y">5.3 y</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overlay">5.4 overlay</a></li>
 </ul>
             </nav>
         </div>
@@ -729,6 +737,9 @@ stcolor
 <section id="twoway">
 <h2>5.2 twoway<a class="headerlink" href="#twoway" title="Permalink to this heading">#</a></h2>
 <p>Bivariable: correlation</p>
+</section>
+<section id="scatter">
+<h2>5.2.1 scatter<a class="headerlink" href="#scatter" title="Permalink to this heading">#</a></h2>
 <div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> donors,<span class="k"> clear</span>
 <span class="k">graph twoway scatter</span> don_wgt don_hgt
 <span class="k">graph</span> export twowway<span class="m">.</span>png,<span class="k"> replace</span> 
@@ -774,6 +785,127 @@ stcolor
 </pre></div>
 </div>
 <p><img alt="" src="_images/age_m_95ci.png" /></p>
+</section>
+<section id="line">
+<h2>5.2.2 line<a class="headerlink" href="#line" title="Permalink to this heading">#</a></h2>
+<p>“ecd” = “extended criteria donor” = donor age <span class="math notranslate nohighlight">\(\gt  60\)</span>, or donor age <span class="math notranslate nohighlight">\(50-59\)</span> with certain comorbidities</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span>
+<span class="k">bys</span> age:<span class="k"> egen</span> mean_ecd =<span class="k"> mean</span>(don_ecd) 
+<span class="k">egen</span> age_tag = tag(age)
+<span class="k">graph twoway line</span> mean_ecd age<span class="k"> if</span> age_tag<span class="o">==</span><span class="m">1</span>
+<span class="k">graph</span> export twoway_egen<span class="m">.</span>png,<span class="k"> replace</span>
+</pre></div>
+</div>
+<p><img alt="" src="_images/twoway_egen.png" /></p>
+<p>How has the number of standard criteria donor (SCD) and extended criteria donor (ECD) transplants changed over time?</p>
+<p><code class="docutils literal notranslate"><span class="pre">SCD</span></code> = donor age &lt; 50 or (age 50-59 and donor had at most one of: hypertension, death by cerebrovascular accident, terminal serum creatinine &gt; 1.5 mg/dL)</p>
+<p><code class="docutils literal notranslate"><span class="pre">ECD</span></code> = donor age &gt;= 60 or (age 50-59 and donor had at least two of: hypertension, death by cerebrovascular accident, terminal serum creatinine &gt; 1.5 mg/dL)</p>
+<p>Let’s graph the number of SCD and ECD transplants over time</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> tx_yr<span class="m">.</span>dta,<span class="k"> clear</span>
+<span class="k">desc</span>
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> use</span> tx_yr<span class="m">.</span>dta,<span class="k"> clear</span>
+
+.<span class="k"> desc</span>
+
+Contains data from tx_yr<span class="m">.</span>dta
+Observations:            <span class="m">10</span>		     
+Variables:            <span class="m">13</span>		<span class="m">2</span> Jul <span class="m">2021</span> <span class="m">08</span>:<span class="m">07</span>
+				
+Variable      Storage   Display	Value
+name        <span class="k"> type</span>   <span class="k"> format	label</span>	Variable<span class="k"> label</span>
+				
+yr              int     <span class="nx">%8.0g</span>		Transplant Year
+not_working     double  <span class="nx">%9.0g</span>		Num. Unemployed Recipients
+<span class="k">n</span>               double  <span class="nx">%8.0g</span>		(sum)<span class="k"> n</span>
+hypertensive    double  <span class="nx">%9.0g</span>		(sum) hypertensive
+unknown_disease double  <span class="nx">%9.0g</span>		(sum) unknown_disease
+diabetes        double  <span class="nx">%9.0g</span>		(sum) diabetes
+ecd             double  <span class="nx">%4.0g</span>		(sum) ecd
+female          double  <span class="nx">%8.0g</span>		(sum) female
+rec_hcv_antib<span class="o">~</span>y double  <span class="nx">%9.0g</span>		Number HCV<span class="o">+</span> Recipients
+over70          double  <span class="nx">%9.0g</span>		Number Recips. Over <span class="m">70</span> Years	Old
+male            int     <span class="nx">%8.0g</span>		     
+scd             int     <span class="nx">%8.0g</span>		     
+<span class="k">total</span>           float   <span class="nx">%9.0g</span>		Total Num. of Recipients
+				
+Sorted<span class="k"> by</span>: yr
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">tx_yr.dta</span></code> has data on the frequency of specific transplant types per year. For example, the variable female is the number of female transplant recipients per year. The variable scd is the number of standard criteria donor transplants performed per year.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">graph twoway line n</span> yr
+<span class="k">graph</span> export line_n_yr<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<p><img alt="" src="_images/line_n_yr.png" /></p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">graph twoway line</span> ecd scd yr
+<span class="k">graph</span> export line_n_yr2<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<p><img alt="" src="line_n_yr2." /></p>
+</section>
+<section id="connected">
+<h2>5.2.3 connected<a class="headerlink" href="#connected" title="Permalink to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">graph twoway</span> connected<span class="k"> n</span> yr
+<span class="k">graph</span> export connected<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<p><img alt="" src="_images/connected.png" /></p>
+</section>
+<section id="area">
+<h2>5.2.4 area<a class="headerlink" href="#area" title="Permalink to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">graph twoway</span> area<span class="k"> n</span> yr
+<span class="k">graph</span> export area<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<p><img alt="" src="_images/area.png" /></p>
+</section>
+<section id="bar">
+<h2>5.2.5 bar<a class="headerlink" href="#bar" title="Permalink to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">graph twoway</span> bar<span class="k"> n</span> yr
+<span class="k">graph</span> export bar<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<p><img alt="" src="_images/bar.png" /></p>
+</section>
+<section id="function">
+<h2>5.2.6 function<a class="headerlink" href="#function" title="Permalink to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">graph twoway</span> function y=x<span class="o">^</span><span class="m">2+2</span>
+<span class="k">graph</span> export function<span class="m">.</span>png
+</pre></div>
+</div>
+<p><img alt="" src="_images/function.png" /></p>
+</section>
+<section id="y">
+<h2>5.3 y<a class="headerlink" href="#y" title="Permalink to this heading">#</a></h2>
+<p>Several y variables</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">graph twoway</span> area ecd scd yr
+<span class="k">graph</span> export nyvar<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<p><img alt="" src="_images/nyvar.png" /></p>
+<p>Change order</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">graph twoway</span> area scd ecd yr
+<span class="k">graph</span> export nyvar2<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<p><img alt="" src="_images/nyvar2.png" /></p>
+<p>Order matters: the one listed first gets graphed first. Additional areas might overlie the first one.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">graph twoway</span> bar scd ecd yr
+<span class="k">graph</span> export nyvar3<span class="m">.</span>png,<span class="k"> replace</span>
+</pre></div>
+</div>
+<p><img alt="" src="_images/nyvar3.png" /></p>
+<p>Interpretation is tricky. In 2010, were there about 130 SCD transplants (top of red to top of blue) or 170 (x- axis to top of blue)?</p>
+</section>
+<section id="overlay">
+<h2>5.4 overlay<a class="headerlink" href="#overlay" title="Permalink to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">twoway line n</span> yr || connected male female yr
+<span class="k">graph</span> export line_connect<span class="m">.</span>png,<span class="k"> replace</span>
+</pre></div>
+</div>
+<p><img alt="" src="_images/line_connect.png" /></p>
 </section>
 </section>
 
@@ -854,6 +986,14 @@ stcolor
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scheme">5.1.7 scheme</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#normal">5.1.8 normal</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#twoway">5.2 twoway</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter">5.2.1 scatter</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#line">5.2.2 line</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connected">5.2.3 connected</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#area">5.2.4 area</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bar">5.2.5 bar</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#function">5.2.6 function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#y">5.3 y</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overlay">5.4 overlay</a></li>
 </ul>
   </nav></div>
 
