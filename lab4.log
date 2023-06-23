@@ -3342,3 +3342,61 @@ file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/scale_
 . 
 end of do-file
 
+. his age
+command his is unrecognized
+r(199);
+
+. hist age
+variable age not found
+r(111);
+
+. pwd
+/Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer
+
+. use transplants
+
+. hist age
+(bin=33, start=0, width=2.5757576)
+
+. hist age, addplot(kdensity age)
+(bin=33, start=0, width=2.5757576)
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. hist age, addplot(kdensity)
+(bin=33, start=0, width=2.5757576)
+varlist required
+r(100);
+
+end of do-file
+
+r(100);
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. hist age, addplot(kdensity)
+(bin=33, start=0, width=2.5757576)
+varlist required
+r(100);
+
+end of do-file
+
+r(100);
+
+. do "/var/folders/54/5mgfq6yj4w1db9msz6f3tpvh0000gn/T//SD00412.000000"
+
+. use transplants, clear
+
+. hist age, addplot(kdensity age)
+(bin=33, start=0, width=2.5757576)
+
+. graph export hist_kdensity.png, replace
+file /Users/d/Dropbox (Personal)/1f.ἡἔρις,κ/1.ontology/summer/hist_kdensity.png saved as PNG format
+
+. 
+end of do-file
+
