@@ -991,14 +991,14 @@ Sorted<span class="k"> by</span>: yr
 <span class="k">	g</span> p75=<span class="nf">r</span>(p75)
 <span class="k">	local</span> m_age=<span class="nf">r</span>(mean) <span class="o">+</span> <span class="m">2</span>
 <span class="k">	</span>
-<span class="k">	qui sum</span> <span class="nv">`m_axis_var&#39;</span>
+<span class="k">	qui sum</span> <span class="nv">`x_axis_var&#39;</span>
 <span class="k">	local</span> m_xaxis=<span class="nf">r</span>(mean)
 	
 	#delimit ;
 <span class="k">	twoway</span> (scatter p50 abo<span class="k"> in</span> <span class="m">1</span><span class="o">/</span><span class="m">100</span>)(rcap p25 p75 abo<span class="k"> in</span> <span class="m">1</span><span class="o">/</span><span class="m">100</span>,
 	    ti(<span class="s">&quot;</span><span class="nv">`title&#39;</span><span class="s">&quot;</span>)
 		xti(<span class="s">&quot;</span><span class="nv">`xti&#39;</span><span class="s">&quot;</span>)
-		text(<span class="nv">`m_xaxis&#39;</span> <span class="nv">`m_age&#39;</span> <span class="s">&quot;</span><span class="nv">`yline_text&#39;</span><span class="s">&quot;</span>)
+		text(<span class="nv">`m_age&#39;</span> <span class="nv">`m_xaxis&#39;</span> <span class="s">&quot;</span><span class="nv">`yline_text&#39;</span><span class="s">&quot;</span>)
 		yline(<span class="nv">`m_age&#39;</span>,
 		    lc(lime)
 		)
@@ -1022,23 +1022,13 @@ Sorted<span class="k"> by</span>: yr
 	)
 	;
 	#delimit cr
-<span class="k">end</span>
-</pre></div>
-</div>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> capture program drop</span> figure1
+<span class="k">end</span><span class="nv">`rcap` to draw the interquartile range. I&#39;ve also suppressed the legend. Hope you can notice the difference from the one in the video. But you can still find a copy of the original program below.</span>
 
-.<span class="k"> qui program</span> define figure1 
+<span class="nv">```stata</span>
 
-. 
-<span class="k">end</span> of<span class="k"> do</span><span class="o">-</span>file
-
-. 
-</pre></div>
-</div>
-<p>This is the program we wrote together in our final class session. Please watch the Session 5 video to see how this emerged from a very simple premise. I’ve only slightly edited the final program to include the <code class="docutils literal notranslate"><span class="pre">rcap</span></code> to draw the interquartile range. I’ve also suppressed the legend. Hope you can notice the difference from the one in the video. But you can still find a copy of the original program below.</p>
-<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span> 
-figure1 age abo, title(<span class="s">&quot;Age at Transplant&quot;</span>) xtitle(<span class="s">&quot;ABO Blood Group&quot;</span>) ylt(<span class="s">&quot;Mean Age&quot;</span>)
-<span class="k">graph</span> export figure1<span class="m">.</span>png,<span class="k"> replace</span> 
+<span class="nv">use transplants, clear </span>
+<span class="nv">figure1 age abo, title(&quot;Age at Transplant&quot;) xtitle(&quot;ABO Blood Group&quot;) ylt(&quot;Mean Age&quot;)</span>
+<span class="nv">graph export figure1.png, replace </span>
 </pre></div>
 </div>
 <p><img alt="" src="_images/figure1.png" /></p>
