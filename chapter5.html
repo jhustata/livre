@@ -380,6 +380,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scale">5.5.1 scale()</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#program">5.6 program</a></li>
 </ul>
             </nav>
         </div>
@@ -973,6 +974,125 @@ Sorted<span class="k"> by</span>: yr
 <p><img alt="" src="_images/scale_off.png" /></p>
 </section>
 </section>
+<section id="program">
+<h2>5.6 program<a class="headerlink" href="#program" title="Permalink to this heading">#</a></h2>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">capture program drop</span> figure1
+<span class="k">qui program</span> define figure1 
+<span class="k">	syntax varlist</span>, title(str) xtitle(str) ylt(str)
+<span class="k">	</span>
+<span class="k">	local</span> y_axis_var:<span class="k"> di</span> <span class="nf">word</span>(<span class="s">&quot;</span><span class="nv">`varlist&#39;</span><span class="s">&quot;</span>, <span class="m">1</span>)
+<span class="k">	local</span> x_axis_var:<span class="k"> di</span> <span class="nf">word</span>(<span class="s">&quot;</span><span class="nv">`varlist&#39;</span><span class="s">&quot;</span>, <span class="m">2</span>)
+<span class="k">	local</span> xti:<span class="k"> di</span> <span class="s">&quot;</span><span class="nv">`xtitle&#39;</span><span class="s">&quot;</span>
+<span class="k">	local</span> yline_text:<span class="k"> di</span> <span class="s">&quot;</span><span class="nv">`ylt&#39;</span><span class="s">&quot;</span>
+<span class="k">	</span>
+<span class="k">	qui sum</span> <span class="nv">`y_axis_var&#39;</span>,<span class="k"> d</span> 
+<span class="k">	g</span> p50=<span class="nf">r</span>(p50)
+<span class="k">	g</span> p25=<span class="nf">r</span>(p25)
+<span class="k">	g</span> p75=<span class="nf">r</span>(p75)
+<span class="k">	local</span> m_age=<span class="nf">r</span>(mean) <span class="o">+</span> <span class="m">2</span>
+<span class="k">	</span>
+<span class="k">	qui sum</span> <span class="nv">`m_axis_var&#39;</span>
+<span class="k">	local</span> m_xaxis=<span class="nf">r</span>(mean)
+	
+	#delimit ;
+<span class="k">	twoway</span> (scatter p50 abo<span class="k"> in</span> <span class="m">1</span><span class="o">/</span><span class="m">100</span>)(rcap p25 p75 abo<span class="k"> in</span> <span class="m">1</span><span class="o">/</span><span class="m">100</span>,
+	    ti(<span class="s">&quot;</span><span class="nv">`title&#39;</span><span class="s">&quot;</span>)
+		xti(<span class="s">&quot;</span><span class="nv">`xti&#39;</span><span class="s">&quot;</span>)
+		text(<span class="nv">`m_xaxis&#39;</span> <span class="nv">`m_age&#39;</span> <span class="s">&quot;</span><span class="nv">`yline_text&#39;</span><span class="s">&quot;</span>)
+		yline(<span class="nv">`m_age&#39;</span>,
+		    lc(lime)
+		)
+		yti(<span class="s">&quot;</span><span class="nv">`y_axis_var&#39;</span><span class="s">&quot;</span>,
+		    orientation(horizontal)
+		)
+		ylab(<span class="m">10</span>(<span class="m">10</span>)<span class="m">80</span>)
+		xlab(
+		    <span class="m">1</span> <span class="s">&quot;A&quot;</span>
+			<span class="m">2</span> <span class="s">&quot;B&quot;</span>
+			<span class="m">3</span> <span class="s">&quot;AB&quot;</span>
+			<span class="m">4</span> <span class="s">&quot;O&quot;</span>
+		)
+		legend(off
+<span class="k">		    lab</span>(<span class="m">1</span> <span class="s">&quot;Median&quot;</span>)
+<span class="k">			lab</span>(<span class="m">2</span> <span class="s">&quot;1st Quartile&quot;</span>)
+<span class="k">			lab</span>(<span class="m">3</span> <span class="s">&quot;4th Quartile&quot;</span>)
+<span class="k">			order</span>(<span class="m">3</span> <span class="m">1</span> <span class="m">2</span>)
+		)
+<span class="k">		note</span>(<span class="s">&quot;Median &amp; IQR&quot;</span>)
+	)
+	;
+	#delimit cr
+<span class="k">end</span>
+</pre></div>
+</div>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span>.<span class="k"> capture program drop</span> figure1
+
+.<span class="k"> qui program</span> define figure1 
+
+. 
+<span class="k">end</span> of<span class="k"> do</span><span class="o">-</span>file
+
+. 
+</pre></div>
+</div>
+<p>This is the program we wrote together in our final class session. Please watch the Session 5 video to see how this emerged from a very simple premise. I’ve only slightly edited the final program to include the <code class="docutils literal notranslate"><span class="pre">rcap</span></code> to draw the interquartile range. I’ve also suppressed the legend. Hope you can notice the difference from the one in the video. But you can still find a copy of the original program below.</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">use</span> transplants,<span class="k"> clear</span> 
+figure1 age abo, title(<span class="s">&quot;Age at Transplant&quot;</span>) xtitle(<span class="s">&quot;ABO Blood Group&quot;</span>) ylt(<span class="s">&quot;Mean Age&quot;</span>)
+<span class="k">graph</span> export figure1<span class="m">.</span>png,<span class="k"> replace</span> 
+</pre></div>
+</div>
+<p><img alt="" src="_images/figure1.png" /></p>
+<p>The original program developed together in class:</p>
+<div class="highlight-stata notranslate"><div class="highlight"><pre><span></span><span class="k">capture program drop</span> figure1
+<span class="k">qui program</span> define figure1 
+<span class="k">	syntax varlist</span>, title(str) xtitle(str) ylt(str)
+<span class="k">	</span>
+<span class="k">	local</span> y_axis_var:<span class="k"> di</span> <span class="nf">word</span>(<span class="s">&quot;</span><span class="nv">`varlist&#39;</span><span class="s">&quot;</span>, <span class="m">1</span>)
+<span class="k">	local</span> x_axis_var:<span class="k"> di</span> <span class="nf">word</span>(<span class="s">&quot;</span><span class="nv">`varlist&#39;</span><span class="s">&quot;</span>, <span class="m">2</span>)
+<span class="k">	local</span> xti:<span class="k"> di</span> <span class="s">&quot;</span><span class="nv">`xtitle&#39;</span><span class="s">&quot;</span>
+<span class="k">	local</span> yline_text:<span class="k"> di</span> <span class="s">&quot;</span><span class="nv">`ylt&#39;</span><span class="s">&quot;</span>
+<span class="k">	</span>
+<span class="k">	qui sum</span> <span class="nv">`y_axis_var&#39;</span>,<span class="k"> d</span> 
+<span class="k">	g</span> p50=<span class="nf">r</span>(p50)
+<span class="k">	g</span> p25=<span class="nf">r</span>(p25)
+<span class="k">	g</span> p75=<span class="nf">r</span>(p75)
+<span class="k">	local</span> m_age=<span class="nf">r</span>(mean) <span class="o">+</span> <span class="m">2</span>
+<span class="k">	</span>
+<span class="k">	qui sum</span> <span class="nv">`m_axis_var&#39;</span>
+<span class="k">	local</span> m_xaxis=<span class="nf">r</span>(mean)
+	
+	#delimit ;
+<span class="k">	twoway</span> (scatter p50 abo<span class="k"> in</span> <span class="m">1</span><span class="o">/</span><span class="m">100</span>)(rcap p25 p75 abo<span class="k"> in</span> <span class="m">1</span><span class="o">/</span><span class="m">100</span>,
+	    ti(<span class="s">&quot;</span><span class="nv">`title&#39;</span><span class="s">&quot;</span>)
+		xti(<span class="s">&quot;</span><span class="nv">`xti&#39;</span><span class="s">&quot;</span>)
+		text(<span class="nv">`m_xaxis&#39;</span> <span class="nv">`m_age&#39;</span> <span class="s">&quot;</span><span class="nv">`yline_text&#39;</span><span class="s">&quot;</span>)
+		yline(<span class="nv">`m_age&#39;</span>,
+		    lc(lime)
+		)
+		yti(<span class="s">&quot;</span><span class="nv">`y_axis_var&#39;</span><span class="s">&quot;</span>,
+		    orientation(horizontal)
+		)
+		ylab(<span class="m">10</span>(<span class="m">10</span>)<span class="m">80</span>)
+		xlab(
+		    <span class="m">1</span> <span class="s">&quot;A&quot;</span>
+			<span class="m">2</span> <span class="s">&quot;B&quot;</span>
+			<span class="m">3</span> <span class="s">&quot;AB&quot;</span>
+			<span class="m">4</span> <span class="s">&quot;O&quot;</span>
+		)
+		legend(off
+<span class="k">		    lab</span>(<span class="m">1</span> <span class="s">&quot;Median&quot;</span>)
+<span class="k">			lab</span>(<span class="m">2</span> <span class="s">&quot;1st Quartile&quot;</span>)
+<span class="k">			lab</span>(<span class="m">3</span> <span class="s">&quot;4th Quartile&quot;</span>)
+<span class="k">			order</span>(<span class="m">3</span> <span class="m">1</span> <span class="m">2</span>)
+		)
+<span class="k">		note</span>(<span class="s">&quot;Median &amp; IQR&quot;</span>)
+	)
+	;
+	#delimit cr
+<span class="k">end</span>
+</pre></div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -1064,6 +1184,7 @@ Sorted<span class="k"> by</span>: yr
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scale">5.5.1 scale()</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#program">5.6 program</a></li>
 </ul>
   </nav></div>
 
