@@ -1,6 +1,6 @@
 # Aphorisms for Ghosts
 
-Truth is a shadow of structure.
+Truth is a [shadow](https://claude.ai/public/artifacts/4a427c9c-e294-4676-9d43-95086d3bf549) of structure.
 — Not Nietzsche
 # flick 20250409213555-0wy3
 # flick 20250409214203-psPH
