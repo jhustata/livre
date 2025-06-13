@@ -3,7 +3,7 @@
 
 title: Stata Programming
 author: Abimereki Muzaale
-logo: https://brand.jhu.edu/assets/uploads/sites/5/2014/06/university_logo_small_vertical_blue.png
+logo: ./jhu-logo.jpeg
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
